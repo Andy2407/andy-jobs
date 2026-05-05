@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-05-05T21:25:32.033977",
-  "duration_s": 103.063411,
+  "generated_at": "2026-05-05T21:35:13.521057",
+  "duration_s": 105.766733,
   "stats": {
-    "raw": 2941,
+    "raw": 2940,
     "filtered": 308,
-    "verified": 296,
+    "verified": 266,
     "by_category": {
-      "pm": 111,
-      "auto": 21,
-      "ki": 22,
-      "pharma": 4,
-      "other": 138
+      "pm": 95,
+      "auto": 18,
+      "ki": 18,
+      "other": 133,
+      "pharma": 2
     }
   },
   "jobs": [
@@ -50,23 +50,6 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1206108132-S",
-      "title": "Senior Project Manager - AI Program Delivery d/w/m",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 60,
-      "score_reasons": [
-        "+22 senior project manager",
-        "+22 ai program",
-        "+16 project manager"
-      ],
-      "category": "ki",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002699589-S",
       "title": "Technischer Projektleiter (all genders)",
       "company": "",
@@ -79,6 +62,23 @@
         "+25 loc:münchen"
       ],
       "category": "pm",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1206108132-S",
+      "title": "Senior Project Manager - AI Program Delivery d/w/m",
+      "company": "",
+      "location": "",
+      "description": "",
+      "score": 60,
+      "score_reasons": [
+        "+22 senior project manager",
+        "+22 ai program",
+        "+16 project manager"
+      ],
+      "category": "ki",
       "verified": true,
       "verify_status": "ok"
     },
@@ -98,23 +98,6 @@
       "category": "pm",
       "verified": true,
       "verify_status": "ok"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Consultant-Kaufmaennischer-Projektmanager-m-w-d-Koeln-Stuttgart-Frankfurt-am-Main-Muenchen-Bachert-Unternehmensberatung-GmbH-Co-KG--10879667-inline.html",
-      "title": "Senior Consultant / Kaufmännischer Projektmanager (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 55,
-      "score_reasons": [
-        "+14 senior consultant",
-        "+16 projektmanager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
     },
     {
       "source": "bundesagentur",
@@ -168,119 +151,22 @@
       "verify_status": "ok"
     },
     {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--KI-Manager-Steuerberatung-Digitalisierung-m-w-d-Stuttgart-BW-PARTNER-Bauer-Schaetz-Hasenclever-Partnerschaft-mbB--13869278-inline.html",
-      "title": "KI Manager – Steuerberatung & Digitalisierung (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 50,
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.com/jobs/companies/24industries/technical-project-engineer-uav-systems-munich-18021",
+      "title": "Technical Project Engineer UAV Systems",
+      "company": "24Industries",
+      "location": "Munich",
+      "description": "<p><strong>WHAT WE'RE LOOKING FOR</strong></p>\n<p>An engineer who takes ownership. Not a coordinator, not a status reporter — someone who stays in the technical trenches and uses project management to accelerate execution. You own two things, end-to-end: timeline visibility and project communication.</p>\n<h2>Tasks</h2>\n<p><strong>YOUR MISSION</strong></p>\n<ul>\n<li>Build and maintain Gantt-based project timelines track progress, dependencies, and slippage with precision. No surprises, ever.</li>\n<li>Own all project communication from feasibility through series production. Keep R&#x26;D, product",
+      "remote": false,
+      "score": 45,
       "score_reasons": [
-        "+25 ki-manager",
-        "+25 ki manager"
-      ],
-      "category": "ki",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Tax-Digitalisierungs-und-KI-Manager-m-w-d-in-der-Steuerberatung-Berlin-Darmstadt-Freiburg-Hamburg-Hannover-Koeln-Leipzig-Muenchen-Muenster-Nuernberg-Ratingen-CURACON-GmbH-Wirtschaftspruefungsgesellschaft--13451156-inline.html",
-      "title": "Tax-Digitalisierungs- und KI-Manager (m/w/d) in der Steuerberatung",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 50,
-      "score_reasons": [
-        "+25 ki-manager",
-        "+25 loc:muenchen"
-      ],
-      "category": "ki",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--KI-Manager-m-w-d-Duesseldorf-Deutsche-Apotheker-und-Aerztebank-eG-apoBank--13897192-inline.html",
-      "title": "KI Manager (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 50,
-      "score_reasons": [
-        "+25 ki-manager",
-        "+25 ki manager"
-      ],
-      "category": "ki",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Pharma-m-w-d-Muenchen-Randstad-Deutschland-GmbH-Co-KG--13874305-inline.html",
-      "title": "Projektmanager Pharma (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 47,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+6 pharma",
-        "+25 loc:muenchen"
-      ],
-      "category": "pharma",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Vertriebsingenieur-Projektleiter-m-w-d-Medizintechnik-CT-und-Windkraft-Asien-Fuerstenfeldbruck-Schleifring-GmbH--13984429-inline.html",
-      "title": "Vertriebsingenieur/ Projektleiter (m/w/d) Medizintechnik (CT) und Windkraft Asien",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 49,
-      "score_reasons": [
-        "+16 projektleiter",
-        "+8 medizintechnik",
-        "+25 loc:muenchen"
-      ],
-      "category": "pharma",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Manager-Solutions-Consulting-Creative-Innovation-AI-Munich-Bavaria-Germany-Adobe-Systems-Europe-Limited--13950700-inline.html",
-      "title": "Manager Solutions Consulting – Creative Innovation & AI",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 47,
-      "score_reasons": [
-        "+22 ai manager",
-        "+25 loc:muenchen"
+        "+12 automotive",
+        "+8 robotics",
+        "+25 loc:munich"
       ],
       "category": "other",
       "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-fuer-Automotive-Data-Connector-m-w-d-Fridolfing-Rosenberger-Hochfrequenztechnik-GmbH-Co-KG--13985016-inline.html",
-      "title": "Technischer Projektleiter für Automotive Data Connector (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 46,
-      "score_reasons": [
-        "+16 projektleiter",
-        "+18 technischer projektleiter",
-        "+12 automotive"
-      ],
-      "category": "auto",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
+      "verify_status": "ok"
     },
     {
       "source": "stepstone",
@@ -298,24 +184,6 @@
       "category": "pm",
       "verified": true,
       "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/24industries/technical-project-engineer-uav-systems-munich-18021",
-      "title": "Technical Project Engineer UAV Systems",
-      "company": "24Industries",
-      "location": "Munich",
-      "description": "<p><strong>WHAT WE'RE LOOKING FOR</strong></p>\n<p>An engineer who takes ownership. Not a coordinator, not a status reporter — someone who stays in the technical trenches and uses project management to accelerate execution. You own two things, end-to-end: timeline visibility and project communication.</p>\n<h2>Tasks</h2>\n<p><strong>YOUR MISSION</strong></p>\n<ul>\n<li>Build and maintain Gantt-based project timelines track progress, dependencies, and slippage with precision. No surprises, ever.</li>\n<li>Own all project communication from feasibility through series production. Keep R&#x26;D, product",
-      "remote": false,
-      "score": 45,
-      "score_reasons": [
-        "+12 automotive",
-        "+8 robotics",
-        "+25 loc:munich"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok"
     },
     {
       "source": "stepstone",
@@ -336,44 +204,27 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Communication-AI-Transformation-Manager-Berlin-Berlin-Germany-Muenchen-Bavaria-Germany-Rennes-Ille-et-Vilaine-France-IDnow-GmbH--13925414-inline.html",
-      "title": "Communication & AI Transformation Manager",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 43,
-      "score_reasons": [
-        "+18 ai transformation",
-        "+25 loc:muenchen"
-      ],
-      "category": "ki",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-E-Mobilitaet-Energie-m-w-d-Raum-Berlin-Raum-Muenchen-Q-Park-Operations-Germany-GmbH-Co-KG--13932773-inline.html",
-      "title": "Projektmanager E-Mobilität & Energie (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Programm-Manager-Strategisches-Projektmanagement-all-genders-Duesseldorf-Koeln-Essen-Paderborn-Muenster-Hamburg-adesso-SE--13949484-inline.html",
+      "title": "Senior Programm Manager Strategisches Projektmanagement (all genders)",
       "company": "",
       "location": "muenchen",
       "description": "",
       "score": 45,
       "score_reasons": [
-        "+16 projektmanager",
-        "+4 energie",
+        "+20 senior programm",
         "+25 loc:muenchen"
       ],
-      "category": "pm",
+      "category": "other",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },
     {
       "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/logivations/marketing-lead-ai-first-munich-377266",
+      "url": "https://www.arbeitnow.com/jobs/companies/pixel-robotics/marketing-lead-ai-first-munich-84783",
       "title": "Marketing Lead (m/w/d) - AI-First",
-      "company": "Logivations",
+      "company": "Pixel Robotics",
       "location": "Munich",
-      "description": "<p><strong>Wer wir sind</strong></p>\n<p>Logivations ist ein internationales Tech- und Consultingunternehmen aus München. Unser Produkt W2MO ist eine der weltweit führenden Plattformen für Digital Twins in Supply Chain, Lager- und Produktionslogistik – über 30.000 professionelle Nutzer, SAP Application Development Partner, Gartner \"Cool Vendor\", LogiMAT \"Bestes Produkt\".</p>\n<p>Gerade haben wir W2MO um einen MCP-Server erweitert, über den Claude, ChatGPT und Gemini nativ im Digital Twin arbeiten. Heißt: ein Logistikplaner spricht mit seinem Warenhaus wie mit einem Kollegen, der jeden Winkel ken",
+      "description": "<p>Pixel Robotics baut autonome mobile Roboter (AMRs), die in der Intralogistik Paletten automatisiert transportieren – ohne Umbauten an der Infrastruktur, ohne monatelange WMS-Integration. Der Kniff: ein AI-Vision-System aus Deckenkameras, das einen Echtzeit-Digital-Twin der gesamten Halle aufspannt. Roboter, Menschen und Stapler arbeiten in dieser digitalen Kopie sicher nebeneinander.</p>\n<p>Vom Münchner Startup zum Serienhersteller: 2020 gegründet, ausgezeichnet mit dem Munich Startup Award – und inzwischen mit wachsender Kundenbasis in der Serienproduktion. Unser Partnerunternehmen Logivat",
       "remote": false,
       "score": 41,
       "score_reasons": [
@@ -402,20 +253,38 @@
       "verify_status": "ok"
     },
     {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Programm-Manager-Strategisches-Projektmanagement-all-genders-Duesseldorf-Koeln-Essen-Paderborn-Muenster-Hamburg-adesso-SE--13949484-inline.html",
-      "title": "Senior Programm Manager Strategisches Projektmanagement (all genders)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 45,
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.com/jobs/companies/logivations/marketing-lead-ai-first-munich-377266",
+      "title": "Marketing Lead (m/w/d) - AI-First",
+      "company": "Logivations",
+      "location": "Munich",
+      "description": "<p><strong>Wer wir sind</strong></p>\n<p>Logivations ist ein internationales Tech- und Consultingunternehmen aus München. Unser Produkt W2MO ist eine der weltweit führenden Plattformen für Digital Twins in Supply Chain, Lager- und Produktionslogistik – über 30.000 professionelle Nutzer, SAP Application Development Partner, Gartner \"Cool Vendor\", LogiMAT \"Bestes Produkt\".</p>\n<p>Gerade haben wir W2MO um einen MCP-Server erweitert, über den Claude, ChatGPT und Gemini nativ im Digital Twin arbeiten. Heißt: ein Logistikplaner spricht mit seinem Warenhaus wie mit einem Kollegen, der jeden Winkel ken",
+      "remote": false,
+      "score": 41,
       "score_reasons": [
-        "+20 senior programm",
-        "+25 loc:muenchen"
+        "+8 robotik",
+        "+8 robotics",
+        "+25 loc:munich"
       ],
       "category": "other",
       "verified": true,
-      "verify_status": "ok-403-trusted"
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13410-k13572.14748-S",
+      "title": "(Senior) Projektmanager (m/w/d)",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "score": 41,
+      "score_reasons": [
+        "+16 projektmanager",
+        "+25 loc:münchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok"
     },
     {
       "source": "bundesagentur",
@@ -451,40 +320,6 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13410-k13572.14748-S",
-      "title": "(Senior) Projektmanager (m/w/d)",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+25 loc:münchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/pixel-robotics/marketing-lead-ai-first-munich-84783",
-      "title": "Marketing Lead (m/w/d) - AI-First",
-      "company": "Pixel Robotics",
-      "location": "Munich",
-      "description": "<p>Pixel Robotics baut autonome mobile Roboter (AMRs), die in der Intralogistik Paletten automatisiert transportieren – ohne Umbauten an der Infrastruktur, ohne monatelange WMS-Integration. Der Kniff: ein AI-Vision-System aus Deckenkameras, das einen Echtzeit-Digital-Twin der gesamten Halle aufspannt. Roboter, Menschen und Stapler arbeiten in dieser digitalen Kopie sicher nebeneinander.</p>\n<p>Vom Münchner Startup zum Serienhersteller: 2020 gegründet, ausgezeichnet mit dem Munich Startup Award – und inzwischen mit wachsender Kundenbasis in der Serienproduktion. Unser Partnerunternehmen Logivat",
-      "remote": false,
-      "score": 41,
-      "score_reasons": [
-        "+8 robotik",
-        "+8 robotics",
-        "+25 loc:munich"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13892-3095379_3986398-S",
       "title": "IT Projektmanager (w/m/d) Mergers & Acquisitions",
       "company": "",
@@ -498,6 +333,22 @@
       "category": "pm",
       "verified": true,
       "verify_status": "ok"
+    },
+    {
+      "source": "personio:appliedai",
+      "url": "https://appliedai.jobs.personio.de/job/2569809?language=de",
+      "title": "Senior AI Project Manager (m/f/x)",
+      "company": "appliedAI Initiative",
+      "location": "",
+      "description": "",
+      "score": 41,
+      "score_reasons": [
+        "+25 ai project manager",
+        "+16 project manager"
+      ],
+      "category": "ki",
+      "verified": true,
+      "verify_status": "ok-spa"
     },
     {
       "source": "bundesagentur",
@@ -532,38 +383,6 @@
       "verify_status": "ok"
     },
     {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002518937-S",
-      "title": "Projektleiter Elektrotechnik (m/w/d)",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektleiter",
-        "+25 loc:münchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-d-Projektleitung-Kontraktlogistik-Rollout-Bremen-Berlin-Leipzig-Koeln-Duesseldorf-Osnabrueck-Muenster-Frankfurt-a-M-Stuttgart-Muenchen-BLG-Logistics-Group-AG-Co-KG--13912281-inline.html",
-      "title": "(Senior) Projektmanager (m/w/d) – Projektleitung / Kontraktlogistik / Rollout",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
       "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Teamleiter-in-Senior-Projektmanager-in-M-W-D-Muenchen-Penta-GmbH--13857063-inline.html",
       "title": "Teamleiter/in / Senior-Projektmanager/in (M/W/D)",
@@ -578,22 +397,6 @@
       "category": "pm",
       "verified": true,
       "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "personio:appliedai",
-      "url": "https://appliedai.jobs.personio.de/job/2569809?language=de",
-      "title": "Senior AI Project Manager (m/f/x)",
-      "company": "appliedAI Initiative",
-      "location": "",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+25 ai project manager",
-        "+16 project manager"
-      ],
-      "category": "ki",
-      "verified": true,
-      "verify_status": "ok-spa"
     },
     {
       "source": "bundesagentur",
@@ -613,115 +416,19 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002959347-S",
-      "title": "Project Manager Organization im Bereich Transformation & Strategy (m|w|d)",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002518937-S",
+      "title": "Projektleiter Elektrotechnik (m/w/d)",
       "company": "",
       "location": "München",
       "description": "",
       "score": 41,
       "score_reasons": [
-        "+16 project manager",
+        "+16 projektleiter",
         "+25 loc:münchen"
       ],
       "category": "pm",
       "verified": true,
       "verify_status": "ok"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Marketplace-Manager-Projektmanager-Marktplaetze-M-W-D-Vollzeit-Munich-Nakoa-Digital-GmbH--11965625-inline.html",
-      "title": "(Senior) Marketplace Manager / Projektmanager Marktplätze (M/W/D) - Vollzeit",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-IT-Projektmanager-w-m-d-International-Presales-Muenchen-Duesseldorf-Stuttgart-Berlin-Frankfurt-Ludwigshafen-Hannover-Hamburg-Computacenter-AG-Co-oHG--13808514-inline.html",
-      "title": "Senior IT Projektmanager w/m/d International Presales",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektleiter-Cloud-Digitale-Transformation-m-w-d-Ottobrunn-bei-Muenchen-Berlin-Bonn-IABG-Industrieanlagen-Betriebsgesellschaft-mbH--13929716-inline.html",
-      "title": "(Senior) Projektleiter Cloud / Digitale Transformation (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektleiter",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-IT-Projektmanager-m-w-d-Muenchen-Deutschland-AirLST-GmbH--13836322-inline.html",
-      "title": "Senior IT-Projektmanager (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-Influencer-Marketing-all-genders-Muenchen-Koeln-Berlin-bundesweit-Reachbird-solutions-GmbH--13961095-inline.html",
-      "title": "(Senior) Projektmanager - Influencer Marketing (all genders)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Transition-Project-Manager-w-m-d-Dresden-Bautzen-Bielefeld-Koeln-Berlin-Hamburg-Pforzheim-Jena-Muenchen-Heidelberg-NTT-DATA-Business-Solutions-AG--13836417-inline.html",
-      "title": "Transition & Project Manager (w/m/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 project manager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
     },
     {
       "source": "stepstone",
@@ -740,68 +447,20 @@
       "verify_status": "ok-403-trusted"
     },
     {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-wmd-mit-IT-AI-Know-how-Berlin-Frankfurt-a-M-Hamburg-Koeln-Mannheim-Muenchen-Nuernberg-Stuttgart-BridgingIT-GmbH--13904561-inline.html",
-      "title": "Project Manager (w|m|d) mit IT & AI Know-how",
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002959347-S",
+      "title": "Project Manager Organization im Bereich Transformation & Strategy (m|w|d)",
       "company": "",
-      "location": "muenchen",
+      "location": "München",
       "description": "",
       "score": 41,
       "score_reasons": [
         "+16 project manager",
-        "+25 loc:muenchen"
+        "+25 loc:münchen"
       ],
       "category": "pm",
       "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Principal-Senior-Engagement-Manager-Project-Manager-German-Speaking-Munich-Service-now-com-GmbH--12966584-inline.html",
-      "title": "Principal /Senior Engagement Manager / Project Manager- German Speaking",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 project manager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-Consulting-Munich-Bavaria-Germany-Adobe-Systems-Europe-Limited--13974303-inline.html",
-      "title": "Project Manager (Consulting)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 project manager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-m-w-d-Event-Live-Digital-Schwaebisch-Hall-Duesseldorf-Muenchen-Berlin-Hamburg-Frankfurt-marbet-Marion-Bettina-Wuerth-GmbH-Co-KG--13762516-inline.html",
-      "title": "Project Manager (m/w/d) Event Live & Digital",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 project manager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
+      "verify_status": "ok"
     },
     {
       "source": "stepstone",
@@ -837,22 +496,6 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-im-Vertrieb-Grossraum-Muenchen-m-w-d-Muenchen-ELA-Container-GmbH--13935400-inline.html",
-      "title": "Projektmanager im Vertrieb Großraum München (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Projektmanager-m-w-d-Landshut-Naehe-Muenchen-SPIE-SAG-GmbH-GB-High-Voltage--13970618-inline.html",
       "title": "Projektmanager m/w/d",
       "company": "",
@@ -869,56 +512,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Hardware-Produkt-und-Projektmanager-SE-BS2000-m-w-d-Muenchen-Fujitsu--13867449-inline.html",
-      "title": "(Hardware) Produkt- und Projektmanager – SE BS2000 (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektmanagerin-fuer-den-Verbau-von-Waermepumpen-m-w-d-Muenchen-Stadtwerke-Muenchen-GmbH--13901809-inline.html",
-      "title": "Technische*r Projektmanager*in für den Verbau von Wärmepumpen (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Associate-Project-Manager-Marketing-Services-m-w-d-Aschheim-bei-Muenchen-IQVIA-Commercial-GmbH-Co-OHG--13932816-inline.html",
-      "title": "Associate Project Manager – Marketing Services (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 project manager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-m-w-d-Fokus-Materialflussplanung-Garching-bei-Muenchen-expertum-GmbH--13970489-inline.html",
-      "title": "Projektmanager (m/w/d) Fokus Materialflussplanung",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-im-Vertrieb-Grossraum-Muenchen-m-w-d-Muenchen-ELA-Container-GmbH--13935400-inline.html",
+      "title": "Projektmanager im Vertrieb Großraum München (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -965,14 +560,46 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-w-m-d-EPCM-Industry-Projektmanagement-von-Industrieprojekten-Stuttgart-Muenchen-Frankfurt-am-Main-Mannheim-Leipzig-Hamburg-Koeln-Drees-Sommer-SE--13912546-inline.html",
-      "title": "Projektleiter (w/m/d) EPCM Industry ‒ Projektmanagement von Industrieprojekten",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektmanagerin-fuer-den-Verbau-von-Waermepumpen-m-w-d-Muenchen-Stadtwerke-Muenchen-GmbH--13901809-inline.html",
+      "title": "Technische*r Projektmanager*in für den Verbau von Wärmepumpen (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
       "score": 41,
       "score_reasons": [
-        "+16 projektleiter",
+        "+16 projektmanager",
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-m-w-d-Fokus-Materialflussplanung-Garching-bei-Muenchen-expertum-GmbH--13970489-inline.html",
+      "title": "Projektmanager (m/w/d) Fokus Materialflussplanung",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 41,
+      "score_reasons": [
+        "+16 projektmanager",
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Associate-Project-Manager-Marketing-Services-m-w-d-Aschheim-bei-Muenchen-IQVIA-Commercial-GmbH-Co-OHG--13932816-inline.html",
+      "title": "Associate Project Manager – Marketing Services (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 41,
+      "score_reasons": [
+        "+16 project manager",
         "+25 loc:muenchen"
       ],
       "category": "pm",
@@ -997,8 +624,56 @@
     },
     {
       "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-w-m-d-EPCM-Industry-Projektmanagement-von-Industrieprojekten-Stuttgart-Muenchen-Frankfurt-am-Main-Mannheim-Leipzig-Hamburg-Koeln-Drees-Sommer-SE--13912546-inline.html",
+      "title": "Projektleiter (w/m/d) EPCM Industry ‒ Projektmanagement von Industrieprojekten",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 41,
+      "score_reasons": [
+        "+16 projektleiter",
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Project-Manager-m-w-d-fuer-Entwicklungsprojekte-Gilching-Grossraum-Muenchen-Dresden-Diehl-Aviation--13987264-inline.html",
       "title": "Project Manager (m/w/d) für Entwicklungsprojekte",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 41,
+      "score_reasons": [
+        "+16 project manager",
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--IT-Project-Manager-m-w-d-Muenchen-WWK-Lebensversicherung-a-G--13900412-inline.html",
+      "title": "IT-Project Manager (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 41,
+      "score_reasons": [
+        "+16 project manager",
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-Organization-im-Bereich-Transformation-Strategy-mwd-Muenchen-MEAG-MUNICH-ERGO-AssetManagement-GmbH--13936585-inline.html",
+      "title": "Project Manager Organization im Bereich Transformation & Strategy (m|w|d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -1061,54 +736,6 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-mit-Option-zum-Projektleiter-m-w-d-Eisenbahnplanung-Graz-Hall-in-Tirol-Muenchen-Wien-BERNARD-Gruppe-ZT-GmbH--13868876-inline.html",
-      "title": "Projektingenieur mit Option zum Projektleiter (m/w/d) Eisenbahnplanung",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektleiter",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-Organization-im-Bereich-Transformation-Strategy-mwd-Muenchen-MEAG-MUNICH-ERGO-AssetManagement-GmbH--13936585-inline.html",
-      "title": "Project Manager Organization im Bereich Transformation & Strategy (m|w|d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 project manager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--IT-Project-Manager-m-w-d-Muenchen-WWK-Lebensversicherung-a-G--13900412-inline.html",
-      "title": "IT-Project Manager (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 project manager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Projektleiter-m-w-d-Kundenschulungen-Muenchen-KNDS--13894100-inline.html",
       "title": "Projektleiter (m/w/d) Kundenschulungen",
       "company": "",
@@ -1125,14 +752,46 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-m-w-d-Hamburg-Bremen-Muenchen-Stuttgart-Manching-Donauwoerth-Ulm-SII-Deutschland-GmbH--13520281-inline.html",
-      "title": "Projektmanager (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-mit-Option-zum-Projektleiter-m-w-d-Eisenbahnplanung-Graz-Hall-in-Tirol-Muenchen-Wien-BERNARD-Gruppe-ZT-GmbH--13868876-inline.html",
+      "title": "Projektingenieur mit Option zum Projektleiter (m/w/d) Eisenbahnplanung",
       "company": "",
       "location": "muenchen",
       "description": "",
       "score": 41,
       "score_reasons": [
-        "+16 projektmanager",
+        "+16 projektleiter",
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Projektleiter-Elektrotechnik-m-w-d-Frankfurt-Boeblingen-Muenchen-Planungsgruppe-M-M-AG-Ingenieurgesellschaft-fuer-Gebaeudetechnik--10775444-inline.html",
+      "title": "Projektingenieur / Projektleiter Elektrotechnik (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 41,
+      "score_reasons": [
+        "+16 projektleiter",
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-w-m-d-Infrastruktur-EPCM-Industrieprojekte-Stuttgart-Frankfurt-am-Main-Muenchen-Hamburg-Leipzig-Dresden-Koeln-Berlin-Drees-Sommer-SE--13940358-inline.html",
+      "title": "Projektleiter (w/m/d) Infrastruktur ‒ EPCM Industrieprojekte",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 41,
+      "score_reasons": [
+        "+16 projektleiter",
         "+25 loc:muenchen"
       ],
       "category": "pm",
@@ -1158,46 +817,14 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Projektleiter-Elektrotechnik-m-w-d-Frankfurt-Boeblingen-Muenchen-Planungsgruppe-M-M-AG-Ingenieurgesellschaft-fuer-Gebaeudetechnik--10775444-inline.html",
-      "title": "Projektingenieur / Projektleiter Elektrotechnik (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektleiter",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-m-w-d-Logistik-Muenchen-KNDS--13829075-inline.html",
-      "title": "Projektmanager (m/w/d) Logistik",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-m-w-d-Hamburg-Bremen-Muenchen-Stuttgart-Manching-Donauwoerth-Ulm-SII-Deutschland-GmbH--13520281-inline.html",
+      "title": "Projektmanager (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
       "score": 41,
       "score_reasons": [
         "+16 projektmanager",
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-w-m-d-Infrastruktur-EPCM-Industrieprojekte-Stuttgart-Frankfurt-am-Main-Muenchen-Hamburg-Leipzig-Dresden-Koeln-Berlin-Drees-Sommer-SE--13940358-inline.html",
-      "title": "Projektleiter (w/m/d) Infrastruktur ‒ EPCM Industrieprojekte",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 41,
-      "score_reasons": [
-        "+16 projektleiter",
         "+25 loc:muenchen"
       ],
       "category": "pm",
@@ -1221,22 +848,6 @@
       "verify_status": "ok-403-trusted"
     },
     {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002726426-S",
-      "title": "Senior Project Manager (m/f/d) IT Transformation & Strategic Programs",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 38,
-      "score_reasons": [
-        "+22 senior project manager",
-        "+16 project manager"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
       "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Senior-Digital-Transformation-and-Demand-Manager-m-w-d-Pullach-im-Isartal-Bayerische-Hausbau-RE-GmbH-Co-KG--13865603-inline.html",
       "title": "Senior Digital Transformation and Demand Manager (m/w/d)",
@@ -1254,7 +865,39 @@
     },
     {
       "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002726426-S",
+      "title": "Senior Project Manager (m/f/d) IT Transformation & Strategic Programs",
+      "company": "",
+      "location": "",
+      "description": "",
+      "score": 38,
+      "score_reasons": [
+        "+22 senior project manager",
+        "+16 project manager"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12634-BB-640647-7878-2595-S",
+      "title": "Senior Projektmanager (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "score": 38,
+      "score_reasons": [
+        "+22 senior projektmanager",
+        "+16 projektmanager"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/18069-44114791-417-S",
       "title": "Senior Projektmanager (m/w/d)",
       "company": "",
       "location": "",
@@ -1286,87 +929,7 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/18069-44114791-417-S",
-      "title": "Senior Projektmanager (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 38,
-      "score_reasons": [
-        "+22 senior projektmanager",
-        "+16 projektmanager"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "personio:jungvonmatt",
-      "url": "https://jungvonmatt.jobs.personio.de/job/1195403?language=de",
-      "title": "Senior Project Manager (d/f/m)",
-      "company": "Jung von Matt",
-      "location": "",
-      "description": "",
-      "score": 38,
-      "score_reasons": [
-        "+22 senior project manager",
-        "+16 project manager"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-spa"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002902069-S",
-      "title": "Senior Projektmanager (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 38,
-      "score_reasons": [
-        "+22 senior projektmanager",
-        "+16 projektmanager"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "personio:jungvonmatt",
-      "url": "https://jungvonmatt.jobs.personio.de/job/1683429?language=de",
-      "title": "Senior Project Manager for Gaming & Esports (d/f/m)",
-      "company": "Jung von Matt",
-      "location": "",
-      "description": "",
-      "score": 38,
-      "score_reasons": [
-        "+22 senior project manager",
-        "+16 project manager"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-spa"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1205233816-S",
-      "title": "Senior Projektmanager (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 38,
-      "score_reasons": [
-        "+22 senior projektmanager",
-        "+16 projektmanager"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1191926163-S",
       "title": "Senior Projektmanager (m/w/d)",
       "company": "",
       "location": "",
@@ -1397,9 +960,41 @@
       "verify_status": "ok"
     },
     {
+      "source": "personio:jungvonmatt",
+      "url": "https://jungvonmatt.jobs.personio.de/job/1683429?language=de",
+      "title": "Senior Project Manager for Gaming & Esports (d/f/m)",
+      "company": "Jung von Matt",
+      "location": "",
+      "description": "",
+      "score": 38,
+      "score_reasons": [
+        "+22 senior project manager",
+        "+16 project manager"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-spa"
+    },
+    {
+      "source": "personio:jungvonmatt",
+      "url": "https://jungvonmatt.jobs.personio.de/job/1195403?language=de",
+      "title": "Senior Project Manager (d/f/m)",
+      "company": "Jung von Matt",
+      "location": "",
+      "description": "",
+      "score": 38,
+      "score_reasons": [
+        "+22 senior project manager",
+        "+16 project manager"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-spa"
+    },
+    {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/15980-39T4Z2H1TEH6HOET-S",
-      "title": "Senior Projektmanager",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1191926163-S",
+      "title": "Senior Projektmanager (m/w/d)",
       "company": "",
       "location": "",
       "description": "",
@@ -1430,6 +1025,38 @@
     },
     {
       "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/15980-39T4Z2H1TEH6HOET-S",
+      "title": "Senior Projektmanager",
+      "company": "",
+      "location": "",
+      "description": "",
+      "score": 38,
+      "score_reasons": [
+        "+22 senior projektmanager",
+        "+16 projektmanager"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13358-j105S19509-49746-S",
+      "title": "Senior Projektmanager (m/w/d) der Geschäftsführung",
+      "company": "",
+      "location": "",
+      "description": "",
+      "score": 38,
+      "score_reasons": [
+        "+22 senior projektmanager",
+        "+16 projektmanager"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/14751-395A348-S",
       "title": "Senior Projektmanager Offshore (m/w/d)",
       "company": "",
@@ -1446,8 +1073,8 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13884-333451-S",
-      "title": "Senior Projektmanager Digital (m/w/d)",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1205233816-S",
+      "title": "Senior Projektmanager (m/w/d)",
       "company": "",
       "location": "",
       "description": "",
@@ -1494,8 +1121,8 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13358-j105S19509-49746-S",
-      "title": "Senior Projektmanager (m/w/d) der Geschäftsführung",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002620846-S",
+      "title": "Senior Projektmanager - Rechenzentren (w/m/d)",
       "company": "",
       "location": "",
       "description": "",
@@ -1510,8 +1137,8 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002620846-S",
-      "title": "Senior Projektmanager - Rechenzentren (w/m/d)",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13884-333451-S",
+      "title": "Senior Projektmanager Digital (m/w/d)",
       "company": "",
       "location": "",
       "description": "",
@@ -1541,6 +1168,22 @@
       "verify_status": "ok-403-trusted"
     },
     {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-in-Kooperationen-m-w-d-Aachen-Trianel-GmbH--13982274-inline.html",
+      "title": "Senior Projektmanager:in Kooperationen (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "score": 38,
+      "score_reasons": [
+        "+22 senior projektmanager",
+        "+16 projektmanager"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
       "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1204735201-S",
       "title": "Senior Projektmanager:in",
@@ -1555,23 +1198,6 @@
       "category": "pm",
       "verified": true,
       "verify_status": "ok"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-After-Sales-Service-m-w-d-Automotive-Ford-Koeln-meinestadt-de--13747637-inline.html",
-      "title": "Projektmanager After Sales / Service (m/w/d) – Automotive / Ford",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 38,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+12 automotive",
-        "+10 after sales"
-      ],
-      "category": "auto",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
     },
     {
       "source": "stepstone",
@@ -1623,40 +1249,24 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-in-m-w-d-fuer-den-Industriebau-in-Dresden-Dresden-Ingerop-Deutschland--13810670-inline.html",
-      "title": "Senior Projektmanager:in (m/w/d) für den Industriebau in Dresden",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 38,
-      "score_reasons": [
-        "+22 senior projektmanager",
-        "+16 projektmanager"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-in-Kooperationen-m-w-d-Aachen-Trianel-GmbH--13982274-inline.html",
-      "title": "Senior Projektmanager:in Kooperationen (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 38,
-      "score_reasons": [
-        "+22 senior projektmanager",
-        "+16 projektmanager"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-d-PLM-Engineering-Applications-Lemwerder-Luerssen-Werft-Bremen-GmbH-Co-KG--13929189-inline.html",
       "title": "Senior Projektmanager (m/w/d) PLM & Engineering Applications",
+      "company": "",
+      "location": "",
+      "description": "",
+      "score": 38,
+      "score_reasons": [
+        "+22 senior projektmanager",
+        "+16 projektmanager"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-in-m-w-d-fuer-den-Industriebau-in-Dresden-Dresden-Ingerop-Deutschland--13810670-inline.html",
+      "title": "Senior Projektmanager:in (m/w/d) für den Industriebau in Dresden",
       "company": "",
       "location": "",
       "description": "",
@@ -1687,22 +1297,6 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-x-Meetings-Events-Berlin-Time-Change-GmbH--13937820-inline.html",
-      "title": "Senior Projektmanager (m/w/x) Meetings & Events",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 38,
-      "score_reasons": [
-        "+22 senior projektmanager",
-        "+16 projektmanager"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-fuer-die-Realisierung-von-PV-Freiflaechenparks-m-w-d-Hamburg-CYCAP-Asset-Management-GmbH--13914900-inline.html",
       "title": "Senior Project Manager für die Realisierung von PV-Freiflächenparks (m/w/d)",
       "company": "",
@@ -1719,6 +1313,22 @@
     },
     {
       "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-x-Meetings-Events-Berlin-Time-Change-GmbH--13937820-inline.html",
+      "title": "Senior Projektmanager (m/w/x) Meetings & Events",
+      "company": "",
+      "location": "",
+      "description": "",
+      "score": 38,
+      "score_reasons": [
+        "+22 senior projektmanager",
+        "+16 projektmanager"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-m-w-d-Rechenzentren-Infrastruktur-Berlin-Virtus-Data-Centres--13984737-inline.html",
       "title": "Senior Project Manager (m/w/d) Rechenzentren & Infrastruktur",
       "company": "",
@@ -1728,6 +1338,22 @@
       "score_reasons": [
         "+22 senior project manager",
         "+16 project manager"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-Konferenzen-all-genders-Berlin-Art-Directors-Club-fuer-Deutschland-GmbH--13856416-inline.html",
+      "title": "Senior Projektmanager Konferenzen (all genders)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "score": 38,
+      "score_reasons": [
+        "+22 senior projektmanager",
+        "+16 projektmanager"
       ],
       "category": "pm",
       "verified": true,
@@ -1752,8 +1378,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-Konferenzen-all-genders-Berlin-Art-Directors-Club-fuer-Deutschland-GmbH--13856416-inline.html",
-      "title": "Senior Projektmanager Konferenzen (all genders)",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanagerin-Entwicklung-und-Repowering-Bochum-GLS-Gemeinschaftsbank-eG--13924048-inline.html",
+      "title": "Senior Projektmanager*in Entwicklung und Repowering",
       "company": "",
       "location": "",
       "description": "",
@@ -1784,56 +1410,8 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13185-505244-1756561-0-S",
-      "title": "Entwicklungsingenieur Chassis-Integration LKW (all gender)",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "score": 37,
-      "score_reasons": [
-        "+12 chassis",
-        "+25 loc:münchen"
-      ],
-      "category": "auto",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanagerin-Entwicklung-und-Repowering-Bochum-GLS-Gemeinschaftsbank-eG--13924048-inline.html",
-      "title": "Senior Projektmanager*in Entwicklung und Repowering",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 38,
-      "score_reasons": [
-        "+22 senior projektmanager",
-        "+16 projektmanager"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13410-k13572.15203-S",
       "title": "Entwicklungsingenieur Chassis Integration Equipment (m/w/d)",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "score": 37,
-      "score_reasons": [
-        "+12 chassis",
-        "+25 loc:münchen"
-      ],
-      "category": "auto",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13185-505148-1743139-0-S",
-      "title": "Entwicklungsingenieur LKW Chassis Integration (all gender)",
       "company": "",
       "location": "München",
       "description": "",
@@ -1859,6 +1437,54 @@
         "+25 loc:muenchen"
       ],
       "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13185-505148-1743139-0-S",
+      "title": "Entwicklungsingenieur LKW Chassis Integration (all gender)",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "score": 37,
+      "score_reasons": [
+        "+12 chassis",
+        "+25 loc:münchen"
+      ],
+      "category": "auto",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13185-505244-1756561-0-S",
+      "title": "Entwicklungsingenieur Chassis-Integration LKW (all gender)",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "score": 37,
+      "score_reasons": [
+        "+12 chassis",
+        "+25 loc:münchen"
+      ],
+      "category": "auto",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Automotive-Engineer-m-w-d-Muenchen-Randstad-Deutschland-GmbH-Co-KG--13706347-inline.html",
+      "title": "Automotive Engineer (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 37,
+      "score_reasons": [
+        "+12 automotive",
+        "+25 loc:muenchen"
+      ],
+      "category": "auto",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },
@@ -1896,14 +1522,30 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Automotive-Engineer-m-w-d-Muenchen-Randstad-Deutschland-GmbH-Co-KG--13706347-inline.html",
-      "title": "Automotive Engineer (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Mitarbeiter-m-w-d-Supplier-Quality-Management-Muenchen-F-X-MEILLER-Fahrzeug-und-Maschinenfabrik-GmbH-Co-KG--13948517-inline.html",
+      "title": "Mitarbeiter (m/w/d) Supplier Quality Management",
       "company": "",
       "location": "muenchen",
       "description": "",
-      "score": 37,
+      "score": 35,
       "score_reasons": [
-        "+12 automotive",
+        "+10 fahrzeug",
+        "+25 loc:muenchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Elektriker-m-w-d-Fahrzeugmontage-Muenchen-KNDS--13829160-inline.html",
+      "title": "Elektriker (m/w/d) Fahrzeugmontage",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 35,
+      "score_reasons": [
+        "+10 fahrzeug",
         "+25 loc:muenchen"
       ],
       "category": "auto",
@@ -1946,22 +1588,6 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Elektriker-m-w-d-Fahrzeugmontage-Muenchen-KNDS--13829160-inline.html",
-      "title": "Elektriker (m/w/d) Fahrzeugmontage",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 35,
-      "score_reasons": [
-        "+10 fahrzeug",
-        "+25 loc:muenchen"
-      ],
-      "category": "auto",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Produktionsplaner-und-steuerer-m-w-d-Wessling-Dornier-MedTech-Systems-GmbH--13792831-inline.html",
       "title": "Produktionsplaner und -steuerer (m/w/d)",
       "company": "",
@@ -1970,6 +1596,38 @@
       "score": 33,
       "score_reasons": [
         "+8 medtech",
+        "+25 loc:muenchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Manager-Digital-Multi-Channel-Communication-w-m-d-im-Bereich-Pharma-und-Healthcare-Puchheim-OmniVision-GmbH--13904037-inline.html",
+      "title": "Manager Digital & Multi Channel Communication (w/m/d) im Bereich Pharma- und Healthcare",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 31,
+      "score_reasons": [
+        "+6 pharma",
+        "+25 loc:muenchen"
+      ],
+      "category": "pharma",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Teamleiter-Konfektionierung-m-w-d-Graefelfing-Neovii-Biotech-GmbH--13940584-inline.html",
+      "title": "Teamleiter Konfektionierung (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 31,
+      "score_reasons": [
+        "+6 biotech",
         "+25 loc:muenchen"
       ],
       "category": "other",
@@ -1994,38 +1652,6 @@
       "verify_status": "ok"
     },
     {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Teamleiter-Konfektionierung-m-w-d-Graefelfing-Neovii-Biotech-GmbH--13940584-inline.html",
-      "title": "Teamleiter Konfektionierung (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 31,
-      "score_reasons": [
-        "+6 biotech",
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Manager-Digital-Multi-Channel-Communication-w-m-d-im-Bereich-Pharma-und-Healthcare-Puchheim-OmniVision-GmbH--13904037-inline.html",
-      "title": "Manager Digital & Multi Channel Communication (w/m/d) im Bereich Pharma- und Healthcare",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 31,
-      "score_reasons": [
-        "+6 pharma",
-        "+25 loc:muenchen"
-      ],
-      "category": "pharma",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
       "source": "arbeitnow",
       "url": "https://www.arbeitnow.com/jobs/companies/ares-consulting-gmbh/consultant-microsoft-365-microsoft-cloud-munich-230387",
       "title": "Consultant Microsoft 365/ Microsoft Cloud (m/w/d)",
@@ -2044,14 +1670,14 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Mitarbeiter-m-w-d-Supplier-Quality-Management-Muenchen-F-X-MEILLER-Fahrzeug-und-Maschinenfabrik-GmbH-Co-KG--13948517-inline.html",
-      "title": "Mitarbeiter (m/w/d) Supplier Quality Management",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Fernwaerme-Energieerzeugungsanlagen-Heiztechnik-Waermeuebertragung-m-w-d-Unterschleissheim-KLEINS-ENERGIE-GmbH--13365791-inline.html",
+      "title": "Projektingenieur - Fernwärme / Energieerzeugungsanlagen / Heiztechnik / Wärmeübertragung (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
-      "score": 35,
+      "score": 29,
       "score_reasons": [
-        "+10 fahrzeug",
+        "+4 energie",
         "+25 loc:muenchen"
       ],
       "category": "other",
@@ -2059,20 +1685,20 @@
       "verify_status": "ok-403-trusted"
     },
     {
-      "source": "personio:vaeridion",
-      "url": "https://vaeridion.jobs.personio.de/job/2603778?language=de",
-      "title": "Technical Project Manager - ERP Implementation (all genders)",
-      "company": "VÆRIDION",
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--IT-Projektleiter-Automotive-m-w-d-Stuttgart-FERCHAU-Connecting-People-and-Technologies--7837685-inline.html",
+      "title": "IT-Projektleiter Automotive (m/w/d)",
+      "company": "",
       "location": "",
       "description": "",
-      "score": 34,
+      "score": 28,
       "score_reasons": [
-        "+16 project manager",
-        "+18 technical project manager"
+        "+16 projektleiter",
+        "+12 automotive"
       ],
-      "category": "pm",
+      "category": "auto",
       "verified": true,
-      "verify_status": "ok-spa"
+      "verify_status": "ok-403-trusted"
     },
     {
       "source": "arbeitnow",
@@ -2109,6 +1735,22 @@
       "verify_status": "ok"
     },
     {
+      "source": "personio:vaeridion",
+      "url": "https://vaeridion.jobs.personio.de/job/2603778?language=de",
+      "title": "Technical Project Manager - ERP Implementation (all genders)",
+      "company": "VÆRIDION",
+      "location": "",
+      "description": "",
+      "score": 34,
+      "score_reasons": [
+        "+16 project manager",
+        "+18 technical project manager"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-spa"
+    },
+    {
       "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Senior-Terminplaner-Projektsteuerer-m-w-d-Anlagenbau-Muenchen-Kraftanlagen-Energies-Services-SE--13867394-inline.html",
       "title": "Senior Terminplaner/ Projektsteuerer (m/w/d) – Anlagenbau",
@@ -2126,8 +1768,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--IT-Projektleiter-Automotive-m-w-d-Stuttgart-FERCHAU-Connecting-People-and-Technologies--7837685-inline.html",
-      "title": "IT-Projektleiter Automotive (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Eplan-Hardware-Automotive-m-w-d-Titisee-Neustadt-Morath-Automatisierung-GmbH--12868519-inline.html",
+      "title": "Projektleiter - Eplan / Hardware / Automotive (m/w/d)",
       "company": "",
       "location": "",
       "description": "",
@@ -2142,24 +1784,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Fernwaerme-Energieerzeugungsanlagen-Heiztechnik-Waermeuebertragung-m-w-d-Unterschleissheim-KLEINS-ENERGIE-GmbH--13365791-inline.html",
-      "title": "Projektingenieur - Fernwärme / Energieerzeugungsanlagen / Heiztechnik / Wärmeübertragung (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 29,
-      "score_reasons": [
-        "+4 energie",
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-IT-m-w-d-Automotive-Gera-Meleghy-Automotive-GmbH-Co-KG--13957789-inline.html",
-      "title": "Projektmanager IT (m/w/d) - Automotive",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Rollout-Automotive-m-w-d-Leinfelden-Echterdingen-Raum-Stuttgart-netcare-GmbH--13588398-inline.html",
+      "title": "Projektmanager Rollout Automotive (m/w/d)",
       "company": "",
       "location": "",
       "description": "",
@@ -2174,14 +1800,14 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Eplan-Hardware-Automotive-m-w-d-Titisee-Neustadt-Morath-Automatisierung-GmbH--12868519-inline.html",
-      "title": "Projektleiter - Eplan / Hardware / Automotive (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanagerin-Automotive-Audio-all-genders-Erlangen-Fraunhofer-Institut-fuer-Integrierte-Schaltungen-IIS--13877265-inline.html",
+      "title": "Projektmanager*in – Automotive Audio (all genders)",
       "company": "",
       "location": "",
       "description": "",
       "score": 28,
       "score_reasons": [
-        "+16 projektleiter",
+        "+16 projektmanager",
         "+12 automotive"
       ],
       "category": "auto",
@@ -2222,22 +1848,6 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Rollout-Automotive-m-w-d-Leinfelden-Echterdingen-Raum-Stuttgart-netcare-GmbH--13588398-inline.html",
-      "title": "Projektmanager Rollout Automotive (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 28,
-      "score_reasons": [
-        "+16 projektmanager",
-        "+12 automotive"
-      ],
-      "category": "auto",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Junior-Projektmanager-Automotive-m-w-d-Stuttgart-FERCHAU-Connecting-People-and-Technologies--7837579-inline.html",
       "title": "(Junior) Projektmanager Automotive (m/w/d)",
       "company": "",
@@ -2253,20 +1863,20 @@
       "verify_status": "ok-403-trusted"
     },
     {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanagerin-Automotive-Audio-all-genders-Erlangen-Fraunhofer-Institut-fuer-Integrierte-Schaltungen-IIS--13877265-inline.html",
-      "title": "Projektmanager*in – Automotive Audio (all genders)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 28,
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.com/jobs/companies/wavestone-germany-ag/bpmn-process-consultant-mit-camunda-know-how-refnr-46681-munich-484874",
+      "title": "BPMN Process Consultant  (m/w/d) mit Camunda Know-How (Ref.Nr.: 46681)",
+      "company": "Wavestone Germany AG",
+      "location": "Munich",
+      "description": "<p>Wir suchen für einen führenden kommunalen Infrastrukturdienstleister in München einen Experten für die BPMN-Prozessmodellierung und Workflow-Automatisierung.</p>\n<p><strong>Key Facts</strong><br>\nStart: 18.05.2026<br>\nDauer: Nicht bekannt<br>\nAuslastung: 100 %<br>\nEinsatzart:<br>\nEinsatzort: München<br>\nEinsatzland: Deutschland</p>\n<p>Ihre Aufgaben</p>\n<p>• Modellierung und Optimierung komplexer Geschäftsprozesse unter Anwendung des BPMN-Standards</p>\n<p>• Konfiguration und technisches Setup einer Camunda-basierten Workflow-Engine</p>\n<p>• Analyse fachlicher Anforderungen und deren Überführ",
+      "remote": false,
+      "score": 25,
       "score_reasons": [
-        "+16 projektmanager",
-        "+12 automotive"
+        "+25 loc:munich"
       ],
-      "category": "auto",
+      "category": "pm",
       "verified": true,
-      "verify_status": "ok-403-trusted"
+      "verify_status": "ok"
     },
     {
       "source": "stepstone",
@@ -2297,54 +1907,6 @@
         "+25 loc:munich"
       ],
       "category": "pm",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/wavestone-germany-ag/bpmn-process-consultant-mit-camunda-know-how-refnr-46681-munich-484874",
-      "title": "BPMN Process Consultant  (m/w/d) mit Camunda Know-How (Ref.Nr.: 46681)",
-      "company": "Wavestone Germany AG",
-      "location": "Munich",
-      "description": "<p>Wir suchen für einen führenden kommunalen Infrastrukturdienstleister in München einen Experten für die BPMN-Prozessmodellierung und Workflow-Automatisierung.</p>\n<p><strong>Key Facts</strong><br>\nStart: 18.05.2026<br>\nDauer: Nicht bekannt<br>\nAuslastung: 100 %<br>\nEinsatzart:<br>\nEinsatzort: München<br>\nEinsatzland: Deutschland</p>\n<p>Ihre Aufgaben</p>\n<p>• Modellierung und Optimierung komplexer Geschäftsprozesse unter Anwendung des BPMN-Standards</p>\n<p>• Konfiguration und technisches Setup einer Camunda-basierten Workflow-Engine</p>\n<p>• Analyse fachlicher Anforderungen und deren Überführ",
-      "remote": false,
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:munich"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/techniker-systemintegration-mechatronik-munich-395670",
-      "title": "Techniker Systemintegration / Mechatronik (m/w/d)",
-      "company": "MY Humancapital GmbH",
-      "location": "Munich",
-      "description": "<p>Im Auftrag unseres Partnerunternehmens in München suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Techniker Systemintegration / Mechatronik (m/w/d)“.</strong></p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als <strong>Techniker Systemintegration / Mechatronik (m/w/d)</strong> verantworten Sie die komplette Systemintegration von der Montage bis zur Inbetriebnahme</li>\n<li>Dabei begleiten Sie Systeme im gesamten Projektverlauf – von der Entwicklungsunterstützung über die Hardware- und Softwareintegration bis zur erfolgreichen Übergabe an den Nutzer</li>\n<li>Sie übernehmen die Hardw",
-      "remote": false,
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:munich"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/materialdisponent-logistik-koordinator-munich-202928",
-      "title": "Materialdisponent / Logistik-Koordinator (m/w/d)",
-      "company": "MY Humancapital GmbH",
-      "location": "Munich",
-      "description": "<p>Im Auftrag unseres Partnerunternehmens im Münchner Norden suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Materialdisponent / Logistik-Koordinator (m/w/d)“.</strong></p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als <strong>Materialdisponent / Logistik-Koordinator (m/w/d)</strong> verantworten Sie die Bestandsführung sowie die termingerechte Abwicklung aller Fertigungs- und Versandaufträge</li>\n<li>Dabei koordinieren Sie die Abläufe zwischen Intralogistik, Auftragsplanung, Materialsteuerung, Produktion, Lager, Versand und den angrenzenden Fachabteilungen</li>\n<li>Sie organisiere",
-      "remote": false,
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:munich"
-      ],
-      "category": "other",
       "verified": true,
       "verify_status": "ok"
     },
@@ -2398,11 +1960,43 @@
     },
     {
       "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/kundenberater-private-banking-munich-385450",
-      "title": "Kundenberater Private Banking (m/w/d)",
+      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/materialdisponent-logistik-koordinator-munich-202928",
+      "title": "Materialdisponent / Logistik-Koordinator (m/w/d)",
       "company": "MY Humancapital GmbH",
       "location": "Munich",
-      "description": "<p>Im Auftrag unseres Partnerunternehmens in München suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Kundenberater Private Banking (m/w/d)“.</strong></p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als <strong>Kundenberater Private Banking (m/w/d)</strong> unterstützen Sie Senior-Berater bei der ganzheitlichen Betreuung und Beratung anspruchsvoller Privatkunden sowie institutioneller Investoren</li>\n<li>Dabei pflegen Sie bestehende Kundenbeziehungen im gehobenen Privatkundensegment und tragen aktiv zum Auf- und Ausbau langfristiger Partnerschaften bei</li>\n<li>Sie wirken bei der Akqu",
+      "description": "<p>Im Auftrag unseres Partnerunternehmens im Münchner Norden suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Materialdisponent / Logistik-Koordinator (m/w/d)“.</strong></p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als <strong>Materialdisponent / Logistik-Koordinator (m/w/d)</strong> verantworten Sie die Bestandsführung sowie die termingerechte Abwicklung aller Fertigungs- und Versandaufträge</li>\n<li>Dabei koordinieren Sie die Abläufe zwischen Intralogistik, Auftragsplanung, Materialsteuerung, Produktion, Lager, Versand und den angrenzenden Fachabteilungen</li>\n<li>Sie organisiere",
+      "remote": false,
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:munich"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/techniker-systemintegration-mechatronik-munich-395670",
+      "title": "Techniker Systemintegration / Mechatronik (m/w/d)",
+      "company": "MY Humancapital GmbH",
+      "location": "Munich",
+      "description": "<p>Im Auftrag unseres Partnerunternehmens in München suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Techniker Systemintegration / Mechatronik (m/w/d)“.</strong></p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als <strong>Techniker Systemintegration / Mechatronik (m/w/d)</strong> verantworten Sie die komplette Systemintegration von der Montage bis zur Inbetriebnahme</li>\n<li>Dabei begleiten Sie Systeme im gesamten Projektverlauf – von der Entwicklungsunterstützung über die Hardware- und Softwareintegration bis zur erfolgreichen Übergabe an den Nutzer</li>\n<li>Sie übernehmen die Hardw",
+      "remote": false,
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:munich"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/bankkaufmann-kundenberater-munich-480632",
+      "title": "Bankkaufmann / Kundenberater (m/w/d)",
+      "company": "MY Humancapital GmbH",
+      "location": "Munich",
+      "description": "<p>Im Auftrag unseres Partnerunternehmens in München suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Bankkaufmann / Kundenberater (m/w/d)“.</strong></p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als <strong>Bankkaufmann / Kundenberater (m/w/d)</strong> betreuen und beraten Sie Privat- und Firmenkunden in allen Fragen rund um Finanzierung, Geldanlage, Vorsorge und Zahlungsverkehr</li>\n<li>Dabei erkennen Sie individuelle Kundenbedürfnisse und entwickeln maßgeschneiderte Finanzlösungen, um langfristige Kundenbeziehungen aufzubauen und zu festigen</li>\n<li>Sie führen Kontoberatungen, A",
       "remote": false,
       "score": 25,
       "score_reasons": [
@@ -2414,11 +2008,27 @@
     },
     {
       "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/bankkaufmann-kundenberater-munich-480632",
-      "title": "Bankkaufmann / Kundenberater (m/w/d)",
+      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/konfigurationsmanager-produktkoordinator-munich-276684",
+      "title": "Konfigurationsmanager / Produktkoordinator (m/w/d)",
       "company": "MY Humancapital GmbH",
       "location": "Munich",
-      "description": "<p>Im Auftrag unseres Partnerunternehmens in München suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Bankkaufmann / Kundenberater (m/w/d)“.</strong></p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als <strong>Bankkaufmann / Kundenberater (m/w/d)</strong> betreuen und beraten Sie Privat- und Firmenkunden in allen Fragen rund um Finanzierung, Geldanlage, Vorsorge und Zahlungsverkehr</li>\n<li>Dabei erkennen Sie individuelle Kundenbedürfnisse und entwickeln maßgeschneiderte Finanzlösungen, um langfristige Kundenbeziehungen aufzubauen und zu festigen</li>\n<li>Sie führen Kontoberatungen, A",
+      "description": "<p>Im Auftrag unseres Kunden in München suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Konfigurationsmanager / Produktkoordinator (m/w/d)“.</strong></p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als <strong>Konfigurationsmanager / Produktkoordinator (m/w/d)</strong> steuern Sie das Konfigurationsmanagement für technische Produkte und komplexe Systeme</li>\n<li>Dabei stellen Sie klare, dokumentierte und nachvollziehbare Produktstände über den gesamten Produktlebenszyklus sicher</li>\n<li>Sie koordinieren Änderungen an Hardware, Software und Komponenten und behalten Versionen sowie Va",
+      "remote": false,
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:munich"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/kundenberater-private-banking-munich-385450",
+      "title": "Kundenberater Private Banking (m/w/d)",
+      "company": "MY Humancapital GmbH",
+      "location": "Munich",
+      "description": "<p>Im Auftrag unseres Partnerunternehmens in München suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Kundenberater Private Banking (m/w/d)“.</strong></p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als <strong>Kundenberater Private Banking (m/w/d)</strong> unterstützen Sie Senior-Berater bei der ganzheitlichen Betreuung und Beratung anspruchsvoller Privatkunden sowie institutioneller Investoren</li>\n<li>Dabei pflegen Sie bestehende Kundenbeziehungen im gehobenen Privatkundensegment und tragen aktiv zum Auf- und Ausbau langfristiger Partnerschaften bei</li>\n<li>Sie wirken bei der Akqu",
       "remote": false,
       "score": 25,
       "score_reasons": [
@@ -2446,28 +2056,12 @@
     },
     {
       "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/konfigurationsmanager-produktkoordinator-munich-276684",
-      "title": "Konfigurationsmanager / Produktkoordinator (m/w/d)",
-      "company": "MY Humancapital GmbH",
+      "url": "https://www.arbeitnow.com/jobs/companies/hackstack-gmbh/senior-rust-consultant-engineer-munich-451602",
+      "title": "Senior Rust Consultant / Engineer (m/w/d)",
+      "company": "Hackstack GmbH",
       "location": "Munich",
-      "description": "<p>Im Auftrag unseres Kunden in München suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Konfigurationsmanager / Produktkoordinator (m/w/d)“.</strong></p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als <strong>Konfigurationsmanager / Produktkoordinator (m/w/d)</strong> steuern Sie das Konfigurationsmanagement für technische Produkte und komplexe Systeme</li>\n<li>Dabei stellen Sie klare, dokumentierte und nachvollziehbare Produktstände über den gesamten Produktlebenszyklus sicher</li>\n<li>Sie koordinieren Änderungen an Hardware, Software und Komponenten und behalten Versionen sowie Va",
-      "remote": false,
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:munich"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/specific-group-germany-gmbh/erp-consultant-sage-b7-oder-sage-x3-munich-63609",
-      "title": "ERP-Consultant Sage b7 oder Sage x3(w/m/d)",
-      "company": "Specific-Group Germany GmbH",
-      "location": "Munich",
-      "description": "<p><strong>Dein nächster Karriereschritt im ERP-Consulting!</strong></p>\n<p>Du möchtest nicht nur Systeme betreuen, sondern Unternehmensprozesse aktiv gestalten? Bei uns arbeitest Du an anspruchsvollen Sage-X3 oder Sage-b7-Projekten in einem stabil wachsenden Familienunternehmen mit internationaler Anbindung innerhalb der Specific-Group.<br>\nWir suchen keine reinen Systemverwalter, sondern Beraterpersönlichkeiten, die Prozesse verstehen, Kunden begleiten und nachhaltige Lösungen mitgestalten möchten.</p>\n<h2>Aufgaben</h2>\n<ul>\n<li>Du übernimmst eigenverantwortlich die effiziente und erfolgreic",
-      "remote": false,
+      "description": "<p><strong>Hackstack Collective</strong> verbindet außergewöhnliche Talente mit Organisationen, die digitale Souveränität ernst nehmen. Aktuell suchen wir für unsere Partner einen Rust Experten der High-End-Softwareentwicklung und Consulting verbindet.</p>\n<h2>Aufgaben</h2>\n<p><strong>Deine Rolle in unserem Ökosystem</strong></p>\n<p>Wenn wir dich mit einer Organisation aus unserem Netzwerk verbinden, erwartet dich keine Standard-Anstellung, sondern eine Schlüsselposition an der Schnittstelle von High-End Engineering und Strategie:</p>\n<ul>\n<li><strong>Deep-Tech Projekte:</strong> Du entwickels",
+      "remote": true,
       "score": 25,
       "score_reasons": [
         "+25 loc:munich"
@@ -2494,12 +2088,12 @@
     },
     {
       "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/hackstack-gmbh/senior-rust-consultant-engineer-munich-451602",
-      "title": "Senior Rust Consultant / Engineer (m/w/d)",
-      "company": "Hackstack GmbH",
+      "url": "https://www.arbeitnow.com/jobs/companies/specific-group-germany-gmbh/erp-consultant-sage-b7-oder-sage-x3-munich-63609",
+      "title": "ERP-Consultant Sage b7 oder Sage x3(w/m/d)",
+      "company": "Specific-Group Germany GmbH",
       "location": "Munich",
-      "description": "<p><strong>Hackstack Collective</strong> verbindet außergewöhnliche Talente mit Organisationen, die digitale Souveränität ernst nehmen. Aktuell suchen wir für unsere Partner einen Rust Experten der High-End-Softwareentwicklung und Consulting verbindet.</p>\n<h2>Aufgaben</h2>\n<p><strong>Deine Rolle in unserem Ökosystem</strong></p>\n<p>Wenn wir dich mit einer Organisation aus unserem Netzwerk verbinden, erwartet dich keine Standard-Anstellung, sondern eine Schlüsselposition an der Schnittstelle von High-End Engineering und Strategie:</p>\n<ul>\n<li><strong>Deep-Tech Projekte:</strong> Du entwickels",
-      "remote": true,
+      "description": "<p><strong>Dein nächster Karriereschritt im ERP-Consulting!</strong></p>\n<p>Du möchtest nicht nur Systeme betreuen, sondern Unternehmensprozesse aktiv gestalten? Bei uns arbeitest Du an anspruchsvollen Sage-X3 oder Sage-b7-Projekten in einem stabil wachsenden Familienunternehmen mit internationaler Anbindung innerhalb der Specific-Group.<br>\nWir suchen keine reinen Systemverwalter, sondern Beraterpersönlichkeiten, die Prozesse verstehen, Kunden begleiten und nachhaltige Lösungen mitgestalten möchten.</p>\n<h2>Aufgaben</h2>\n<ul>\n<li>Du übernimmst eigenverantwortlich die effiziente und erfolgreic",
+      "remote": false,
       "score": 25,
       "score_reasons": [
         "+25 loc:munich"
@@ -2558,22 +2152,6 @@
     },
     {
       "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/health-routine/senior-amazon-marketplace-manager-100-remote-in-d2c-scale-up-munich-85784",
-      "title": "Senior Amazon Marketplace Manager (m/w/d) - 100% Remote in D2C Scale-Up",
-      "company": "Health Routine",
-      "location": "Munich",
-      "description": "<p><strong>\"Für ein erfülltes Leben, unabhängig vom Lebensalter\"</strong></p>\n<p>Unter diesem Motto entwickeln wir bei Health Routine natürliche Gesundheitsprodukte, die Menschen helfen, sich in jedem Lebensabschnitt wohlzufühlen. Wir sind ein 35-köpfiges dynamisches Team, welches sowohl an unserem Firmenstandort in Innsbruck, als auch Remote quer durch Deutschland &#x26; Österreich verteilt arbeitet.</p>\n<p>Um unser Amazon-Geschäft auf das <strong>nächste Level</strong> zu heben, suchen wir zum nächstmöglichen Zeitpunkt eine/n Senior Amazon Marketplace Manager*in in Vollzeit (40h/Woche), der/",
-      "remote": false,
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:munich"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
       "url": "https://www.arbeitnow.com/jobs/companies/new-flag-gmbh/office-manager-teilzeit-munich-276003",
       "title": "Office Manager (m/w/d) Teilzeit",
       "company": "New Flag GmbH",
@@ -2590,11 +2168,11 @@
     },
     {
       "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/prime-hr-agentur/steuerfachangestellter-top-kanzlei-munich-362431",
-      "title": "Steuerfachangestellter (m/w/d) Top Kanzlei",
-      "company": "PRIME HR Agentur®",
+      "url": "https://www.arbeitnow.com/jobs/companies/health-routine/senior-amazon-marketplace-manager-100-remote-in-d2c-scale-up-munich-85784",
+      "title": "Senior Amazon Marketplace Manager (m/w/d) - 100% Remote in D2C Scale-Up",
+      "company": "Health Routine",
       "location": "Munich",
-      "description": "<p>Im Rahmen unserer vertrauensvollen, langfristigen Zusammenarbeit mit einer erfolgreichen, renommierten Steuerkanzlei und Wirtschaftsprüfungsgesellschaft suchen wir für diesen Partner in unbefristeter Festanstellung eine(n) aufstrebende(n), <strong>Steuerfachangestellten (m/w/d)</strong> für ein breitgefächertes und abwechslungsreiches Aufgabenfeld.</p>\n<p>Bei unserem Kunden handelt es sich um eine deutschlandweit etablierte, angesehene Kanzlei, welche durch Ihree innovative und nachhaltige Work-Life Balance überzeugt, die eine moderne Kanzlei heute bieten muss. (2 Tage Home Office, Gesundhe",
+      "description": "<p><strong>\"Für ein erfülltes Leben, unabhängig vom Lebensalter\"</strong></p>\n<p>Unter diesem Motto entwickeln wir bei Health Routine natürliche Gesundheitsprodukte, die Menschen helfen, sich in jedem Lebensabschnitt wohlzufühlen. Wir sind ein 35-köpfiges dynamisches Team, welches sowohl an unserem Firmenstandort in Innsbruck, als auch Remote quer durch Deutschland &#x26; Österreich verteilt arbeitet.</p>\n<p>Um unser Amazon-Geschäft auf das <strong>nächste Level</strong> zu heben, suchen wir zum nächstmöglichen Zeitpunkt eine/n Senior Amazon Marketplace Manager*in in Vollzeit (40h/Woche), der/",
       "remote": false,
       "score": 25,
       "score_reasons": [
@@ -2606,11 +2184,11 @@
     },
     {
       "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/prime-hr-agentur/sr-accountant-munchen-munich-479628",
-      "title": "Sr. Accountant (m/w/d) - München",
-      "company": "PRIME HR Agentur®",
+      "url": "https://www.arbeitnow.com/jobs/companies/liebwein-personalmanagement-und-service-gmbh/teamleiter-servicecenter-munich-410439",
+      "title": "Teamleiter Customer Service (m/w/d)",
+      "company": "Liebwein Personalmanagement und -service GmbH",
       "location": "Munich",
-      "description": "<p>Renommierte und moderne Wirtschaftsberatung im Herzen von München.<br>\nExklusivauftrag | Vermittlung durch die PRIME HR Agentur®</p>\n<p>Im Auftrag einer <strong>international ausgerichteten, renommierten Investmentgesellschaft</strong> mit mehreren Standorten in Deutschland und weltweiter Präsenz suchen wir für den Standort <strong>München</strong> eine engagierte Persönlichkeit im Bereich Accounting. Die Kanzlei steht für verantwortungsvolles Unternehmertum, moderne Arbeitsstrukturen und den gezielten Einsatz neuer Technologien. Fachliche Exzellenz, wirtschaftliches Denken und ein wertschä",
+      "description": "<p>Unser Mandant ist ein weltweit führender Dienstleistungskonzern für spezialisierte Servicelösungen. Mit einem globalen Netzwerk stellt das Unternehmen die Handlungsfähigkeit seiner Partner rund um die Uhr sicher. Für das europäische Kompetenzzentrum suchen wir zur Verstärkung des Teams am Standort München ab sofort eine motivierte Führungspersönlichkeit.</p>\n<h2>Aufgaben</h2>\n<ul>\n<li>Fachliche Leitung und Steuerung des Servicecenter-Teams</li>\n<li>Unterstützung des Managements bei der Personalentwicklung, Erfolgskontrolle und Motivation des Teams</li>\n<li>Überwachung und Sicherstellung der",
       "remote": false,
       "score": 25,
       "score_reasons": [
@@ -2638,11 +2216,11 @@
     },
     {
       "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/liebwein-personalmanagement-und-service-gmbh/teamleiter-servicecenter-munich-410439",
-      "title": "Teamleiter Customer Service (m/w/d)",
-      "company": "Liebwein Personalmanagement und -service GmbH",
+      "url": "https://www.arbeitnow.com/jobs/companies/prime-hr-agentur/steuerfachangestellter-top-kanzlei-munich-362431",
+      "title": "Steuerfachangestellter (m/w/d) Top Kanzlei",
+      "company": "PRIME HR Agentur®",
       "location": "Munich",
-      "description": "<p>Unser Mandant ist ein weltweit führender Dienstleistungskonzern für spezialisierte Servicelösungen. Mit einem globalen Netzwerk stellt das Unternehmen die Handlungsfähigkeit seiner Partner rund um die Uhr sicher. Für das europäische Kompetenzzentrum suchen wir zur Verstärkung des Teams am Standort München ab sofort eine motivierte Führungspersönlichkeit.</p>\n<h2>Aufgaben</h2>\n<ul>\n<li>Fachliche Leitung und Steuerung des Servicecenter-Teams</li>\n<li>Unterstützung des Managements bei der Personalentwicklung, Erfolgskontrolle und Motivation des Teams</li>\n<li>Überwachung und Sicherstellung der",
+      "description": "<p>Im Rahmen unserer vertrauensvollen, langfristigen Zusammenarbeit mit einer erfolgreichen, renommierten Steuerkanzlei und Wirtschaftsprüfungsgesellschaft suchen wir für diesen Partner in unbefristeter Festanstellung eine(n) aufstrebende(n), <strong>Steuerfachangestellten (m/w/d)</strong> für ein breitgefächertes und abwechslungsreiches Aufgabenfeld.</p>\n<p>Bei unserem Kunden handelt es sich um eine deutschlandweit etablierte, angesehene Kanzlei, welche durch Ihree innovative und nachhaltige Work-Life Balance überzeugt, die eine moderne Kanzlei heute bieten muss. (2 Tage Home Office, Gesundhe",
       "remote": false,
       "score": 25,
       "score_reasons": [
@@ -2670,14 +2248,14 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12513-0007638410-S",
-      "title": "KI Manager (m/w/d)",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/18904-0063624834-S",
+      "title": "KI-MANAGER (m/w/d)",
       "company": "",
       "location": "",
       "description": "",
       "score": 25,
       "score_reasons": [
-        "+25 ki manager"
+        "+25 ki-manager"
       ],
       "category": "ki",
       "verified": true,
@@ -2714,30 +2292,31 @@
       "verify_status": "ok"
     },
     {
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.com/jobs/companies/prime-hr-agentur/sr-accountant-munchen-munich-479628",
+      "title": "Sr. Accountant (m/w/d) - München",
+      "company": "PRIME HR Agentur®",
+      "location": "Munich",
+      "description": "<p>Renommierte und moderne Wirtschaftsberatung im Herzen von München.<br>\nExklusivauftrag | Vermittlung durch die PRIME HR Agentur®</p>\n<p>Im Auftrag einer <strong>international ausgerichteten, renommierten Investmentgesellschaft</strong> mit mehreren Standorten in Deutschland und weltweiter Präsenz suchen wir für den Standort <strong>München</strong> eine engagierte Persönlichkeit im Bereich Accounting. Die Kanzlei steht für verantwortungsvolles Unternehmertum, moderne Arbeitsstrukturen und den gezielten Einsatz neuer Technologien. Fachliche Exzellenz, wirtschaftliches Denken und ein wertschä",
+      "remote": false,
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:munich"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13635-301f9e86_JB5122146-S",
-      "title": "KI Manager - Steuerberatung & Digitalisierung (m/w/d)",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12513-0007638410-S",
+      "title": "KI Manager (m/w/d)",
       "company": "",
       "location": "",
       "description": "",
       "score": 25,
       "score_reasons": [
         "+25 ki manager"
-      ],
-      "category": "ki",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002738961-S",
-      "title": "KI-Manager (gn)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 ki-manager"
       ],
       "category": "ki",
       "verified": true,
@@ -2775,14 +2354,29 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/18904-0063624834-S",
-      "title": "KI-MANAGER (m/w/d)",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002738961-S",
+      "title": "KI-Manager (gn)",
       "company": "",
       "location": "",
       "description": "",
       "score": 25,
       "score_reasons": [
         "+25 ki-manager"
+      ],
+      "category": "ki",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13635-301f9e86_JB5122146-S",
+      "title": "KI Manager - Steuerberatung & Digitalisierung (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 ki manager"
       ],
       "category": "ki",
       "verified": true,
@@ -2805,21 +2399,6 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/19912-120074-S",
-      "title": "Senior Manager  Pricing & Negotiation (m/w/d)",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:münchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002959010-S",
       "title": "Techniker / Technischer Mitarbeiter Vibrationserprobung und Erdbebensimulation (m/w/d)",
       "company": "",
@@ -2835,68 +2414,8 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002779911-S",
-      "title": "Senior Manager / Director CRM – Commercial Practice (m/f/d)",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:münchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002779783-S",
       "title": "Senior Manager / Director Pricing – Commercial Practice (m/f/d)",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:münchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12465-1551370-1-S",
-      "title": "Accounting Integration Manager (m/f/d)",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:münchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/18892-44097843-410-S",
-      "title": "Investment Manager, Financial Assets Alternatives - Private Debt Investments (m/f/d)*",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:münchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002779799-S",
-      "title": "Senior Manager / Director Go-to-Market & Sales Management – Commercial Practice (m/f/d)",
       "company": "",
       "location": "München",
       "description": "",
@@ -2940,8 +2459,68 @@
     },
     {
       "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/19912-120074-S",
+      "title": "Senior Manager  Pricing & Negotiation (m/w/d)",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:münchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002779911-S",
+      "title": "Senior Manager / Director CRM – Commercial Practice (m/f/d)",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:münchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/18892-44097843-410-S",
+      "title": "Investment Manager, Financial Assets Alternatives - Private Debt Investments (m/f/d)*",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:münchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1001333822-S",
       "title": "Investment Manager – Infrastructure Equity Transactions (m|f|d)",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:münchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002779799-S",
+      "title": "Senior Manager / Director Go-to-Market & Sales Management – Commercial Practice (m/f/d)",
       "company": "",
       "location": "München",
       "description": "",
@@ -2969,19 +2548,19 @@
       "verify_status": "ok"
     },
     {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektsteuerer-m-w-d-Industriebau-Stuttgart-Muenchen-Dornier-Consulting-International-GmbH--13856432-inline.html",
-      "title": "(Senior) Projektsteuerer (m/w/d) Industriebau",
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12465-1551370-1-S",
+      "title": "Accounting Integration Manager (m/f/d)",
       "company": "",
-      "location": "muenchen",
+      "location": "München",
       "description": "",
       "score": 25,
       "score_reasons": [
-        "+25 loc:muenchen"
+        "+25 loc:münchen"
       ],
       "category": "other",
       "verified": true,
-      "verify_status": "ok-403-trusted"
+      "verify_status": "ok"
     },
     {
       "source": "stepstone",
@@ -3045,8 +2624,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Principal-BTP-AI-Development-Consultant-f-m-d-Garching-bei-Muenchen-DE-85748-SAP-SE--13687555-inline.html",
-      "title": "Principal BTP AI Development Consultant (f/m/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Associate-Partner-Manager-Consultancies-Agencies-DACH-m-f-d-Munich-Mollie-B-V--13909764-inline.html",
+      "title": "Associate Partner Manager - Consultancies & Agencies - DACH (m/f/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3054,7 +2633,7 @@
       "score_reasons": [
         "+25 loc:muenchen"
       ],
-      "category": "pm",
+      "category": "other",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },
@@ -3075,8 +2654,38 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Associate-Partner-Manager-Consultancies-Agencies-DACH-m-f-d-Munich-Mollie-B-V--13909764-inline.html",
-      "title": "Associate Partner Manager - Consultancies & Agencies - DACH (m/f/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Consultant-Strategy-Execution-m-f-d-Muenchen-Workpath-GmbH--13884162-inline.html",
+      "title": "(Senior) Consultant Strategy Execution (m/f/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Principal-BTP-AI-Development-Consultant-f-m-d-Garching-bei-Muenchen-DE-85748-SAP-SE--13687555-inline.html",
+      "title": "Principal BTP AI Development Consultant (f/m/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Manager-Solution-Consulting-Moveworks-Munich-Service-now-com-GmbH--13844573-inline.html",
+      "title": "Senior Manager, Solution Consulting - Moveworks",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3090,8 +2699,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Consultant-Strategy-Execution-m-f-d-Muenchen-Workpath-GmbH--13884162-inline.html",
-      "title": "(Senior) Consultant Strategy Execution (m/f/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Solution-Consultant-Content-Experience-Management-Munich-Bavaria-Germany-Hamburg-Hamburg-Germany-Adobe-Systems-Europe-Limited--13477515-inline.html",
+      "title": "Senior Solution Consultant / Content & Experience Management",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3135,21 +2744,6 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Manager-Solution-Consulting-Moveworks-Munich-Service-now-com-GmbH--13844573-inline.html",
-      "title": "Senior Manager, Solution Consulting - Moveworks",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Global-Accounts-Success-Manager-Remote-EMEA-France-Germany-United-Kingdom-Netherlands-Brussels-Shopify--13737466-inline.html",
       "title": "Global Accounts Success Manager",
       "company": "",
@@ -3165,23 +2759,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Solution-Consultant-Content-Experience-Management-Munich-Bavaria-Germany-Hamburg-Hamburg-Germany-Adobe-Systems-Europe-Limited--13477515-inline.html",
-      "title": "Senior Solution Consultant / Content & Experience Management",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Advanced-Sales-Engineer-HPC-and-Quantum-Technologies-f-m-d-bundesweit-Fujitsu--13900836-inline.html",
-      "title": "Advanced Sales Engineer – HPC and Quantum Technologies (f/m/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Product-Manager-Trust-Services-f-m-d-Berlin-Berlin-Germany-Muenchen-Bavaria-Germany-Rennes-Ille-et-Vilaine-France-IDnow-GmbH--13889683-inline.html",
+      "title": "Product Manager (Trust Services) (f/m/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3225,21 +2804,6 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Manager-digitale-Projekte-Prozesse-m-w-d-Muenchen-Verlag-J-Maiss-GmbH--13924170-inline.html",
-      "title": "Manager digitale Projekte / Prozesse (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Manager-Digital-Trust-m-w-d-bundesweit-Berlin-Frankfurt-Hamburg-Koeln-Leipzig-Muenchen-Sopra-Steria--13754068-inline.html",
       "title": "Manager Digital Trust (m/w/d)",
       "company": "",
@@ -3270,8 +2834,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Manager-HR-and-Organization-Transformation-w-m-d-Berlin-Frankfurt-Hamburg-Koeln-Muenchen-Kienbaum-Consultants-International-GmbH-Zentrale--13961076-inline.html",
-      "title": "Manager HR- and Organization Transformation (w/m/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Manager-digitale-Projekte-Prozesse-m-w-d-Muenchen-Verlag-J-Maiss-GmbH--13924170-inline.html",
+      "title": "Manager digitale Projekte / Prozesse (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3285,8 +2849,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Digital-Execution-Manager-w-m-d-Muenchen-TUEV-SUED--13848328-inline.html",
-      "title": "Senior Digital Execution Manager (w/m/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Manager-HR-and-Organization-Transformation-w-m-d-Berlin-Frankfurt-Hamburg-Koeln-Muenchen-Kienbaum-Consultants-International-GmbH-Zentrale--13961076-inline.html",
+      "title": "Manager HR- and Organization Transformation (w/m/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3375,8 +2939,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--EY-Parthenon-Manager-Deal-Management-Execution-Strategy-and-Transactions-w-m-d-Berlin-Hamburg-Stuttgart-Frankfurt-Main-Duesseldorf-Muenchen-EY-Parthenon--13955176-inline.html",
-      "title": "EY-Parthenon Manager Deal Management & Execution - Strategy and Transactions (w/m/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Research-Manager-m-w-d-Gruenwald-bei-Muenchen-KGAL-GmbH-Co-KG--13900882-inline.html",
+      "title": "Senior Research Manager (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3400,6 +2964,21 @@
         "+25 ki-manager"
       ],
       "category": "ki",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--EY-Parthenon-Manager-Deal-Management-Execution-Strategy-and-Transactions-w-m-d-Berlin-Hamburg-Stuttgart-Frankfurt-Main-Duesseldorf-Muenchen-EY-Parthenon--13955176-inline.html",
+      "title": "EY-Parthenon Manager Deal Management & Execution - Strategy and Transactions (w/m/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "other",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },
@@ -3435,21 +3014,6 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Research-Manager-m-w-d-Gruenwald-bei-Muenchen-KGAL-GmbH-Co-KG--13900882-inline.html",
-      "title": "Senior Research Manager (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--KI-Manager-Trainer-m-w-d-Frankfurt-am-Main-Agile-Heroes-GmbH--13353751-inline.html",
       "title": "KI-Manager & Trainer (m/w/d)",
       "company": "",
@@ -3465,8 +3029,23 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektkoordinator-Digitalisierung-m-w-d-Muenchen-Bayerischer-Landes-Sportverband-e-V--13947918-inline.html",
-      "title": "Projektkoordinator Digitalisierung (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Consultant-Berater-in-w-m-d-Muenchen-dieUmsetzer-GmbH--13948287-inline.html",
+      "title": "Consultant | Berater/in (w/m/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projekt-Manager-m-w-d-Veranstalterbetreuung-Muenchen-meplan-GmbH--13978863-inline.html",
+      "title": "Projekt Manager (m/w/d) Veranstalterbetreuung",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3495,8 +3074,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Digital-Product-Manager-gn-Muenchen-BLS-Beteiligungs-GmbH--13922242-inline.html",
-      "title": "Digital Product Manager (gn)",
+      "url": "https://www.stepstone.de/stellenangebote--Projektkoordinator-Digitalisierung-m-w-d-Muenchen-Bayerischer-Landes-Sportverband-e-V--13947918-inline.html",
+      "title": "Projektkoordinator Digitalisierung (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3510,23 +3089,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Consultant-Berater-in-w-m-d-Muenchen-dieUmsetzer-GmbH--13948287-inline.html",
-      "title": "Consultant | Berater/in (w/m/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projekt-Manager-m-w-d-Veranstalterbetreuung-Muenchen-meplan-GmbH--13978863-inline.html",
-      "title": "Projekt Manager (m/w/d) Veranstalterbetreuung",
+      "url": "https://www.stepstone.de/stellenangebote--Digital-Product-Manager-gn-Muenchen-BLS-Beteiligungs-GmbH--13922242-inline.html",
+      "title": "Digital Product Manager (gn)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3585,21 +3149,6 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Strategischer-Einkaeufer-m-w-d-Puchheim-bei-Muenchen-OmniVision-GmbH--13961182-inline.html",
-      "title": "Senior Strategischer Einkäufer (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Regional-Sales-Lead-Regionalleiter-m-w-d-Stuttgart-Mannheim-Muenchen-Frankfurt-Kassel-Leipzig-Berlin-Koeln-Duesseldorf-Hannover-Biologische-Heilmittel-Heel-GmbH--13807416-inline.html",
       "title": "Regional Sales Lead / Regionalleiter (m/w/d)",
       "company": "",
@@ -3615,8 +3164,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Consultant-Digital-Advisory-Schwerpunkt-Compliance-m-w-d-Muenchen-Stuttgart-RSM-Ebner-Stolz--13936095-inline.html",
-      "title": "(Senior) Consultant Digital Advisory - Schwerpunkt Compliance (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Strategischer-Einkaeufer-m-w-d-Puchheim-bei-Muenchen-OmniVision-GmbH--13961182-inline.html",
+      "title": "Senior Strategischer Einkäufer (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3624,7 +3173,7 @@
       "score_reasons": [
         "+25 loc:muenchen"
       ],
-      "category": "pm",
+      "category": "other",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },
@@ -3660,8 +3209,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Physikerin-Ingenieurin-fuer-ultraschmalbandige-Lasersysteme-Graefelfing-TOPTICA-Photonics-SE--13969866-inline.html",
-      "title": "Physiker*in / Ingenieur*in für ultraschmalbandige Lasersysteme",
+      "url": "https://www.stepstone.de/stellenangebote--Project-Buyer-m-w-d-Unterhaching-HUBER-SUHNER-GmbH--13927755-inline.html",
+      "title": "Project Buyer (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3705,23 +3254,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Project-Buyer-m-w-d-Unterhaching-HUBER-SUHNER-GmbH--13927755-inline.html",
-      "title": "Project Buyer (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Teamleiterin-Project-Execution-Service-w-m-d-Muenchen-und-Umgebung-Garching-bei-Muenchen-Schneider-Electric-GmbH--13902681-inline.html",
-      "title": "Teamleiterin Project Execution Service (w/m/d) – München und Umgebung",
+      "url": "https://www.stepstone.de/stellenangebote--Physikerin-Ingenieurin-fuer-ultraschmalbandige-Lasersysteme-Graefelfing-TOPTICA-Photonics-SE--13969866-inline.html",
+      "title": "Physiker*in / Ingenieur*in für ultraschmalbandige Lasersysteme",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3750,23 +3284,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Planungsingenieur-m-w-d-fuer-Klaeranlagen-Donauwoerth-Lauf-an-der-Pegnitz-Marktoberdorf-Grasbrunn-Planegg-Pfaffenhofen-an-der-Ilm-WipflerPLAN-Planungsgesellschaft-mbH--13955971-inline.html",
-      "title": "Projektingenieur / Planungsingenieur (m/w/d) für Kläranlagen",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-techniker-m-w-d-Sprinkler-Plattling-Halle-Erfurt-Garching-bei-Muenchen-H-E-Haustechnik-und-Elektro-GmbH--13485879-inline.html",
-      "title": "Projektingenieur/-techniker (m/w/d) Sprinkler",
+      "url": "https://www.stepstone.de/stellenangebote--Teamleiterin-Project-Execution-Service-w-m-d-Muenchen-und-Umgebung-Garching-bei-Muenchen-Schneider-Electric-GmbH--13902681-inline.html",
+      "title": "Teamleiterin Project Execution Service (w/m/d) – München und Umgebung",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3782,6 +3301,36 @@
       "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Manager-Portfolio-Projects-Operations-m-w-d-Muenchen-GEMA-Gesellschaft-fuer-musik-Auffuehrungs-und-mechan-Vervielfaeltigungsrechte--13967642-inline.html",
       "title": "Manager Portfolio, Projects & Operations (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-m-w-d-im-Bereich-Hochwasserschutz-Donauwoerth-Marktoberdorf-Muenchen-Noerdlingen-Pfaffenhofen-a-d-Ilm-WipflerPLAN-Planungsgesellschaft-mbH--13814775-inline.html",
+      "title": "Projektingenieur (m/w/d) im Bereich Hochwasserschutz",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-techniker-m-w-d-Sprinkler-Plattling-Halle-Erfurt-Garching-bei-Muenchen-H-E-Haustechnik-und-Elektro-GmbH--13485879-inline.html",
+      "title": "Projektingenieur/-techniker (m/w/d) Sprinkler",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3825,8 +3374,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-m-w-d-im-Bereich-Hochwasserschutz-Donauwoerth-Marktoberdorf-Muenchen-Noerdlingen-Pfaffenhofen-a-d-Ilm-WipflerPLAN-Planungsgesellschaft-mbH--13814775-inline.html",
-      "title": "Projektingenieur (m/w/d) im Bereich Hochwasserschutz",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Planungsingenieur-m-w-d-fuer-Klaeranlagen-Donauwoerth-Lauf-an-der-Pegnitz-Marktoberdorf-Grasbrunn-Planegg-Pfaffenhofen-an-der-Ilm-WipflerPLAN-Planungsgesellschaft-mbH--13955971-inline.html",
+      "title": "Projektingenieur / Planungsingenieur (m/w/d) für Kläranlagen",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3885,6 +3434,21 @@
     },
     {
       "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Consultant-Materialflusssimulation-m-w-d-Hamburg-Muenchen-Stuttgart-Ulm-Wolfsburg-Leipzig-ingenics-AG--13758182-inline.html",
+      "title": "Consultant Materialflusssimulation (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-in-Stoffstrommanagement-mit-Schwerpukt-Asbest-Muenchen-Nuernberg-Deutsche-Bahn-AG--13803671-inline.html",
       "title": "Projektingenieur:in Stoffstrommanagement mit Schwerpukt Asbest",
       "company": "",
@@ -3910,51 +3474,6 @@
         "+25 loc:muenchen"
       ],
       "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Consultant-Materialflusssimulation-m-w-d-Hamburg-Muenchen-Stuttgart-Ulm-Wolfsburg-Leipzig-ingenics-AG--13758182-inline.html",
-      "title": "Consultant Materialflusssimulation (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Consultant-all-genders-Industrialized-Construction-Stuttgart-Muenchen-Hamburg-Berlin-Frankfurt-am-Main-Porsche-Consulting-GmbH--9275910-inline.html",
-      "title": "(Senior) Consultant (all genders) Industrialized Construction",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Consultant-Industrial-Engineering-m-w-d-Hamburg-Muenchen-Stuttgart-Ulm-Wolfsburg-Leipzig-ingenics-AG--13836457-inline.html",
-      "title": "Consultant Industrial Engineering (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },
@@ -3990,8 +3509,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Ingenieur-fuer-technische-Material-Logistikprozesse-m-w-d-Munich-advanced-engineering-GmbH--13809966-inline.html",
-      "title": "Ingenieur für technische Material- & Logistikprozesse (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Consultant-Industrial-Engineering-m-w-d-Hamburg-Muenchen-Stuttgart-Ulm-Wolfsburg-Leipzig-ingenics-AG--13836457-inline.html",
+      "title": "Consultant Industrial Engineering (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -3999,7 +3518,22 @@
       "score_reasons": [
         "+25 loc:muenchen"
       ],
-      "category": "other",
+      "category": "pm",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Consultant-all-genders-Industrialized-Construction-Stuttgart-Muenchen-Hamburg-Berlin-Frankfurt-am-Main-Porsche-Consulting-GmbH--9275910-inline.html",
+      "title": "(Senior) Consultant (all genders) Industrialized Construction",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },
@@ -4007,21 +3541,6 @@
       "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Ingenieur-fuer-Prozessoptimierung-m-w-d-Munich-advanced-engineering-GmbH--13809964-inline.html",
       "title": "Ingenieur für Prozessoptimierung (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektkoordinator-w-m-d-Operational-Excellence-Muenchen-KNDS--13843222-inline.html",
-      "title": "Projektkoordinator (w/m/d) Operational Excellence",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4065,8 +3584,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Koordinator-fuer-Materialwirtschaft-Logistik-m-w-d-Munich-advanced-engineering-GmbH--13809955-inline.html",
-      "title": "Koordinator für Materialwirtschaft & Logistik (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--ILS-Manager-m-w-d-Muenchen-KNDS--13829147-inline.html",
+      "title": "ILS-Manager (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4080,8 +3599,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--ILS-Manager-m-w-d-Muenchen-KNDS--13829147-inline.html",
-      "title": "ILS-Manager (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Projektkoordinator-w-m-d-Operational-Excellence-Muenchen-KNDS--13843222-inline.html",
+      "title": "Projektkoordinator (w/m/d) Operational Excellence",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4110,21 +3629,6 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Gruppenleiter-m-w-d-Wareneingangspruefung-Muenchen-KNDS--13829165-inline.html",
-      "title": "Gruppenleiter (m/w/d) Wareneingangsprüfung",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Projektplaner-w-m-div-Muenchen-Bosch-Gruppe--13850316-inline.html",
       "title": "Projektplaner (w/m/div.)",
       "company": "",
@@ -4140,8 +3644,38 @@
     },
     {
       "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Koordinator-fuer-Materialwirtschaft-Logistik-m-w-d-Munich-advanced-engineering-GmbH--13809955-inline.html",
+      "title": "Koordinator für Materialwirtschaft & Logistik (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Materialkoordinator-Produktionsplaner-m-w-d-Muenchen-expertum-GmbH--13930470-inline.html",
       "title": "Materialkoordinator / Produktionsplaner (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Gruppenleiter-m-w-d-Wareneingangspruefung-Muenchen-KNDS--13829165-inline.html",
+      "title": "Gruppenleiter (m/w/d) Wareneingangsprüfung",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4200,8 +3734,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Montageleiter-Photovoltaik-m-w-d-Freising-Oberbayern-Leopoldseder-Solar-GmbH--13780715-inline.html",
-      "title": "Montageleiter Photovoltaik (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Montageleiter-m-w-d-Fuerstenfeldbruck-Piening-GmbH--13985881-inline.html",
+      "title": "Montageleiter (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4230,23 +3764,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Montageleiter-m-w-d-Fuerstenfeldbruck-Piening-GmbH--13985881-inline.html",
-      "title": "Montageleiter (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Stellvertretender-Meister-m-w-d-Oberflaechentechnik-Muenchen-KNDS--13829029-inline.html",
-      "title": "Stellvertretender Meister (m/w/d) Oberflächentechnik",
+      "url": "https://www.stepstone.de/stellenangebote--Montageleiter-Photovoltaik-m-w-d-Freising-Oberbayern-Leopoldseder-Solar-GmbH--13780715-inline.html",
+      "title": "Montageleiter Photovoltaik (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4275,8 +3794,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Techniker-m-w-d-Muenchen-FERCHAU-Connecting-People-and-Technologies--13490854-inline.html",
-      "title": "Techniker (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Stellvertretender-Meister-m-w-d-Oberflaechentechnik-Muenchen-KNDS--13829029-inline.html",
+      "title": "Stellvertretender Meister (m/w/d) Oberflächentechnik",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4305,8 +3824,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Pruefwerker-w-m-d-Muenchen-KNDS--13829152-inline.html",
-      "title": "Prüfwerker (w/m/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Techniker-m-w-d-Muenchen-FERCHAU-Connecting-People-and-Technologies--13490854-inline.html",
+      "title": "Techniker (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4320,8 +3839,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Serviceingenieur-m-w-d-logistische-Betreuung-Muenchen-KNDS--13938774-inline.html",
-      "title": "Serviceingenieur (m/w/d) logistische Betreuung",
+      "url": "https://www.stepstone.de/stellenangebote--Pruefwerker-w-m-d-Muenchen-KNDS--13829152-inline.html",
+      "title": "Prüfwerker (w/m/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4380,21 +3899,6 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Leiter-Betriebstechnik-m-w-d-Muenchen-Paulaner-Brauerei-Gruppe-GmbH-Co-KGaA--13863886-inline.html",
-      "title": "Leiter Betriebstechnik (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
       "url": "https://www.stepstone.de/stellenangebote--Vorarbeiter-m-w-d-Fertigung-Muenchen-KNDS--13815152-inline.html",
       "title": "Vorarbeiter (m/w/d) Fertigung",
       "company": "",
@@ -4410,8 +3914,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Akademische-Programmdirektion-und-Leitung-Kompetenzzentrum-m-w-d-Neubiberg-Karrierecenter-der-Bundeswehr-Muenchen--13928436-inline.html",
-      "title": "Akademische Programmdirektion und Leitung Kompetenzzentrum (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Leiter-Betriebstechnik-m-w-d-Muenchen-Paulaner-Brauerei-Gruppe-GmbH-Co-KGaA--13863886-inline.html",
+      "title": "Leiter Betriebstechnik (m/w/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4420,6 +3924,51 @@
         "+25 loc:muenchen"
       ],
       "category": "other",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Serviceingenieur-m-w-d-logistische-Betreuung-Muenchen-KNDS--13938774-inline.html",
+      "title": "Serviceingenieur (m/w/d) logistische Betreuung",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Programm-Manager-fuer-IT-Programme-in-der-oeffentlichen-Verwaltung-m-w-d-bundesweit-Berlin-Frankfurt-Hamburg-Koeln-Leipzig-Muenchen-Sopra-Steria--13594951-inline.html",
+      "title": "Programm Manager für IT-Programme in der öffentlichen Verwaltung (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "other",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Customer-Program-Manager-m-w-d-Muenchen-Mynaric-AG--13921464-inline.html",
+      "title": "Customer Program Manager (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },
@@ -4455,8 +4004,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Programm-Manager-fuer-IT-Programme-in-der-oeffentlichen-Verwaltung-m-w-d-bundesweit-Berlin-Frankfurt-Hamburg-Koeln-Leipzig-Muenchen-Sopra-Steria--13594951-inline.html",
-      "title": "Programm Manager für IT-Programme in der öffentlichen Verwaltung (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Business-Consultant-Supply-Chain-Execution-w-m-d-Garching-bei-Muenchen-DE-85748-SAP-SE--13914209-inline.html",
+      "title": "Business Consultant Supply Chain Execution (w/m/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4464,7 +4013,7 @@
       "score_reasons": [
         "+25 loc:muenchen"
       ],
-      "category": "other",
+      "category": "pm",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },
@@ -4485,23 +4034,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Business-Consultant-Supply-Chain-Execution-w-m-d-Garching-bei-Muenchen-DE-85748-SAP-SE--13914209-inline.html",
-      "title": "Business Consultant Supply Chain Execution (w/m/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--IT-Servicemanager-fuer-BayernCloud-Schule-w-m-d-Muenchen-Nuernberg-Landesamt-fuer-Digitalisierung-Breitband-und-Vermessung--13979078-inline.html",
-      "title": "IT Servicemanager für BayernCloud Schule (w/m/d)",
+      "url": "https://www.stepstone.de/stellenangebote--IT-Service-Manager-Munich-Merkl-IT-GmbH--13965867-inline.html",
+      "title": "IT-Service Manager",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4510,6 +4044,21 @@
         "+25 loc:muenchen"
       ],
       "category": "other",
+      "verified": true,
+      "verify_status": "ok-403-trusted"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Program-Manager-MSP-m-w-d-bundesweit-PrimeIng-GmbH--13954967-inline.html",
+      "title": "Program Manager MSP (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "score": 25,
+      "score_reasons": [
+        "+25 loc:muenchen"
+      ],
+      "category": "pm",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },
@@ -4530,38 +4079,8 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Customer-Program-Manager-m-w-d-Muenchen-Mynaric-AG--13921464-inline.html",
-      "title": "Customer Program Manager (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "pm",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--IT-Service-Manager-Munich-Merkl-IT-GmbH--13965867-inline.html",
-      "title": "IT-Service Manager",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "score": 25,
-      "score_reasons": [
-        "+25 loc:muenchen"
-      ],
-      "category": "other",
-      "verified": true,
-      "verify_status": "ok-403-trusted"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektkaufmann-Airborne-Solutions-w-m-d-Ulm-Taufkirchen-Immenstaad-HENSOLDT--13939937-inline.html",
-      "title": "Projektkaufmann - Airborne Solutions (w/m/d)",
+      "url": "https://www.stepstone.de/stellenangebote--IT-Servicemanager-fuer-BayernCloud-Schule-w-m-d-Muenchen-Nuernberg-Landesamt-fuer-Digitalisierung-Breitband-und-Vermessung--13979078-inline.html",
+      "title": "IT Servicemanager für BayernCloud Schule (w/m/d)",
       "company": "",
       "location": "muenchen",
       "description": "",
@@ -4591,16 +4110,16 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Program-Manager-MSP-m-w-d-bundesweit-PrimeIng-GmbH--13954967-inline.html",
-      "title": "Program Manager MSP (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--AI-Manager-m-w-d-Marketing-Hamburg-Gebr-Heinemann-SE-Co-KG--13947717-inline.html",
+      "title": "AI Manager (m/w/d) Marketing",
       "company": "",
-      "location": "muenchen",
+      "location": "",
       "description": "",
-      "score": 25,
+      "score": 22,
       "score_reasons": [
-        "+25 loc:muenchen"
+        "+22 ai manager"
       ],
-      "category": "pm",
+      "category": "ki",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },
@@ -4621,16 +4140,16 @@
     },
     {
       "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--AI-Manager-m-w-d-Marketing-Hamburg-Gebr-Heinemann-SE-Co-KG--13947717-inline.html",
-      "title": "AI Manager (m/w/d) Marketing",
+      "url": "https://www.stepstone.de/stellenangebote--Projektkaufmann-Airborne-Solutions-w-m-d-Ulm-Taufkirchen-Immenstaad-HENSOLDT--13939937-inline.html",
+      "title": "Projektkaufmann - Airborne Solutions (w/m/d)",
       "company": "",
-      "location": "",
+      "location": "muenchen",
       "description": "",
-      "score": 22,
+      "score": 25,
       "score_reasons": [
-        "+22 ai manager"
+        "+25 loc:muenchen"
       ],
-      "category": "ki",
+      "category": "other",
       "verified": true,
       "verify_status": "ok-403-trusted"
     },

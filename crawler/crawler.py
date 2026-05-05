@@ -709,10 +709,27 @@ def main():
     DATA_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     # Zusätzlich data.js für file://-Loading des Dashboards (umgeht CORS)
     DATA_JS = BASE / "data.js"
-    DATA_JS.write_text(
-        "window.JOBSUCHE_DATA = " + json.dumps(payload, ensure_ascii=False) + ";\n",
-        encoding="utf-8",
-    )
+    data_js_content = "window.JOBSUCHE_DATA = " + json.dumps(payload, ensure_ascii=False) + ";\n"
+    DATA_JS.write_text(data_js_content, encoding="utf-8")
+
+    # Standalone-HTML bauen: jobsuche_v12.html + inline data → eine Datei
+    # → kopiert nach iCloud Drive, von iPhone offline aufrufbar
+    HTML_SRC = BASE / "jobsuche_v12.html"
+    if HTML_SRC.exists():
+        html = HTML_SRC.read_text(encoding="utf-8")
+        # <script src="data.js"></script> ersetzen durch inline data
+        inline_script = '<script>' + data_js_content + '</script>'
+        html_inline = html.replace('<script src="data.js"></script>', inline_script)
+        STANDALONE = BASE / "jobsuche_standalone.html"
+        STANDALONE.write_text(html_inline, encoding="utf-8")
+        log.info(f"Standalone HTML: {STANDALONE} ({len(html_inline)//1024} KB)")
+        # iCloud Drive Sync (falls Pfad existiert)
+        ICLOUD = (Path.home() / "Library/Mobile Documents/com~apple~CloudDocs/Jobsuche")
+        if ICLOUD.parent.exists():
+            ICLOUD.mkdir(exist_ok=True)
+            target = ICLOUD / "jobsuche_standalone.html"
+            target.write_text(html_inline, encoding="utf-8")
+            log.info(f"iCloud Drive: {target}")
     log.info(f"=== Crawl fertig: {len(verified)} Jobs in {DATA_PATH} ===")
     log.info(f"Dauer: {payload['duration_s']:.1f}s · Kategorien: {payload['stats']['by_category']}")
 
