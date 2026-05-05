@@ -6,8 +6,8 @@
     <string>com.andy.jobsuche</string>
     <key>ProgramArguments</key>
     <array>
-        <string>__BASE__/crawler/.venv/bin/python</string>
-        <string>__BASE__/crawler/crawler.py</string>
+        <string>/bin/bash</string>
+        <string>__BASE__/crawler/crawl_and_push.sh</string>
     </array>
     <key>WorkingDirectory</key>
     <string>__BASE__/crawler</string>

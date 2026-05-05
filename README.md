@@ -1,8 +1,20 @@
 # Andy's Jobsuche v12 — Live-Crawler-Dashboard
 
 Mobile-first Jobsuche-Dashboard für Andreas Schengel (Senior PM / KI-Manager / GFZ-EE-Lead, München).
-Crawlt 4× täglich automatisch über 1.000+ Quellen, filtert gegen Andys Profil, schreibt `data.js` + `data.json`.
+Crawlt 4× täglich automatisch über 6 Quellen, filtert gegen Andys Profil, schreibt `data.js` + `data.json`.
 Dashboard (`jobsuche_v12.html`) lädt `data.js` und rendert dynamisch.
+
+## 🌍 Live-Zugriff
+
+**Online (von überall, iPhone/iPad ohne Mac):**
+- 🔗 https://andy2407.github.io/andy-jobs/
+
+**Offline auf iPhone (über iCloud Drive):**
+- iPhone: Dateien-App → iCloud Drive → Jobsuche → `jobsuche_standalone.html` → "In Safari öffnen" → Teilen → "Zum Home-Bildschirm"
+- Mac muss nur EINMAL pro Tag laufen, damit iCloud die neue Version syncht.
+
+**Lokal auf Mac:**
+- `~/Desktop/ordner/Bewerbungen 2026/jobsuche_v12.html` direkt im Browser öffnen.
 
 ## 🎯 Was ist drin
 
@@ -14,19 +26,22 @@ Dashboard (`jobsuche_v12.html`) lädt `data.js` und rendert dynamisch.
 
 ## 🚀 Setup-Optionen
 
-### Option A — Lokal auf deinem Mac (1 Befehl)
+### Option A — Lokal auf deinem Mac (bereits eingerichtet)
 
 ```bash
+# Erstmaliges Setup (nur falls auf neuem Mac)
 cd ~/Desktop/ordner/Bewerbungen\ 2026/crawler
-chmod +x setup_local.sh
+chmod +x setup_local.sh crawl_and_push.sh
 ./setup_local.sh
 ```
 
-Was passiert:
-- Python venv + Dependencies werden installiert.
-- `~/Library/LaunchAgents/com.andy.jobsuche.plist` wird angelegt → läuft **4× täglich** (06/10/14/18 Uhr).
-- Erster Crawl wird sofort ausgeführt.
-- Dashboard öffnen: `open ~/Desktop/ordner/Bewerbungen\ 2026/jobsuche_v12.html`
+Was läuft:
+- launchd-Job `com.andy.jobsuche` ist installiert → ruft `crawler/crawl_and_push.sh` auf:
+  1. Crawl mit Python-venv (~80-100s)
+  2. Schreibt: `data.js`, `data.json`, `index.html`, `jobsuche_standalone.html`, `~/Library/Mobile Documents/.../Jobsuche/jobsuche_standalone.html` (iCloud)
+  3. Wenn Git-Repo da: `git add` + `git commit` + `git push` → GitHub Pages aktualisiert sich.
+- Zeitplan: **4× täglich** 06/10/14/18 Uhr lokal.
+- Dashboard lokal: `open ~/Desktop/ordner/Bewerbungen\ 2026/jobsuche_v12.html`
 
 Status / Logs:
 ```bash
@@ -39,43 +54,27 @@ Stoppen:
 launchctl unload ~/Library/LaunchAgents/com.andy.jobsuche.plist
 ```
 
-### Option B — GitHub Pages (online, von überall, iPhone-tauglich)
+### Option B — GitHub Pages (bereits eingerichtet)
 
-So kommst du von überall an dein Dashboard (auch iPhone als Bookmark):
+Ist live unter https://andy2407.github.io/andy-jobs/.
 
-1. **GitHub-Repo erstellen** (privat — siehe Hinweis unten):
-   - Auf [github.com](https://github.com) einloggen → "New repository" → Name z. B. `andy-jobs`, **Private**, kein README/gitignore vorab.
+- Repo: https://github.com/Andy2407/andy-jobs (Public, weil GitHub Pages auf Free-Plan nur Public-Repos unterstützt; keine sensitiven Daten committed: keine PDFs, kein Lebenslauf)
+- Aktualisierungs-Workflow: läuft entweder über lokales `launchd` (Mac an) ODER über `.github/workflows/crawl.yml` (Cloud).
+- Push-Befehle nach lokalem Crawl (manuell):
+  ```bash
+  cd ~/Desktop/ordner/Bewerbungen\ 2026
+  git add data.js data.json index.html jobsuche_v12.html jobsuche_standalone.html
+  git commit -m "data update"
+  git push
+  ```
 
-2. **Repo hochladen** (Terminal in `~/Desktop/ordner/Bewerbungen 2026`):
-   ```bash
-   cd ~/Desktop/ordner/Bewerbungen\ 2026
-   git init
-   git add jobsuche_v12.html data.js data.json crawler/ .github/ .gitignore README.md
-   git commit -m "initial: jobsuche dashboard"
-   git branch -M main
-   git remote add origin https://github.com/<DEIN-USERNAME>/andy-jobs.git
-   git push -u origin main
-   ```
+### iPhone-Setup (1× einrichten)
 
-3. **GitHub Pages aktivieren**:
-   - Repo-Seite → Settings → Pages → Source: `Deploy from a branch` → Branch: `main`, Folder: `/ (root)` → Save.
-   - Nach ~1 Min ist das Dashboard online unter:
-     `https://<DEIN-USERNAME>.github.io/andy-jobs/jobsuche_v12.html`
+1. Safari öffnen → https://andy2407.github.io/andy-jobs/
+2. Teilen-Button → "Zum Home-Bildschirm" → blaues "A"-Icon erscheint
+3. Tippen → Dashboard öffnet vollbildig wie eine App (Notizen + Filter + Tabs werden in localStorage gespeichert).
 
-4. **Cron in der Cloud** (`.github/workflows/crawl.yml` ist bereits eingerichtet):
-   - Repo-Seite → Actions → "Jobsuche Crawl" → läuft automatisch 4× täglich (04/08/12/16 UTC = 06/10/14/18 MESZ).
-   - Manuell triggern: Actions → Workflow → "Run workflow".
-   - Bot committed nach jedem Lauf neue `data.js` → GitHub Pages serviert sie automatisch.
-
-5. **iPhone**:
-   - Safari öffnen, URL eingeben → Teilen-Button → "Zum Home-Bildschirm".
-   - Das Manifest (`<link rel="apple-touch-icon">`) liefert ein blaues "A"-Icon.
-
-⚠️ **Privatsphäre**: Repo unbedingt **Private** machen. Bei `Public` wäre dein Job-Such-Verlauf öffentlich. `.gitignore` schließt PDFs, Lebenslauf, Bewerbungsentwürfe schon aus — aber Git-History ist permanent, also lieber Private von Anfang an.
-
-### Option C — Beides (empfohlen)
-
-Lokales Setup für sofortigen Zugriff zu Hause + GitHub Pages für unterwegs. GitHub Actions sorgt dafür, dass das Online-Dashboard auch frisch ist, wenn dein Mac aus ist.
+Für reine Offline-Nutzung (auch ohne Internet): Dateien-App → iCloud Drive → Jobsuche → `jobsuche_standalone.html` → "In Safari öffnen" → Teilen → "Zum Home-Bildschirm". Diese Version hat alle Daten inline, läuft ohne Netz.
 
 ## 📁 Struktur
 

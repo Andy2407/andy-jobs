@@ -717,12 +717,15 @@ def main():
     HTML_SRC = BASE / "jobsuche_v12.html"
     if HTML_SRC.exists():
         html = HTML_SRC.read_text(encoding="utf-8")
-        # <script src="data.js"></script> ersetzen durch inline data
         inline_script = '<script>' + data_js_content + '</script>'
         html_inline = html.replace('<script src="data.js"></script>', inline_script)
         STANDALONE = BASE / "jobsuche_standalone.html"
         STANDALONE.write_text(html_inline, encoding="utf-8")
         log.info(f"Standalone HTML: {STANDALONE} ({len(html_inline)//1024} KB)")
+        # index.html für GitHub Pages auch aktualisieren (lädt data.js)
+        INDEX = BASE / "index.html"
+        INDEX.write_text(html, encoding="utf-8")
+        log.info(f"index.html aktualisiert: {INDEX}")
         # iCloud Drive Sync (falls Pfad existiert)
         ICLOUD = (Path.home() / "Library/Mobile Documents/com~apple~CloudDocs/Jobsuche")
         if ICLOUD.parent.exists():
