@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title>Andy's Jobsuche v12</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Jobsuche v12">
+<meta name="theme-color" content="#060a10">
+<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%23060a10'/><text x='50%25' y='52%25' text-anchor='middle' dominant-baseline='middle' font-size='90' font-family='system-ui' fill='%232d7aed'>A</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060a10;--s1:#0d1219;--s2:#131b27;--bd:#1b2537;--t:#d8e2f0;--m:#4d6080;
+--b:#2d7aed;--g:#16c98d;--o:#e8a032;--v:#9565ed;--c:#06b6d4;--r:10px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Bricolage Grotesque',sans-serif;background:var(--bg);color:var(--t);min-height:100dvh;
+background-image:radial-gradient(ellipse at 50% 0%,rgba(45,122,237,.06),transparent 60%);
+padding-bottom:env(safe-area-inset-bottom)}
+.w{max-width:680px;margin:0 auto;padding:14px 12px 60px}
+.hd{padding-bottom:12px;border-bottom:1px solid var(--bd);margin-bottom:12px}
+.hd h1{font-size:19px;font-weight:800;letter-spacing:-.02em}
+.hd h1 b{color:var(--b)}
+.hd p{font-size:10px;color:var(--m);margin-top:3px}
+.chips{display:flex;flex-wrap:wrap;gap:3px;margin-top:7px}
+.ch{font-size:9px;padding:3px 7px;border-radius:99px;border:1px solid var(--bd);background:var(--s1)}
+.ch-g{background:rgba(22,201,141,.08);border-color:rgba(22,201,141,.2);color:var(--g)}
+.ch-b{background:rgba(45,122,237,.08);border-color:rgba(45,122,237,.2);color:var(--b)}
+.ch-o{background:rgba(232,160,50,.08);border-color:rgba(232,160,50,.2);color:var(--o)}
+.ft{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:10px;margin-bottom:10px}
+.ft label{font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--m);display:block;margin-bottom:4px}
+.ft input,.ft textarea{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:6px;color:var(--t);font-family:inherit;font-size:12px;padding:7px 9px;outline:0}
+.ft input:focus,.ft textarea:focus{border-color:var(--b)}
+.ft textarea{min-height:32px;resize:vertical}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:10px;position:sticky;top:0;background:var(--bg);padding:4px 0;z-index:10}
+.tb{background:var(--s1);border:1.5px solid var(--bd);border-radius:9px;padding:7px 3px;cursor:pointer;text-align:center;transition:.15s;min-height:46px}
+.tb:active{transform:scale(.97)}
+.tb[data-c="ki"].on{border-color:var(--b);box-shadow:0 0 14px rgba(45,122,237,.1)}
+.tb[data-c="pm"].on{border-color:var(--g);box-shadow:0 0 14px rgba(22,201,141,.1)}
+.tb[data-c="auto"].on{border-color:var(--o);box-shadow:0 0 14px rgba(232,160,50,.1)}
+.tb[data-c="pharma"].on{border-color:var(--v);box-shadow:0 0 14px rgba(149,101,237,.1)}
+.tb[data-c="init"].on{border-color:var(--c);box-shadow:0 0 14px rgba(6,182,212,.1)}
+.tb .i{font-size:16px}.tb .n{font-size:10px;font-weight:700;margin-top:1px}
+.tb .c{font-size:8px;margin-top:1px;color:var(--m)}
+.sec{display:none}.sec.on{display:block}
+.banner{background:linear-gradient(135deg,rgba(45,122,237,.08),rgba(22,201,141,.05));border:1px solid rgba(45,122,237,.2);border-radius:var(--r);padding:11px;margin-bottom:11px;font-size:10px;color:var(--t);line-height:1.5}
+.banner b{color:var(--b)}
+.banner .em{color:var(--g);font-weight:700}
+.banner .warn{color:var(--o);font-weight:600}
+.jc{background:var(--s1);border:1px solid var(--bd);border-radius:9px;padding:11px;margin-bottom:7px}
+.jc-top{display:flex;justify-content:space-between;gap:5px;margin-bottom:3px}
+.jc-t{font-weight:700;font-size:12px;line-height:1.25;flex:1}
+.jc-m{font-size:9px;font-weight:700;padding:2px 5px;border-radius:99px;height:fit-content;white-space:nowrap}
+.m-h{background:rgba(22,201,141,.12);color:var(--g)}
+.m-m{background:rgba(232,160,50,.12);color:var(--o)}
+.m-l{background:rgba(157,168,189,.12);color:#9da8bd}
+.jc-meta{display:flex;flex-wrap:wrap;gap:3px;font-size:9px;margin-bottom:4px}
+.jc-co{font-weight:600}.jc-loc{color:var(--m)}.jc-sal{color:var(--g);font-weight:500}
+.dt{display:inline-flex;font-size:8px;font-weight:600;padding:1px 5px;border-radius:99px;margin-right:3px}
+.dt-new{background:rgba(22,201,141,.1);color:var(--g)}
+.dt-init{background:rgba(6,182,212,.1);color:var(--c)}
+.dt-warn{background:rgba(232,160,50,.1);color:var(--o)}
+.dt-src{background:rgba(157,168,189,.08);color:#9da8bd}
+.tags{display:flex;flex-wrap:wrap;gap:2px;margin:5px 0 7px}
+.tag{padding:1px 4px;border-radius:3px;font-size:8px;background:rgba(255,255,255,.03);border:1px solid var(--bd);color:var(--m)}
+.cta{display:block;padding:10px;border-radius:6px;text-align:center;font-size:11px;font-weight:700;text-decoration:none;color:#fff;min-height:42px}
+.cta:active{filter:brightness(.85)}
+.cta-ki{background:linear-gradient(135deg,#1d5fd6,#2d7aed)}
+.cta-pm{background:linear-gradient(135deg,#0a8a5e,#16c98d)}
+.cta-auto{background:linear-gradient(135deg,#b87d15,#e8a032)}
+.cta-pharma{background:linear-gradient(135deg,#6b3cc7,#9565ed)}
+.cta-init{background:linear-gradient(135deg,#0891b2,#06b6d4)}
+.url-sm{font-size:7px;color:var(--m);margin-top:3px;word-break:break-all;font-family:monospace}
+.empty{text-align:center;padding:20px 14px;background:var(--s1);border:1px dashed var(--bd);border-radius:var(--r);color:var(--m);font-size:10px;line-height:1.5;margin-top:8px}
+.empty b{color:var(--t);font-size:12px;display:block;margin-bottom:4px}
+.note{background:rgba(232,160,50,.04);border:1px solid rgba(232,160,50,.15);border-radius:var(--r);padding:11px;margin-top:10px;font-size:10px;line-height:1.5;color:var(--m)}
+.note b{color:var(--o)}
+.note code{color:var(--g);font-family:'SF Mono',Menlo,monospace;font-size:9px}
+.dn{margin-left:6px;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:var(--s2);color:var(--m);border:1px solid var(--bd);cursor:pointer}
+.dn.dn-on{background:rgba(22,201,141,.15);color:var(--g);border-color:rgba(22,201,141,.4)}
+.jc.is-done{opacity:.45}
+.jc.is-done .jc-t{text-decoration:line-through}
+.ftr{text-align:center;font-size:8px;color:var(--m);padding:14px 0;margin-top:10px;border-top:1px solid var(--bd);line-height:1.6}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:10px}
+.stat{background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:8px 5px;text-align:center}
+.stat .n{font-size:17px;font-weight:800;line-height:1}
+.stat .l{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--m);margin-top:3px}
+.stat.s-g .n{color:var(--g)}.stat.s-c .n{color:var(--c)}.stat.s-y .n{color:var(--o)}.stat.s-b .n{color:var(--b)}
+.load{padding:14px;text-align:center;color:var(--m);font-size:11px;background:var(--s1);border:1px dashed var(--bd);border-radius:var(--r)}
+.load b{color:var(--o)}
+</style>
+</head>
+<body>
+<div class="w">
+
+<div class="hd">
+  <h1>Andy's <b>Jobsuche</b> v12</h1>
+  <p id="hd-stand">Stand: lädt…</p>
+  <div class="chips">
+    <span class="ch">📍 München · sonst ≥80 % Remote</span>
+    <span class="ch ch-g">💰 Min 70k</span>
+    <span class="ch ch-b">🤖 Senior PM · KI-Mgr · GFZ/EE · Modul/Baugruppe</span>
+    <span class="ch ch-o">🚫 SW-Eng · SW-Tester · SAP · Junior · Bau · DB · IAV-Init</span>
+  </div>
+</div>
+
+<div class="banner" id="banner">
+  <b>📱 V12 · Live-Crawler:</b> Daten 4× täglich automatisch aktualisiert (Bundesagentur · Akkodis · arbeitnow · Personio · Greenhouse). <span class="em" id="banner-count">…</span>
+</div>
+
+<div class="stats">
+  <div class="stat s-b"><div class="n" id="ct-ki">·</div><div class="l">KI-Mgr</div></div>
+  <div class="stat s-g"><div class="n" id="ct-pm">·</div><div class="l">PM</div></div>
+  <div class="stat s-y"><div class="n" id="ct-auto">·</div><div class="l">Auto</div></div>
+  <div class="stat s-c"><div class="n" id="ct-pharma">·</div><div class="l">Pharma</div></div>
+</div>
+
+<div class="ft">
+  <label>🔎 Filter: Titel / Firma / Standort enthält…</label>
+  <input id="qf" type="text" placeholder="z.B. modulleiter · münchen · remote · cariad" />
+</div>
+
+<div class="ft">
+  <label>📝 Notizen / Tagesfokus</label>
+  <textarea id="ft" placeholder="z.B. heute Akkodis + appliedAI · ≥80 % Remote..."></textarea>
+</div>
+
+<div class="tabs">
+  <div class="tb" data-c="ki" onclick="go('ki')"><div class="i">🤖</div><div class="n">KI-Mgr</div><div class="c" id="tc-ki">·</div></div>
+  <div class="tb" data-c="pm" onclick="go('pm')"><div class="i">📐</div><div class="n">PM</div><div class="c" id="tc-pm">·</div></div>
+  <div class="tb" data-c="auto" onclick="go('auto')"><div class="i">🚗</div><div class="n">Auto</div><div class="c" id="tc-auto">·</div></div>
+  <div class="tb" data-c="pharma" onclick="go('pharma')"><div class="i">💊</div><div class="n">Pharma</div><div class="c" id="tc-pharma">·</div></div>
+  <div class="tb" data-c="init" onclick="go('init')"><div class="i">📨</div><div class="n">Initiativ</div><div class="c">8</div></div>
+</div>
+
+<div class="sec" id="sec-ki"></div>
+<div class="sec" id="sec-pm"></div>
+<div class="sec" id="sec-auto"></div>
+<div class="sec" id="sec-pharma"></div>
+
+<!-- ===== INITIATIV (hardcoded) ===== -->
+<div class="sec" id="sec-init">
+  <div class="banner" style="border-color:rgba(6,182,212,.3);background:rgba(6,182,212,.05)">
+    <b style="color:var(--c)">📨 Verifizierte Initiativbewerbungs-Adressen</b><br>
+    Karriereseite manuell geöffnet, Init-Begriff verifiziert. <span class="em">IAV ausgeschlossen</span>.
+  </div>
+
+  <div class="jc" data-id="in-1">
+    <div class="jc-top"><div class="jc-t">Cognizant Mobility GmbH<span class="dn" onclick="td(this,'in-1')">erledigt?</span></div><div class="jc-m m-h">95%</div></div>
+    <div class="jc-meta"><span class="jc-co">Automotive E/E (ehem. ESG)</span><span class="jc-loc">📍 München (HQ)</span></div>
+    <span class="dt dt-init">📨 "bewerbe dich initiativ" · verifiziert</span>
+    <a href="https://jobs.cognizant-mobility.com/" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 Karriereportal + Initiativ →</a>
+  </div>
+  <div class="jc" data-id="in-2">
+    <div class="jc-top"><div class="jc-t">EDAG Engineering<span class="dn" onclick="td(this,'in-2')">erledigt?</span></div><div class="jc-m m-h">90%</div></div>
+    <div class="jc-meta"><span class="jc-co">Engineering-Dienstleister Auto</span><span class="jc-loc">📍 DE-weit · München</span></div>
+    <span class="dt dt-init">📨 Init für 3 BUs · 133 offene Stellen</span>
+    <a href="https://www.edag.com/de/karriere/stellenanzeigen" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 EDAG-Stellen + Initiativ →</a>
+  </div>
+  <div class="jc" data-id="in-3">
+    <div class="jc-top"><div class="jc-t">Brainlab AG<span class="dn" onclick="td(this,'in-3')">erledigt?</span></div><div class="jc-m m-h">88%</div></div>
+    <div class="jc-meta"><span class="jc-co">MedTech-Weltmarktführer</span><span class="jc-loc">📍 München-Riem</span></div>
+    <span class="dt dt-init">📨 Talent Pool · 75 Stellen</span>
+    <a href="https://www.brainlab.com/de/jobs-karriere/stellen/" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 Brainlab-Stellen + Talent Pool →</a>
+  </div>
+  <div class="jc" data-id="in-4">
+    <div class="jc-top"><div class="jc-t">P3 Group<span class="dn" onclick="td(this,'in-4')">erledigt?</span></div><div class="jc-m m-h">88%</div></div>
+    <div class="jc-meta"><span class="jc-co">Tech & Mgmt Consulting</span><span class="jc-loc">📍 München · DE</span></div>
+    <span class="dt dt-init">📨 "Unsolicited Application" · verifiziert</span>
+    <a href="https://www.p3-group.com/en/jobsp3/" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 P3 Karriere + Initiativ →</a>
+  </div>
+  <div class="jc" data-id="in-5">
+    <div class="jc-top"><div class="jc-t">Akkodis · Init Maschinenbau & Automotive<span class="dn" onclick="td(this,'in-5')">erledigt?</span></div><div class="jc-m m-h">85%</div></div>
+    <div class="jc-meta"><span class="jc-co">Engineering Consulting</span><span class="jc-loc">📍 Regensburg · DE-weit</span></div>
+    <span class="dt dt-init">📨 Eigener Init-Slot</span>
+    <a href="https://www.akkodis.com/de-de/karriere/jobs/initiativbewerbung-mwd-maschinenbau-und-automotive-/37E94D17-5C25-AB07-89CA-BE1ECB863979" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 Akkodis Init Maschb./Auto →</a>
+  </div>
+  <div class="jc" data-id="in-6">
+    <div class="jc-top"><div class="jc-t">attempto · Initiativbewerbung<span class="dn" onclick="td(this,'in-6')">erledigt?</span></div><div class="jc-m m-h">85%</div></div>
+    <div class="jc-meta"><span class="jc-co">IT/Banking/Insurance Consulting</span><span class="jc-loc">📍 München · KA · Münster · Hybrid</span></div>
+    <span class="dt dt-init">📨 Eigener Init-Slot Job-ID 872933</span>
+    <a href="https://www.attempto.eu/de/karriere/job/872933?language=de" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 attempto Initiativ →</a>
+  </div>
+  <div class="jc" data-id="in-7">
+    <div class="jc-top"><div class="jc-t">amiconsult · Initiativbewerbung<span class="dn" onclick="td(this,'in-7')">erledigt?</span></div><div class="jc-m m-m">78%</div></div>
+    <div class="jc-meta"><span class="jc-co">Identity Security Consulting</span><span class="jc-loc">📍 Karlsruhe · Remote möglich</span></div>
+    <span class="dt dt-init">📨 Eigener Init-Slot Job-ID 948925</span>
+    <a href="https://amiconsult.de/job/948925?language=de" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 amiconsult Initiativ →</a>
+  </div>
+  <div class="jc" data-id="in-8">
+    <div class="jc-top"><div class="jc-t">appliedAI Initiative<span class="dn" onclick="td(this,'in-8')">erledigt?</span></div><div class="jc-m m-h">90%</div></div>
+    <div class="jc-meta"><span class="jc-co">KI-Beratung</span><span class="jc-loc">📍 München / Heilbronn</span></div>
+    <span class="dt dt-init">📨 Lucas Fernandes · Talent Acquisition</span>
+    <a href="https://appliedai.jobs.personio.de/?language=de" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 appliedAI Stellenliste →</a>
+  </div>
+</div>
+
+<div class="note">
+  <b>Crawler-Status:</b> Quellen Bundesagentur · Akkodis Sitemap · arbeitnow API · 22 Personio-Subdomains · Greenhouse APIs.<br>
+  <b>Filter:</b> hart gegen SW-Eng · SW-Tester · SAP · Junior · Bau · DB · Defense/Marine · Sales · Sachbearbeiter. Standort: München-Nähe ODER ≥80 % Remote.<br>
+  <b>Update manuell:</b> <code>cd ~/Desktop/ordner/Bewerbungen\ 2026/crawler && .venv/bin/python crawler.py</code><br>
+  <b>Update automatisch:</b> launchd-Job einmalig installieren (siehe README.md) → 4× tägl.
+</div>
+
+<div class="ftr">
+  Andy's Jobsuche v12 · Live-Crawler · 80805 München<br>
+  🚫 SW-Eng · SW-Tester · SAP · Junior · Bau · DB · Rüstung · IAV-Init · Aconext · Everlast
+</div>
+
+</div>
+
+<script src="data.js"></script>
+<script>
+const CAT_LABELS = { ki: 'KI-Mgr', pm: 'PM', auto: 'Auto', pharma: 'Pharma' };
+const CAT_CTA = { ki: 'cta-ki', pm: 'cta-pm', auto: 'cta-auto', pharma: 'cta-pharma' };
+
+function urlShort(url){
+  try{ const u = new URL(url); return (u.hostname + u.pathname).replace(/\/$/,''); }
+  catch(e){ return url || ''; }
+}
+
+function matchBadge(score){
+  const s = score || 0;
+  if(s >= 70) return ['m-h', s + '%'];
+  if(s >= 40) return ['m-m', s + '%'];
+  return ['m-l', s + '%'];
+}
+
+// DOM-Builder helper: erstellt Element mit Klassen + textContent
+function el(tag, cls, text){
+  const e = document.createElement(tag);
+  if(cls) e.className = cls;
+  if(text != null) e.textContent = text;
+  return e;
+}
+
+function buildCard(j, cat){
+  const [mc, ml] = matchBadge(j.score);
+  const cta = CAT_CTA[cat] || 'cta-pm';
+  const id = 'j-' + (j.url || '').replace(/[^a-z0-9]+/gi,'').slice(0, 40);
+  const card = el('div', 'jc');
+  card.dataset.id = id;
+  // Top
+  const top = el('div', 'jc-top');
+  const titleWrap = el('div', 'jc-t', j.title || '(ohne Titel)');
+  const dn = el('span', 'dn', 'erledigt?');
+  dn.addEventListener('click', () => td(dn, id));
+  titleWrap.appendChild(dn);
+  const matchBdg = el('div', 'jc-m ' + mc, ml);
+  top.appendChild(titleWrap); top.appendChild(matchBdg);
+  card.appendChild(top);
+  // Meta
+  const meta = el('div', 'jc-meta');
+  meta.appendChild(el('span', 'jc-co', j.company || '—'));
+  meta.appendChild(el('span', 'jc-loc', '📍 ' + (j.location || '—')));
+  card.appendChild(meta);
+  // Source-Tag
+  const src = (j.source || '').split(':')[0];
+  if(src) card.appendChild(el('span', 'dt dt-src', src));
+  // Score-Reason-Tags (Top 4, ohne "+xx ")
+  if(j.score_reasons && j.score_reasons.length){
+    const tags = el('div', 'tags');
+    j.score_reasons.slice(0, 4).forEach(r => {
+      const clean = r.replace(/^\+\d+\s*/, '').slice(0, 24);
+      tags.appendChild(el('span', 'tag', clean));
+    });
+    card.appendChild(tags);
+  }
+  // CTA
+  const a = document.createElement('a');
+  a.className = 'cta ' + cta;
+  a.href = j.url || '#';
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.textContent = '📄 Direkt zur Stelle bewerben →';
+  card.appendChild(a);
+  // URL klein
+  card.appendChild(el('div', 'url-sm', urlShort(j.url)));
+  return card;
+}
+
+let DATA = window.JOBSUCHE_DATA || null;
+let CURRENT_TAB = 'ki';
+let FILTER = '';
+
+function jobsForTab(tab){
+  if(!DATA || !DATA.jobs) return [];
+  const want = tab === 'pm' ? ['pm', 'other'] : [tab];
+  let list = DATA.jobs.filter(j => want.includes(j.category));
+  if(FILTER){
+    const f = FILTER.toLowerCase();
+    list = list.filter(j =>
+      (j.title || '').toLowerCase().includes(f) ||
+      (j.company || '').toLowerCase().includes(f) ||
+      (j.location || '').toLowerCase().includes(f)
+    );
+  }
+  return list.sort((a, b) => (b.score || 0) - (a.score || 0));
+}
+
+function renderTab(tab){
+  const sec = document.getElementById('sec-' + tab);
+  if(!sec || tab === 'init') return;
+  // Clear sec
+  while(sec.firstChild) sec.removeChild(sec.firstChild);
+  if(!DATA){
+    const ld = el('div', 'load');
+    ld.appendChild(el('b', null, 'Keine Daten geladen.'));
+    ld.appendChild(document.createElement('br'));
+    ld.appendChild(document.createTextNode('data.js fehlt. Crawler einmal ausführen:'));
+    ld.appendChild(document.createElement('br'));
+    const code = el('code', null, 'cd crawler && .venv/bin/python crawler.py');
+    code.style.color = 'var(--g)';
+    ld.appendChild(code);
+    sec.appendChild(ld); return;
+  }
+  const list = jobsForTab(tab);
+  if(list.length === 0){
+    const e = el('div', 'empty');
+    e.appendChild(el('b', null, '0 Treffer in ' + CAT_LABELS[tab]));
+    if(FILTER) e.appendChild(document.createTextNode('für Filter: "' + FILTER + '"'));
+    sec.appendChild(e);
+    return;
+  }
+  list.forEach(j => sec.appendChild(buildCard(j, tab)));
+  // Done states
+  try{
+    const done = JSON.parse(localStorage.getItem('jsa12_done') || '{}');
+    Object.entries(done).forEach(([id, v]) => {
+      if(!v) return;
+      const card = sec.querySelector('[data-id="' + CSS.escape(id) + '"]');
+      if(card){ card.classList.add('is-done'); const b = card.querySelector('.dn'); if(b){ b.classList.add('dn-on'); b.textContent = '✓ erledigt'; } }
+    });
+  }catch{}
+}
+
+function updateStats(){
+  if(!DATA) return;
+  ['ki','pm','auto','pharma'].forEach(c => {
+    const list = jobsForTab(c);
+    const e1 = document.getElementById('ct-' + c); if(e1) e1.textContent = list.length;
+    const e2 = document.getElementById('tc-' + c); if(e2) e2.textContent = list.length;
+  });
+  const stand = document.getElementById('hd-stand');
+  if(stand && DATA.generated_at){
+    const d = new Date(DATA.generated_at);
+    stand.textContent = 'Stand: ' + d.toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}) +
+                         ' · ' + DATA.stats.verified + ' verifizierte Treffer · auto-Crawl 4× tägl.';
+  }
+  const bc = document.getElementById('banner-count');
+  if(bc) bc.textContent = (DATA.stats.verified || 0) + ' verifizierte Direkt-Stellen';
+}
+
+function go(c){
+  document.querySelectorAll('.tb').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+  document.querySelector('.tb[data-c="' + c + '"]').classList.add('on');
+  document.getElementById('sec-' + c).classList.add('on');
+  CURRENT_TAB = c;
+  if(c !== 'init') renderTab(c);
+  try{ localStorage.setItem('jsa12_tab', c); }catch{}
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function td(btn, id){
+  const card = document.querySelector('[data-id="' + CSS.escape(id) + '"]');
+  if(!card) return;
+  const isDone = card.classList.toggle('is-done');
+  btn.classList.toggle('dn-on', isDone);
+  btn.textContent = isDone ? '✓ erledigt' : 'erledigt?';
+  try{
+    const done = JSON.parse(localStorage.getItem('jsa12_done') || '{}');
+    done[id] = isDone;
+    localStorage.setItem('jsa12_done', JSON.stringify(done));
+  }catch{}
+}
+
+(function init(){
+  const ta = document.getElementById('ft');
+  try{ const s = localStorage.getItem('jsa12_ft'); if(s) ta.value = s; }catch{}
+  ta.addEventListener('input', () => { try{ localStorage.setItem('jsa12_ft', ta.value); }catch{} });
+  const qf = document.getElementById('qf');
+  let to = null;
+  qf.addEventListener('input', () => {
+    FILTER = qf.value.trim();
+    clearTimeout(to);
+    to = setTimeout(() => { if(CURRENT_TAB !== 'init') renderTab(CURRENT_TAB); updateStats(); }, 150);
+  });
+  if(DATA){
+    updateStats();
+  }else{
+    const stand = document.getElementById('hd-stand');
+    if(stand) stand.textContent = 'Stand: keine Daten geladen — Crawler einmal manuell ausführen';
+    const bc = document.getElementById('banner-count');
+    if(bc) bc.textContent = 'data.js fehlt — bitte Crawler starten';
+  }
+  let saved = 'ki';
+  try{ const t = localStorage.getItem('jsa12_tab'); if(t) saved = t; }catch{}
+  go(saved);
+})();
+</script>
+</body>
+</html>
