@@ -436,6 +436,17 @@ BA_API_QUERIES = [
     {"was": "Agile Projektmanager", "wo": "München", "umkreis": "25"},
     {"was": "Scrum Master", "wo": "München", "umkreis": "25"},
     {"was": "Product Owner", "wo": "München", "umkreis": "25"},
+    # Engineering-Dienstleister Firmen (NEU v5)
+    {"was": "Bertrandt"},
+    {"was": "FERCHAU"},
+    {"was": "EDAG"},
+    {"was": "ARRK Engineering"},
+    {"was": "IAV"},
+    {"was": "Akkodis"},
+    {"was": "Capgemini Engineering"},
+    {"was": "Brunel"},
+    {"was": "Expleo"},
+    {"was": "MHP"},
 ]
 
 
@@ -475,6 +486,7 @@ def crawl_bundesagentur(session) -> list:
 # StepStone
 # ============================================================
 STEPSTONE_QUERIES = [
+    # Generische Rollen
     ("senior-projektmanager", "muenchen"), ("ai-project-manager", "muenchen"),
     ("ki-manager", "muenchen"), ("ki-manager", None),
     ("projektmanager-digital", "muenchen"), ("project-manager-pharma", "muenchen"),
@@ -488,6 +500,22 @@ STEPSTONE_QUERIES = [
     ("senior-projektmanager", None), ("senior-projektleiter", "muenchen"),
     ("konzeptkonstrukteur", "muenchen"), ("se-teamleiter", "muenchen"),
     ("pmo", "muenchen"),
+    # Engineering-Dienstleister firmen-spezifisch (NEU v5)
+    ("bertrandt", "muenchen"), ("bertrandt", None),
+    ("alten", "muenchen"), ("alten", None),
+    ("ferchau", "muenchen"), ("ferchau", None),
+    ("edag", "muenchen"), ("edag", None),
+    ("mhp", "muenchen"),
+    ("akkodis", "muenchen"),
+    ("arrk", "muenchen"),
+    ("capgemini-engineering", "muenchen"),
+    ("p3-group", "muenchen"),
+    ("magna", "muenchen"),
+    ("cognizant-mobility", "muenchen"),
+    ("brunel", "muenchen"),
+    ("expleo", "muenchen"),
+    ("yer", "muenchen"),
+    ("apriori", "muenchen"),
 ]
 
 
