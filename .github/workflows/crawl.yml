@@ -1,4 +1,4 @@
-name: Jobsuche Crawl v4
+name: Jobsuche Crawl v6
 
 on:
   schedule:
@@ -29,7 +29,7 @@ jobs:
       - name: Run crawler
         working-directory: crawler
         run: python crawler.py
-      - name: Commit & push
+      - name: Commit & push (with rebase to handle concurrent commits)
         env:
           NOW: ${{ github.run_started_at }}
         run: |
@@ -39,6 +39,8 @@ jobs:
           if git diff --cached --quiet; then
             echo "Keine Aenderungen"
           else
-            git commit -m "data: cloud crawl v4 $NOW"
-            git push
+            git commit -m "data: cloud crawl v6 $NOW"
+            for i in 1 2 3 4; do
+              git pull --rebase origin main && git push && break || sleep 5
+            done
           fi
