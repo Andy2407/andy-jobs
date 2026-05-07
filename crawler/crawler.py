@@ -1,21 +1,13 @@
 #!/usr/bin/env python3
-"""Andy's Jobsuche-Crawler v3 — LinkedIn anonymous + kimeta-fix + BA-API.
+"""Andy's Jobsuche-Crawler v4 — +RemoteOK +Remotive +WeWorkRemotely +Indeed (Playwright optional).
 
-Quellen (16):
-- Akkodis Sitemap
-- arbeitnow.com API (paginated)
-- Personio-Subdomains (42 Firmen)
-- Greenhouse JSON-API (46 DE-Tech)
-- Lever JSON-API (8)
-- Ashby JSON-API (8)
-- Workable / Recruitee JSON-API
-- SmartRecruiters Public-API (8 Companies, Bosch+Brainlab)
-- Bundesagentur JSON-API (offiziell, mit X-API-Key)
-- StepStone HTML-Suche (21 Queries)
-- sz-jobs.de HTML-Suche (München-Schwerpunkt)
-- kimeta.de HTML-Suche (Aggregator, 1168+ München-Treffer)
-- jobvector HTML-Suche (MINT)
-- LinkedIn Anonymous-Search (/jobs-guest/.../seeMoreJobPostings)
+Quellen (19+1 optional):
+- Akkodis Sitemap, arbeitnow API, Personio (42), Greenhouse (46),
+  Lever, Ashby, Workable, Recruitee, SmartRecruiters (Bosch & Co.),
+  Bundesagentur JSON-API, StepStone, sz-jobs.de, kimeta, jobvector,
+  LinkedIn anonymous,
+  + RemoteOK API, + Remotive API, + WeWorkRemotely RSS,
+  + Indeed via Playwright (nur wenn playwright installiert).
 
 Output: data.json + data.js + index.html + standalone.html (+ iCloud).
 """
@@ -218,7 +210,7 @@ def crawl_personio(session) -> list:
 
 
 # ============================================================
-# Greenhouse (46 DE-Tech)
+# Greenhouse
 # ============================================================
 GREENHOUSE_COMPANIES = [
     "celonis", "n26", "traderepublic", "sennder", "gostudent", "pitch",
@@ -229,7 +221,8 @@ GREENHOUSE_COMPANIES = [
     "openai", "anthropic", "stripe", "scaleai", "elevenlabs",
     "perplexityai", "huggingface", "stabilityai", "neon", "supabase",
     "vercel", "linear", "notion", "applied-intuition", "anduril",
-    "joby", "wayve", "cohere",
+    "joby", "wayve", "cohere", "mongodb", "formlabs", "databricks", "flix",
+    "bitpanda", "grover", "mithril", "thinkingmachines",
 ]
 
 
@@ -257,7 +250,7 @@ def crawl_greenhouse(session) -> list:
 
 
 # ============================================================
-# Lever
+# Lever / Ashby / Workable / Recruitee / SmartRecruiters
 # ============================================================
 LEVER_COMPANIES = ["munichelectrification", "intersystems", "vehicle", "spacex",
                    "palantir", "freenome", "anthropic", "openai"]
@@ -286,9 +279,6 @@ def crawl_lever(session) -> list:
     return jobs
 
 
-# ============================================================
-# Ashby
-# ============================================================
 ASHBY_COMPANIES = ["anthropic", "openai", "elevenlabs", "anysphere",
                    "perplexity", "mistral", "stabilityai", "weaviate"]
 
@@ -316,9 +306,6 @@ def crawl_ashby(session) -> list:
     return jobs
 
 
-# ============================================================
-# Workable
-# ============================================================
 WORKABLE_COMPANIES = ["fluxysmunich", "tractive", "konux"]
 
 
@@ -347,9 +334,6 @@ def crawl_workable(session) -> list:
     return jobs
 
 
-# ============================================================
-# Recruitee
-# ============================================================
 RECRUITEE_COMPANIES = ["sennder", "gridx"]
 
 
@@ -376,9 +360,6 @@ def crawl_recruitee(session) -> list:
     return jobs
 
 
-# ============================================================
-# SmartRecruiters Public-API (Bosch & Co.)
-# ============================================================
 SMARTRECRUITERS_COMPANIES = [
     "BoschGroup", "Bosch-HomeComfort", "Brainlab", "Vattenfall",
     "MiltenyiBiotec", "SIXT",
@@ -431,12 +412,10 @@ def crawl_smartrecruiters(session) -> list:
 
 
 # ============================================================
-# Bundesagentur — offizielle JSON-API mit X-API-Key (NEU v3)
+# Bundesagentur — offizielle JSON-API mit X-API-Key
 # ============================================================
 BA_API_QUERIES = [
-    {"was": "KI Manager"},
-    {"was": "AI Project Manager"},
-    {"was": "AI Manager"},
+    {"was": "KI Manager"}, {"was": "AI Project Manager"}, {"was": "AI Manager"},
     {"was": "Senior Projektmanager", "wo": "München", "umkreis": "25"},
     {"was": "Senior Projektmanager"},
     {"was": "Senior Project Manager", "wo": "München", "umkreis": "25"},
@@ -488,12 +467,12 @@ def crawl_bundesagentur(session) -> list:
         except Exception as e:
             log.warning(f"[BA-API] {q}: {e}")
         time.sleep(0.3)
-    log.info(f"[Bundesagentur] {len(jobs)} (über {len(BA_API_QUERIES)} API-Suchen)")
+    log.info(f"[Bundesagentur] {len(jobs)} ({len(BA_API_QUERIES)} Suchen)")
     return jobs
 
 
 # ============================================================
-# StepStone HTML-Suche
+# StepStone
 # ============================================================
 STEPSTONE_QUERIES = [
     ("senior-projektmanager", "muenchen"), ("ai-project-manager", "muenchen"),
@@ -548,7 +527,7 @@ def crawl_stepstone(session) -> list:
 
 
 # ============================================================
-# sz-jobs.de — Süddeutsche Stellenmarkt
+# sz-jobs.de
 # ============================================================
 def crawl_szjobs(session) -> list:
     jobs = []
@@ -591,19 +570,17 @@ def crawl_szjobs(session) -> list:
 
 
 # ============================================================
-# kimeta.de — Aggregator (FIX v3: korrekte URL-Pattern)
+# kimeta
 # ============================================================
 KIMETA_QUERIES = [
     "stellenangebote-projektmanager-in-münchen",
     "stellenangebote-projektleiter-in-münchen",
     "it-projektmanager-jobs-münchen",
     "stellenangebote-senior-projektmanager-in-münchen",
-    "ki-manager-jobs-münchen",
-    "ai-project-manager-jobs-münchen",
+    "ki-manager-jobs-münchen", "ai-project-manager-jobs-münchen",
     "projektmanager-automotive-jobs-münchen",
     "projektmanager-pharma-jobs-münchen",
-    "modulleiter-jobs-münchen",
-    "programmleiter-jobs-münchen",
+    "modulleiter-jobs-münchen", "programmleiter-jobs-münchen",
     "baugruppenverantwortlicher-jobs-münchen",
 ]
 
@@ -638,7 +615,7 @@ def crawl_kimeta(session) -> list:
 
 
 # ============================================================
-# jobvector — MINT
+# jobvector
 # ============================================================
 def crawl_jobvector(session) -> list:
     jobs = []
@@ -681,7 +658,7 @@ def crawl_jobvector(session) -> list:
 
 
 # ============================================================
-# LinkedIn Anonymous Search (NEU v3)
+# LinkedIn Anonymous Search
 # ============================================================
 LINKEDIN_QUERIES = [
     {"keywords": "Senior Projektmanager", "location": "Munich, Germany", "geoId": "100477049"},
@@ -695,7 +672,7 @@ LINKEDIN_QUERIES = [
     {"keywords": "Konzeptkonstrukteur", "location": "Munich, Germany", "geoId": "100477049"},
     {"keywords": "SE-Teamleiter", "location": "Munich, Germany", "geoId": "100477049"},
     {"keywords": "Senior Project Manager", "location": "Germany", "geoId": "101282230",
-     "f_WT": "2"},  # Remote DE
+     "f_WT": "2"},
     {"keywords": "AI Project Manager", "location": "Germany", "geoId": "101282230"},
     {"keywords": "KI Manager", "location": "Germany", "geoId": "101282230"},
     {"keywords": "Agile Projektmanager", "location": "Munich, Germany", "geoId": "100477049"},
@@ -708,7 +685,7 @@ def crawl_linkedin(session) -> list:
     base = "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
     seen_jids = set()
     for q in LINKEDIN_QUERIES:
-        for start in [0, 25, 50]:  # 3 Seiten pro Query
+        for start in [0, 25, 50]:
             params = {**q, "start": start, "f_TPR": "r604800"}
             try:
                 r = session.get(base, params=params, timeout=15)
@@ -757,7 +734,222 @@ def crawl_linkedin(session) -> list:
                 log.debug(f"[linkedin] {q}: {e}")
                 break
             time.sleep(0.5)
-    log.info(f"[LinkedIn] {len(jobs)} (über {len(LINKEDIN_QUERIES)} Suchen, anonymous)")
+    log.info(f"[LinkedIn] {len(jobs)} ({len(LINKEDIN_QUERIES)} Suchen)")
+    return jobs
+
+
+# ============================================================
+# RemoteOK API (NEU v4)
+# ============================================================
+def crawl_remoteok(session) -> list:
+    log.info("[RemoteOK] API…")
+    jobs = []
+    try:
+        # Source-Attribution wie von RemoteOK gefordert
+        hdrs = {**HEADERS, "User-Agent": "andy-jobs (https://github.com/Andy2407/andy-jobs) - attribution: remoteok.com"}
+        r = session.get("https://remoteok.com/api", headers=hdrs, timeout=15)
+        if r.status_code != 200:
+            log.warning(f"[RemoteOK] HTTP {r.status_code}")
+            return []
+        data = r.json()
+        # Erstes Item ist Metadaten — überspringen
+        items = [j for j in data if isinstance(j, dict) and j.get("id")]
+        for j in items:
+            tags = j.get("tags") or []
+            if isinstance(tags, list):
+                tag_str = " ".join(str(t) for t in tags)
+            else:
+                tag_str = ""
+            jobs.append({
+                "source": "remoteok",
+                "url": j.get("url") or f"https://remoteok.com/remote-jobs/{j.get('slug','')}",
+                "title": j.get("position", "") or j.get("title", ""),
+                "company": j.get("company", ""),
+                "location": j.get("location", "") or "Remote",
+                "description": (j.get("description") or "")[:600],
+                "raw_text": (j.get("position", "") + " " + tag_str)[:500],
+                "remote": True,
+            })
+    except Exception as e:
+        log.warning(f"[RemoteOK] {e}")
+    log.info(f"[RemoteOK] {len(jobs)} Jobs")
+    return jobs
+
+
+# ============================================================
+# Remotive API (NEU v4)
+# ============================================================
+def crawl_remotive(session) -> list:
+    log.info("[Remotive] API…")
+    jobs = []
+    queries = [
+        {"search": "project manager"},
+        {"search": "program manager"},
+        {"search": "AI manager"},
+        {"category": "project-management"},
+    ]
+    seen_urls = set()
+    for params in queries:
+        try:
+            r = session.get("https://remotive.com/api/remote-jobs",
+                            params={**params, "limit": "100"}, timeout=15)
+            if r.status_code != 200:
+                continue
+            for j in r.json().get("jobs", []):
+                u = j.get("url")
+                if not u or u in seen_urls:
+                    continue
+                seen_urls.add(u)
+                jobs.append({
+                    "source": "remotive",
+                    "url": u,
+                    "title": j.get("title", ""),
+                    "company": j.get("company_name", ""),
+                    "location": j.get("candidate_required_location", "") or "Remote",
+                    "description": (j.get("description") or "")[:600],
+                    "raw_text": j.get("title", ""),
+                    "remote": True,
+                })
+        except Exception as e:
+            log.debug(f"[Remotive] {params}: {e}")
+        time.sleep(0.4)
+    log.info(f"[Remotive] {len(jobs)} Jobs")
+    return jobs
+
+
+# ============================================================
+# WeWorkRemotely RSS (NEU v4)
+# ============================================================
+WWR_FEEDS = [
+    "https://weworkremotely.com/categories/remote-management-and-finance-jobs.rss",
+    "https://weworkremotely.com/categories/remote-product-jobs.rss",
+    "https://weworkremotely.com/categories/all-other-remote-jobs.rss",
+]
+
+
+def crawl_weworkremotely(session) -> list:
+    log.info("[WeWorkRemotely] RSS…")
+    jobs = []
+    for feed in WWR_FEEDS:
+        try:
+            r = session.get(feed, timeout=15)
+            if r.status_code != 200:
+                continue
+            try:
+                root = ET.fromstring(r.text)
+            except ET.ParseError:
+                continue
+            for item in root.findall(".//item"):
+                title = (item.findtext("title") or "").strip()
+                link = (item.findtext("link") or "").strip()
+                desc = (item.findtext("description") or "").strip()
+                region = (item.findtext("region") or "").strip()
+                country = (item.findtext("country") or "").strip()
+                if not link:
+                    continue
+                # WWR-Title-Format: "Company: Job Title"
+                company = ""
+                if ":" in title:
+                    parts = title.split(":", 1)
+                    company = parts[0].strip()
+                    real_title = parts[1].strip()
+                else:
+                    real_title = title
+                jobs.append({
+                    "source": "weworkremotely",
+                    "url": link,
+                    "title": real_title[:200],
+                    "company": company[:80],
+                    "location": (region or country or "Remote")[:100],
+                    "description": desc[:600],
+                    "raw_text": real_title,
+                    "remote": True,
+                })
+        except Exception as e:
+            log.debug(f"[WWR] {feed}: {e}")
+        time.sleep(0.3)
+    log.info(f"[WeWorkRemotely] {len(jobs)} Jobs ({len(WWR_FEEDS)} Feeds)")
+    return jobs
+
+
+# ============================================================
+# Indeed via Playwright (NEU v4 — optional, nur wenn playwright verfügbar)
+# ============================================================
+def crawl_indeed_playwright() -> list:
+    log.info("[Indeed-PW] Playwright…")
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        log.info("[Indeed-PW] playwright nicht installiert — skip")
+        return []
+    jobs = []
+    queries = [
+        ("Senior Projektmanager", "München"),
+        ("KI Manager", "München"),
+        ("AI Project Manager", "München"),
+        ("Projektleiter Automotive", "München"),
+        ("Senior Project Manager", "München"),
+        ("Modulleiter", "München"),
+        ("Programmleiter", "München"),
+        ("KI Manager", "Deutschland"),
+    ]
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True, args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+            ])
+            context = browser.new_context(
+                user_agent=UA,
+                locale="de-DE",
+                viewport={"width": 1280, "height": 900},
+            )
+            page = context.new_page()
+            for query, location in queries:
+                url = f"https://de.indeed.com/jobs?q={requests.utils.quote(query)}&l={requests.utils.quote(location)}&fromage=14"
+                try:
+                    page.goto(url, timeout=30000, wait_until="domcontentloaded")
+                    page.wait_for_timeout(3000)  # Cloudflare-Challenge Zeit geben
+                    html = page.content()
+                    if "Just a moment" in html or "Captcha" in html:
+                        log.info(f"[Indeed-PW] Captcha bei {query}/{location} — skip")
+                        continue
+                    soup = BeautifulSoup(html, "lxml")
+                    cards = soup.select('a[data-jk]')
+                    if not cards:
+                        cards = soup.select('a[href*="/viewjob"]')
+                    seen = set()
+                    for a in cards:
+                        jk = a.get("data-jk", "")
+                        href = a.get("href", "")
+                        if jk:
+                            full = f"https://de.indeed.com/viewjob?jk={jk}"
+                        elif "/viewjob" in href:
+                            full = "https://de.indeed.com" + href if href.startswith("/") else href
+                        else:
+                            continue
+                        if full in seen:
+                            continue
+                        seen.add(full)
+                        title = a.get_text(" ", strip=True) or (a.find("h2") or a).get_text(" ", strip=True)
+                        if not title or len(title) < 5:
+                            continue
+                        jobs.append({
+                            "source": "indeed",
+                            "url": full,
+                            "title": title[:200],
+                            "company": "",
+                            "location": location,
+                            "description": "",
+                            "raw_text": title,
+                        })
+                except Exception as e:
+                    log.debug(f"[Indeed-PW] {query}/{location}: {e}")
+                page.wait_for_timeout(1500)
+            browser.close()
+    except Exception as e:
+        log.warning(f"[Indeed-PW] Browser-Fehler: {e}")
+    log.info(f"[Indeed-PW] {len(jobs)} Jobs ({len(queries)} Suchen)")
     return jobs
 
 
@@ -773,7 +965,8 @@ EXPIRED_INDICATORS = [
 SPA_DOMAINS = ("jobs.personio.de", "smartrecruiters.com", "myworkdayjobs.com",
                "ashbyhq.com", "lever.co", "boards.greenhouse.io",
                "workable.com", "recruitee.com", "stepstone.de",
-               "linkedin.com")
+               "linkedin.com", "indeed.com", "remoteok.com", "remotive.com",
+               "weworkremotely.com")
 
 
 def verify_url(url: str, session) -> tuple:
@@ -781,7 +974,7 @@ def verify_url(url: str, session) -> tuple:
         return (False, "no-url")
     try:
         r = session.get(url, timeout=12, allow_redirects=True)
-        if r.status_code in (403, 999):  # 999 = LinkedIn-Block
+        if r.status_code in (403, 999):
             return (True, f"ok-{r.status_code}-trusted")
         if r.status_code != 200:
             return (False, f"HTTP {r.status_code}")
@@ -848,10 +1041,10 @@ def apply_filter(jobs) -> list:
 # ============================================================
 def main():
     started = datetime.now()
-    log.info(f"=== Crawl v3 gestartet {started.isoformat()} ===")
+    log.info(f"=== Crawl v4 gestartet {started.isoformat()} ===")
     s = make_session()
     all_jobs = []
-    sources = [
+    sources_session = [
         (crawl_akkodis, "Akkodis"),
         (crawl_arbeitnow, "arbeitnow"),
         (crawl_personio, "Personio"),
@@ -867,12 +1060,26 @@ def main():
         (crawl_kimeta, "kimeta.de"),
         (crawl_jobvector, "jobvector"),
         (crawl_linkedin, "LinkedIn (anonymous)"),
+        (crawl_remoteok, "RemoteOK"),
+        (crawl_remotive, "Remotive"),
+        (crawl_weworkremotely, "WeWorkRemotely"),
     ]
-    for fn, name in sources:
+    sources_no_session = [
+        (crawl_indeed_playwright, "Indeed (Playwright)"),
+    ]
+    source_names = []
+    for fn, name in sources_session:
         try:
             all_jobs.extend(fn(s))
         except Exception as e:
-            log.error(f"[{name}] Fataler Fehler: {e}")
+            log.error(f"[{name}] Fehler: {e}")
+        source_names.append(name)
+    for fn, name in sources_no_session:
+        try:
+            all_jobs.extend(fn())
+        except Exception as e:
+            log.error(f"[{name}] Fehler: {e}")
+        source_names.append(name)
 
     filtered = apply_filter(all_jobs)
     verified = parallel_verify(filtered, s, max_workers=10)
@@ -885,7 +1092,7 @@ def main():
             "filtered": len(filtered),
             "verified": len(verified),
             "by_category": {},
-            "sources": [n for _, n in sources],
+            "sources": source_names,
         },
         "jobs": [{k: v for k, v in j.items() if k != "raw_text"} for j in verified],
     }
@@ -909,9 +1116,9 @@ def main():
         if ICLOUD.parent.exists():
             ICLOUD.mkdir(exist_ok=True)
             (ICLOUD / "jobsuche_standalone.html").write_text(html_inline, encoding="utf-8")
-            log.info(f"iCloud Drive: {ICLOUD}/jobsuche_standalone.html")
+            log.info(f"iCloud: {ICLOUD}/jobsuche_standalone.html")
 
-    log.info(f"=== Crawl v3 fertig: {len(verified)} Jobs ===")
+    log.info(f"=== Crawl v4 fertig: {len(verified)} Jobs ===")
     log.info(f"Dauer: {payload['duration_s']:.1f}s · Kategorien: {payload['stats']['by_category']}")
 
 
