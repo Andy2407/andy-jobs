@@ -32,7 +32,7 @@ padding-bottom:env(safe-area-inset-bottom)}
 .ft input,.ft textarea{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:6px;color:var(--t);font-family:inherit;font-size:12px;padding:7px 9px;outline:0}
 .ft input:focus,.ft textarea:focus{border-color:var(--b)}
 .ft textarea{min-height:32px;resize:vertical}
-.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:10px;position:sticky;top:0;background:var(--bg);padding:4px 0;z-index:10}
+.tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-bottom:10px;position:sticky;top:0;background:var(--bg);padding:4px 0;z-index:10}
 .tb{background:var(--s1);border:1.5px solid var(--bd);border-radius:9px;padding:7px 3px;cursor:pointer;text-align:center;transition:.15s;min-height:46px}
 .tb:active{transform:scale(.97)}
 .tb[data-c="ki"].on{border-color:var(--b);box-shadow:0 0 14px rgba(45,122,237,.1)}
@@ -40,6 +40,7 @@ padding-bottom:env(safe-area-inset-bottom)}
 .tb[data-c="auto"].on{border-color:var(--o);box-shadow:0 0 14px rgba(232,160,50,.1)}
 .tb[data-c="pharma"].on{border-color:var(--v);box-shadow:0 0 14px rgba(149,101,237,.1)}
 .tb[data-c="init"].on{border-color:var(--c);box-shadow:0 0 14px rgba(6,182,212,.1)}
+.tb[data-c="hh"].on{border-color:#facc15;box-shadow:0 0 14px rgba(250,204,21,.15)}
 .tb .i{font-size:16px}.tb .n{font-size:10px;font-weight:700;margin-top:1px}
 .tb .c{font-size:8px;margin-top:1px;color:var(--m)}
 .sec{display:none}.sec.on{display:block}
@@ -131,6 +132,7 @@ padding-bottom:env(safe-area-inset-bottom)}
   <div class="tb" data-c="auto" onclick="go('auto')"><div class="i">🚗</div><div class="n">Auto</div><div class="c" id="tc-auto">·</div></div>
   <div class="tb" data-c="pharma" onclick="go('pharma')"><div class="i">💊</div><div class="n">Pharma</div><div class="c" id="tc-pharma">·</div></div>
   <div class="tb" data-c="init" onclick="go('init')"><div class="i">📨</div><div class="n">Initiativ</div><div class="c">8</div></div>
+  <div class="tb" data-c="hh" onclick="go('hh')"><div class="i">💼</div><div class="n">Headhunter</div><div class="c">15</div></div>
 </div>
 
 <div class="sec" id="sec-ki"></div>
@@ -194,6 +196,113 @@ padding-bottom:env(safe-area-inset-bottom)}
     <a href="https://appliedai.jobs.personio.de/?language=de" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 appliedAI Stellenliste →</a>
   </div>
 </div>
+<!-- ===== HEADHUNTER (hardcoded — verifizierte Personalberater + Plattformen) ===== -->
+<div class="sec" id="sec-hh">
+  <div class="banner" style="border-color:#facc1540;background:rgba(250,204,21,.05)">
+    <b style="color:#facc15">💼 Headhunter & Personalberater</b><br>
+    Verifizierte Personalberater mit Schwerpunkt Senior PM / Engineering / KI / Automotive im DACH-Raum + Premium-Plattformen ab 70k.
+    <span class="em">Strategie:</span> CV einmal hochladen, dann hörst du von dort über Stellen, die nicht öffentlich ausgeschrieben sind.
+  </div>
+
+  <div class="jc" data-id="hh-1">
+    <div class="jc-top"><div class="jc-t">TechMinds GmbH<span class="dn" onclick="td(this,'hh-1')">erledigt?</span></div><div class="jc-m m-h">95%</div></div>
+    <div class="jc-meta"><span class="jc-co">Personalberater Automotive + KI</span><span class="jc-loc">📍 München · DACH</span></div>
+    <span class="dt dt-init">💼 Auto + KI Spezialist</span>
+    <a href="https://techminds.de/personalberatung-automotive/" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 TechMinds kontaktieren →</a>
+  </div>
+  <div class="jc" data-id="hh-2">
+    <div class="jc-top"><div class="jc-t">HAPEKO München<span class="dn" onclick="td(this,'hh-2')">erledigt?</span></div><div class="jc-m m-h">90%</div></div>
+    <div class="jc-meta"><span class="jc-co">Personalberatung Automotive</span><span class="jc-loc">📍 München</span></div>
+    <span class="dt dt-init">💼 Etabliert, Auto-Branchenexpertise</span>
+    <a href="https://www.hapeko.de/standorte/muenchen" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 HAPEKO München →</a>
+  </div>
+  <div class="jc" data-id="hh-3">
+    <div class="jc-top"><div class="jc-t">People &amp; Projects<span class="dn" onclick="td(this,'hh-3')">erledigt?</span></div><div class="jc-m m-h">92%</div></div>
+    <div class="jc-meta"><span class="jc-co">PM-Spezialist · C-Level &amp; Mid-Mgmt</span><span class="jc-loc">📍 München</span></div>
+    <span class="dt dt-init">💼 PM-Fokus, Schlüsselpositionen</span>
+    <a href="https://www.people-and-projects.de/headhunter-muenchen.html" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 People &amp; Projects →</a>
+  </div>
+  <div class="jc" data-id="hh-4">
+    <div class="jc-top"><div class="jc-t">MEYHEADHUNTER<span class="dn" onclick="td(this,'hh-4')">erledigt?</span></div><div class="jc-m m-h">88%</div></div>
+    <div class="jc-meta"><span class="jc-co">Engineering &amp; IT Executive Search</span><span class="jc-loc">📍 München · DE-weit</span></div>
+    <span class="dt dt-init">💼 Engineering-Spezialist</span>
+    <a href="https://www.meyheadhunter.de/headhunter/muenchen/" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 MEYHEADHUNTER München →</a>
+  </div>
+  <div class="jc" data-id="hh-5">
+    <div class="jc-top"><div class="jc-t">Bohlken Consulting<span class="dn" onclick="td(this,'hh-5')">erledigt?</span></div><div class="jc-m m-h">90%</div></div>
+    <div class="jc-meta"><span class="jc-co">Executive Search Automotive</span><span class="jc-loc">📍 DACH</span></div>
+    <span class="dt dt-init">💼 Auto + SDV + AI Schwerpunkt</span>
+    <a href="https://www.bohlkenconsulting.de/headhunter-automotive/" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 Bohlken kontaktieren →</a>
+  </div>
+  <div class="jc" data-id="hh-6">
+    <div class="jc-top"><div class="jc-t">Munerio<span class="dn" onclick="td(this,'hh-6')">erledigt?</span></div><div class="jc-m m-m">82%</div></div>
+    <div class="jc-meta"><span class="jc-co">Maschinenbau / Engineering Search</span><span class="jc-loc">📍 DACH</span></div>
+    <span class="dt dt-init">💼 Engineering + Mgmt</span>
+    <a href="https://munerio.de/en/executive-search/" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 Munerio →</a>
+  </div>
+  <div class="jc" data-id="hh-7">
+    <div class="jc-top"><div class="jc-t">United Headhunters München<span class="dn" onclick="td(this,'hh-7')">erledigt?</span></div><div class="jc-m m-m">80%</div></div>
+    <div class="jc-meta"><span class="jc-co">Auto + E-Mobilität</span><span class="jc-loc">📍 München</span></div>
+    <a href="https://united-headhunters-muenchen.de/wir-ueber-uns/" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 United Headhunters →</a>
+  </div>
+  <div class="jc" data-id="hh-8">
+    <div class="jc-top"><div class="jc-t">PAPE Consulting Group<span class="dn" onclick="td(this,'hh-8')">erledigt?</span></div><div class="jc-m m-m">82%</div></div>
+    <div class="jc-meta"><span class="jc-co">DACH + Global · Executive Search</span><span class="jc-loc">📍 München (HQ)</span></div>
+    <a href="https://www.pape.de/" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 PAPE.de →</a>
+  </div>
+
+  <div class="banner" style="border-color:#facc1540;background:rgba(250,204,21,.05);margin-top:14px">
+    <b style="color:#facc15">🌐 Premium-Plattformen (Pull-Modus)</b><br>
+    Profil hochladen → Recruiter melden sich. Stark für ≥70k EUR.
+  </div>
+
+  <div class="jc" data-id="hh-9">
+    <div class="jc-top"><div class="jc-t">Experteer<span class="dn" onclick="td(this,'hh-9')">erledigt?</span></div><div class="jc-m m-h">88%</div></div>
+    <div class="jc-meta"><span class="jc-co">Premium-Jobboard ab 70k</span><span class="jc-loc">📍 DACH</span></div>
+    <span class="dt dt-init">💼 Senior PM Auto-Filter direkt</span>
+    <a href="https://us.experteer.com/jobs-germany_senior-program-manager-in-automotive_lid44" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">🌐 Experteer →</a>
+  </div>
+  <div class="jc" data-id="hh-10">
+    <div class="jc-top"><div class="jc-t">JobLeads<span class="dn" onclick="td(this,'hh-10')">erledigt?</span></div><div class="jc-m m-h">85%</div></div>
+    <div class="jc-meta"><span class="jc-co">Premium-Jobboard Senior</span><span class="jc-loc">📍 DACH</span></div>
+    <a href="https://www.jobleads.com/de/jobs?q=Senior+Projektmanager&l=M%C3%BCnchen" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">🌐 JobLeads München →</a>
+  </div>
+  <div class="jc" data-id="hh-11">
+    <div class="jc-top"><div class="jc-t">Hays<span class="dn" onclick="td(this,'hh-11')">erledigt?</span></div><div class="jc-m m-h">90%</div></div>
+    <div class="jc-meta"><span class="jc-co">Personalvermittler IT/Engineering</span><span class="jc-loc">📍 München · DACH</span></div>
+    <span class="dt dt-init">💼 Andy hat 2019 schon mit Hays gearbeitet</span>
+    <a href="https://www.hays.de/jobs/jobsuche?location_text=M%C3%BCnchen&jobtitle=Senior+Projektmanager" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 Hays München →</a>
+  </div>
+  <div class="jc" data-id="hh-12">
+    <div class="jc-top"><div class="jc-t">Michael Page<span class="dn" onclick="td(this,'hh-12')">erledigt?</span></div><div class="jc-m m-h">85%</div></div>
+    <div class="jc-meta"><span class="jc-co">Engineering &amp; Manufacturing</span><span class="jc-loc">📍 München · DACH</span></div>
+    <a href="https://www.michaelpage.de/jobs/leiter/engineering-manufacturing" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 Michael Page →</a>
+  </div>
+  <div class="jc" data-id="hh-13">
+    <div class="jc-top"><div class="jc-t">Robert Walters<span class="dn" onclick="td(this,'hh-13')">erledigt?</span></div><div class="jc-m m-m">82%</div></div>
+    <div class="jc-meta"><span class="jc-co">Tech / Senior Talent</span><span class="jc-loc">📍 München · International</span></div>
+    <a href="https://www.robertwalters.de/" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 Robert Walters →</a>
+  </div>
+  <div class="jc" data-id="hh-14">
+    <div class="jc-top"><div class="jc-t">QRC Group München<span class="dn" onclick="td(this,'hh-14')">erledigt?</span></div><div class="jc-m m-m">78%</div></div>
+    <div class="jc-meta"><span class="jc-co">Executive &amp; Expert Search</span><span class="jc-loc">📍 München</span></div>
+    <a href="https://www.qrc-group.com/ueber-uns/standorte/personalberatung-muenchen/" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 QRC München →</a>
+  </div>
+  <div class="jc" data-id="hh-15">
+    <div class="jc-top"><div class="jc-t">Schaffmann Consultants<span class="dn" onclick="td(this,'hh-15')">erledigt?</span></div><div class="jc-m m-m">76%</div></div>
+    <div class="jc-meta"><span class="jc-co">Executive Search Schlüsselpositionen</span><span class="jc-loc">📍 München</span></div>
+    <a href="https://schaffmann-consultants.de/headhunter-muenchen/" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 Schaffmann →</a>
+  </div>
+
+  <div class="note">
+    <b>Strategie für Andy:</b><br>
+    1. <b>Profile anlegen</b> auf Experteer + JobLeads + Hays (Pull-Modus, Recruiter melden sich proaktiv)<br>
+    2. <b>3-4 Auto-/Engineering-Headhunter direkt anschreiben</b> mit kurzem Profil-Pitch (Senior PM, 13 J BMW-Ökosystem, KI-Manager TÜV) — TechMinds, Bohlken, MEYHEADHUNTER, People &amp; Projects<br>
+    3. <b>LinkedIn auf "Open to Work"</b> umstellen + Recruiter-Filter aktivieren<br>
+    4. <b>Headhunter-CV-Version</b>: knapper, 2 Seiten, ergebnisorientiert (haben sie lieber als ausführliche Zeugnis-Mappen)
+  </div>
+</div>
+
 
 <div class="note">
   <b>Crawler-Status:</b> Quellen Bundesagentur · Akkodis Sitemap · arbeitnow API · 22 Personio-Subdomains · Greenhouse APIs.<br>
@@ -265,6 +374,12 @@ function buildCard(j, cat){
       tags.appendChild(el('span', 'tag', clean));
     });
     card.appendChild(tags);
+  }
+  // alt_sources: kleine Zeile "auch bei: ..."
+  if(j.alt_sources && j.alt_sources.length){
+    const ali = el('div', null, '↳ Auch verfügbar bei: ' + j.alt_sources.map(a => (a.source||'').split(':')[0]).join(', '));
+    ali.style.cssText = 'font-size:8.5px;color:var(--m);margin:4px 0';
+    card.appendChild(ali);
   }
   // CTA
   const a = document.createElement('a');
