@@ -981,6 +981,96 @@ def crawl_indeed_playwright() -> list:
     return jobs
 
 
+
+
+# ============================================================
+# EDAG — direkter Karriereseiten-Crawler (NEU v6)
+# ============================================================
+def crawl_edag_karriere(session) -> list:
+    log.info("[EDAG-Karriere] Stellenanzeigen…")
+    jobs = []
+    base = "https://www.edag.com/de/karriere/stellenanzeigen"
+    seen = set()
+    # Paginierte Seiten + München-Filter
+    for page in range(1, 18):
+        params = {"tx_successfactors_view[currentPage]": str(page)}
+        try:
+            r = session.get(base, params=params, timeout=15)
+            if r.status_code != 200:
+                break
+            soup = BeautifulSoup(r.text, "lxml")
+            cards = soup.select('a[href*="/karriere/stellenanzeigen/detail/"]')
+            if not cards:
+                break
+            page_added = 0
+            for a in cards:
+                href = a.get("href", "")
+                full = (href if href.startswith("http") else
+                        "https://www.edag.com" + href).split("?")[0]
+                if full in seen:
+                    continue
+                seen.add(full)
+                title = a.get_text(" ", strip=True)
+                if not title or len(title) < 5:
+                    continue
+                # Standort aus URL-Slug oder Parent-Element
+                parent = a.find_parent("li") or a.find_parent("div") or a
+                loc_text = ""
+                for el in parent.select('[class*="location"], [class*="ort"]'):
+                    t = el.get_text(" ", strip=True)
+                    if t and len(t) < 80:
+                        loc_text = t
+                        break
+                jobs.append({"source": "edag-karriere", "url": full,
+                             "title": title[:200], "company": "EDAG Engineering",
+                             "location": loc_text, "description": "",
+                             "raw_text": title})
+                page_added += 1
+            if page_added == 0:
+                break
+        except Exception as e:
+            log.debug(f"[EDAG-Karriere] page {page}: {e}")
+            break
+        time.sleep(0.4)
+    log.info(f"[EDAG-Karriere] {len(jobs)} Jobs (paginated)")
+    return jobs
+
+
+# ============================================================
+# Cognizant Mobility — direkte Karriere (NEU v6, falls erreichbar)
+# ============================================================
+def crawl_cognizant_mobility(session) -> list:
+    log.info("[CognizantMobility] Stellenliste…")
+    jobs = []
+    try:
+        r = session.get("https://jobs.cognizant-mobility.com/job-list",
+                        timeout=15)
+        if r.status_code != 200:
+            r = session.get("https://jobs.cognizant-mobility.com/", timeout=15)
+        if r.status_code != 200:
+            return []
+        soup = BeautifulSoup(r.text, "lxml")
+        seen = set()
+        for a in soup.select('a[href*="/job/"], a[href*="/jobs/"], a[href*="/stelle"]'):
+            href = a.get("href", "")
+            full = (href if href.startswith("http") else
+                    "https://jobs.cognizant-mobility.com" + href).split("?")[0]
+            if full in seen or len(full) < 30:
+                continue
+            seen.add(full)
+            title = a.get_text(" ", strip=True)
+            if not title or len(title) < 5:
+                continue
+            jobs.append({"source": "cognizant-mobility", "url": full,
+                         "title": title[:200], "company": "Cognizant Mobility",
+                         "location": "München", "description": "",
+                         "raw_text": title})
+    except Exception as e:
+        log.warning(f"[CognizantMobility] {e}")
+    log.info(f"[CognizantMobility] {len(jobs)} Jobs")
+    return jobs
+
+
 # ============================================================
 # Verifikation
 # ============================================================
@@ -1034,17 +1124,24 @@ def parallel_verify(jobs, session, max_workers: int = 10) -> list:
     return out
 
 
+def _normalize_for_dedupe(s: str) -> str:
+    """Normalize string for dedupe: lowercase, alphanumeric only."""
+    return re.sub(r"[^a-z0-9]+", "", (s or "").lower())[:60]
+
+
 def apply_filter(jobs) -> list:
+    """Filter + dedupe via URL und via Title+Company+Location-Hash."""
     log.info(f"Filter+Score auf {len(jobs)} Jobs…")
-    seen = set()
+    seen_url = set()
+    by_hash = {}  # title+co+loc-Hash → primary job (mit alt_sources merged)
     out = []
     blocked = duped = low = 0
     for j in jobs:
         url = j.get("url")
-        if not url or url in seen:
+        if not url or url in seen_url:
             duped += 1
             continue
-        seen.add(url)
+        seen_url.add(url)
         score, reasons = score_job(
             j.get("title", ""), j.get("raw_text", "") or j.get("description", ""),
             j.get("location", ""), j.get("company", "")
@@ -1055,12 +1152,26 @@ def apply_filter(jobs) -> list:
         if score < MIN_SCORE_TO_INCLUDE:
             low += 1
             continue
+        # Content-Hash für Dedupe über Quellen-Grenzen hinweg
+        h = (_normalize_for_dedupe(j.get("title", "")) + "|" +
+             _normalize_for_dedupe(j.get("company", "")) + "|" +
+             _normalize_for_dedupe(j.get("location", "")[:30]))
+        if h in by_hash and len(_normalize_for_dedupe(j.get("title",""))) > 5:
+            primary = by_hash[h]
+            primary.setdefault("alt_sources", []).append({
+                "source": j.get("source"),
+                "url": url,
+            })
+            duped += 1
+            continue
         j["score"] = score
         j["score_reasons"] = reasons[:5]
         j["category"] = categorize(j.get("title", ""), j.get("description", ""))
+        j["alt_sources"] = []
+        by_hash[h] = j
         out.append(j)
     out.sort(key=lambda x: x["score"], reverse=True)
-    log.info(f"  → {len(out)} · {blocked} blocked · {low} low · {duped} dupes")
+    log.info(f"  → {len(out)} · {blocked} blocked · {low} low · {duped} dupes (incl. cross-source)")
     return out
 
 
@@ -1091,6 +1202,8 @@ def main():
         (crawl_remoteok, "RemoteOK"),
         (crawl_remotive, "Remotive"),
         (crawl_weworkremotely, "WeWorkRemotely"),
+        (crawl_edag_karriere, "EDAG-Karriere"),
+        (crawl_cognizant_mobility, "Cognizant-Mobility"),
     ]
     sources_no_session = [
         (crawl_indeed_playwright, "Indeed (Playwright)"),
