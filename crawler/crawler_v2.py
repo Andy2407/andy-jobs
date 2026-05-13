@@ -1124,18 +1124,45 @@ def parallel_verify(jobs, session, max_workers: int = 10) -> list:
     return out
 
 
+
+def _load_existing_first_seen() -> dict:
+    """Lädt URL → first_seen (str) aus dem bisherigen data.json, damit Aktualität persistent ist."""
+    if not DATA_PATH.exists():
+        return {}
+    try:
+        prev = json.loads(DATA_PATH.read_text(encoding="utf-8"))
+        out = {}
+        for j in prev.get("jobs", []):
+            u = j.get("url")
+            fs = j.get("first_seen") or j.get("generated_at") or ""
+            if u and isinstance(fs, str) and fs:
+                out[u] = fs
+        # Globaler Fallback: payload generated_at als Hint für alte Jobs ohne first_seen
+        global_ts = prev.get("generated_at") or ""
+        if isinstance(global_ts, str):
+            for j in prev.get("jobs", []):
+                u = j.get("url")
+                if u and u not in out and global_ts:
+                    out[u] = global_ts
+        return out
+    except Exception:
+        return {}
+
 def _normalize_for_dedupe(s: str) -> str:
     """Normalize string for dedupe: lowercase, alphanumeric only."""
     return re.sub(r"[^a-z0-9]+", "", (s or "").lower())[:60]
 
 
 def apply_filter(jobs) -> list:
-    """Filter + dedupe via URL und via Title+Company+Location-Hash."""
+    """Filter + dedupe + first_seen persistieren. Sortierung: first_seen DESC, dann score DESC."""
     log.info(f"Filter+Score auf {len(jobs)} Jobs…")
+    first_seen_map = _load_existing_first_seen()
+    now_iso = datetime.now().isoformat()
     seen_url = set()
-    by_hash = {}  # title+co+loc-Hash → primary job (mit alt_sources merged)
+    by_hash = {}
     out = []
     blocked = duped = low = 0
+    fresh = 0
     for j in jobs:
         url = j.get("url")
         if not url or url in seen_url:
@@ -1152,26 +1179,34 @@ def apply_filter(jobs) -> list:
         if score < MIN_SCORE_TO_INCLUDE:
             low += 1
             continue
-        # Content-Hash für Dedupe über Quellen-Grenzen hinweg
         h = (_normalize_for_dedupe(j.get("title", "")) + "|" +
              _normalize_for_dedupe(j.get("company", "")) + "|" +
              _normalize_for_dedupe(j.get("location", "")[:30]))
         if h in by_hash and len(_normalize_for_dedupe(j.get("title",""))) > 5:
             primary = by_hash[h]
             primary.setdefault("alt_sources", []).append({
-                "source": j.get("source"),
-                "url": url,
+                "source": j.get("source"), "url": url,
             })
             duped += 1
             continue
+        # first_seen: aus altem data.json holen oder NEU markieren
+        existing_fs = first_seen_map.get(url)
+        if existing_fs and isinstance(existing_fs, str):
+            j["first_seen"] = existing_fs
+            j["is_new"] = False
+        else:
+            j["first_seen"] = now_iso
+            j["is_new"] = True
+            fresh += 1
         j["score"] = score
         j["score_reasons"] = reasons[:5]
         j["category"] = categorize(j.get("title", ""), j.get("description", ""))
         j["alt_sources"] = []
         by_hash[h] = j
         out.append(j)
-    out.sort(key=lambda x: x["score"], reverse=True)
-    log.info(f"  → {len(out)} · {blocked} blocked · {low} low · {duped} dupes (incl. cross-source)")
+    # Sortierung: zuerst nach first_seen DESC (neueste oben), dann score DESC
+    out.sort(key=lambda x: (x.get("first_seen") or "", x.get("score") or 0), reverse=True)
+    log.info(f"  → {len(out)} · {blocked} blocked · {low} low · {duped} dupes · {fresh} NEU")
     return out
 
 
