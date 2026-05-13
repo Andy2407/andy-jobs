@@ -81,6 +81,20 @@ padding-bottom:env(safe-area-inset-bottom)}
 .dn.dn-on{background:rgba(22,201,141,.15);color:var(--g);border-color:rgba(22,201,141,.4)}
 .jc.is-done{opacity:.45}
 .jc.is-done .jc-t{text-decoration:line-through}
+/* v7: 3-Status-Buttons */
+.stbar{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.sb{font-size:9.5px;font-weight:600;padding:4px 8px;border-radius:5px;background:var(--s2);color:var(--m);border:1px solid var(--bd);cursor:pointer;flex:1;text-align:center;min-width:0}
+.sb:active{filter:brightness(.85)}
+.sb.on-done{background:rgba(157,168,189,.18);color:#9da8bd;border-color:rgba(157,168,189,.4)}
+.sb.on-app{background:rgba(22,201,141,.18);color:var(--g);border-color:rgba(22,201,141,.5)}
+.sb.on-rej{background:rgba(220,80,80,.18);color:#ee7777;border-color:rgba(220,80,80,.5)}
+.jc.st-done{opacity:.4}
+.jc.st-done .jc-t{text-decoration:line-through;color:var(--m)}
+.jc.st-app{border-color:rgba(22,201,141,.5);background:linear-gradient(180deg,rgba(22,201,141,.05),var(--s1))}
+.jc.st-rej{opacity:.55;border-color:rgba(220,80,80,.3)}
+.jc.st-rej .jc-t{text-decoration:line-through;color:#ee7777}
+/* NEU-Badge für junge Jobs */
+.new-badge{display:inline-block;font-size:8px;font-weight:800;padding:1px 5px;border-radius:99px;background:rgba(232,160,50,.18);color:var(--o);margin-left:5px;letter-spacing:.04em}
 .ftr{text-align:center;font-size:8px;color:var(--m);padding:14px 0;margin-top:10px;border-top:1px solid var(--bd);line-height:1.6}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:10px}
 .stat{background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:8px 5px;text-align:center}
@@ -106,7 +120,7 @@ padding-bottom:env(safe-area-inset-bottom)}
 </div>
 
 <div class="banner" id="banner">
-  <b>📱 V12 · Live-Crawler:</b> Daten 4× täglich automatisch aktualisiert (Bundesagentur · Akkodis · arbeitnow · Personio · Greenhouse). <span class="em" id="banner-count">…</span>
+  <b>📱 V12 · Live-Crawler:</b> Daten 4× täglich · sortiert nach Aktualität (neueste oben, <span class="warn">NEU</span>-Badge für frische Treffer) (Bundesagentur · Akkodis · arbeitnow · Personio · Greenhouse). <span class="em" id="banner-count">…</span>
 </div>
 
 <div class="stats">
@@ -349,12 +363,13 @@ function buildCard(j, cat){
   const id = 'j-' + (j.url || '').replace(/[^a-z0-9]+/gi,'').slice(0, 40);
   const card = el('div', 'jc');
   card.dataset.id = id;
-  // Top
+  // Top: Titel + ggf. NEU-Badge + Match
   const top = el('div', 'jc-top');
   const titleWrap = el('div', 'jc-t', j.title || '(ohne Titel)');
-  const dn = el('span', 'dn', 'erledigt?');
-  dn.addEventListener('click', () => td(dn, id));
-  titleWrap.appendChild(dn);
+  if(j.is_new){
+    const nb = el('span', 'new-badge', 'NEU');
+    titleWrap.appendChild(nb);
+  }
   const matchBdg = el('div', 'jc-m ' + mc, ml);
   top.appendChild(titleWrap); top.appendChild(matchBdg);
   card.appendChild(top);
@@ -391,7 +406,42 @@ function buildCard(j, cat){
   card.appendChild(a);
   // URL klein
   card.appendChild(el('div', 'url-sm', urlShort(j.url)));
+  // v7: 3-Status-Buttons (erledigt / beworben / absage)
+  const bar = el('div', 'stbar');
+  const states = [
+    ['done', '✓ erledigt'],
+    ['app',  '↑ beworben'],
+    ['rej',  '✗ absage'],
+  ];
+  for(const [st, label] of states){
+    const b = el('span', 'sb', label);
+    b.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); setStatus(id, st); });
+    bar.appendChild(b);
+  }
+  card.appendChild(bar);
   return card;
+}
+
+function setStatus(id, newStatus){
+  const card = document.querySelector('[data-id="' + CSS.escape(id) + '"]');
+  if(!card) return;
+  // Falls bereits dieser Status gesetzt: toggle zurück auf offen
+  const cur = card.dataset.status || '';
+  const finalStatus = (cur === newStatus) ? '' : newStatus;
+  card.classList.remove('st-done','st-app','st-rej');
+  card.querySelectorAll('.sb').forEach(b => b.classList.remove('on-done','on-app','on-rej'));
+  card.dataset.status = finalStatus;
+  if(finalStatus){
+    card.classList.add('st-' + finalStatus);
+    const btns = card.querySelectorAll('.sb');
+    const idx = {done: 0, app: 1, rej: 2}[finalStatus];
+    if(idx !== undefined && btns[idx]) btns[idx].classList.add('on-' + finalStatus);
+  }
+  try{
+    const map = JSON.parse(localStorage.getItem('jsa12_status') || '{}');
+    if(finalStatus) map[id] = finalStatus; else delete map[id];
+    localStorage.setItem('jsa12_status', JSON.stringify(map));
+  }catch{}
 }
 
 let DATA = window.JOBSUCHE_DATA || null;
@@ -410,7 +460,12 @@ function jobsForTab(tab){
       (j.location || '').toLowerCase().includes(f)
     );
   }
-  return list.sort((a, b) => (b.score || 0) - (a.score || 0));
+  return list.sort((a, b) => {
+    const fa = a.first_seen || '';
+    const fb = b.first_seen || '';
+    if(fa !== fb) return fb.localeCompare(fa); // neueste oben
+    return (b.score || 0) - (a.score || 0);
+  });
 }
 
 function renderTab(tab){
@@ -438,13 +493,31 @@ function renderTab(tab){
     return;
   }
   list.forEach(j => sec.appendChild(buildCard(j, tab)));
-  // Done states
+  // Status restore (v7: erledigt/beworben/absage)
   try{
-    const done = JSON.parse(localStorage.getItem('jsa12_done') || '{}');
-    Object.entries(done).forEach(([id, v]) => {
+    const map = JSON.parse(localStorage.getItem('jsa12_status') || '{}');
+    Object.entries(map).forEach(([id, status]) => {
+      if(!status) return;
+      const card = sec.querySelector('[data-id="' + CSS.escape(id) + '"]');
+      if(!card) return;
+      card.classList.add('st-' + status);
+      card.dataset.status = status;
+      const btns = card.querySelectorAll('.sb');
+      const idx = {done: 0, app: 1, rej: 2}[status];
+      if(idx !== undefined && btns[idx]) btns[idx].classList.add('on-' + status);
+    });
+    // Migration vom alten "jsa12_done" Format: bool → 'done'
+    const oldDone = JSON.parse(localStorage.getItem('jsa12_done') || '{}');
+    Object.entries(oldDone).forEach(([id, v]) => {
       if(!v) return;
       const card = sec.querySelector('[data-id="' + CSS.escape(id) + '"]');
-      if(card){ card.classList.add('is-done'); const b = card.querySelector('.dn'); if(b){ b.classList.add('dn-on'); b.textContent = '✓ erledigt'; } }
+      if(!card) return;
+      if(!card.classList.contains('st-done') && !card.classList.contains('st-app') && !card.classList.contains('st-rej')){
+        card.classList.add('st-done');
+        card.dataset.status = 'done';
+        const btns = card.querySelectorAll('.sb');
+        if(btns[0]) btns[0].classList.add('on-done');
+      }
     });
   }catch{}
 }
