@@ -1112,12 +1112,64 @@ def verify_url(url: str, session) -> tuple:
 # NEU 2026-05-28 (Andy v14): Detail-Parser für Recruiter/Adresse/Kennziffer aus Job-HTML
 # Output landet in data.json → DOCX-Generator zieht es automatisch ohne User-Input
 def parse_job_details(html: str, url: str = "") -> dict:
-    """Extrahiert recruiter, address (street/city), kennziffer aus Job-HTML.
-    Gibt Dict zurück; leere Strings wenn nicht gefunden.
-    Patterns für Bundesagentur, LinkedIn, StepStone, Personio, Greenhouse, Workday."""
-    out = {"recruiter": "", "address_street": "", "address_city": "", "kennziffer": ""}
+    """Extrahiert recruiter, address (street/city), kennziffer, clean_company aus Job-HTML.
+    Strategie v15:
+      1) JSON-LD Schema.org JobPosting (LinkedIn/StepStone/Greenhouse/Workday — Goldgrube!)
+      2) Regex-Fallback für ältere Seiten
+    """
+    out = {"recruiter": "", "address_street": "", "address_city": "", "kennziffer": "", "clean_company": ""}
     if not html or len(html) < 50:
         return out
+
+    # === SCHRITT 1: JSON-LD JobPosting (Schema.org) ===
+    try:
+        ld_blocks = re.findall(r'<script[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', html, re.DOTALL)
+        for ld in ld_blocks:
+            try:
+                data = json.loads(ld.strip())
+            except Exception:
+                continue
+            items = data if isinstance(data, list) else ([data] if isinstance(data, dict) else [])
+            for item in items:
+                if not isinstance(item, dict): continue
+                t = item.get("@type", "")
+                if isinstance(t, list): t = next((x for x in t if "JobPosting" in str(x)), "")
+                if "JobPosting" not in str(t): continue
+                # Firma
+                hiring = item.get("hiringOrganization", {})
+                if isinstance(hiring, dict):
+                    co = (hiring.get("name") or "").strip()
+                    if co and 2 <= len(co) <= 80:
+                        out["clean_company"] = co
+                # Adresse
+                loc = item.get("jobLocation", {})
+                if isinstance(loc, list): loc = loc[0] if loc else {}
+                if isinstance(loc, dict):
+                    addr = loc.get("address", {})
+                    if isinstance(addr, dict):
+                        street = (addr.get("streetAddress") or "").strip()
+                        plz = (addr.get("postalCode") or "").strip()
+                        city = (addr.get("addressLocality") or "").strip()
+                        if street and len(street) < 80:
+                            out["address_street"] = street
+                        if plz and city and re.match(r"^\d{5}$", plz):
+                            out["address_city"] = f"{plz} {city}"
+                        elif city and not out["address_city"]:
+                            out["address_city"] = city
+                # Kennziffer NUR aus explizitem identifier.name (NICHT interne LinkedIn-Job-ID)
+                ident = item.get("identifier", {})
+                if isinstance(ident, dict):
+                    ident_name = (ident.get("name") or "").lower()
+                    ident_val = (ident.get("value") or "").strip()
+                    if ident_val and any(k in ident_name for k in ["kennziffer","reference","referenz","requisition","ref-nr","ref nr"]):
+                        if 2 <= len(ident_val) <= 25 and not re.fullmatch(r"\d{4,}", ident_val):
+                            out["kennziffer"] = ident_val
+            if out["clean_company"] and out["address_city"]:
+                break
+    except Exception as e:
+        log.debug(f"JSON-LD parse err für {url[:60]}: {e}")
+
+    # === SCHRITT 2: Regex-Fallback (Text-basiert) ===
     # HTML-Tags entfernen für sauberes Regex (außer line breaks via Replace)
     text = re.sub(r"<br\s*/?>", "\n", html, flags=re.IGNORECASE)
     text = re.sub(r"</p>", "\n", text, flags=re.IGNORECASE)
@@ -1208,7 +1260,7 @@ def parallel_verify(jobs, session, max_workers: int = 10) -> list:
             j["verified"] = ok
             j["verify_status"] = status
             if ok:
-                # NEU 2026-05-28: Detail-Parse für DOCX-Generator
+                # NEU 2026-05-28: Detail-Parse für DOCX-Generator (v15 + clean_company aus JSON-LD)
                 if html:
                     try:
                         det = parse_job_details(html, j.get("url", ""))
@@ -1216,6 +1268,8 @@ def parallel_verify(jobs, session, max_workers: int = 10) -> list:
                         if det.get("address_street"): j["address_street"] = det["address_street"]
                         if det.get("address_city"): j["address_city"] = det["address_city"]
                         if det.get("kennziffer"): j["kennziffer"] = det["kennziffer"]
+                        # clean_company aus JSON-LD: bessere Firmen-Erkennung als company-Feld
+                        if det.get("clean_company"): j["clean_company"] = det["clean_company"]
                     except Exception as e:
                         log.debug(f"parse_job_details Fehler für {j.get('url', '')[:80]}: {e}")
                 out.append(j)

@@ -12,7 +12,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="build-version" content="v14.3-2026-05-28-no-doppel-personalabt">
+<meta name="build-version" content="v15-2026-05-28-jsonld-jpg-sig">
 <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%23060a10'/><text x='50%25' y='52%25' text-anchor='middle' dominant-baseline='middle' font-size='90' font-family='system-ui' fill='%232d7aed'>A</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
 <!-- docx.js v9.1.0 für Client-side MS-DOCX-Generierung (FIX 2026-05-28: jsdelivr statt unpkg, weil unpkg .min nicht existiert → 404) -->
@@ -760,17 +760,22 @@ function _generateMSWith(job, btn, recipientInfo){
     let rawCompany = (job.company || '').trim();
     let stellentitel = rawTitle;
     let firma = '';
-    const titleLow = rawTitle.toLowerCase();
-    const coLow = rawCompany.toLowerCase();
-    // Crawler-Bug-Erkennung: company quasi == title → Müll, ignorieren
-    const isCompanyJunk = (
-      !rawCompany ||
-      coLow === titleLow ||
-      rawCompany.length > 70 ||
-      titleLow.startsWith(coLow.slice(0, Math.min(15, coLow.length))) ||
-      coLow.startsWith(titleLow.slice(0, Math.min(15, titleLow.length)))
-    );
-    if(!isCompanyJunk) firma = rawCompany;
+    // v15 PRIORITÄT 1: clean_company aus JSON-LD (LinkedIn/StepStone/Greenhouse → 100% verlässlich)
+    if(job.clean_company && job.clean_company.trim().length >= 2 && job.clean_company.trim().length <= 80){
+      firma = job.clean_company.trim();
+    } else {
+      // PRIORITÄT 2: company-Feld checken (mit isCompanyJunk-Filter)
+      const titleLow = rawTitle.toLowerCase();
+      const coLow = rawCompany.toLowerCase();
+      const isCompanyJunk = (
+        !rawCompany ||
+        coLow === titleLow ||
+        rawCompany.length > 70 ||
+        titleLow.startsWith(coLow.slice(0, Math.min(15, coLow.length))) ||
+        coLow.startsWith(titleLow.slice(0, Math.min(15, titleLow.length)))
+      );
+      if(!isCompanyJunk) firma = rawCompany;
+    }
     // v14.3 BUG-FIX (Andy 2026-05-28): firma NIE 'Personalabteilung' setzen — empfChildren-Logik unten entscheidet sauber.
     // Wenn firma leer + keine Daten → exakt 1 Zeile 'Personalabteilung' (im Fallback-Branch).
     // Betreff-Cleanup nach Andys 2026-05-28-Regeln (KEIN Truncation — sonst "Münc…" Artefakt)
@@ -902,9 +907,11 @@ function _generateMSWith(job, btn, recipientInfo){
         const binary = atob(window.ANDY_UNTERSCHRIFT_PNG);
         const bytes = new Uint8Array(binary.length);
         for(let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+        // v15: Type aus Begleit-Var (JPEG ohne Alpha → kein PDF-Schatten auf iPhone Word)
+        const sigType = (typeof window.ANDY_UNTERSCHRIFT_TYPE === 'string') ? window.ANDY_UNTERSCHRIFT_TYPE : 'png';
         sigParagraph = new D.Paragraph({
           children: [new D.ImageRun({
-            type: 'png',                                       // KRITISCH! Sonst .undefined in DOCX
+            type: sigType,                                     // 'jpg' (kein Alpha → kein Schatten) oder 'png'
             data: bytes,
             transformation: { width: 170, height: 38 }         // 45mm × 10.2mm bei 96dpi
           })],
