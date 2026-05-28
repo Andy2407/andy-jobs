@@ -12,7 +12,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="build-version" content="v13.8-2026-05-28-evening">
+<meta name="build-version" content="v13.9-2026-05-28-no-modal">
 <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%23060a10'/><text x='50%25' y='52%25' text-anchor='middle' dominant-baseline='middle' font-size='90' font-family='system-ui' fill='%232d7aed'>A</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
 <!-- docx.js v9.1.0 für Client-side MS-DOCX-Generierung (FIX 2026-05-28: jsdelivr statt unpkg, weil unpkg .min nicht existiert → 404) -->
@@ -692,89 +692,16 @@ function generateMS(job, btn, _retry){
     showToast('DOCX-Library nicht geladen: ' + diag + 'Seite neu laden oder Browser-Console prüfen', false);
     return;
   }
-  // NEU 2026-05-28: Modal-Dialog für Empfänger-Daten (Ansprechpartner/Adresse/Kennziffer)
-  collectRecipientInfo(job, (recipientInfo) => {
-    if(recipientInfo === null){ // User hat Abbrechen geklickt
-      btn.disabled = false;
-      btn.textContent = '📝 Motivationsschreiben erstellen (DOCX)';
-      return;
-    }
-    _generateMSWith(job, btn, recipientInfo);
-  });
-}
-
-// Sammelt via Modal: Ansprechpartner, Strasse, PLZ+Ort, Kennziffer (alle optional)
-// LocalStorage-Persistenz pro Firma — gleiche Firma fragt nicht nochmal
-function collectRecipientInfo(job, callback){
-  const D = docx;
-  const firmaKey = 'jsa12_rcpt_' + (job.company || '').replace(/[^a-z0-9]+/gi, '').toLowerCase().slice(0, 40);
-  let saved = {};
-  try{ saved = JSON.parse(localStorage.getItem(firmaKey) || '{}'); }catch{}
-  // Modal bauen
-  const bg = document.createElement('div');
-  bg.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:flex;align-items:center;justify-content:center;padding:14px';
-  const box = document.createElement('div');
-  box.style.cssText = 'background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:18px;max-width:480px;width:100%;color:var(--t);font-family:inherit';
-  box.innerHTML = '';
-  // Title (sicher via textContent)
-  const h = document.createElement('h3');
-  h.textContent = '📝 Empfänger-Infos (optional, Enter = leer)';
-  h.style.cssText = 'font-size:14px;margin:0 0 4px;color:var(--b)';
-  box.appendChild(h);
-  const sub = document.createElement('p');
-  sub.textContent = 'Diese Daten landen oben links im MS. Leer lassen wenn unbekannt.';
-  sub.style.cssText = 'font-size:10px;color:var(--m);margin:0 0 12px';
-  box.appendChild(sub);
-  // 4 Input-Felder
-  const fields = [
-    { key: 'recruiter', label: 'Ansprechpartner', placeholder: 'z.B. Frau Schmidt · Recruiting' },
-    { key: 'strasse',   label: 'Straße + Hausnr.', placeholder: 'z.B. Musterstraße 1' },
-    { key: 'plzort',    label: 'PLZ + Ort',        placeholder: 'z.B. 80331 München' },
-    { key: 'kennziffer',label: 'Kennziffer (NUR wenn offiziell ausgeschrieben!)', placeholder: 'z.B. Ref 12345 — sonst leer' },
-  ];
-  const inputs = {};
-  for(const f of fields){
-    const lbl = document.createElement('label');
-    lbl.textContent = f.label;
-    lbl.style.cssText = 'display:block;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--m);margin:8px 0 3px';
-    box.appendChild(lbl);
-    const inp = document.createElement('input');
-    inp.type = 'text';
-    inp.value = saved[f.key] || '';
-    inp.placeholder = f.placeholder;
-    inp.style.cssText = 'width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:5px;color:var(--t);padding:8px 10px;font-family:inherit;font-size:12px';
-    box.appendChild(inp);
-    inputs[f.key] = inp;
-  }
-  // Buttons
-  const btnRow = document.createElement('div');
-  btnRow.style.cssText = 'display:flex;gap:8px;margin-top:14px';
-  const ok = document.createElement('button');
-  ok.textContent = '📝 DOCX erstellen';
-  ok.style.cssText = 'flex:2;background:linear-gradient(135deg,#5945ed,#9565ed);border:0;border-radius:5px;color:#fff;padding:10px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit';
-  const cancel = document.createElement('button');
-  cancel.textContent = 'Abbrechen';
-  cancel.style.cssText = 'flex:1;background:var(--s2);border:1px solid var(--bd);border-radius:5px;color:var(--m);padding:10px;font-size:11px;cursor:pointer;font-family:inherit';
-  btnRow.appendChild(ok); btnRow.appendChild(cancel);
-  box.appendChild(btnRow);
-  bg.appendChild(box);
-  document.body.appendChild(bg);
-  inputs.recruiter.focus();
-  const close = (info) => {
-    document.body.removeChild(bg);
-    callback(info);
+  // Andy 2026-05-28 (v13.9): KEIN Modal mehr! Empfänger-Infos kommen direkt aus dem Crawler.
+  // job-Objekt hat (wenn Cloud-Crawler sie pre-parsed): job.recruiter, job.address, job.kennziffer
+  // Wenn nicht da: leer → DOCX-Generator nimmt nur Firma + "Personalabteilung" Fallback
+  const recipientInfo = {
+    recruiter:  (job.recruiter || '').trim(),
+    strasse:    (job.address && job.address.street) || (job.address_street || '').trim(),
+    plzort:     (job.address && job.address.city) || (job.address_city || '').trim(),
+    kennziffer: (job.kennziffer || job.ref_id || '').trim(),
   };
-  cancel.addEventListener('click', () => close(null));
-  ok.addEventListener('click', () => {
-    const info = {};
-    for(const k in inputs) info[k] = (inputs[k].value || '').trim();
-    try{ localStorage.setItem(firmaKey, JSON.stringify(info)); }catch{}
-    close(info);
-  });
-  bg.addEventListener('click', (ev) => { if(ev.target === bg) close(null); });
-  // ESC → Cancel
-  const escHandler = (ev) => { if(ev.key === 'Escape'){ document.removeEventListener('keydown', escHandler); close(null); } };
-  document.addEventListener('keydown', escHandler);
+  _generateMSWith(job, btn, recipientInfo);
 }
 
 // Betreff-Cleanup (Andy 2026-05-28): m/w/d, all gender, Datum, interne Refs raus
