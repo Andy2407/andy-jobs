@@ -10,9 +10,9 @@
 <meta name="theme-color" content="#060a10">
 <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%23060a10'/><text x='50%25' y='52%25' text-anchor='middle' dominant-baseline='middle' font-size='90' font-family='system-ui' fill='%232d7aed'>A</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
-<!-- docx.js v8.5.0 für Client-side MS-DOCX-Generierung (Andy 2026-05-28) -->
-<script src="https://unpkg.com/docx@8.5.0/build/index.umd.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" defer></script>
+<!-- docx.js v9.1.0 für Client-side MS-DOCX-Generierung (FIX 2026-05-28: jsdelivr statt unpkg, weil unpkg .min nicht existiert → 404) -->
+<script src="https://cdn.jsdelivr.net/npm/docx@9.1.0/build/index.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <style>
 :root{--bg:#060a10;--s1:#0d1219;--s2:#131b27;--bd:#1b2537;--t:#d8e2f0;--m:#4d6080;
 --b:#2d7aed;--g:#16c98d;--o:#e8a032;--v:#9565ed;--c:#06b6d4;--r:10px}
@@ -122,10 +122,18 @@ padding-bottom:env(safe-area-inset-bottom)}
 /* Toast für Feedback (DOCX erstellt etc.) */
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--s2);border:1px solid var(--g);color:var(--g);padding:10px 18px;border-radius:8px;font-size:11px;font-weight:700;z-index:100;box-shadow:0 4px 24px rgba(0,0,0,.5);opacity:0;transition:.3s;pointer-events:none;max-width:90%;text-align:center}
 .toast.on{opacity:1;pointer-events:auto}
-/* NEU 2026-05-28: Firma-Blacklist-Button + Archiv-Modal */
-.co-block{display:inline-block;padding:3px 7px;margin-left:6px;font-size:9px;font-weight:600;color:#9da8bd;background:var(--s2);border:1px solid var(--bd);border-radius:5px;cursor:pointer}
+/* NEU 2026-05-28: Firma-Blacklist-Button + Wunschfirma-Button + Archiv-Modal */
+.co-actions{display:inline-flex;gap:4px;margin-left:6px}
+.co-block,.co-wish{display:inline-block;padding:3px 7px;font-size:9px;font-weight:600;background:var(--s2);border:1px solid var(--bd);border-radius:5px;cursor:pointer;line-height:1.2}
+.co-block{color:#9da8bd}
 .co-block:hover{color:#e8554c;border-color:#e8554c}
 .co-block:active{filter:brightness(.85)}
+.co-wish{color:#9da8bd}
+.co-wish:hover{color:#facc15;border-color:#facc15}
+.co-wish:active{filter:brightness(.85)}
+.co-wish.on{color:#facc15;border-color:#facc15;background:rgba(250,204,21,.1)}
+.jc.is-wish{border-color:rgba(250,204,21,.5);background:linear-gradient(180deg,rgba(250,204,21,.04),var(--s1))}
+.jc.is-wish .jc-co{color:#facc15}
 .jc-co{display:inline-flex;align-items:center;gap:0}
 /* Archiv-Modal (Andy: "soll verifiziert sein, dass im Archiv vermerkt") */
 .archiv-btn{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;padding:6px 11px;background:rgba(22,201,141,.15);color:var(--g);border:1px solid rgba(22,201,141,.4);border-radius:6px;cursor:pointer;transition:.15s}
@@ -223,9 +231,23 @@ padding-bottom:env(safe-area-inset-bottom)}
       <button data-f="irr">🔇 N.relevant</button>
     </div>
     <div id="archiv-list"></div>
+    <!-- Wunschfirmen-Section (Andy 2026-05-28) -->
+    <div class="blocked-co-list" id="wish-co-section">
+      <h3 style="color:#facc15">⭐ Wunschfirmen</h3>
+      <p class="sub" style="margin-bottom:8px">Diese Firmen werden im Dashboard hervorgehoben (+10 Score, goldener Border). Klick auf ✕ zum Entfernen.</p>
+      <div style="display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap">
+        <input id="wish-co-input" type="text" placeholder="Neue Wunschfirma hinzufügen (z.B. Knorr-Bremse)" style="flex:1;min-width:180px;background:var(--s2);border:1px solid var(--bd);color:var(--t);padding:6px 10px;border-radius:5px;font-family:inherit;font-size:11px">
+        <button id="wish-co-add" style="background:rgba(250,204,21,.15);color:#facc15;border:1px solid rgba(250,204,21,.4);padding:6px 14px;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">⭐ hinzufügen</button>
+      </div>
+      <div id="wish-co-chips"></div>
+    </div>
     <div class="blocked-co-list" id="blocked-co-section" style="display:none">
       <h3>🚫 Blockierte Firmen</h3>
       <p class="sub" style="margin-bottom:8px">Diese Firmen werden im Dashboard ausgeblendet. Klick auf ✕ zum Wiederherstellen.</p>
+      <div style="display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap">
+        <input id="block-co-input" type="text" placeholder="Firma manuell blockieren (z.B. McKinsey)" style="flex:1;min-width:180px;background:var(--s2);border:1px solid var(--bd);color:var(--t);padding:6px 10px;border-radius:5px;font-family:inherit;font-size:11px">
+        <button id="block-co-add" style="background:rgba(232,85,76,.15);color:#e8554c;border:1px solid rgba(232,85,76,.4);padding:6px 14px;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">🚫 blockieren</button>
+      </div>
       <div id="blocked-co-chips"></div>
     </div>
   </div>
@@ -473,18 +495,34 @@ function buildCard(j, cat){
   const meta = el('div', 'jc-meta');
   const coSpan = el('span', 'jc-co');
   coSpan.appendChild(document.createTextNode(j.company || '—'));
-  // NEU 2026-05-28 (Andy): Firma-Blacklist-Button — "Unternehmen entfernen"
+  // NEU 2026-05-28 (Andy): Firma-Blacklist + Wunschfirma-Buttons
   if(j.company){
-    const coBtn = el('span', 'co-block', '🗑️ Firma weg');
+    const acts = el('span', 'co-actions');
+    // ⭐ Wunschfirma-Toggle
+    const wishBtn = el('span', 'co-wish');
+    const isWish = isWishCompany(j.company);
+    wishBtn.textContent = isWish ? '⭐ Wunsch' : '☆ Wunsch';
+    if(isWish) wishBtn.classList.add('on');
+    wishBtn.title = isWish ? 'Aus Wunschfirmen entfernen' : 'Firma als Wunschfirma markieren (+10 Score, goldener Border)';
+    wishBtn.addEventListener('click', (ev) => {
+      ev.preventDefault(); ev.stopPropagation();
+      toggleWishCompany(j.company);
+    });
+    acts.appendChild(wishBtn);
+    // 🗑️ Firma blockieren
+    const coBtn = el('span', 'co-block', '🗑️ weg');
     coBtn.title = 'Diese Firma komplett blockieren — keine Stellen mehr von ' + j.company;
     coBtn.addEventListener('click', (ev) => {
       ev.preventDefault(); ev.stopPropagation();
       blockCompany(j.company);
     });
-    coSpan.appendChild(coBtn);
+    acts.appendChild(coBtn);
+    coSpan.appendChild(acts);
   }
   meta.appendChild(coSpan);
   meta.appendChild(el('span', 'jc-loc', '📍 ' + (j.location || '—')));
+  // Wunschfirma visuelle Markierung
+  if(j.company && isWishCompany(j.company)) card.classList.add('is-wish');
   // NEU 2026-05-28 (Andy): Veröffentlichungsdatum (first_seen) als Meta-Eintrag
   if(j.first_seen){
     const d = new Date(j.first_seen);
@@ -627,10 +665,24 @@ function showToast(msg, ok){
 }
 
 // ===== MS-DOCX-Generierung — V14-PM-Pattern (Andy 2026-05-28) =====
-// Nutzt docx.js v8 + FileSaver.js (beide via CDN im <head>)
-function generateMS(job, btn){
-  if(typeof docx === 'undefined' || typeof saveAs === 'undefined'){
-    showToast('docx.js noch nicht geladen — bitte kurz warten und nochmal klicken', false);
+// Nutzt docx.js v9 + FileSaver.js (beide via CDN im <head>, ohne defer)
+// FIX 2026-05-28: Retry-Logik + Diagnostik wenn Libraries noch nicht da
+function generateMS(job, btn, _retry){
+  _retry = _retry || 0;
+  const docxOK = typeof docx !== 'undefined' && docx && docx.Document;
+  const saverOK = typeof saveAs !== 'undefined';
+  if(!docxOK || !saverOK){
+    if(_retry < 8){
+      // Bis zu 4 Sekunden (8 * 500ms) auf Libraries warten
+      btn.disabled = true;
+      btn.textContent = '⏳ Libraries laden … (' + (_retry+1) + '/8)';
+      setTimeout(() => generateMS(job, btn, _retry + 1), 500);
+      return;
+    }
+    btn.disabled = false;
+    btn.textContent = '📝 Motivationsschreiben erstellen (DOCX)';
+    const diag = (docxOK ? '' : 'docx.js fehlt; ') + (saverOK ? '' : 'FileSaver fehlt; ');
+    showToast('DOCX-Library nicht geladen: ' + diag + 'Seite neu laden oder Browser-Console prüfen', false);
     return;
   }
   btn.disabled = true;
@@ -709,6 +761,38 @@ function getBlockedCompanies(){
   try{ return JSON.parse(localStorage.getItem('jsa12_blocked_co') || '[]'); }
   catch{ return []; }
 }
+function getWishCompanies(){
+  try{ return JSON.parse(localStorage.getItem('jsa12_wish_co') || '[]'); }
+  catch{ return []; }
+}
+function isWishCompany(co){
+  if(!co) return false;
+  const list = getWishCompanies().map(c => c.toLowerCase());
+  const coL = co.toLowerCase();
+  return list.some(w => w && coL.includes(w));
+}
+function toggleWishCompany(co){
+  if(!co) return;
+  let list = getWishCompanies();
+  const idx = list.findIndex(x => x.toLowerCase() === co.toLowerCase());
+  if(idx >= 0){
+    list.splice(idx, 1);
+    try{ localStorage.setItem('jsa12_wish_co', JSON.stringify(list)); }catch{}
+    showToast('☆ "' + co + '" aus Wunschfirmen entfernt');
+  }else{
+    list.push(co);
+    try{ localStorage.setItem('jsa12_wish_co', JSON.stringify(list)); }catch{}
+    showToast('⭐ "' + co + '" als Wunschfirma markiert (+10 Score)');
+  }
+  if(CURRENT_TAB && CURRENT_TAB !== 'init' && CURRENT_TAB !== 'hh'){
+    renderTab(CURRENT_TAB);
+    updateStats();
+  }
+}
+// Effektiver Score = Crawler-Score + 10 wenn User-Wunschfirma
+function effectiveScore(j){
+  return (j.score || 0) + (isWishCompany(j.company || '') ? 10 : 0);
+}
 function jobsForTab(tab){
   if(!DATA || !DATA.jobs) return [];
   const want = tab === 'pm' ? ['pm', 'other'] : [tab];
@@ -729,9 +813,9 @@ function jobsForTab(tab){
     );
   }
   // Andy 2026-05-28: "muss nach Fit sortiert werden, Bestpassende oben"
-  // Sortierung: 1) Fit-Score DESC (höchster zuerst), 2) first_seen DESC (neueste oben)
+  // Sortierung: 1) effectiveScore DESC (Wunschfirmen +10), 2) first_seen DESC (neueste oben)
   return list.sort((a, b) => {
-    const ds = (b.score || 0) - (a.score || 0);
+    const ds = effectiveScore(b) - effectiveScore(a);
     if(ds !== 0) return ds;
     const fa = a.first_seen || '';
     const fb = b.first_seen || '';
@@ -873,15 +957,49 @@ function renderBlockedCoChips(){
   if(!sec || !chips) return;
   const list = getBlockedCompanies();
   while(chips.firstChild) chips.removeChild(chips.firstChild);
-  if(list.length === 0){ sec.style.display = 'none'; return; }
+  // Blockierte-Section immer sichtbar machen (für manuelles Hinzufügen)
   sec.style.display = 'block';
+  if(list.length === 0){
+    const e = el('span', null, '(keine Firma blockiert)');
+    e.style.cssText = 'color:var(--m);font-size:10px;font-style:italic';
+    chips.appendChild(e);
+    return;
+  }
   list.forEach(co => {
     const chip = el('span', 'blocked-co-chip');
     chip.appendChild(document.createTextNode('🚫 ' + co));
     const b = document.createElement('button');
     b.textContent = '✕';
     b.title = 'Firma wieder freigeben';
-    b.addEventListener('click', () => unblockCompany(co));
+    b.addEventListener('click', () => { unblockCompany(co); });
+    chip.appendChild(b);
+    chips.appendChild(chip);
+  });
+}
+function renderWishCoChips(){
+  const chips = document.getElementById('wish-co-chips');
+  if(!chips) return;
+  const list = getWishCompanies();
+  while(chips.firstChild) chips.removeChild(chips.firstChild);
+  if(list.length === 0){
+    const e = el('span', null, '(keine Wunschfirma — klick "⭐ Wunsch" auf einer Card oder gib oben eine ein)');
+    e.style.cssText = 'color:var(--m);font-size:10px;font-style:italic';
+    chips.appendChild(e);
+    return;
+  }
+  list.forEach(co => {
+    const chip = el('span', 'blocked-co-chip');
+    chip.style.borderColor = 'rgba(250,204,21,.5)';
+    chip.style.color = '#facc15';
+    chip.appendChild(document.createTextNode('⭐ ' + co));
+    const b = document.createElement('button');
+    b.textContent = '✕';
+    b.title = 'Aus Wunschfirmen entfernen';
+    b.style.color = '#facc15';
+    b.addEventListener('click', () => {
+      toggleWishCompany(co);
+      renderWishCoChips();
+    });
     chip.appendChild(b);
     chips.appendChild(chip);
   });
@@ -893,6 +1011,7 @@ function openArchiv(){
   document.getElementById('archiv-bg').classList.add('on');
   renderArchiv();
   renderBlockedCoChips();
+  renderWishCoChips();
 }
 function closeArchiv(){
   document.getElementById('archiv-bg').classList.remove('on');
@@ -998,10 +1117,46 @@ function renderArchiv(){
       renderArchiv();
     });
   }
-  // ESC schließt Modal
+// ESC schließt Modal
   document.addEventListener('keydown', (ev) => {
     if(ev.key === 'Escape') closeArchiv();
   });
+  // NEU: Wunschfirma-Eingabefeld
+  const wInput = document.getElementById('wish-co-input');
+  const wAdd = document.getElementById('wish-co-add');
+  if(wAdd && wInput){
+    const addWish = () => {
+      const v = (wInput.value || '').trim();
+      if(!v) return;
+      const list = getWishCompanies();
+      if(list.some(x => x.toLowerCase() === v.toLowerCase())){
+        showToast('Firma "' + v + '" ist bereits Wunschfirma', false);
+        return;
+      }
+      list.push(v);
+      try{ localStorage.setItem('jsa12_wish_co', JSON.stringify(list)); }catch{}
+      showToast('⭐ "' + v + '" als Wunschfirma hinzugefügt');
+      wInput.value = '';
+      renderWishCoChips();
+      if(CURRENT_TAB && CURRENT_TAB !== 'init' && CURRENT_TAB !== 'hh') renderTab(CURRENT_TAB);
+    };
+    wAdd.addEventListener('click', addWish);
+    wInput.addEventListener('keydown', (ev) => { if(ev.key === 'Enter') addWish(); });
+  }
+  // NEU: Block-Firma-Eingabefeld
+  const bInput = document.getElementById('block-co-input');
+  const bAdd = document.getElementById('block-co-add');
+  if(bAdd && bInput){
+    const addBlock = () => {
+      const v = (bInput.value || '').trim();
+      if(!v) return;
+      blockCompany(v);
+      bInput.value = '';
+      renderBlockedCoChips();
+    };
+    bAdd.addEventListener('click', addBlock);
+    bInput.addEventListener('keydown', (ev) => { if(ev.key === 'Enter') addBlock(); });
+  }
   if(DATA){
     updateStats();
     updateMarkStats();
