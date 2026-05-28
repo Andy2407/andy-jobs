@@ -1150,36 +1150,47 @@ def parse_job_details(html: str, url: str = "") -> dict:
         if m:
             out["recruiter"] = (m.group(1) + " " + m.group(2)).strip()
 
-    # === Kennziffer / Referenznummer ===
+    # === Kennziffer STRIKT — Token MUSS Ziffer enthalten (sonst "nummer", "Reference" etc. matched) ===
     kz_patterns = [
-        r"(?:Kennziffer|Referenz(?:nummer)?|Ref(?:erenz)?[\s\.\-]?Nr\.?|Stellen(?:anzeige)?[\s\-]?(?:Nr\.?|ID)|Job[\s\-]?ID|Stellen-?ID|Anzeigen[\s\-]?Nr\.?|Job-?Nummer)\s*[:\.]?\s*([A-Z0-9][A-Z0-9\-\/\.]{1,30})",
-        r"\b(?:Ref|Req)[\s\.\-]?(?:ID|Nr\.?)?[\s:]+([A-Z0-9][A-Z0-9\-\/\.]{2,20})\b",
+        r"(?:Kennziffer|Referenz(?:nummer)?|Ref(?:erenz)?[\s\.\-]?Nr\.?|Stellen(?:anzeige)?[\s\-]?(?:Nr\.?|ID)|Job[\s\-]?ID|Stellen-?ID|Anzeigen[\s\-]?Nr\.?|Job-?Nummer|Req(?:uisition)?[\s\-]?ID)\s*[:\.\-#]?\s*([A-Z0-9][A-Z0-9\-\/\.]*\d[A-Z0-9\-\/\.]*)",
+        r"\b(?:Ref|Req)[\s\.\-]?(?:ID|Nr\.?)?[\s:]+([A-Z0-9]*\d[A-Z0-9\-\/\.]{1,20})\b",
     ]
+    KZ_STOPWORDS = {"der","das","die","und","nummer","number","reference","kennzeichen","id","nr"}
     for pat in kz_patterns:
         m = re.search(pat, text, re.IGNORECASE)
         if m:
             kz = m.group(1).strip().strip(".,;")
-            if 2 <= len(kz) <= 25 and not kz.lower() in ("der", "das", "die", "und"):
+            # MUSS Ziffer enthalten + Stopword-Filter
+            if (2 <= len(kz) <= 25 and
+                kz.lower() not in KZ_STOPWORDS and
+                any(c.isdigit() for c in kz)):
                 out["kennziffer"] = kz
                 break
 
-    # === Adresse (Strasse + Hausnummer + PLZ + Ort) ===
-    # Pattern: "Musterstraße 5, 80331 München" oder "Musterstr. 5\n80331 München"
-    # Adresse: PLZ + 1 Stadt-Wort (max — meiste DE-Städte sind 1 Wort, "Frankfurt am Main" wird zu "Frankfurt" gekürzt)
+    # === Adresse (PLZ + Stadt) ===
+    # Negative Lookahead: nach 5-stelliger Zahl NIE "Euro/EUR/€/Brutto/p.a./Gehalt/jährlich/monatlich"
+    # Plus: ungültige PLZ-Ranges ausschließen (00xxx, 99999 sind keine echten DE-PLZ)
+    NOT_AFTER_PLZ = r"(?!\s*(?:Euro|EUR|€|\$|USD|GBP|Brutto|brutto|netto|p\.\s*a\.?|pro\s+Jahr|monatlich|jährlich|Gehalt|gehalt|Jahresgehalt))"
+    BAD_CITIES = {"euro","eur","brutto","netto","gehalt","jahr","monat","jahre","monate","stunden","stunde","monatlich","jährlich"}
     addr_patterns = [
-        r"([A-ZÄÖÜ][a-zäöüß\-]+(?:str(?:asse|aße)\.?|[Aa]llee|[Pp]latz|[Rr]ing|[Ww]eg|[Gg]asse|[Bb]oulevard))\s+(\d+(?:\s*[a-z]?)(?:\s*[\-\/]\s*\d+)?)\s*[,\n]?\s*(\d{5})\s+([A-ZÄÖÜ][a-zäöüß\-]{2,25})\b",
+        r"([A-ZÄÖÜ][a-zäöüß\-]+(?:str(?:asse|aße)\.?|[Aa]llee|[Pp]latz|[Rr]ing|[Ww]eg|[Gg]asse|[Bb]oulevard))\s+(\d+(?:\s*[a-z]?)(?:\s*[\-\/]\s*\d+)?)\s*[,\n]?\s*(\d{5})" + NOT_AFTER_PLZ + r"\s+([A-ZÄÖÜ][a-zäöüß\-]{2,25})\b",
     ]
     for pat in addr_patterns:
         m = re.search(pat, text)
         if m:
-            out["address_street"] = (m.group(1) + " " + m.group(2)).strip()
-            out["address_city"] = (m.group(3) + " " + m.group(4)).strip()
-            break
-    # Fallback: PLZ + Ort allein finden, wenn keine Straße
+            plz = m.group(3); stadt = m.group(4)
+            if not (plz.startswith("00") or plz == "99999") and stadt.lower() not in BAD_CITIES:
+                out["address_street"] = (m.group(1) + " " + m.group(2)).strip()
+                out["address_city"] = (plz + " " + stadt).strip()
+                break
+    # Fallback: PLZ + Ort allein (mit Lookahead + Range + Stopword-Check)
     if not out["address_city"]:
-        m = re.search(r"\b(\d{5})\s+([A-ZÄÖÜ][a-zäöüß\-]{2,25})\b", text)
-        if m:
-            out["address_city"] = (m.group(1) + " " + m.group(2)).strip()
+        for m in re.finditer(r"\b(\d{5})" + NOT_AFTER_PLZ + r"\s+([A-ZÄÖÜ][a-zäöüß\-]{2,25})\b", text):
+            plz = m.group(1); stadt = m.group(2)
+            if plz.startswith("00") or plz == "99999": continue
+            if stadt.lower() in BAD_CITIES: continue
+            out["address_city"] = (plz + " " + stadt).strip()
+            break
 
     return out
 

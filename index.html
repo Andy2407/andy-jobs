@@ -12,7 +12,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="build-version" content="v13.9-2026-05-28-no-modal">
+<meta name="build-version" content="v14.1-2026-05-28-cleanup-spacing">
 <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%23060a10'/><text x='50%25' y='52%25' text-anchor='middle' dominant-baseline='middle' font-size='90' font-family='system-ui' fill='%232d7aed'>A</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
 <!-- docx.js v9.1.0 für Client-side MS-DOCX-Generierung (FIX 2026-05-28: jsdelivr statt unpkg, weil unpkg .min nicht existiert → 404) -->
@@ -695,36 +695,54 @@ function generateMS(job, btn, _retry){
   // Andy 2026-05-28 (v13.9): KEIN Modal mehr! Empfänger-Infos kommen direkt aus dem Crawler.
   // job-Objekt hat (wenn Cloud-Crawler sie pre-parsed): job.recruiter, job.address, job.kennziffer
   // Wenn nicht da: leer → DOCX-Generator nimmt nur Firma + "Personalabteilung" Fallback
+  // PLUS v14.1: Sanity-Filter gegen alte Crawler-Daten ('80000 Euro', 'nummer' etc.)
+  const sanitizeCity = (c) => {
+    if(!c) return '';
+    if(/\b(?:Euro|EUR|€|Brutto|netto|Gehalt|Jahr|Monat|Stunden?)\b/i.test(c)) return '';
+    if(/^00\d{3}/.test(c) || /^99999/.test(c)) return '';  // ungültige PLZ
+    return c.trim();
+  };
+  const sanitizeKennziffer = (k) => {
+    if(!k) return '';
+    const kt = k.trim();
+    if(/^(?:nummer|number|reference|kennzeichen|id|nr|der|das|die|und)$/i.test(kt)) return '';
+    if(!/\d/.test(kt)) return '';  // MUSS Ziffer enthalten
+    return kt;
+  };
   const recipientInfo = {
     recruiter:  (job.recruiter || '').trim(),
     strasse:    (job.address && job.address.street) || (job.address_street || '').trim(),
-    plzort:     (job.address && job.address.city) || (job.address_city || '').trim(),
-    kennziffer: (job.kennziffer || job.ref_id || '').trim(),
+    plzort:     sanitizeCity((job.address && job.address.city) || job.address_city || ''),
+    kennziffer: sanitizeKennziffer(job.kennziffer || job.ref_id || ''),
   };
   _generateMSWith(job, btn, recipientInfo);
 }
 
-// Betreff-Cleanup (Andy 2026-05-28): m/w/d, all gender, Datum, interne Refs raus
+// Betreff-Cleanup (Andy 2026-05-28): m/w/d, all gender, Datum, interne Refs, LinkedIn-Firma-im-Title raus
 function cleanStellentitel(t){
   if(!t) return t;
   let s = t;
+  // Trailing-Datum z.B. " 8.5.2026" am Ende (LinkedIn-Quelle)
+  s = s.replace(/\s+\d{1,2}\.\d{1,2}\.\d{2,4}\s*$/g, '');
+  // Trailing-Stadt z.B. " München" / " Berlin" am Ende (LinkedIn-Quelle)
+  s = s.replace(/\s+(?:München|Berlin|Hamburg|Frankfurt|Stuttgart|Köln|Düsseldorf|Leipzig|Bremen|Hannover|Nürnberg|Dresden|Ingolstadt|Garching|Ismaning|Unterschleißheim|Starnberg)\s*$/g, '');
   // Klammer-Varianten m/w/d, w/m/d, m/w, d, all gender(s), divers, x, *
   s = s.replace(/\s*\(\s*(?:[mwdfxa\*][\s\/\\\.\-]*){1,5}\s*\)\s*/gi, ' ');
   s = s.replace(/\s*\(\s*(?:all[\s\-]*genders?|m\s*\/\s*w\s*\/\s*d|w\s*\/\s*m\s*\/\s*d|f\s*\/\s*m\s*\/\s*x|gn|divers)\s*\)\s*/gi, ' ');
-  // Bindestrich-Varianten: " - all genders", " m/w/d" am Ende
   s = s.replace(/\s+[\-–]\s*all[\s\-]*genders?\s*/gi, ' ');
   s = s.replace(/\s+(?:m\/w\/d|w\/m\/d|m\/w|all genders?)\s*$/gi, '');
-  // Datum-Patterns z.B. " · 28.05.2026" oder " (ab Q3 2026)"
+  // Datum-Patterns
   s = s.replace(/\s*[·\|]\s*\d{1,2}\.\d{1,2}\.\d{2,4}\s*/g, ' ');
   s = s.replace(/\s*\(\s*ab\s+[QH][1-4]\s*\d{4}\s*\)\s*/gi, ' ');
-  // Interne Referenz-IDs aus Crawler-Quellen (Bundesagentur etc): "Ref-Nr 12345-AB-..." nur entfernen wenn nicht user-explicit
+  // Interne Referenz-IDs
   s = s.replace(/\s*[·\|]\s*(?:Ref(?:erenz)?[\.\-\s]?(?:Nr\.?)?|Job[\s\-]?ID|Stellen[\s\-]?ID|ID)\s*[:\s\-]*\s*\S+\s*/gi, ' ');
-  // 100% Remote / Vollzeit / Teilzeit Anhänge
   s = s.replace(/\s*[·\|]\s*(?:100\s*%\s*Remote|Vollzeit|Teilzeit|Festanstellung|Remote)\s*/gi, ' ');
+  // LinkedIn-Crawler-Bug: Title fängt mit Firma an "OSB AG Ingenieur- und IT-Dienstleistungen Program Manager ..."
+  // Pattern: Anfangs-Block bis GmbH/AG/SE/KG/UG/Dienstleistungen + dann der echte Job-Titel
+  s = s.replace(/^(?:[A-ZÄÖÜ][\wäöüß\-&\.]+\s+){0,6}(?:GmbH|AG|SE|KG|UG|Dienstleistungen?|Consulting|Engineering|Services|Solutions|Group|Holding|Technologies|Tech)\s+(?=(?:Program|Senior|Project|Projekt|Lead|Manager|Engineer|Consultant|Director|Spezialist|Specialist|Architect|Developer|Entwickl|Konstrukt|Teamleiter|Modulleiter|Berater))/i, '');
   // Mehrfach-Spaces zu einem
   s = s.replace(/\s{2,}/g, ' ').trim();
-  // Trailing-Spezialzeichen
-  s = s.replace(/[\s·\|\-–_]+$/g, '').trim();
+  s = s.replace(/[\s·\|\-–_,]+$/g, '').trim();
   return s;
 }
 
@@ -757,9 +775,8 @@ function _generateMSWith(job, btn, recipientInfo){
       const hasManualRcpt = recipientInfo && (recipientInfo.recruiter || recipientInfo.strasse || recipientInfo.plzort);
       firma = hasManualRcpt ? '' : 'Personalabteilung';  // Bei Modal-Eingabe: leer (User-Recruiter steht als 1. Zeile)
     }
-    // Betreff-Cleanup nach Andys 2026-05-28-Regeln
+    // Betreff-Cleanup nach Andys 2026-05-28-Regeln (KEIN Truncation — sonst "Münc…" Artefakt)
     stellentitel = cleanStellentitel(stellentitel);
-    if(stellentitel.length > 90) stellentitel = stellentitel.substring(0, 90).trim() + '…';
     const heute = new Date().toLocaleDateString('de-DE', { day:'2-digit', month:'long', year:'numeric' });
     // === Anrede aus Ansprechpartner ableiten (Andy 2026-05-28) ===
     // "Frau Schmidt · Recruiting" → "Sehr geehrte Frau Schmidt,"
@@ -813,17 +830,18 @@ function _generateMSWith(job, btn, recipientInfo){
       alignment: D.AlignmentType.RIGHT
     });
     // Datum-Paragraph: 10pt, RIGHT, grau #6B7280
-    // Andy 2026-05-28: "Mehr Abstand zwischen Datum und Betreff" → sa = 240 Twips (12pt) statt 80
+    // Andy 2026-05-28: Spacing-Tuning final
+    //   sb=240 (Abstand Tabelle-Ende → Datum) und sa=240 (Abstand Datum → Betreff) — beide gleich
     const PDatum = (txt) => new D.Paragraph({
       children: [new D.TextRun({ text: txt, font: 'Calibri', size: 20, color: GREY })],
-      spacing: { after: 240, line: 260 },
+      spacing: { before: 240, after: 240, line: 260 },
       alignment: D.AlignmentType.RIGHT
     });
     // Betreff-Paragraph: 11pt BOLD Navy #1B365D
-    // Andy 2026-05-28: "minimal kleinerer Abstand bis sehr geehrte von Betreff" → sa = 80 (4pt) statt 120
+    // Andy 2026-05-28: "Abstand Betreff → sehr geehrte minimal vergrößern" → sa = 160 (8pt) statt 80
     const PB = (txt) => new D.Paragraph({
       children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22, bold: true, color: NAVY })],
-      spacing: { after: 80, line: 300 }
+      spacing: { after: 160, line: 300 }
     });
     // Name-Schluss-Paragraph: 11pt BOLD Navy
     const PName = (txt) => new D.Paragraph({
@@ -887,9 +905,9 @@ function _generateMSWith(job, btn, recipientInfo){
     // Tabelle → leer → Datum (grau RIGHT) → Betreff (Navy BOLD) → leer → Anrede → A1..A5 → leer → Grußformel → Sig → Name (Navy BOLD)
     const childrenList = [
       layoutTable,
-      P(''),                                                   // Leerzeile nach Tabelle
-      PDatum('München, ' + heute),                             // Datum 10pt grau RIGHT — sa 12pt (mehr Abstand zu Betreff)
-      PB(betreff),                                             // Betreff: cleaned + optional Kennziffer — sa 4pt (weniger zu Anrede)
+      // KEINE Leerzeile zwischen Tabelle und Datum — PDatum hat sb=240 für gleichmäßigen Abstand
+      PDatum('München, ' + heute),                             // Datum: sb=240 (Tabelle→Datum) = sa=240 (Datum→Betreff)
+      PB(betreff),                                             // Betreff: cleaned + optional Kennziffer — sa=160 (Andy: minimal mehr zu Anrede)
       P(anrede, { alignment: D.AlignmentType.LEFT, spacing: { after: 120, line: 300 } }),
       P(A1), P(A2), P(A3), P(A4), P(A5),
       P(''),                                                   // Leerzeile vor Grußformel
