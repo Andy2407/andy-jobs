@@ -730,38 +730,55 @@ function generateMS(job, btn, _retry){
     const A3 = 'Davor war ich bei Anthropus als PMO im BMW-AdCam-Programm bei Magna Electronics für KPI-Aufbereitung, Managementberichte und Change-Request-Koordination zuständig. Workshops und Steuerkreis-Moderation gehören seit der GGKA-Runde im Karosserie-Hybridbaukasten F30NF bei RLE zu meinem Alltag. Genau diese Mischung aus Reporting-Disziplin, Kundenkommunikation und Schnittstellen-Steuerung bringe ich in Ihre Projekte mit.';
     const A4 = 'Ergänzend habe ich 2025 den KI-Manager TÜV Rheinland mit 400 Stunden abgeschlossen, inklusive EU AI Act und Prompt Engineering. Workflow-Automation mit n8n und API-Integrationen setze ich pragmatisch im PM-Alltag ein, etwa für Anforderungs-Aufbereitung, Status-Logik und Lieferanten-Kommunikation. Genau dieser Effizienz-Hebel passt zu Ihrer Position.';
     const A5 = 'Über ein persönliches Kennenlerngespräch freue ich mich. Meine Gehaltsvorstellung liegt bei 80.000 Euro brutto pro Jahr, verhandelbar, und ich kann ab sofort beginnen.';
-    // === Paragraph-Helper ===
+    // === Paragraph-Helpers — alle EXAKT nach V14 ALTEN PM Specs (Andy 2026-05-28) ===
+    // V14: Body 11pt JUSTIFY sa=6pt | Anrede 11pt sa=6pt | Datum 10pt RIGHT grau #6B7280 sa=4pt
+    //      Betreff 11pt BOLD navy #1B365D sa=6pt | "Mit freundl. Grüßen" 11pt sa=2pt | Name 11pt BOLD navy
+    const NAVY = '1B365D';   // V14 Betreff- und Name-Farbe
+    const GREY = '6B7280';   // V14 Datums-Farbe
+    // Body-Paragraph: 11pt Calibri, JUSTIFY, sa=120 (6pt), line 300 (1.5)
     const P = (txt, opts) => new D.Paragraph(Object.assign({
-      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22 })],
-      spacing: { after: 160, line: 300 },
+      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22 })],  // size 22 half-points = 11pt
+      spacing: { after: 120, line: 300 },
       alignment: D.AlignmentType.JUSTIFIED
     }, opts || {}));
-    const PB = (txt) => new D.Paragraph({
-      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22, bold: true })],
-      spacing: { after: 200, line: 300 }
-    });
-    // Kompakter Paragraph für Adress-Block (kein Justify, kein großer Abstand)
-    const PA = (txt, align) => new D.Paragraph({
-      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 20 })],
+    // Adressblock-Paragraph: 10pt, Default-Align, sa=40 (2pt)
+    const PA = (txt, align, bold) => new D.Paragraph({
+      children: [new D.TextRun({ text: txt, font: 'Calibri', size: bold ? 22 : 20, bold: !!bold })],
       spacing: { after: 40, line: 260 },
       alignment: align || D.AlignmentType.LEFT
     });
-    // === Layout-Tabelle 1×2: Empfänger links | Sender rechts ===
+    // Datum-Paragraph: 10pt, RIGHT, grau #6B7280, sa=80 (4pt)
+    const PDatum = (txt) => new D.Paragraph({
+      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 20, color: GREY })],
+      spacing: { after: 80, line: 260 },
+      alignment: D.AlignmentType.RIGHT
+    });
+    // Betreff-Paragraph: 11pt BOLD Navy #1B365D sa=120 (6pt)
+    const PB = (txt) => new D.Paragraph({
+      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22, bold: true, color: NAVY })],
+      spacing: { after: 120, line: 300 }
+    });
+    // Name-Schluss-Paragraph: 11pt BOLD Navy
+    const PName = (txt) => new D.Paragraph({
+      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22, bold: true, color: NAVY })],
+      spacing: { after: 0, line: 300 }
+    });
+    // === Layout-Tabelle 1×2: Empfänger links (11pt) | Sender rechts (Andy bold 11pt, Adresse 10pt) ===
     const noBorder = { style: D.BorderStyle.NONE, size: 0, color: 'FFFFFF' };
     const cellBorders = { top: noBorder, bottom: noBorder, left: noBorder, right: noBorder };
     const empfCell = new D.TableCell({
       width: { size: 50, type: D.WidthType.PERCENTAGE },
       borders: cellBorders,
       children: [
-        PA(firma),
-        PA('Personalabteilung'),
+        new D.Paragraph({ children: [new D.TextRun({ text: firma, font: 'Calibri', size: 22 })], spacing: { after: 40, line: 260 } }),
+        new D.Paragraph({ children: [new D.TextRun({ text: 'Personalabteilung', font: 'Calibri', size: 22 })], spacing: { after: 40, line: 260 } }),
       ]
     });
     const senderCell = new D.TableCell({
       width: { size: 50, type: D.WidthType.PERCENTAGE },
       borders: cellBorders,
       children: [
-        PA('Andreas Schengel', D.AlignmentType.RIGHT),
+        PA('Andreas Schengel', D.AlignmentType.RIGHT, true),
         PA('Johann-Fichte-Straße 11', D.AlignmentType.RIGHT),
         PA('80805 München', D.AlignmentType.RIGHT),
         PA('0160 / 555 12 61', D.AlignmentType.RIGHT),
@@ -775,6 +792,7 @@ function generateMS(job, btn, _retry){
       rows: [new D.TableRow({ children: [empfCell, senderCell] })]
     });
     // === Unterschrift einbetten (Base64 → Uint8Array) ===
+    // BUG-FIX 2026-05-28: docx.js v9 ImageRun braucht `type: 'png'` — sonst Extension .undefined → Word-Fehler
     let sigParagraph = null;
     try {
       if(typeof window.ANDY_UNTERSCHRIFT_PNG === 'string'){
@@ -783,33 +801,39 @@ function generateMS(job, btn, _retry){
         for(let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
         sigParagraph = new D.Paragraph({
           children: [new D.ImageRun({
+            type: 'png',                                       // KRITISCH! Sonst .undefined in DOCX
             data: bytes,
-            transformation: { width: 170, height: 38 }  // 45mm × 10.2mm bei 96dpi
+            transformation: { width: 170, height: 38 }         // 45mm × 10.2mm bei 96dpi
           })],
           spacing: { before: 0, after: 0 }
         });
       }
     } catch(e){ console.warn('Unterschrift-Embed-Fehler:', e); }
-    // === Document ===
+    // === Document — EXAKTE V14-ALTEN-PM-Reihenfolge ===
+    // Tabelle → leer → Datum (grau RIGHT) → Betreff (Navy BOLD) → leer → Anrede → A1..A5 → leer → Grußformel → Sig → Name (Navy BOLD)
     const childrenList = [
       layoutTable,
-      P(''),
-      P('München, ' + heute, { alignment: D.AlignmentType.RIGHT, spacing: { after: 200, line: 300 } }),
-      PB('Bewerbung als ' + stellentitel),
-      P('Sehr geehrte Damen und Herren,'),
+      P(''),                                                   // Leerzeile nach Tabelle
+      PDatum('München, ' + heute),                             // Datum 10pt grau RIGHT
+      PB('Bewerbung als ' + stellentitel),                     // Betreff 11pt BOLD NAVY
+      P(''),                                                   // Leerzeile nach Betreff
+      P('Sehr geehrte Damen und Herren,', { alignment: D.AlignmentType.LEFT, spacing: { after: 120, line: 300 } }),
       P(A1), P(A2), P(A3), P(A4), P(A5),
-      P(''),
-      P('Mit freundlichen Grüßen', { spacing: { after: 0, line: 300 } }),
+      P(''),                                                   // Leerzeile vor Grußformel
+      new D.Paragraph({                                        // Grußformel 11pt sa=2pt (V14)
+        children: [new D.TextRun({ text: 'Mit freundlichen Grüßen', font: 'Calibri', size: 22 })],
+        spacing: { after: 40, line: 300 }
+      }),
     ];
     if(sigParagraph) childrenList.push(sigParagraph);
-    else childrenList.push(P(''));  // Fallback: leere Zeile als Unterschrift-Platzhalter
-    childrenList.push(P('Andreas Schengel', { spacing: { after: 0, line: 300 } }));
+    else childrenList.push(P(''));                             // Fallback: Leerzeile als Sig-Platzhalter
+    childrenList.push(PName('Andreas Schengel'));              // Name 11pt BOLD NAVY
     const doc = new D.Document({
       creator: 'Andreas Schengel',
       title: 'Motivationsschreiben ' + firma,
       styles: { default: { document: { run: { font: 'Calibri', size: 22 } } } },
       sections: [{
-        properties: { page: { margin: { top: 850, right: 1000, bottom: 850, left: 1000 } } },  // schmälere Margins für 1-Seiten-Garantie
+        properties: { page: { margin: { top: 1134, right: 1247, bottom: 907, left: 1247 } } },  // EXAKT V14: 20/22/16/22 mm
         children: childrenList
       }]
     });
