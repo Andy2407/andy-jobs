@@ -1088,39 +1088,126 @@ SPA_DOMAINS = ("jobs.personio.de", "smartrecruiters.com", "myworkdayjobs.com",
 
 
 def verify_url(url: str, session) -> tuple:
+    """Returnt (ok, status, html_or_none) — html nur wenn vollständig gefetched."""
     if not url:
-        return (False, "no-url")
+        return (False, "no-url", None)
     try:
         r = session.get(url, timeout=12, allow_redirects=True)
         if r.status_code in (403, 999):
-            return (True, f"ok-{r.status_code}-trusted")
+            return (True, f"ok-{r.status_code}-trusted", None)
         if r.status_code != 200:
-            return (False, f"HTTP {r.status_code}")
+            return (False, f"HTTP {r.status_code}", None)
         host = urlparse(url).hostname or ""
         if any(d in host for d in SPA_DOMAINS):
-            return (True, "ok-spa")
+            return (True, "ok-spa", r.text)
         body = r.text.lower()
         for ind in EXPIRED_INDICATORS:
             if ind in body:
-                return (False, f"expired: {ind}")
-        return (True, "ok")
+                return (False, f"expired: {ind}", None)
+        return (True, "ok", r.text)
     except Exception as e:
-        return (False, f"err: {type(e).__name__}")
+        return (False, f"err: {type(e).__name__}", None)
+
+
+# NEU 2026-05-28 (Andy v14): Detail-Parser für Recruiter/Adresse/Kennziffer aus Job-HTML
+# Output landet in data.json → DOCX-Generator zieht es automatisch ohne User-Input
+def parse_job_details(html: str, url: str = "") -> dict:
+    """Extrahiert recruiter, address (street/city), kennziffer aus Job-HTML.
+    Gibt Dict zurück; leere Strings wenn nicht gefunden.
+    Patterns für Bundesagentur, LinkedIn, StepStone, Personio, Greenhouse, Workday."""
+    out = {"recruiter": "", "address_street": "", "address_city": "", "kennziffer": ""}
+    if not html or len(html) < 50:
+        return out
+    # HTML-Tags entfernen für sauberes Regex (außer line breaks via Replace)
+    text = re.sub(r"<br\s*/?>", "\n", html, flags=re.IGNORECASE)
+    text = re.sub(r"</p>", "\n", text, flags=re.IGNORECASE)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"&nbsp;|&#160;", " ", text)
+    text = re.sub(r"&amp;", "&", text)
+    text = re.sub(r"&auml;", "ä", text); text = re.sub(r"&ouml;", "ö", text); text = re.sub(r"&uuml;", "ü", text)
+    text = re.sub(r"&Auml;", "Ä", text); text = re.sub(r"&Ouml;", "Ö", text); text = re.sub(r"&Uuml;", "Ü", text)
+    text = re.sub(r"&szlig;", "ß", text)
+    text = re.sub(r"&quot;", '"', text); text = re.sub(r"&#39;", "'", text)
+    text = re.sub(r"\s+", " ", text)
+
+    # === Recruiter / Ansprechpartner ===
+    # Pattern 1: "Ansprechpartner(in)? : Frau Schmidt" / "Kontakt: Herr Müller"
+    rec_patterns = [
+        r"(?:Ansprechpartner(?:in)?|Kontakt(?:person)?|Recruiter|Recruiting|Ihr(?:e)?\s+Ansprechpartner(?:in)?)\s*[:\-]?\s*(Frau|Herr|Dr\.|Mr\.|Mrs\.|Ms\.)\s+([A-ZÄÖÜ][a-zäöüß\-]+(?:\s+[A-ZÄÖÜ][a-zäöüß\-]+){0,2})",
+        r"(?:Your\s+contact|Contact\s+person)\s*[:\-]?\s*(?:Ms\.|Mrs\.|Mr\.)?\s*([A-ZÄÖÜ][a-zäöüß\-]+\s+[A-ZÄÖÜ][a-zäöüß\-]+)",
+    ]
+    for pat in rec_patterns:
+        m = re.search(pat, text)
+        if m:
+            if len(m.groups()) == 2:
+                out["recruiter"] = (m.group(1) + " " + m.group(2)).strip()
+            else:
+                out["recruiter"] = m.group(1).strip()
+            break
+    # Pattern 2 (Fallback): einfaches "Frau Mustermann" / "Herr Müller" in der Nähe von "Recruiting"/"HR"
+    if not out["recruiter"]:
+        m = re.search(r"(Frau|Herr)\s+([A-ZÄÖÜ][a-zäöüß\-]{2,15}(?:\s+[A-ZÄÖÜ][a-zäöüß\-]{2,20}){0,2})\s*(?:[·\|]\s*)?(?:Recruiting|HR|Personal|Talent[\s\-]?Acquisition)", text)
+        if m:
+            out["recruiter"] = (m.group(1) + " " + m.group(2)).strip()
+
+    # === Kennziffer / Referenznummer ===
+    kz_patterns = [
+        r"(?:Kennziffer|Referenz(?:nummer)?|Ref(?:erenz)?[\s\.\-]?Nr\.?|Stellen(?:anzeige)?[\s\-]?(?:Nr\.?|ID)|Job[\s\-]?ID|Stellen-?ID|Anzeigen[\s\-]?Nr\.?|Job-?Nummer)\s*[:\.]?\s*([A-Z0-9][A-Z0-9\-\/\.]{1,30})",
+        r"\b(?:Ref|Req)[\s\.\-]?(?:ID|Nr\.?)?[\s:]+([A-Z0-9][A-Z0-9\-\/\.]{2,20})\b",
+    ]
+    for pat in kz_patterns:
+        m = re.search(pat, text, re.IGNORECASE)
+        if m:
+            kz = m.group(1).strip().strip(".,;")
+            if 2 <= len(kz) <= 25 and not kz.lower() in ("der", "das", "die", "und"):
+                out["kennziffer"] = kz
+                break
+
+    # === Adresse (Strasse + Hausnummer + PLZ + Ort) ===
+    # Pattern: "Musterstraße 5, 80331 München" oder "Musterstr. 5\n80331 München"
+    # Adresse: PLZ + 1 Stadt-Wort (max — meiste DE-Städte sind 1 Wort, "Frankfurt am Main" wird zu "Frankfurt" gekürzt)
+    addr_patterns = [
+        r"([A-ZÄÖÜ][a-zäöüß\-]+(?:str(?:asse|aße)\.?|[Aa]llee|[Pp]latz|[Rr]ing|[Ww]eg|[Gg]asse|[Bb]oulevard))\s+(\d+(?:\s*[a-z]?)(?:\s*[\-\/]\s*\d+)?)\s*[,\n]?\s*(\d{5})\s+([A-ZÄÖÜ][a-zäöüß\-]{2,25})\b",
+    ]
+    for pat in addr_patterns:
+        m = re.search(pat, text)
+        if m:
+            out["address_street"] = (m.group(1) + " " + m.group(2)).strip()
+            out["address_city"] = (m.group(3) + " " + m.group(4)).strip()
+            break
+    # Fallback: PLZ + Ort allein finden, wenn keine Straße
+    if not out["address_city"]:
+        m = re.search(r"\b(\d{5})\s+([A-ZÄÖÜ][a-zäöüß\-]{2,25})\b", text)
+        if m:
+            out["address_city"] = (m.group(1) + " " + m.group(2)).strip()
+
+    return out
 
 
 def parallel_verify(jobs, session, max_workers: int = 10) -> list:
-    log.info(f"Verifiziere {len(jobs)} URLs…")
+    log.info(f"Verifiziere {len(jobs)} URLs (mit Detail-Parse)…")
     out = []
     with ThreadPoolExecutor(max_workers=max_workers) as ex:
         futs = {ex.submit(verify_url, j["url"], session): j for j in jobs}
         for f in as_completed(futs):
             j = futs[f]
-            ok, status = f.result()
+            ok, status, html = f.result()
             j["verified"] = ok
             j["verify_status"] = status
             if ok:
+                # NEU 2026-05-28: Detail-Parse für DOCX-Generator
+                if html:
+                    try:
+                        det = parse_job_details(html, j.get("url", ""))
+                        if det.get("recruiter"): j["recruiter"] = det["recruiter"]
+                        if det.get("address_street"): j["address_street"] = det["address_street"]
+                        if det.get("address_city"): j["address_city"] = det["address_city"]
+                        if det.get("kennziffer"): j["kennziffer"] = det["kennziffer"]
+                    except Exception as e:
+                        log.debug(f"parse_job_details Fehler für {j.get('url', '')[:80]}: {e}")
                 out.append(j)
-    log.info(f"  → {len(out)}/{len(jobs)} live")
+    parsed = sum(1 for j in out if j.get("recruiter") or j.get("kennziffer") or j.get("address_city"))
+    log.info(f"  → {len(out)}/{len(jobs)} live · {parsed} mit Empfänger-Details")
     return out
 
 
