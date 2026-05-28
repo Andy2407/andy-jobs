@@ -413,19 +413,30 @@ function buildCard(j, cat){
   const meta = el('div', 'jc-meta');
   meta.appendChild(el('span', 'jc-co', j.company || '—'));
   meta.appendChild(el('span', 'jc-loc', '📍 ' + (j.location || '—')));
+  // NEU 2026-05-28 (Andy): Veröffentlichungsdatum (first_seen) als Meta-Eintrag
+  if(j.first_seen){
+    const d = new Date(j.first_seen);
+    if(!isNaN(d.getTime())){
+      const heute = new Date();
+      const days = Math.floor((heute - d) / 86400000);
+      const dateStr = d.toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit', year:'2-digit' });
+      let label;
+      if(days === 0) label = '📅 heute';
+      else if(days === 1) label = '📅 gestern';
+      else if(days <= 7) label = '📅 vor ' + days + ' Tagen';
+      else label = '📅 ' + dateStr;
+      const dateSpan = el('span', 'jc-loc', label);
+      // grün wenn ≤3 Tage alt, gelb wenn ≤14, grau sonst
+      if(days <= 3) dateSpan.style.color = 'var(--g)';
+      else if(days <= 14) dateSpan.style.color = 'var(--o)';
+      meta.appendChild(dateSpan);
+    }
+  }
   card.appendChild(meta);
   // Source-Tag
   const src = (j.source || '').split(':')[0];
   if(src) card.appendChild(el('span', 'dt dt-src', src));
-  // Score-Reason-Tags (Top 4, ohne "+xx ")
-  if(j.score_reasons && j.score_reasons.length){
-    const tags = el('div', 'tags');
-    j.score_reasons.slice(0, 4).forEach(r => {
-      const clean = r.replace(/^\+\d+\s*/, '').slice(0, 24);
-      tags.appendChild(el('span', 'tag', clean));
-    });
-    card.appendChild(tags);
-  }
+  // Alte Score-Reason-Tag-Pillen entfernt 2026-05-28 (redundant zum score-det Block weiter unten)
   // alt_sources: kleine Zeile "auch bei: ..."
   if(j.alt_sources && j.alt_sources.length){
     const ali = el('div', null, '↳ Auch verfügbar bei: ' + j.alt_sources.map(a => (a.source||'').split(':')[0]).join(', '));
@@ -634,17 +645,21 @@ function jobsForTab(tab){
       (j.location || '').toLowerCase().includes(f)
     );
   }
+  // Andy 2026-05-28: "muss nach Fit sortiert werden, Bestpassende oben"
+  // Sortierung: 1) Fit-Score DESC (höchster zuerst), 2) first_seen DESC (neueste oben)
   return list.sort((a, b) => {
+    const ds = (b.score || 0) - (a.score || 0);
+    if(ds !== 0) return ds;
     const fa = a.first_seen || '';
     const fb = b.first_seen || '';
-    if(fa !== fb) return fb.localeCompare(fa); // neueste oben
-    return (b.score || 0) - (a.score || 0);
+    return fb.localeCompare(fa);
   });
 }
 
 function renderTab(tab){
   const sec = document.getElementById('sec-' + tab);
-  if(!sec || tab === 'init') return;
+  // hh + init sind hardcoded HTML-Tabs — NICHT dynamisch rendern (würde Cards killen!)
+  if(!sec || tab === 'init' || tab === 'hh') return;
   // Clear sec
   while(sec.firstChild) sec.removeChild(sec.firstChild);
   if(!DATA){
@@ -710,7 +725,7 @@ function updateStats(){
   if(stand && DATA.generated_at){
     const d = new Date(DATA.generated_at);
     stand.textContent = 'Stand: ' + d.toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}) +
-                         ' · ' + DATA.stats.verified + ' verifizierte Treffer · auto-Crawl 4× tägl.';
+                         ' · ' + DATA.stats.verified + ' verifizierte Treffer (Andy-profil-geprüft) · sortiert nach Fit-Score · auto-Crawl 4× tägl.';
   }
   const bc = document.getElementById('banner-count');
   if(bc) bc.textContent = (DATA.stats.verified || 0) + ' verifizierte Direkt-Stellen';
@@ -722,7 +737,8 @@ function go(c){
   document.querySelector('.tb[data-c="' + c + '"]').classList.add('on');
   document.getElementById('sec-' + c).classList.add('on');
   CURRENT_TAB = c;
-  if(c !== 'init') renderTab(c);
+  // hh + init sind hardcoded — kein dynamisches Re-Render (Bug-Fix Andy 2026-05-28)
+  if(c !== 'init' && c !== 'hh') renderTab(c);
   try{ localStorage.setItem('jsa12_tab', c); }catch{}
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }

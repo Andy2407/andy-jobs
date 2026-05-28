@@ -113,6 +113,62 @@ TITLE_BLOCK = [
     "fahrlehrer", "lehrer", "dozent",
     "fahrschule", "fahrschulfahrzeug", "wipersystem",
     "veterinär", "tierarzt", "physiotherapeut",
+    # ---------- NEU 2026-05-28 (Andy Top-20-Audit): Mismatches die durchgerutscht sind ----------
+    # IT-Projektmanager-/IT-Projektleiter — Andy ist Senior PM für Hardware/GFZ, NICHT IT
+    "it projektmanager", "it-projektmanager", "it projektleiter", "it-projektleiter",
+    "it project manager", "it project lead", "it-project manager", "it project leader",
+    "it-projektmanagerin", "it-projektleiterin",
+    "informatik-projektleiter", "informatik projektleiter",
+    "projektmanager email", "projektmanager e-mail",
+    "obsolescence manager", "email obsolescence",
+    # Flugfunk / Funktechnik / Radio (Andy hat NIE mit Funk gearbeitet)
+    "flugfunk", "flugfunkprodukt", "flugfunkanlag",
+    "funktechnik", "funkkommunikation", "funkgerät",
+    "radio engineer", "radio engineering", "radiocommunication",
+    "wireless engineer", "rf engineer", "uhf engineer", "vhf engineer",
+    "rfid engineer",
+    # Automotive SPICE Spezialist (Software-QM, fordert Python/SPICE-Assessor — nicht Andys Skillset)
+    "automotive spice spezialist", "automotive spice expert",
+    "spice assessor", "spice-assessor", "intacs assessor",
+    "kpi & softwarequalität", "kpi und softwarequalität",
+    "softwarequalität automotive", "softwarequalitätssicherung",
+    # ERP-Implementierung (SAP/Odoo/Salesforce-Implementation)
+    "odoo", "salesforce implementation", "salesforce-implementation",
+    "salesforce consultant", "salesforce administrator",
+    "microsoft dynamics", "dynamics 365", "ms dynamics",
+    "oracle consultant", "oracle implementation",
+    "netsuite", "workday consultant", "workday implementation",
+    # BESS / Energy Storage (Andy hat keine Batterie-/Storage-Erfahrung als Schwerpunkt)
+    " bess ", "(bess)", "bess (", "bess project", "battery energy storage",
+    "energy storage manager", "battery storage", "storage system manager",
+    "manager (bess)", "project manager bess",
+    # Bau / Immobilien-Beratung — auch wenn nicht in TITLE_BLOCK ist
+    "drees & sommer", "drees und sommer", "drees+sommer",
+    "drees sommer", "drees-sommer",
+    "bernard gruppe", "bernard zt",
+    "implenia", "strabag", "hochtief", "ed. züblin", "zueblin",
+    "goldbeck", "max bögl", "leonhard weiss", "porr ag",
+    # Software-Insurance / IT-Insurance
+    "msg nexinsure", "nexinsure",
+    "insurance consultant", "versicherungsberater software",
+    # ÖPNV / DB-Subsidiaries verschärft (zusätzlich zu bestehender DB-Sperre)
+    "db netz", "db engineering", "db cargo", "db schenker",
+    "deutsche bahn ag",
+    "fahrgastinformation",
+    # Bau-Projektsteuerung / Baurealisierung
+    "baurealisierung", "bauüberwachung", "bauleitung",
+    "tga-planung", "tga planung", "tga-projektleitung",
+    "hochbauprojekt", "wohnbauprojekt", "infrastrukturprojekt bau",
+    "projektsteuerer hochbau", "projektsteuerer tiefbau",
+    # Aerospace-Raumfahrt (Andy ist Aero-Engines = MTU OK, aber nicht reine Raumfahrt-PM)
+    # → NICHT geblockt, MTU ist Wunschfirma. Nur Generika ausschließen.
+    "satellite engineer", "satellitenentwickl", "raumfahrtingenieur",
+    # Generische Software-Implementation (klares Software-Profil)
+    "implementation specialist software", "software implementation",
+    "softwareimplement",
+    # Banking / FinTech-PM (zu IT-lastig)
+    "fintech project manager", "banking project manager",
+    "core banking", "kernbank",
 ]
 
 # ===== DESCRIPTION-LEVEL HARD BLOCK (sicherheits-net wenn Title nicht klar) =====
@@ -120,6 +176,15 @@ DESC_BLOCK_STRICT = [
     "etcs/dstw", "stellwerks", "leit- und sicherungstechnik",  # Bahn klar
     "marineschiffbau",
     "iva (intravaskuläre", "intravenös",  # medizinisch
+    # NEU 2026-05-28 (Andy): Funk/Radio im Description-Block
+    "flugfunkanlage", "flugfunkgerät", "vor/uhf-funk", "tactical radio",
+    "voip-implementierung", "voip implementation",
+    "satellitenkommunikation", "satellite communication systems",
+    # Software-SPICE-Assessor-Beschreibung
+    "automotive spice assessment", "spice assessment",
+    # Bau-spezifische Beschreibungs-Trigger
+    "leistungsphasen 1-9", "leistungsphasen 1 bis 9", "hoai-leistungsphase",
+    "vob-leistung", "vob/b", "honorarordnung architekten",
 ]
 
 # ===== POSITIVE BOOST (Score, höhere Werte = stärker passt zu Andy) =====
