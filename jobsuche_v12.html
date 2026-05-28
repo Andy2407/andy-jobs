@@ -122,6 +122,43 @@ padding-bottom:env(safe-area-inset-bottom)}
 /* Toast für Feedback (DOCX erstellt etc.) */
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--s2);border:1px solid var(--g);color:var(--g);padding:10px 18px;border-radius:8px;font-size:11px;font-weight:700;z-index:100;box-shadow:0 4px 24px rgba(0,0,0,.5);opacity:0;transition:.3s;pointer-events:none;max-width:90%;text-align:center}
 .toast.on{opacity:1;pointer-events:auto}
+/* NEU 2026-05-28: Firma-Blacklist-Button + Archiv-Modal */
+.co-block{display:inline-block;padding:3px 7px;margin-left:6px;font-size:9px;font-weight:600;color:#9da8bd;background:var(--s2);border:1px solid var(--bd);border-radius:5px;cursor:pointer}
+.co-block:hover{color:#e8554c;border-color:#e8554c}
+.co-block:active{filter:brightness(.85)}
+.jc-co{display:inline-flex;align-items:center;gap:0}
+/* Archiv-Modal (Andy: "soll verifiziert sein, dass im Archiv vermerkt") */
+.archiv-btn{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;padding:6px 11px;background:rgba(22,201,141,.15);color:var(--g);border:1px solid rgba(22,201,141,.4);border-radius:6px;cursor:pointer;transition:.15s}
+.archiv-btn:hover{background:rgba(22,201,141,.25)}
+.archiv-btn:active{transform:scale(.96)}
+.modal-bg{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(6,10,16,.85);z-index:200;align-items:flex-start;justify-content:center;padding:20px 12px;overflow-y:auto;backdrop-filter:blur(4px)}
+.modal-bg.on{display:flex}
+.modal{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:16px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;margin-top:20px}
+.modal h2{font-size:15px;font-weight:800;margin-bottom:4px;color:var(--t)}
+.modal .sub{font-size:10px;color:var(--m);margin-bottom:14px}
+.modal-close{float:right;background:var(--s2);border:1px solid var(--bd);color:var(--m);border-radius:5px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer}
+.modal-close:hover{color:var(--t);border-color:var(--t)}
+.archiv-item{background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:9px 11px;margin-bottom:6px;font-size:11px}
+.archiv-item-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:3px}
+.archiv-item-title{font-weight:700;font-size:11px;flex:1;line-height:1.3}
+.archiv-item-date{font-size:9px;color:var(--m);white-space:nowrap}
+.archiv-item-meta{font-size:9px;color:var(--m);display:flex;gap:6px;flex-wrap:wrap;margin-top:3px}
+.archiv-item-actions{display:flex;gap:5px;margin-top:6px}
+.archiv-item-actions a{font-size:9px;padding:4px 8px;border-radius:4px;text-decoration:none;color:var(--t);background:var(--s1);border:1px solid var(--bd)}
+.archiv-item-actions a:hover{border-color:var(--b)}
+.archiv-status-app{border-left:3px solid var(--g)}
+.archiv-status-uns{border-left:3px solid var(--o);opacity:.75}
+.archiv-status-rej{border-left:3px solid #e8554c;opacity:.7}
+.archiv-status-irr{border-left:3px solid #9da8bd;opacity:.6}
+.archiv-empty{text-align:center;padding:30px;color:var(--m);font-size:11px}
+.archiv-toolbar{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.archiv-toolbar button{background:var(--s2);border:1px solid var(--bd);color:var(--m);padding:5px 10px;font-size:10px;font-weight:600;border-radius:5px;cursor:pointer;font-family:inherit}
+.archiv-toolbar button.on{color:var(--t);border-color:var(--b);background:rgba(45,122,237,.1)}
+.blocked-co-list{margin-top:14px;padding-top:14px;border-top:1px solid var(--bd)}
+.blocked-co-list h3{font-size:12px;font-weight:700;color:var(--o);margin-bottom:7px}
+.blocked-co-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;margin:3px 4px 3px 0;font-size:10px;background:var(--s2);border:1px solid rgba(232,160,50,.3);color:var(--o);border-radius:5px}
+.blocked-co-chip button{background:none;border:0;color:var(--o);cursor:pointer;font-size:11px;padding:0 2px;font-family:inherit}
+.blocked-co-chip button:hover{color:var(--g)}
 /* NEU-Badge für junge Jobs */
 .new-badge{display:inline-block;font-size:8px;font-weight:800;padding:1px 5px;border-radius:99px;background:rgba(232,160,50,.18);color:var(--o);margin-left:5px;letter-spacing:.04em}
 .ftr{text-align:center;font-size:8px;color:var(--m);padding:14px 0;margin-top:10px;border-top:1px solid var(--bd);line-height:1.6}
@@ -168,7 +205,30 @@ padding-bottom:env(safe-area-inset-bottom)}
 <!-- NEU 2026-05-28: Hide-Marked-Toggle für Aktions-Status -->
 <div class="fs-tog">
   <label><input type="checkbox" id="hide-marked" checked>👁️ Markierte ausblenden</label>
+  <button class="archiv-btn" id="archiv-open">📂 Archiv anzeigen</button>
   <div class="stat-mini" id="mark-stats">·</div>
+</div>
+
+<!-- Archiv-Modal (Andy 2026-05-28: Verifikation dass Bewerbungen gespeichert sind) -->
+<div class="modal-bg" id="archiv-bg">
+  <div class="modal">
+    <button class="modal-close" onclick="closeArchiv()">✕ schließen</button>
+    <h2>📂 Mein Archiv</h2>
+    <p class="sub">Alle Stellen, die du markiert hast. Daten leben in deinem Browser (LocalStorage), nicht auf Server.</p>
+    <div class="archiv-toolbar" id="archiv-toolbar">
+      <button data-f="all" class="on">Alle</button>
+      <button data-f="app">✅ Beworben</button>
+      <button data-f="uns">❌ Unpassend</button>
+      <button data-f="rej">🚫 Absage</button>
+      <button data-f="irr">🔇 N.relevant</button>
+    </div>
+    <div id="archiv-list"></div>
+    <div class="blocked-co-list" id="blocked-co-section" style="display:none">
+      <h3>🚫 Blockierte Firmen</h3>
+      <p class="sub" style="margin-bottom:8px">Diese Firmen werden im Dashboard ausgeblendet. Klick auf ✕ zum Wiederherstellen.</p>
+      <div id="blocked-co-chips"></div>
+    </div>
+  </div>
 </div>
 
 <div class="ft">
@@ -411,7 +471,19 @@ function buildCard(j, cat){
   card.appendChild(top);
   // Meta
   const meta = el('div', 'jc-meta');
-  meta.appendChild(el('span', 'jc-co', j.company || '—'));
+  const coSpan = el('span', 'jc-co');
+  coSpan.appendChild(document.createTextNode(j.company || '—'));
+  // NEU 2026-05-28 (Andy): Firma-Blacklist-Button — "Unternehmen entfernen"
+  if(j.company){
+    const coBtn = el('span', 'co-block', '🗑️ Firma weg');
+    coBtn.title = 'Diese Firma komplett blockieren — keine Stellen mehr von ' + j.company;
+    coBtn.addEventListener('click', (ev) => {
+      ev.preventDefault(); ev.stopPropagation();
+      blockCompany(j.company);
+    });
+    coSpan.appendChild(coBtn);
+  }
+  meta.appendChild(coSpan);
   meta.appendChild(el('span', 'jc-loc', '📍 ' + (j.location || '—')));
   // NEU 2026-05-28 (Andy): Veröffentlichungsdatum (first_seen) als Meta-Eintrag
   if(j.first_seen){
@@ -633,10 +705,21 @@ let DATA = window.JOBSUCHE_DATA || null;
 let CURRENT_TAB = 'ki';
 let FILTER = '';
 
+function getBlockedCompanies(){
+  try{ return JSON.parse(localStorage.getItem('jsa12_blocked_co') || '[]'); }
+  catch{ return []; }
+}
 function jobsForTab(tab){
   if(!DATA || !DATA.jobs) return [];
   const want = tab === 'pm' ? ['pm', 'other'] : [tab];
-  let list = DATA.jobs.filter(j => want.includes(j.category));
+  // NEU 2026-05-28 (Andy): Firmen-Blacklist filtern (case-insensitive)
+  const blocked = getBlockedCompanies().map(c => c.toLowerCase());
+  let list = DATA.jobs.filter(j => {
+    if(!want.includes(j.category)) return false;
+    const co = (j.company || '').toLowerCase();
+    if(blocked.some(b => b && co.includes(b))) return false;
+    return true;
+  });
   if(FILTER){
     const f = FILTER.toLowerCase();
     list = list.filter(j =>
@@ -756,6 +839,125 @@ function td(btn, id){
   }catch{}
 }
 
+// ===== NEU 2026-05-28: Firma-Blacklist + Archiv-Modal =====
+function blockCompany(co){
+  if(!co) return;
+  const list = getBlockedCompanies();
+  if(list.some(x => x.toLowerCase() === co.toLowerCase())){
+    showToast('Firma "' + co + '" ist bereits blockiert');
+    return;
+  }
+  list.push(co);
+  try{ localStorage.setItem('jsa12_blocked_co', JSON.stringify(list)); }catch{}
+  showToast('🚫 Firma "' + co + '" blockiert — Re-Render läuft');
+  // Re-render aktueller Tab
+  if(CURRENT_TAB && CURRENT_TAB !== 'init' && CURRENT_TAB !== 'hh'){
+    renderTab(CURRENT_TAB);
+    updateStats();
+  }
+}
+function unblockCompany(co){
+  let list = getBlockedCompanies();
+  list = list.filter(x => x.toLowerCase() !== co.toLowerCase());
+  try{ localStorage.setItem('jsa12_blocked_co', JSON.stringify(list)); }catch{}
+  showToast('✓ Firma "' + co + '" wieder freigegeben');
+  renderBlockedCoChips();
+  if(CURRENT_TAB && CURRENT_TAB !== 'init' && CURRENT_TAB !== 'hh'){
+    renderTab(CURRENT_TAB);
+    updateStats();
+  }
+}
+function renderBlockedCoChips(){
+  const sec = document.getElementById('blocked-co-section');
+  const chips = document.getElementById('blocked-co-chips');
+  if(!sec || !chips) return;
+  const list = getBlockedCompanies();
+  while(chips.firstChild) chips.removeChild(chips.firstChild);
+  if(list.length === 0){ sec.style.display = 'none'; return; }
+  sec.style.display = 'block';
+  list.forEach(co => {
+    const chip = el('span', 'blocked-co-chip');
+    chip.appendChild(document.createTextNode('🚫 ' + co));
+    const b = document.createElement('button');
+    b.textContent = '✕';
+    b.title = 'Firma wieder freigeben';
+    b.addEventListener('click', () => unblockCompany(co));
+    chip.appendChild(b);
+    chips.appendChild(chip);
+  });
+}
+
+// Archiv-Modal
+let ARCHIV_FILTER = 'all';
+function openArchiv(){
+  document.getElementById('archiv-bg').classList.add('on');
+  renderArchiv();
+  renderBlockedCoChips();
+}
+function closeArchiv(){
+  document.getElementById('archiv-bg').classList.remove('on');
+}
+function renderArchiv(){
+  const list = document.getElementById('archiv-list');
+  if(!list) return;
+  while(list.firstChild) list.removeChild(list.firstChild);
+  let statusMap = {};
+  try{ statusMap = JSON.parse(localStorage.getItem('jsa12_status') || '{}'); }catch{}
+  // Migration: alter 'done'-Status wird als 'uns' geführt
+  const items = [];
+  Object.entries(statusMap).forEach(([id, st]) => {
+    const status = st === 'done' ? 'uns' : st;
+    if(ARCHIV_FILTER !== 'all' && status !== ARCHIV_FILTER) return;
+    // Job-Daten anhand id finden
+    const job = (DATA && DATA.jobs) ? DATA.jobs.find(j => jobId(j) === id) : null;
+    items.push({ id, status, job });
+  });
+  if(items.length === 0){
+    const e = el('div', 'archiv-empty');
+    e.appendChild(document.createTextNode('Noch keine Stelle markiert.'));
+    list.appendChild(e);
+    return;
+  }
+  const STATUS_NAME = { app: '✅ Beworben', uns: '❌ Unpassend', rej: '🚫 Absage', irr: '🔇 Nicht relevant' };
+  items.forEach(({id, status, job}) => {
+    const item = el('div', 'archiv-item archiv-status-' + status);
+    const top = el('div', 'archiv-item-top');
+    const ti = el('div', 'archiv-item-title');
+    ti.appendChild(document.createTextNode(job ? (job.title || '(ohne Titel)') : '⚠ Stelle nicht mehr im Crawl (id: ' + id.slice(0,18) + '…)'));
+    top.appendChild(ti);
+    const dt = el('div', 'archiv-item-date');
+    dt.appendChild(document.createTextNode(STATUS_NAME[status] || status));
+    top.appendChild(dt);
+    item.appendChild(top);
+    if(job){
+      const meta = el('div', 'archiv-item-meta');
+      meta.appendChild(el('span', null, (job.company || '—')));
+      meta.appendChild(el('span', null, '📍 ' + (job.location || '—')));
+      meta.appendChild(el('span', null, '🎯 ' + (job.score || 0) + '/100'));
+      if(job.first_seen) meta.appendChild(el('span', null, '📅 ' + job.first_seen.slice(0,10)));
+      item.appendChild(meta);
+      const acts = el('div', 'archiv-item-actions');
+      const link = document.createElement('a');
+      link.href = job.url || '#';
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = '📄 Zur Stelle';
+      acts.appendChild(link);
+      const undoBtn = document.createElement('a');
+      undoBtn.href = '#';
+      undoBtn.textContent = '↩ Markierung entfernen';
+      undoBtn.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        setStatus(id, status);  // toggle aus
+        renderArchiv();
+      });
+      acts.appendChild(undoBtn);
+      item.appendChild(acts);
+    }
+    list.appendChild(item);
+  });
+}
+
 (function init(){
   const ta = document.getElementById('ft');
   try{ const s = localStorage.getItem('jsa12_ft'); if(s) ta.value = s; }catch{}
@@ -780,6 +982,26 @@ function td(btn, id){
       });
     });
   }
+  // NEU 2026-05-28: Archiv-Button + Filter
+  const ab = document.getElementById('archiv-open');
+  if(ab) ab.addEventListener('click', openArchiv);
+  const ag = document.getElementById('archiv-bg');
+  if(ag) ag.addEventListener('click', (ev) => { if(ev.target === ag) closeArchiv(); });
+  const at = document.getElementById('archiv-toolbar');
+  if(at){
+    at.addEventListener('click', (ev) => {
+      const b = ev.target.closest('button[data-f]');
+      if(!b) return;
+      ARCHIV_FILTER = b.dataset.f;
+      at.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      renderArchiv();
+    });
+  }
+  // ESC schließt Modal
+  document.addEventListener('keydown', (ev) => {
+    if(ev.key === 'Escape') closeArchiv();
+  });
   if(DATA){
     updateStats();
     updateMarkStats();

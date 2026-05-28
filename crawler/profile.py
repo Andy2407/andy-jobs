@@ -169,6 +169,27 @@ TITLE_BLOCK = [
     # Banking / FinTech-PM (zu IT-lastig)
     "fintech project manager", "banking project manager",
     "core banking", "kernbank",
+    # ---------- NEU 2026-05-28 (Andy): Consulting komplett raus ----------
+    # Andy: "Ich sehe Consultingstellen bei Automotive, egal wo. Ich will nix mit Consulting zu tun haben."
+    # ABER: KI-Consultant / AI Consultant / AI Project Manager bleiben erlaubt (via TITLE_BOOST)
+    # → Spezifische Consulting-Titel blocken, allgemeines "consultant" auch
+    "business consultant", "strategy consultant", "management consultant",
+    "process consultant", "people consultant", "transformation consultant",
+    "principal consultant", "consulting director", "consulting partner",
+    "consulting manager", "senior consulting",
+    "manager consulting", "associate consultant", "consultant associate",
+    "consulting analyst", "analyst consulting",
+    "junior consultant", "consultant junior",
+    # ACHTUNG: KEINE generischen "(m/w/d)"-Suffixe hier, weil KI-Berater/AI-Consultant sonst getroffen
+    "unternehmensberater", "managementberater", "strategieberater",
+    "prozessberater", "transformationsberater",
+    "automotive consultant", "automotive berater",
+    "mobility consultant", "mobility berater",
+    "technical consultant", "technischer berater",
+    "implementation consultant", "implementierungsberater",
+    "sap consultant", "salesforce consultant", "oracle consultant",
+    # Vorsicht: KI/AI-Consultant SOLLEN erlaubt sein — sind in TITLE_BOOST schon explizit
+    # → Folgendes NICHT blocken: "ai consultant", "ki-consultant", "ki-berater", "ai project manager"
 ]
 
 # ===== DESCRIPTION-LEVEL HARD BLOCK (sicherheits-net wenn Title nicht klar) =====
@@ -259,6 +280,17 @@ COMPANY_DEMOTE = {
     "edag": 0.85,           # Engineering-Dienstleister
     "altran": 0.80,         # Engineering-Consulting
     "capgemini engineering": 0.80,
+    # NEU 2026-05-28 (Andy: "nix mit Consulting"): reine Strategie/Mgmt-Consulting → hart depriorisieren
+    # Sopra Steria / KPMG / Deloitte / Accenture lassen wir bei Default (haben echte KI-Stellen)
+    "mckinsey": 0.40,       # reine Mgmt-Consulting
+    "boston consulting": 0.40, "bcg": 0.40,
+    "bain & company": 0.40, "bain and company": 0.40,
+    "roland berger": 0.40,
+    "oliver wyman": 0.50,
+    "kearney": 0.50, "a.t. kearney": 0.50,
+    "horváth": 0.55, "horvath": 0.55,
+    "porsche consulting": 0.55,  # auch wenn Andy Porsche mag — Consulting ist Consulting
+    "zeb": 0.55,
 }
 
 # ===== COMPANY BOOST (Score-Bonus für gezielt gesuchte Firmen) =====
@@ -405,6 +437,25 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
     # Standort-Filter
     if not location_passes(location):
         return (-1, [f"🚫 BLOCK_LOC:{location[:60]}"])
+
+    # NEU 2026-05-28 (Andy): Consultant/Berater nur OK wenn KI/AI-Bezug im Titel
+    # Verhindert "Senior Consultant Automotive", "Berater (m/w/d) Digital" etc.
+    has_consultant_word = any(w in title_lower for w in [
+        "consultant", "consulting", "berater", "beraterin", "berater:in",
+        "beratung", "consultancy",
+    ])
+    # Regex-basiert: \bai\b / \bki\b matched auch am Titel-Anfang/Ende, plus weitere KI-Signale
+    has_ki_signal = bool(re.search(
+        r"\b(ai|ki|ml)\b|ai-|ki-|ai/|ki/|"
+        r"künstliche?\s*intelligen|intelligent\s*autom|automation\s*manager|"
+        r"machine\s*learning|data\s*scien|genai|gen\s*ai|generative\s*ai|"
+        r"deep\s*learning|llm|nlp|nlp\s*spec",
+        title_lower
+    ))
+    # Erlaubte Ausnahmen: technical project / senior project manager mit consultant-Bezug
+    # (z.B. "AI Technical Project Manager (m/w/d) Consultant") — wenn explizit KI/AI
+    if has_consultant_word and not has_ki_signal:
+        return (-1, [f"🚫 BLOCK_CONSULTING: Consultant/Berater ohne KI/AI-Bezug"])
 
     # Positiv-Score (Title + Beschreibung)
     score = 0
