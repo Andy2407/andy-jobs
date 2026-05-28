@@ -1160,18 +1160,20 @@ def parse_job_details(html: str, url: str = "") -> dict:
         m = re.search(pat, text, re.IGNORECASE)
         if m:
             kz = m.group(1).strip().strip(".,;")
-            # MUSS Ziffer enthalten + Stopword-Filter
+            # MUSS Ziffer enthalten + Stopword-Filter + KEINE reine 4+stellige Zahl (= PLZ/Marketing-Müll)
             if (2 <= len(kz) <= 25 and
                 kz.lower() not in KZ_STOPWORDS and
-                any(c.isdigit() for c in kz)):
+                any(c.isdigit() for c in kz) and
+                not re.fullmatch(r"\d{4,}", kz)):
                 out["kennziffer"] = kz
                 break
 
     # === Adresse (PLZ + Stadt) ===
-    # Negative Lookahead: nach 5-stelliger Zahl NIE "Euro/EUR/€/Brutto/p.a./Gehalt/jährlich/monatlich"
-    # Plus: ungültige PLZ-Ranges ausschließen (00xxx, 99999 sind keine echten DE-PLZ)
-    NOT_AFTER_PLZ = r"(?!\s*(?:Euro|EUR|€|\$|USD|GBP|Brutto|brutto|netto|p\.\s*a\.?|pro\s+Jahr|monatlich|jährlich|Gehalt|gehalt|Jahresgehalt))"
-    BAD_CITIES = {"euro","eur","brutto","netto","gehalt","jahr","monat","jahre","monate","stunden","stunde","monatlich","jährlich"}
+    # Negative Lookahead: nach 5-stelliger Zahl NIE "Euro/EUR/€/Brutto/p.a./Gehalt/jährlich/monatlich/Standorten/etc."
+    NOT_AFTER_PLZ = r"(?!\s*(?:Euro|EUR|€|\$|USD|GBP|Brutto|brutto|netto|p\.\s*a\.?|pro\s+Jahr|monatlich|jährlich|Gehalt|gehalt|Jahresgehalt|Standorte?n?|Mitarbeiter|Stellen|Jobs|Kunden|Bewerber|Niederlassungen?|Filialen|Tagen?|Wochen))"
+    BAD_CITIES = {"euro","eur","brutto","netto","gehalt","jahr","monat","jahre","monate","stunden","stunde","monatlich","jährlich",
+                  "standorte","standorten","standort","mitarbeiter","mitarbeitende","mitarbeiterin","stellen","jobs","kunden",
+                  "bewerber","niederlassungen","filialen","tagen","wochen","tausend","million","prozent"}
     addr_patterns = [
         r"([A-ZÄÖÜ][a-zäöüß\-]+(?:str(?:asse|aße)\.?|[Aa]llee|[Pp]latz|[Rr]ing|[Ww]eg|[Gg]asse|[Bb]oulevard))\s+(\d+(?:\s*[a-z]?)(?:\s*[\-\/]\s*\d+)?)\s*[,\n]?\s*(\d{5})" + NOT_AFTER_PLZ + r"\s+([A-ZÄÖÜ][a-zäöüß\-]{2,25})\b",
     ]

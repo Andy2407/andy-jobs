@@ -12,7 +12,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="build-version" content="v14.1-2026-05-28-cleanup-spacing">
+<meta name="build-version" content="v14.2-2026-05-28-empfaenger-clean">
 <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%23060a10'/><text x='50%25' y='52%25' text-anchor='middle' dominant-baseline='middle' font-size='90' font-family='system-ui' fill='%232d7aed'>A</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
 <!-- docx.js v9.1.0 für Client-side MS-DOCX-Generierung (FIX 2026-05-28: jsdelivr statt unpkg, weil unpkg .min nicht existiert → 404) -->
@@ -695,18 +695,20 @@ function generateMS(job, btn, _retry){
   // Andy 2026-05-28 (v13.9): KEIN Modal mehr! Empfänger-Infos kommen direkt aus dem Crawler.
   // job-Objekt hat (wenn Cloud-Crawler sie pre-parsed): job.recruiter, job.address, job.kennziffer
   // Wenn nicht da: leer → DOCX-Generator nimmt nur Firma + "Personalabteilung" Fallback
-  // PLUS v14.1: Sanity-Filter gegen alte Crawler-Daten ('80000 Euro', 'nummer' etc.)
+  // v14.2: Sanity-Filter gegen Crawler-Müll (80000 Euro, 39026 Standorte, nummer, etc.)
   const sanitizeCity = (c) => {
     if(!c) return '';
-    if(/\b(?:Euro|EUR|€|Brutto|netto|Gehalt|Jahr|Monat|Stunden?)\b/i.test(c)) return '';
-    if(/^00\d{3}/.test(c) || /^99999/.test(c)) return '';  // ungültige PLZ
+    // Marketing-Text-Wörter blocken
+    if(/\b(?:Euro|EUR|€|Brutto|netto|Gehalt|Jahr|Monat|Stunden?|Standorte?|Mitarbeiter(?:in)?|Mitarbeitende|Stellen|Jobs|Kunden|Bewerber(?:innen)?|Niederlassungen?|Filialen|Tagen?|Wochen|Tausend|Million)\b/i.test(c)) return '';
+    if(/^00\d{3}/.test(c) || /^99999/.test(c)) return '';
     return c.trim();
   };
   const sanitizeKennziffer = (k) => {
     if(!k) return '';
     const kt = k.trim();
     if(/^(?:nummer|number|reference|kennzeichen|id|nr|der|das|die|und)$/i.test(kt)) return '';
-    if(!/\d/.test(kt)) return '';  // MUSS Ziffer enthalten
+    if(!/\d/.test(kt)) return '';
+    if(/^\d{4,}$/.test(kt)) return '';  // reine 4+stellige Zahl = vermutlich PLZ/Marketing-Müll
     return kt;
   };
   const recipientInfo = {
@@ -838,10 +840,10 @@ function _generateMSWith(job, btn, recipientInfo){
       alignment: D.AlignmentType.RIGHT
     });
     // Betreff-Paragraph: 11pt BOLD Navy #1B365D
-    // Andy 2026-05-28: "Abstand Betreff → sehr geehrte minimal vergrößern" → sa = 160 (8pt) statt 80
+    // Andy 2026-05-28 (3.iteration): "Betreff → Anrede minimal vergrößern" → sa = 240 (12pt, war 160=8pt)
     const PB = (txt) => new D.Paragraph({
       children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22, bold: true, color: NAVY })],
-      spacing: { after: 160, line: 300 }
+      spacing: { after: 240, line: 300 }
     });
     // Name-Schluss-Paragraph: 11pt BOLD Navy
     const PName = (txt) => new D.Paragraph({
@@ -851,15 +853,21 @@ function _generateMSWith(job, btn, recipientInfo){
     // === Layout-Tabelle 1×2: Empfänger links | Sender rechts ===
     const noBorder = { style: D.BorderStyle.NONE, size: 0, color: 'FFFFFF' };
     const cellBorders = { top: noBorder, bottom: noBorder, left: noBorder, right: noBorder };
-    // Empfänger-Zellen-Inhalt: Firma + (optional Ansprechpartner) + (optional Adresse)
-    // Andy 2026-05-28 v2: wenn firma leer (weil Crawler-Müll und User keine Modal-Eingaben), nur Modal-Werte zeigen
+    // Empfänger-Zellen-Inhalt (Andy 2026-05-28 v14.2): SAUBER — PLZ-Ort NUR wenn Straße ODER Firma da
+    // Verhindert dass "39026 Standorte" allein als Empfänger erscheint
     const empfChildren = [];
-    if(firma) empfChildren.push(PEmpf(firma));
-    if(recipientInfo && recipientInfo.recruiter) empfChildren.push(PEmpf(recipientInfo.recruiter));
-    else if(firma) empfChildren.push(PEmpf('Personalabteilung'));
-    if(recipientInfo && recipientInfo.strasse) empfChildren.push(PEmpf(recipientInfo.strasse));
-    if(recipientInfo && recipientInfo.plzort) empfChildren.push(PEmpf(recipientInfo.plzort));
-    // Fallback wenn ALLES leer: mindestens 1 Zeile damit Tabelle nicht crashed
+    const hasFirma = !!firma;
+    const hasRecruiter = recipientInfo && recipientInfo.recruiter;
+    const hasStreet = recipientInfo && recipientInfo.strasse;
+    if(hasFirma) empfChildren.push(PEmpf(firma));
+    if(hasRecruiter) empfChildren.push(PEmpf(recipientInfo.recruiter));
+    else if(hasFirma) empfChildren.push(PEmpf('Personalabteilung'));
+    if(hasStreet) empfChildren.push(PEmpf(recipientInfo.strasse));
+    // PLZ-Ort NUR anzeigen wenn STRASSE oder FIRMA da — sonst isoliert "39026 Standorte"
+    if(recipientInfo && recipientInfo.plzort && (hasStreet || hasFirma)) {
+      empfChildren.push(PEmpf(recipientInfo.plzort));
+    }
+    // Fallback wenn ALLES leer: nur "Personalabteilung"
     if(empfChildren.length === 0) empfChildren.push(PEmpf('Personalabteilung'));
     const empfCell = new D.TableCell({
       width: { size: 50, type: D.WidthType.PERCENTAGE },
