@@ -12,7 +12,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="build-version" content="v14.2-2026-05-28-empfaenger-clean">
+<meta name="build-version" content="v14.3-2026-05-28-no-doppel-personalabt">
 <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%23060a10'/><text x='50%25' y='52%25' text-anchor='middle' dominant-baseline='middle' font-size='90' font-family='system-ui' fill='%232d7aed'>A</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
 <!-- docx.js v9.1.0 für Client-side MS-DOCX-Generierung (FIX 2026-05-28: jsdelivr statt unpkg, weil unpkg .min nicht existiert → 404) -->
@@ -771,12 +771,8 @@ function _generateMSWith(job, btn, recipientInfo){
       coLow.startsWith(titleLow.slice(0, Math.min(15, titleLow.length)))
     );
     if(!isCompanyJunk) firma = rawCompany;
-    // Modal-Eingabe überschreibt (wenn User Firma manuell eingegeben hat — aber kein Feld dafür, das wäre extra)
-    // → Andy gibt Firma indirekt via Recruiter/Adresse vor; wenn beide leer + company Müll: "Personalabteilung"
-    if(!firma){
-      const hasManualRcpt = recipientInfo && (recipientInfo.recruiter || recipientInfo.strasse || recipientInfo.plzort);
-      firma = hasManualRcpt ? '' : 'Personalabteilung';  // Bei Modal-Eingabe: leer (User-Recruiter steht als 1. Zeile)
-    }
+    // v14.3 BUG-FIX (Andy 2026-05-28): firma NIE 'Personalabteilung' setzen — empfChildren-Logik unten entscheidet sauber.
+    // Wenn firma leer + keine Daten → exakt 1 Zeile 'Personalabteilung' (im Fallback-Branch).
     // Betreff-Cleanup nach Andys 2026-05-28-Regeln (KEIN Truncation — sonst "Münc…" Artefakt)
     stellentitel = cleanStellentitel(stellentitel);
     const heute = new Date().toLocaleDateString('de-DE', { day:'2-digit', month:'long', year:'numeric' });
@@ -853,22 +849,29 @@ function _generateMSWith(job, btn, recipientInfo){
     // === Layout-Tabelle 1×2: Empfänger links | Sender rechts ===
     const noBorder = { style: D.BorderStyle.NONE, size: 0, color: 'FFFFFF' };
     const cellBorders = { top: noBorder, bottom: noBorder, left: noBorder, right: noBorder };
-    // Empfänger-Zellen-Inhalt (Andy 2026-05-28 v14.2): SAUBER — PLZ-Ort NUR wenn Straße ODER Firma da
-    // Verhindert dass "39026 Standorte" allein als Empfänger erscheint
+    // Empfänger-Zellen-Inhalt v14.3 (Andy 2026-05-28): 3 SAUBERE BRANCHES — keine Doppel-Pushes mehr
     const empfChildren = [];
-    const hasFirma = !!firma;
-    const hasRecruiter = recipientInfo && recipientInfo.recruiter;
-    const hasStreet = recipientInfo && recipientInfo.strasse;
-    if(hasFirma) empfChildren.push(PEmpf(firma));
-    if(hasRecruiter) empfChildren.push(PEmpf(recipientInfo.recruiter));
-    else if(hasFirma) empfChildren.push(PEmpf('Personalabteilung'));
-    if(hasStreet) empfChildren.push(PEmpf(recipientInfo.strasse));
-    // PLZ-Ort NUR anzeigen wenn STRASSE oder FIRMA da — sonst isoliert "39026 Standorte"
-    if(recipientInfo && recipientInfo.plzort && (hasStreet || hasFirma)) {
-      empfChildren.push(PEmpf(recipientInfo.plzort));
+    const hasFirma = !!firma && firma !== 'Personalabteilung';
+    const hasRecruiter = !!(recipientInfo && recipientInfo.recruiter);
+    const hasStreet = !!(recipientInfo && recipientInfo.strasse);
+    const hasPlzort = !!(recipientInfo && recipientInfo.plzort);
+    if(hasFirma){
+      // Branch 1: Echte Firma bekannt → Firma + (Recruiter ODER 'Personalabteilung') + Adresse
+      empfChildren.push(PEmpf(firma));
+      empfChildren.push(PEmpf(hasRecruiter ? recipientInfo.recruiter : 'Personalabteilung'));
+      if(hasStreet) empfChildren.push(PEmpf(recipientInfo.strasse));
+      if(hasPlzort) empfChildren.push(PEmpf(recipientInfo.plzort));
+    } else if(hasRecruiter || hasStreet){
+      // Branch 2: Keine Firma, aber Crawler hat Recruiter und/oder Straße → was wir haben
+      if(hasRecruiter) empfChildren.push(PEmpf(recipientInfo.recruiter));
+      if(hasStreet) empfChildren.push(PEmpf(recipientInfo.strasse));
+      if(hasPlzort) empfChildren.push(PEmpf(recipientInfo.plzort));
+    } else {
+      // Branch 3: Komplett leer (LinkedIn-Junk, Bundesagentur-SPA, etc.) → EINE Zeile 'Personalabteilung'
+      empfChildren.push(PEmpf('Personalabteilung'));
     }
-    // Fallback wenn ALLES leer: nur "Personalabteilung"
-    if(empfChildren.length === 0) empfChildren.push(PEmpf('Personalabteilung'));
+    // SELF-CHECK (Andy: 'verifiziere deine Änderungen'): max 1× 'Personalabteilung' in der Cell
+    if(empfChildren.length === 0) empfChildren.push(PEmpf('Personalabteilung'));  // Safety net
     const empfCell = new D.TableCell({
       width: { size: 50, type: D.WidthType.PERCENTAGE },
       borders: cellBorders,
