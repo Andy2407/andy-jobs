@@ -1211,6 +1211,130 @@ def apply_filter(jobs) -> list:
 
 
 # ============================================================
+# NEU 2026-05-28 (Andy explizit): 4 neue Quellen
+# ============================================================
+def crawl_sii_group(session) -> list:
+    """SII Group — Andy explizit 2026-05-28 'gefunden bei SII Group'"""
+    log.info("[SII] Karriere-API holen…")
+    jobs = []
+    candidates = [
+        "https://api.smartrecruiters.com/v1/companies/SiiPolska/postings?limit=100&country=de",
+        "https://api.smartrecruiters.com/v1/companies/SIIGermany/postings?limit=100",
+        "https://api.smartrecruiters.com/v1/companies/SII/postings?limit=100&country=de",
+    ]
+    for url in candidates:
+        try:
+            r = session.get(url, timeout=15)
+            if r.status_code != 200: continue
+            data = r.json()
+            for p in data.get("content", []):
+                loc = p.get("location", {})
+                loc_str = ", ".join(filter(None, [loc.get("city"), loc.get("country")]))
+                if "de" not in (loc.get("country") or "").lower() and "germany" not in loc_str.lower():
+                    continue
+                jobs.append({
+                    "source": "sii_group",
+                    "url": p.get("ref", p.get("applyUrl", "")),
+                    "title": p.get("name", ""),
+                    "company": "SII Group",
+                    "location": loc_str or "Deutschland",
+                    "description": (p.get("jobAd", {}) or {}).get("sections", {}).get("jobDescription", {}).get("text", "")[:1500],
+                })
+            if jobs: break
+        except Exception as e:
+            log.debug(f"[SII] {url}: {e}")
+    if not jobs:
+        try:
+            r = session.get("https://de.sii-group.com/de-de/karriere", timeout=15)
+            soup = BeautifulSoup(r.text, "html.parser")
+            for a in soup.select("a[href*='job'], a[href*='offer'], a[href*='karriere']"):
+                href = a.get("href", ""); title = a.get_text(strip=True)
+                if not title or len(title) < 10: continue
+                if href.startswith("/"): href = "https://de.sii-group.com" + href
+                jobs.append({"source": "sii_group", "url": href, "title": title,
+                             "company": "SII Group", "location": "Deutschland", "description": ""})
+        except Exception as e:
+            log.warning(f"[SII] Fallback: {e}")
+    log.info(f"[SII] {len(jobs)} Jobs")
+    return jobs
+
+
+def crawl_rodenstock(session) -> list:
+    """Rodenstock — Andy 2026-05-28 als Wunschfirma genannt"""
+    log.info("[Rodenstock] Karriere-API…")
+    jobs = []
+    candidates = [
+        "https://boards-api.greenhouse.io/v1/boards/rodenstock/jobs",
+        "https://api.smartrecruiters.com/v1/companies/Rodenstock/postings?limit=100",
+    ]
+    for url in candidates:
+        try:
+            r = session.get(url, timeout=15)
+            if r.status_code != 200: continue
+            if "greenhouse" in url:
+                for j in r.json().get("jobs", []):
+                    loc = (j.get("location") or {}).get("name") or ""
+                    jobs.append({"source": "rodenstock", "url": j.get("absolute_url", ""),
+                                 "title": j.get("title", ""), "company": "Rodenstock",
+                                 "location": loc, "description": ""})
+                if jobs: break
+            elif "smartrecruiters" in url:
+                for p in r.json().get("content", []):
+                    loc = p.get("location", {})
+                    loc_str = ", ".join(filter(None, [loc.get("city"), loc.get("country")]))
+                    jobs.append({"source": "rodenstock", "url": p.get("ref", p.get("applyUrl", "")),
+                                 "title": p.get("name", ""), "company": "Rodenstock",
+                                 "location": loc_str or "München", "description": ""})
+                if jobs: break
+        except Exception as e:
+            log.debug(f"[Rodenstock] {url}: {e}")
+    log.info(f"[Rodenstock] {len(jobs)} Jobs")
+    return jobs
+
+
+def crawl_cariad(session) -> list:
+    """CARIAD — VW-Software-Tochter, Andys VW-Scout-Brücke"""
+    log.info("[CARIAD] SmartRecruiters…")
+    jobs = []
+    try:
+        r = session.get("https://api.smartrecruiters.com/v1/companies/CariadSE/postings?limit=100&country=de", timeout=15)
+        if r.status_code == 200:
+            for p in r.json().get("content", []):
+                loc = p.get("location", {})
+                loc_str = ", ".join(filter(None, [loc.get("city"), loc.get("country")]))
+                jobs.append({"source": "cariad", "url": p.get("ref", p.get("applyUrl", "")),
+                             "title": p.get("name", ""), "company": "CARIAD",
+                             "location": loc_str or "Wolfsburg/Ingolstadt", "description": ""})
+    except Exception as e:
+        log.warning(f"[CARIAD] {e}")
+    log.info(f"[CARIAD] {len(jobs)} Jobs")
+    return jobs
+
+
+def crawl_mtu(session) -> list:
+    """MTU Aero Engines — München-OEM (Aerospace)"""
+    log.info("[MTU] Workday-API…")
+    jobs = []
+    try:
+        r = session.post("https://mtu.wd3.myworkdayjobs.com/wday/cxs/mtu/External/jobs",
+                         timeout=15, json={"limit": 50, "offset": 0, "searchText": ""},
+                         headers={"Content-Type": "application/json", "Accept": "application/json"})
+        if r.status_code == 200:
+            for p in r.json().get("jobPostings", []):
+                loc = p.get("locationsText") or ""
+                if not any(k in loc.lower() for k in ["münchen", "munich", "remote", "deutschland", "germany"]):
+                    continue
+                jobs.append({"source": "mtu",
+                             "url": "https://mtu.wd3.myworkdayjobs.com" + p.get("externalPath", ""),
+                             "title": p.get("title", ""), "company": "MTU Aero Engines",
+                             "location": loc, "description": ""})
+    except Exception as e:
+        log.warning(f"[MTU] {e}")
+    log.info(f"[MTU] {len(jobs)} Jobs")
+    return jobs
+
+
+# ============================================================
 # Main
 # ============================================================
 def main():
@@ -1239,6 +1363,11 @@ def main():
         (crawl_weworkremotely, "WeWorkRemotely"),
         (crawl_edag_karriere, "EDAG-Karriere"),
         (crawl_cognizant_mobility, "Cognizant-Mobility"),
+        # NEU 2026-05-28 (Andy explizit):
+        (crawl_sii_group, "SII Group"),
+        (crawl_rodenstock, "Rodenstock"),
+        (crawl_cariad, "CARIAD"),
+        (crawl_mtu, "MTU Aero Engines"),
     ]
     sources_no_session = [
         (crawl_indeed_playwright, "Indeed (Playwright)"),

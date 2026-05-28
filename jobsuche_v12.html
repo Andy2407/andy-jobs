@@ -10,6 +10,9 @@
 <meta name="theme-color" content="#060a10">
 <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%23060a10'/><text x='50%25' y='52%25' text-anchor='middle' dominant-baseline='middle' font-size='90' font-family='system-ui' fill='%232d7aed'>A</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- docx.js v8.5.0 für Client-side MS-DOCX-Generierung (Andy 2026-05-28) -->
+<script src="https://unpkg.com/docx@8.5.0/build/index.umd.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" defer></script>
 <style>
 :root{--bg:#060a10;--s1:#0d1219;--s2:#131b27;--bd:#1b2537;--t:#d8e2f0;--m:#4d6080;
 --b:#2d7aed;--g:#16c98d;--o:#e8a032;--v:#9565ed;--c:#06b6d4;--r:10px}
@@ -88,11 +91,37 @@ padding-bottom:env(safe-area-inset-bottom)}
 .sb.on-done{background:rgba(157,168,189,.18);color:#9da8bd;border-color:rgba(157,168,189,.4)}
 .sb.on-app{background:rgba(22,201,141,.18);color:var(--g);border-color:rgba(22,201,141,.5)}
 .sb.on-rej{background:rgba(220,80,80,.18);color:#ee7777;border-color:rgba(220,80,80,.5)}
+/* NEU 2026-05-28 (Andy): 4. Status "nicht relevant" + "unpassend" als done-Variante */
+.sb.on-irr{background:rgba(157,168,189,.18);color:#9da8bd;border-color:rgba(157,168,189,.5)}
+.sb.on-uns{background:rgba(232,160,50,.18);color:var(--o);border-color:rgba(232,160,50,.5)}
 .jc.st-done{opacity:.4}
 .jc.st-done .jc-t{text-decoration:line-through;color:var(--m)}
+.jc.st-uns{opacity:.35;border-left:3px solid var(--o)}
+.jc.st-uns .jc-t{text-decoration:line-through;color:var(--o)}
+.jc.st-irr{opacity:.3;border-left:3px solid #9da8bd}
+.jc.st-irr .jc-t{text-decoration:line-through;color:#9da8bd}
 .jc.st-app{border-color:rgba(22,201,141,.5);background:linear-gradient(180deg,rgba(22,201,141,.05),var(--s1))}
 .jc.st-rej{opacity:.55;border-color:rgba(220,80,80,.3)}
 .jc.st-rej .jc-t{text-decoration:line-through;color:#ee7777}
+.jc.hide-marked{display:none}
+/* MS-DOCX-Button (Andy 2026-05-28) */
+.ms-btn{display:block;width:100%;background:linear-gradient(135deg,#5945ed,#9565ed);border:0;border-radius:6px;padding:9px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;margin-top:6px;min-height:38px}
+.ms-btn:active{filter:brightness(.85)}
+.ms-btn:disabled{opacity:.5;cursor:wait}
+/* Fit-Score-Detail (Andy 2026-05-28: "Fit ... wieso, weshalb, warum") */
+.score-det{font-size:9px;color:var(--m);margin:5px 0 7px;padding:6px 8px;background:var(--s2);border-radius:5px;border-left:2px solid var(--b);line-height:1.55}
+.score-det b{color:var(--t);font-size:10px}
+.score-det .sd-row{display:block;margin:2px 0}
+/* Hide-Marked-Filter */
+.fs-tog{display:flex;justify-content:space-between;align-items:center;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:8px 11px;margin-bottom:10px;font-size:10px;flex-wrap:wrap;gap:6px}
+.fs-tog label{display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--m);font-weight:600}
+.fs-tog input{accent-color:var(--b)}
+.fs-tog .stat-mini{font-size:9px;color:var(--m);display:flex;gap:8px;flex-wrap:wrap}
+.fs-tog .stat-mini span{white-space:nowrap}
+.fs-tog .stat-mini b{color:var(--t)}
+/* Toast für Feedback (DOCX erstellt etc.) */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--s2);border:1px solid var(--g);color:var(--g);padding:10px 18px;border-radius:8px;font-size:11px;font-weight:700;z-index:100;box-shadow:0 4px 24px rgba(0,0,0,.5);opacity:0;transition:.3s;pointer-events:none;max-width:90%;text-align:center}
+.toast.on{opacity:1;pointer-events:auto}
 /* NEU-Badge für junge Jobs */
 .new-badge{display:inline-block;font-size:8px;font-weight:800;padding:1px 5px;border-radius:99px;background:rgba(232,160,50,.18);color:var(--o);margin-left:5px;letter-spacing:.04em}
 .ftr{text-align:center;font-size:8px;color:var(--m);padding:14px 0;margin-top:10px;border-top:1px solid var(--bd);line-height:1.6}
@@ -120,7 +149,8 @@ padding-bottom:env(safe-area-inset-bottom)}
 </div>
 
 <div class="banner" id="banner">
-  <b>📱 V12 · Live-Crawler:</b> Daten 4× täglich · sortiert nach Aktualität (neueste oben, <span class="warn">NEU</span>-Badge für frische Treffer) (Bundesagentur · Akkodis · arbeitnow · Personio · Greenhouse). <span class="em" id="banner-count">…</span>
+  <b>📱 V13 · Live-Crawler:</b> 25 Quellen · 4× täglich · sortiert nach Aktualität (neueste oben, <span class="warn">NEU</span>-Badge für frische Treffer) — inkl. <span class="em">SII · Rodenstock · CARIAD · MTU</span>. <span class="em" id="banner-count">…</span><br>
+  <span class="warn">⚠️ Ferchau −35% (Eng-Dienstleister)</span> · <span class="em">📝 NEU: MS-DOCX per Klick · 4 Aktions-Buttons mit Hide-Filter</span>
 </div>
 
 <div class="stats">
@@ -132,7 +162,13 @@ padding-bottom:env(safe-area-inset-bottom)}
 
 <div class="ft">
   <label>🔎 Filter: Titel / Firma / Standort enthält…</label>
-  <input id="qf" type="text" placeholder="z.B. modulleiter · münchen · remote · cariad" />
+  <input id="qf" type="text" placeholder="z.B. modulleiter · münchen · remote · cariad · rodenstock · sii" />
+</div>
+
+<!-- NEU 2026-05-28: Hide-Marked-Toggle für Aktions-Status -->
+<div class="fs-tog">
+  <label><input type="checkbox" id="hide-marked" checked>👁️ Markierte ausblenden</label>
+  <div class="stat-mini" id="mark-stats">·</div>
 </div>
 
 <div class="ft">
@@ -396,6 +432,15 @@ function buildCard(j, cat){
     ali.style.cssText = 'font-size:8.5px;color:var(--m);margin:4px 0';
     card.appendChild(ali);
   }
+  // NEU 2026-05-28 (Andy): Fit-Score-Detail-Block (wieso/weshalb/warum)
+  if(j.score_reasons && j.score_reasons.length){
+    const det = el('div', 'score-det');
+    det.appendChild(el('b', null, '🎯 Fit-Score ' + (j.score || 0) + '/100 — Begründung:'));
+    j.score_reasons.forEach(r => {
+      det.appendChild(el('span', 'sd-row', '  ' + r));
+    });
+    card.appendChild(det);
+  }
   // CTA
   const a = document.createElement('a');
   a.className = 'cta ' + cta;
@@ -404,14 +449,21 @@ function buildCard(j, cat){
   a.rel = 'noopener';
   a.textContent = '📄 Direkt zur Stelle bewerben →';
   card.appendChild(a);
+  // NEU 2026-05-28 (Andy): MS-DOCX-Generierung-Button
+  const msBtn = document.createElement('button');
+  msBtn.className = 'ms-btn';
+  msBtn.textContent = '📝 Motivationsschreiben erstellen (DOCX)';
+  msBtn.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); generateMS(j, msBtn); });
+  card.appendChild(msBtn);
   // URL klein
   card.appendChild(el('div', 'url-sm', urlShort(j.url)));
-  // v7: 3-Status-Buttons (erledigt / beworben / absage)
+  // 4-Status-Buttons (Andy 2026-05-28: beworben/unpassend/absage/n.r.)
   const bar = el('div', 'stbar');
   const states = [
-    ['done', '✓ erledigt'],
-    ['app',  '↑ beworben'],
-    ['rej',  '✗ absage'],
+    ['app',  '✅ beworben'],
+    ['uns',  '❌ unpassend'],
+    ['rej',  '🚫 absage'],
+    ['irr',  '🔇 n.relev.'],
   ];
   for(const [st, label] of states){
     const b = el('span', 'sb', label);
@@ -422,26 +474,148 @@ function buildCard(j, cat){
   return card;
 }
 
+// 4-Status-System (Andy 2026-05-28): app / uns / rej / irr
+// Migration: alter 'done'-Status wird als 'uns' (unpassend) gelesen
+const STATUS_IDX = { app: 0, uns: 1, rej: 2, irr: 3 };
+const STATUS_LABELS = { app: 'beworben', uns: 'unpassend', rej: 'absage', irr: 'nicht relevant' };
 function setStatus(id, newStatus){
   const card = document.querySelector('[data-id="' + CSS.escape(id) + '"]');
   if(!card) return;
-  // Falls bereits dieser Status gesetzt: toggle zurück auf offen
   const cur = card.dataset.status || '';
   const finalStatus = (cur === newStatus) ? '' : newStatus;
-  card.classList.remove('st-done','st-app','st-rej');
-  card.querySelectorAll('.sb').forEach(b => b.classList.remove('on-done','on-app','on-rej'));
+  card.classList.remove('st-done','st-app','st-uns','st-rej','st-irr','hide-marked');
+  card.querySelectorAll('.sb').forEach(b => b.classList.remove('on-done','on-app','on-uns','on-rej','on-irr'));
   card.dataset.status = finalStatus;
   if(finalStatus){
     card.classList.add('st-' + finalStatus);
     const btns = card.querySelectorAll('.sb');
-    const idx = {done: 0, app: 1, rej: 2}[finalStatus];
+    const idx = STATUS_IDX[finalStatus];
     if(idx !== undefined && btns[idx]) btns[idx].classList.add('on-' + finalStatus);
+    // Hide-Marked-Toggle anwenden
+    const hide = document.getElementById('hide-marked');
+    if(hide && hide.checked) card.classList.add('hide-marked');
+    showToast('Markiert: ' + (STATUS_LABELS[finalStatus] || finalStatus));
+  }else{
+    showToast('Markierung entfernt');
   }
   try{
     const map = JSON.parse(localStorage.getItem('jsa12_status') || '{}');
     if(finalStatus) map[id] = finalStatus; else delete map[id];
     localStorage.setItem('jsa12_status', JSON.stringify(map));
   }catch{}
+  updateMarkStats();
+}
+
+function updateMarkStats(){
+  try{
+    const map = JSON.parse(localStorage.getItem('jsa12_status') || '{}');
+    const counts = { app: 0, uns: 0, rej: 0, irr: 0 };
+    Object.values(map).forEach(v => {
+      if(v === 'done') counts.uns++;  // Legacy
+      else if(counts[v] !== undefined) counts[v]++;
+    });
+    const target = document.getElementById('mark-stats');
+    if(!target) return;
+    while(target.firstChild) target.removeChild(target.firstChild);
+    const make = (label, n) => {
+      const sp = document.createElement('span');
+      const b = document.createElement('b');
+      b.textContent = String(n);
+      sp.appendChild(b);
+      sp.appendChild(document.createTextNode(' ' + label));
+      target.appendChild(sp);
+    };
+    make('bew', counts.app);
+    make('unp', counts.uns);
+    make('abs', counts.rej);
+    make('n.r.', counts.irr);
+  }catch{}
+}
+
+function showToast(msg, ok){
+  if(ok === undefined) ok = true;
+  let t = document.getElementById('toast');
+  if(!t){ t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.style.borderColor = ok ? 'var(--g)' : 'var(--o)';
+  t.style.color = ok ? 'var(--g)' : 'var(--o)';
+  t.classList.add('on');
+  setTimeout(() => t.classList.remove('on'), 2500);
+}
+
+// ===== MS-DOCX-Generierung — V14-PM-Pattern (Andy 2026-05-28) =====
+// Nutzt docx.js v8 + FileSaver.js (beide via CDN im <head>)
+function generateMS(job, btn){
+  if(typeof docx === 'undefined' || typeof saveAs === 'undefined'){
+    showToast('docx.js noch nicht geladen — bitte kurz warten und nochmal klicken', false);
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = '⏳ Generiere DOCX …';
+  try{
+    const D = docx;
+    const stellentitel = (job.title || 'die ausgeschriebene Stelle').trim();
+    const firma = (job.company || 'Ihre Firma').trim();
+    const heute = new Date().toLocaleDateString('de-DE', { day:'2-digit', month:'long', year:'numeric' });
+    // V14-ALTEN-PM-Pattern (Andys finale akzeptierte MS-Struktur): 5 Absätze A1-A5
+    const A1 = 'Ihre Ausschreibung als ' + stellentitel + ' hat mich aus zwei Gründen sofort angesprochen. Bei Magna Engineering & Infotainment habe ich zuletzt den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI über alle Bauphasen. Parallel habe ich mir eine produktive n8n-Praxis im Eigenbetrieb aufgebaut, mit Workflows für Reporting und Anforderungs-Aufbereitung. Beide Stränge treffen den Kern Ihrer Stellenbeschreibung.';
+    const A2 = 'Zwölf Jahre Premium-OEM bei BMW, VW, Rolls-Royce, Bugatti, Audi und Mercedes bilden meinen Hintergrund. Als staatlich geprüfter Maschinenbau-Techniker habe ich meinen IPMA Level D sowie die scrum.org-Zertifizierungen Professional Scrum Master und Product Owner erworben. Jira und Confluence nutze ich für KPI-Aufbereitung und Reporting täglich. Mein Englisch ist auf B2-Niveau und reicht für den fachlichen Alltag mit internationalen Teams.';
+    const A3 = 'Davor war ich bei Anthropus als PMO im BMW-AdCam-Programm bei Magna Electronics für KPI-Aufbereitung, Managementberichte und Change-Request-Koordination zuständig. Workshops und Steuerkreis-Moderation gehören seit der GGKA-Runde im Karosserie-Hybridbaukasten F30NF bei RLE zu meinem Alltag. Genau diese Mischung aus Reporting-Disziplin, Kundenkommunikation und Schnittstellen-Steuerung bringe ich in Ihre Projekte mit.';
+    const A4 = 'Ergänzend habe ich 2025 den KI-Manager TÜV Rheinland mit 400 Stunden abgeschlossen, inklusive EU AI Act und Prompt Engineering. Workflow-Automation mit n8n und API-Integrationen setze ich pragmatisch im PM-Alltag ein, etwa für Anforderungs-Aufbereitung, Status-Logik und Lieferanten-Kommunikation. Genau dieser Effizienz-Hebel passt zu Ihrer Position.';
+    const A5 = 'Über ein persönliches Kennenlerngespräch freue ich mich. Meine Gehaltsvorstellung liegt bei 80.000 Euro brutto pro Jahr, verhandelbar, und ich kann ab sofort beginnen.';
+    const P = (txt, opts) => new D.Paragraph(Object.assign({
+      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22 })],
+      spacing: { after: 200, line: 320 },
+      alignment: D.AlignmentType.JUSTIFIED
+    }, opts || {}));
+    const PB = (txt) => new D.Paragraph({
+      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22, bold: true })],
+      spacing: { after: 240, line: 320 }
+    });
+    const doc = new D.Document({
+      creator: 'Andreas Schengel',
+      title: 'Motivationsschreiben ' + firma,
+      styles: { default: { document: { run: { font: 'Calibri', size: 22 } } } },
+      sections: [{
+        properties: { page: { margin: { top: 1134, right: 1134, bottom: 1134, left: 1134 } } },
+        children: [
+          P('Andreas Schengel · Johann-Fichte-Straße 11 · 80805 München'),
+          P('0160 / 555 12 61 · andreas.schengel@gmx.de'),
+          P(''),
+          P(firma),
+          P('Personalabteilung'),
+          P(''),
+          P('München, ' + heute, { alignment: D.AlignmentType.RIGHT }),
+          P(''),
+          PB('Bewerbung als ' + stellentitel),
+          P(''),
+          P('Sehr geehrte Damen und Herren,'),
+          P(''),
+          P(A1), P(A2), P(A3), P(A4), P(A5),
+          P(''),
+          P('Mit freundlichen Grüßen'),
+          P(''),
+          P('Andreas Schengel'),
+        ]
+      }]
+    });
+    D.Packer.toBlob(doc).then(blob => {
+      const safeFirma = firma.replace(/[^a-zA-Z0-9äöüÄÖÜß_-]+/g, '_').slice(0, 30);
+      const safeTitel = stellentitel.replace(/[^a-zA-Z0-9äöüÄÖÜß_-]+/g, '_').slice(0, 40);
+      saveAs(blob, 'Motivationsschreiben_' + safeFirma + '_' + safeTitel + '.docx');
+      btn.disabled = false;
+      btn.textContent = '✓ DOCX erstellt — neu erstellen?';
+      showToast('DOCX heruntergeladen → in iCloud "Bewerbungen 2026" speichern');
+    }).catch(err => {
+      btn.disabled = false;
+      btn.textContent = '📝 Motivationsschreiben erstellen (DOCX)';
+      showToast('DOCX-Fehler: ' + err.message, false);
+    });
+  }catch(err){
+    btn.disabled = false;
+    btn.textContent = '📝 Motivationsschreiben erstellen (DOCX)';
+    showToast('Fehler: ' + err.message, false);
+  }
 }
 
 let DATA = window.JOBSUCHE_DATA || null;
@@ -493,31 +667,34 @@ function renderTab(tab){
     return;
   }
   list.forEach(j => sec.appendChild(buildCard(j, tab)));
-  // Status restore (v7: erledigt/beworben/absage)
+  // Status restore (v13: 4-Status app/uns/rej/irr, Migration done→uns)
   try{
     const map = JSON.parse(localStorage.getItem('jsa12_status') || '{}');
+    const hide = document.getElementById('hide-marked');
     Object.entries(map).forEach(([id, status]) => {
       if(!status) return;
+      // Migration: alter 'done'-Status → 'uns' (unpassend)
+      let st = status === 'done' ? 'uns' : status;
       const card = sec.querySelector('[data-id="' + CSS.escape(id) + '"]');
       if(!card) return;
-      card.classList.add('st-' + status);
-      card.dataset.status = status;
+      card.classList.add('st-' + st);
+      card.dataset.status = st;
       const btns = card.querySelectorAll('.sb');
-      const idx = {done: 0, app: 1, rej: 2}[status];
-      if(idx !== undefined && btns[idx]) btns[idx].classList.add('on-' + status);
+      const idx = STATUS_IDX[st];
+      if(idx !== undefined && btns[idx]) btns[idx].classList.add('on-' + st);
+      if(hide && hide.checked) card.classList.add('hide-marked');
     });
-    // Migration vom alten "jsa12_done" Format: bool → 'done'
+    // Migration vom alten "jsa12_done" Format: bool → 'uns'
     const oldDone = JSON.parse(localStorage.getItem('jsa12_done') || '{}');
     Object.entries(oldDone).forEach(([id, v]) => {
       if(!v) return;
       const card = sec.querySelector('[data-id="' + CSS.escape(id) + '"]');
-      if(!card) return;
-      if(!card.classList.contains('st-done') && !card.classList.contains('st-app') && !card.classList.contains('st-rej')){
-        card.classList.add('st-done');
-        card.dataset.status = 'done';
-        const btns = card.querySelectorAll('.sb');
-        if(btns[0]) btns[0].classList.add('on-done');
-      }
+      if(!card || card.dataset.status) return;
+      card.classList.add('st-uns');
+      card.dataset.status = 'uns';
+      const btns = card.querySelectorAll('.sb');
+      if(btns[STATUS_IDX.uns]) btns[STATUS_IDX.uns].classList.add('on-uns');
+      if(hide && hide.checked) card.classList.add('hide-marked');
     });
   }catch{}
 }
@@ -574,8 +751,22 @@ function td(btn, id){
     clearTimeout(to);
     to = setTimeout(() => { if(CURRENT_TAB !== 'init') renderTab(CURRENT_TAB); updateStats(); }, 150);
   });
+  // NEU 2026-05-28: Hide-Marked-Toggle (LocalStorage-persistent)
+  const hm = document.getElementById('hide-marked');
+  if(hm){
+    try{ const v = localStorage.getItem('jsa12_hide_marked'); if(v !== null) hm.checked = (v === '1'); }catch{}
+    hm.addEventListener('change', () => {
+      try{ localStorage.setItem('jsa12_hide_marked', hm.checked ? '1' : '0'); }catch{}
+      // Re-Apply auf alle gerenderten Cards
+      document.querySelectorAll('.jc[data-status]').forEach(card => {
+        if(hm.checked && card.dataset.status) card.classList.add('hide-marked');
+        else card.classList.remove('hide-marked');
+      });
+    });
+  }
   if(DATA){
     updateStats();
+    updateMarkStats();
   }else{
     const stand = document.getElementById('hd-stand');
     if(stand) stand.textContent = 'Stand: keine Daten geladen — Crawler einmal manuell ausführen';

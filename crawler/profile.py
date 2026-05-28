@@ -182,6 +182,46 @@ COMPANY_BLOCK = [
     # IAV: nur für Initiativ verboten — reguläre Stellen OK
 ]
 
+# ===== COMPANY DEMOTE (Score-Multiplikator, < 1.0 = niedriger ranken) =====
+# Andy 2026-05-28: "Ferchau als Ingenieurdienstleister nicht so hoch priorisieren"
+# Engineering-Dienstleister liefern viel Volumen, aber Andy will direkten OEM/Tech-Bezug vorne
+COMPANY_DEMOTE = {
+    "ferchau": 0.65,        # Andys Hauptkritik — −35% Score
+    "bertrandt": 0.80,      # auch Engineering-Dienstleister
+    "akkodis": 0.85,        # Engineering-Dienstleister, aber mit Automotive-Bezug
+    "alten": 0.85,          # Engineering-Dienstleister
+    "expleo": 0.80,         # Engineering-Consulting
+    "edag": 0.85,           # Engineering-Dienstleister
+    "altran": 0.80,         # Engineering-Consulting
+    "capgemini engineering": 0.80,
+}
+
+# ===== COMPANY BOOST (Score-Bonus für gezielt gesuchte Firmen) =====
+# Andy 2026-05-28: "Firmen wie Rodenstock" — direkte OEM/MedTech/Premium-Firmen pushen
+COMPANY_BOOST_FIRMS = {
+    "rodenstock": 8,        # München, MedTech-nah
+    "sii group": 10,        # Andy hat das selbst gefunden (2026-05-28)
+    "sii deutschland": 10,
+    "sii ": 8,              # Variante
+    "cariad": 10,           # VW-Software-Tochter, Andys VW-Scout-Brücke
+    "mtu aero engines": 8,  # München-OEM, Aerospace
+    "knorr-bremse": 8,      # München-Tech, Premium
+    "brainlab": 8,          # München-MedTech
+    "siemens healthineers": 6,
+    "linde": 6,             # München-Tech
+    "infineon": 6,          # München-Halbleiter
+    "rohde & schwarz": 6,   # München-Mess-/Funktechnik
+    "wacker": 4,            # München-Chemie
+    "osram": 4,             # München-Photonik
+    "kuka": 6,              # Augsburg-Robotik
+    "fendt": 4,             # Bayern-Maschinenbau
+    "siltronic": 4,         # München-Halbleiter
+    "p3 group": 6,          # München-Consulting (Initiativ-Anker)
+    "appliedai": 8,         # München-KI
+    "celonis": 6,           # München-AI
+    "personio": 4,          # München-HR-Tech
+}
+
 MIN_SCORE_TO_INCLUDE = 22
 
 
@@ -272,45 +312,81 @@ def categorize(title: str, description: str = "") -> str:
 
 
 def score_job(title: str, description: str, location: str, company: str) -> tuple:
-    """Gibt (Match-Score 0-100, list[reasons]) zurück. -1 = hard-block."""
+    """Gibt (Match-Score 0-100, list[reasons]) zurück. -1 = hard-block.
+
+    Reason-Strings sind UI-tauglich:
+      "✅ Standort München (+25)" / "🎯 Projektmanager (+16)" / "🏢 Rodenstock (+8)"
+      "⚠️ Engineering-Dienstleister Ferchau (×0.65)"
+    """
     title_lower = title.lower()
     text = (title + " " + description).lower()
 
     # Hard Block — Title
     for block in TITLE_BLOCK:
         if block in title_lower:
-            return (-1, [f"BLOCK_T:{block}"])
+            return (-1, [f"🚫 BLOCK_T:{block}"])
 
     # Hard Block — Description (strict only)
     for block in DESC_BLOCK_STRICT:
         if block in text:
-            return (-1, [f"BLOCK_D:{block}"])
+            return (-1, [f"🚫 BLOCK_D:{block}"])
 
     # Hard Block — Firma
     company_lower = (company or "").lower()
     for block in COMPANY_BLOCK:
         if block in company_lower:
-            return (-1, [f"BLOCK_CO:{block}"])
+            return (-1, [f"🚫 BLOCK_CO:{block}"])
 
     # Standort-Filter
     if not location_passes(location):
-        return (-1, [f"BLOCK_LOC:{location[:60]}"])
+        return (-1, [f"🚫 BLOCK_LOC:{location[:60]}"])
 
-    # Positiv-Score
+    # Positiv-Score (Title + Beschreibung)
     score = 0
     reasons = []
     for kw, pts in TITLE_BOOST.items():
         if kw in text:
             score += pts
-            reasons.append(f"+{pts} {kw}")
+            # Symbol-Wahl: 🎯 für Top-Match, 🔧 für Tools, 🚗 für Auto, 🤖 für KI
+            sym = "🎯"
+            if kw in ("n8n", "make.com", "catia", "teamcenter", "windchill", "ms project",
+                      "ipma", "psm ", "pspo ", "scrum", "jira", "confluence"):
+                sym = "🔧"
+            elif kw in ("ki-manager", "ki manager", "ai project manager", "ai manager",
+                        "ai program", "intelligent automation", "ai consultant"):
+                sym = "🤖"
+            elif kw in ("automotive", "fahrzeug", "elektrik/elektronik", "ee-package",
+                        "gesamtfahrzeug", "se-teamleiter"):
+                sym = "🚗"
+            reasons.append(f"{sym} {kw} (+{pts})")
 
-    # Standort-Bonus (nur 1×)
+    # Standort-Bonus (nur 1×, größter Hit)
     loc = (location or "").lower()
+    best_loc_pts = 0
+    best_loc_kw = None
     for kw, pts in LOCATION_BOOST.items():
-        if kw in loc:
+        if kw in loc and pts > best_loc_pts:
+            best_loc_pts = pts
+            best_loc_kw = kw
+    if best_loc_kw:
+        score += best_loc_pts
+        reasons.append(f"📍 {best_loc_kw} (+{best_loc_pts})")
+
+    # Company-Boost (Andys gezielte Wunschfirmen)
+    for fkw, pts in COMPANY_BOOST_FIRMS.items():
+        if fkw in company_lower:
             score += pts
-            reasons.append(f"+{pts} loc:{kw}")
-            break
+            reasons.append(f"🏢 Wunschfirma {fkw.strip().title()} (+{pts})")
+            break  # nur eine Firma matched
+
+    # Company-Demote (Engineering-Dienstleister, Andy will weniger Volumen vorn)
+    for dkw, mult in COMPANY_DEMOTE.items():
+        if dkw in company_lower:
+            old_score = score
+            score = int(score * mult)
+            delta = old_score - score
+            reasons.append(f"⚠️ Eng-Dienstleister {dkw.title()} (×{mult}, −{delta})")
+            break  # nur einer matched
 
     return (min(score, 100), reasons)
 
