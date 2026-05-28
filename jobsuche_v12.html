@@ -13,6 +13,8 @@
 <!-- docx.js v9.1.0 für Client-side MS-DOCX-Generierung (FIX 2026-05-28: jsdelivr statt unpkg, weil unpkg .min nicht existiert → 404) -->
 <script src="https://cdn.jsdelivr.net/npm/docx@9.1.0/build/index.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<!-- Andys Unterschrift als Base64 (~6kB, wird im MS-DOCX eingebettet) -->
+<script src="unterschrift_base64.js"></script>
 <style>
 :root{--bg:#060a10;--s1:#0d1219;--s2:#131b27;--bd:#1b2537;--t:#d8e2f0;--m:#4d6080;
 --b:#2d7aed;--g:#16c98d;--o:#e8a032;--v:#9565ed;--c:#06b6d4;--r:10px}
@@ -689,44 +691,126 @@ function generateMS(job, btn, _retry){
   btn.textContent = '⏳ Generiere DOCX …';
   try{
     const D = docx;
-    const stellentitel = (job.title || 'die ausgeschriebene Stelle').trim();
-    const firma = (job.company || 'Ihre Firma').trim();
+    // === HEURISTIK 2026-05-28: Crawler-Bug "company == title" säubern ===
+    // Manche Quellen (linkedin, kimeta) setzen company == title. Wenn so, Firma als "Personalabteilung" + Hinweis.
+    let rawTitle = (job.title || 'die ausgeschriebene Stelle').trim();
+    let rawCompany = (job.company || '').trim();
+    let stellentitel = rawTitle;
+    let firma = rawCompany;
+    // Wenn company quasi gleich title oder Substring → wir haben kein sauberes Firmen-Feld
+    if(!firma || firma.toLowerCase() === rawTitle.toLowerCase() ||
+       firma.length > 80 || rawTitle.toLowerCase().includes(firma.toLowerCase().slice(0, 25))){
+      // Versuche, Firma aus dem Titel zu extrahieren — wenn nicht möglich, "Personalabteilung"
+      // Beispiel: "OSB AG Ingenieur- und IT-Dienstleistungen Program Manager / Projektmanager Automotive"
+      // → Firma = "OSB AG Ingenieur- und IT-Dienstleistungen", Stelle = "Program Manager / Projektmanager Automotive"
+      const splitMarkers = [' Program Manager', ' Projektmanager', ' Project Manager', ' Senior Projekt', ' Senior Project',
+                            ' Entwicklungsing', ' Engineer', ' Manager', ' Lead', ' Specialist', ' Spezialist',
+                            ' Consultant', ' Berater', ' Projektleiter', ' Teamleiter'];
+      let splitOK = false;
+      for(const m of splitMarkers){
+        const idx = rawTitle.indexOf(m);
+        if(idx > 5 && idx < rawTitle.length - 5){
+          firma = rawTitle.substring(0, idx).trim().replace(/\s+(GmbH|AG|SE|KG|UG|Inc|Ltd)$/i, ' $1');
+          stellentitel = rawTitle.substring(idx + 1).trim();
+          splitOK = true;
+          break;
+        }
+      }
+      if(!splitOK){
+        firma = 'Personalabteilung';
+        stellentitel = rawTitle.length > 80 ? rawTitle.substring(0, 80) + '…' : rawTitle;
+      }
+    }
+    // Trim Stellentitel auf max 90 Zeichen
+    if(stellentitel.length > 90) stellentitel = stellentitel.substring(0, 90).trim() + '…';
     const heute = new Date().toLocaleDateString('de-DE', { day:'2-digit', month:'long', year:'numeric' });
-    // V14-ALTEN-PM-Pattern (Andys finale akzeptierte MS-Struktur): 5 Absätze A1-A5
+    // V14-ALTEN-PM-Pattern: 5 Absätze A1-A5
     const A1 = 'Ihre Ausschreibung als ' + stellentitel + ' hat mich aus zwei Gründen sofort angesprochen. Bei Magna Engineering & Infotainment habe ich zuletzt den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI über alle Bauphasen. Parallel habe ich mir eine produktive n8n-Praxis im Eigenbetrieb aufgebaut, mit Workflows für Reporting und Anforderungs-Aufbereitung. Beide Stränge treffen den Kern Ihrer Stellenbeschreibung.';
     const A2 = 'Zwölf Jahre Premium-OEM bei BMW, VW, Rolls-Royce, Bugatti, Audi und Mercedes bilden meinen Hintergrund. Als staatlich geprüfter Maschinenbau-Techniker habe ich meinen IPMA Level D sowie die scrum.org-Zertifizierungen Professional Scrum Master und Product Owner erworben. Jira und Confluence nutze ich für KPI-Aufbereitung und Reporting täglich. Mein Englisch ist auf B2-Niveau und reicht für den fachlichen Alltag mit internationalen Teams.';
     const A3 = 'Davor war ich bei Anthropus als PMO im BMW-AdCam-Programm bei Magna Electronics für KPI-Aufbereitung, Managementberichte und Change-Request-Koordination zuständig. Workshops und Steuerkreis-Moderation gehören seit der GGKA-Runde im Karosserie-Hybridbaukasten F30NF bei RLE zu meinem Alltag. Genau diese Mischung aus Reporting-Disziplin, Kundenkommunikation und Schnittstellen-Steuerung bringe ich in Ihre Projekte mit.';
     const A4 = 'Ergänzend habe ich 2025 den KI-Manager TÜV Rheinland mit 400 Stunden abgeschlossen, inklusive EU AI Act und Prompt Engineering. Workflow-Automation mit n8n und API-Integrationen setze ich pragmatisch im PM-Alltag ein, etwa für Anforderungs-Aufbereitung, Status-Logik und Lieferanten-Kommunikation. Genau dieser Effizienz-Hebel passt zu Ihrer Position.';
     const A5 = 'Über ein persönliches Kennenlerngespräch freue ich mich. Meine Gehaltsvorstellung liegt bei 80.000 Euro brutto pro Jahr, verhandelbar, und ich kann ab sofort beginnen.';
+    // === Paragraph-Helper ===
     const P = (txt, opts) => new D.Paragraph(Object.assign({
       children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22 })],
-      spacing: { after: 200, line: 320 },
+      spacing: { after: 160, line: 300 },
       alignment: D.AlignmentType.JUSTIFIED
     }, opts || {}));
     const PB = (txt) => new D.Paragraph({
       children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22, bold: true })],
-      spacing: { after: 240, line: 320 }
+      spacing: { after: 200, line: 300 }
     });
+    // Kompakter Paragraph für Adress-Block (kein Justify, kein großer Abstand)
+    const PA = (txt, align) => new D.Paragraph({
+      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 20 })],
+      spacing: { after: 40, line: 260 },
+      alignment: align || D.AlignmentType.LEFT
+    });
+    // === Layout-Tabelle 1×2: Empfänger links | Sender rechts ===
+    const noBorder = { style: D.BorderStyle.NONE, size: 0, color: 'FFFFFF' };
+    const cellBorders = { top: noBorder, bottom: noBorder, left: noBorder, right: noBorder };
+    const empfCell = new D.TableCell({
+      width: { size: 50, type: D.WidthType.PERCENTAGE },
+      borders: cellBorders,
+      children: [
+        PA(firma),
+        PA('Personalabteilung'),
+      ]
+    });
+    const senderCell = new D.TableCell({
+      width: { size: 50, type: D.WidthType.PERCENTAGE },
+      borders: cellBorders,
+      children: [
+        PA('Andreas Schengel', D.AlignmentType.RIGHT),
+        PA('Johann-Fichte-Straße 11', D.AlignmentType.RIGHT),
+        PA('80805 München', D.AlignmentType.RIGHT),
+        PA('0160 / 555 12 61', D.AlignmentType.RIGHT),
+        PA('andreas.schengel@gmx.de', D.AlignmentType.RIGHT),
+      ]
+    });
+    const layoutTable = new D.Table({
+      width: { size: 100, type: D.WidthType.PERCENTAGE },
+      borders: { top: noBorder, bottom: noBorder, left: noBorder, right: noBorder,
+                 insideHorizontal: noBorder, insideVertical: noBorder },
+      rows: [new D.TableRow({ children: [empfCell, senderCell] })]
+    });
+    // === Unterschrift einbetten (Base64 → Uint8Array) ===
+    let sigParagraph = null;
+    try {
+      if(typeof window.ANDY_UNTERSCHRIFT_PNG === 'string'){
+        const binary = atob(window.ANDY_UNTERSCHRIFT_PNG);
+        const bytes = new Uint8Array(binary.length);
+        for(let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+        sigParagraph = new D.Paragraph({
+          children: [new D.ImageRun({
+            data: bytes,
+            transformation: { width: 170, height: 38 }  // 45mm × 10.2mm bei 96dpi
+          })],
+          spacing: { before: 0, after: 0 }
+        });
+      }
+    } catch(e){ console.warn('Unterschrift-Embed-Fehler:', e); }
+    // === Document ===
+    const childrenList = [
+      layoutTable,
+      P(''),
+      P('München, ' + heute, { alignment: D.AlignmentType.RIGHT, spacing: { after: 200, line: 300 } }),
+      PB('Bewerbung als ' + stellentitel),
+      P('Sehr geehrte Damen und Herren,'),
+      P(A1), P(A2), P(A3), P(A4), P(A5),
+      P(''),
+      P('Mit freundlichen Grüßen', { spacing: { after: 0, line: 300 } }),
+    ];
+    if(sigParagraph) childrenList.push(sigParagraph);
+    else childrenList.push(P(''));  // Fallback: leere Zeile als Unterschrift-Platzhalter
+    childrenList.push(P('Andreas Schengel', { spacing: { after: 0, line: 300 } }));
     const doc = new D.Document({
       creator: 'Andreas Schengel',
       title: 'Motivationsschreiben ' + firma,
       styles: { default: { document: { run: { font: 'Calibri', size: 22 } } } },
       sections: [{
-        properties: { page: { margin: { top: 1134, right: 1134, bottom: 1134, left: 1134 } } },
-        children: [
-          P('Andreas Schengel · Johann-Fichte-Straße 11 · 80805 München'),
-          P('0160 / 555 12 61 · andreas.schengel@gmx.de'),
-          P(''),
-          P(firma),
-          P('Personalabteilung'),
-          P(''),
-          P('München, ' + heute, { alignment: D.AlignmentType.RIGHT }),
-          P(''),
-          PB('Bewerbung als ' + stellentitel),
-          P(''),
-          P('Sehr geehrte Damen und Herren,'),
-          P(''),
-          P(A1), P(A2), P(A3), P(A4), P(A5),
+        properties: { page: { margin: { top: 850, right: 1000, bottom: 850, left: 1000 } } },  // schmälere Margins für 1-Seiten-Garantie
+        children: childrenList
           P(''),
           P('Mit freundlichen Grüßen'),
           P(''),
