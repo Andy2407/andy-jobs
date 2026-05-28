@@ -1,4 +1,4 @@
-name: Jobsuche Crawl v6
+name: Jobsuche Crawl v7
 
 on:
   schedule:
@@ -26,21 +26,23 @@ jobs:
       - name: Install Playwright Chromium
         run: |
           python -m playwright install --with-deps chromium
-      - name: Run crawler
+      - name: Run crawler v2 (25 Quellen inkl. SII/Rodenstock/CARIAD/MTU)
         working-directory: crawler
-        run: python crawler.py
-      - name: Commit & push (with rebase to handle concurrent commits)
+        run: python crawler_v2.py
+      - name: Commit and push with rebase
         env:
           NOW: ${{ github.run_started_at }}
         run: |
+          set -euo pipefail
           git config user.name "Crawler Bot"
           git config user.email "bot@users.noreply.github.com"
           git add data.js data.json index.html jobsuche_standalone.html 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "Keine Aenderungen"
           else
-            git commit -m "data: cloud crawl v6 $NOW"
+            git commit -m "data: cloud crawl v7 ${NOW}"
             for i in 1 2 3 4; do
               git pull --rebase origin main && git push && break || sleep 5
             done
           fi
+
