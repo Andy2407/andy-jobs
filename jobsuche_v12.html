@@ -811,11 +811,6 @@ function generateMS(job, btn, _retry){
       sections: [{
         properties: { page: { margin: { top: 850, right: 1000, bottom: 850, left: 1000 } } },  // schmälere Margins für 1-Seiten-Garantie
         children: childrenList
-          P(''),
-          P('Mit freundlichen Grüßen'),
-          P(''),
-          P('Andreas Schengel'),
-        ]
       }]
     });
     D.Packer.toBlob(doc).then(blob => {
