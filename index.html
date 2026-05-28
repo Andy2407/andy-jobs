@@ -687,22 +687,127 @@ function generateMS(job, btn, _retry){
     showToast('DOCX-Library nicht geladen: ' + diag + 'Seite neu laden oder Browser-Console prüfen', false);
     return;
   }
+  // NEU 2026-05-28: Modal-Dialog für Empfänger-Daten (Ansprechpartner/Adresse/Kennziffer)
+  collectRecipientInfo(job, (recipientInfo) => {
+    if(recipientInfo === null){ // User hat Abbrechen geklickt
+      btn.disabled = false;
+      btn.textContent = '📝 Motivationsschreiben erstellen (DOCX)';
+      return;
+    }
+    _generateMSWith(job, btn, recipientInfo);
+  });
+}
+
+// Sammelt via Modal: Ansprechpartner, Strasse, PLZ+Ort, Kennziffer (alle optional)
+// LocalStorage-Persistenz pro Firma — gleiche Firma fragt nicht nochmal
+function collectRecipientInfo(job, callback){
+  const D = docx;
+  const firmaKey = 'jsa12_rcpt_' + (job.company || '').replace(/[^a-z0-9]+/gi, '').toLowerCase().slice(0, 40);
+  let saved = {};
+  try{ saved = JSON.parse(localStorage.getItem(firmaKey) || '{}'); }catch{}
+  // Modal bauen
+  const bg = document.createElement('div');
+  bg.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:flex;align-items:center;justify-content:center;padding:14px';
+  const box = document.createElement('div');
+  box.style.cssText = 'background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:18px;max-width:480px;width:100%;color:var(--t);font-family:inherit';
+  box.innerHTML = '';
+  // Title (sicher via textContent)
+  const h = document.createElement('h3');
+  h.textContent = '📝 Empfänger-Infos (optional, Enter = leer)';
+  h.style.cssText = 'font-size:14px;margin:0 0 4px;color:var(--b)';
+  box.appendChild(h);
+  const sub = document.createElement('p');
+  sub.textContent = 'Diese Daten landen oben links im MS. Leer lassen wenn unbekannt.';
+  sub.style.cssText = 'font-size:10px;color:var(--m);margin:0 0 12px';
+  box.appendChild(sub);
+  // 4 Input-Felder
+  const fields = [
+    { key: 'recruiter', label: 'Ansprechpartner', placeholder: 'z.B. Frau Schmidt · Recruiting' },
+    { key: 'strasse',   label: 'Straße + Hausnr.', placeholder: 'z.B. Musterstraße 1' },
+    { key: 'plzort',    label: 'PLZ + Ort',        placeholder: 'z.B. 80331 München' },
+    { key: 'kennziffer',label: 'Kennziffer (NUR wenn offiziell ausgeschrieben!)', placeholder: 'z.B. Ref 12345 — sonst leer' },
+  ];
+  const inputs = {};
+  for(const f of fields){
+    const lbl = document.createElement('label');
+    lbl.textContent = f.label;
+    lbl.style.cssText = 'display:block;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--m);margin:8px 0 3px';
+    box.appendChild(lbl);
+    const inp = document.createElement('input');
+    inp.type = 'text';
+    inp.value = saved[f.key] || '';
+    inp.placeholder = f.placeholder;
+    inp.style.cssText = 'width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:5px;color:var(--t);padding:8px 10px;font-family:inherit;font-size:12px';
+    box.appendChild(inp);
+    inputs[f.key] = inp;
+  }
+  // Buttons
+  const btnRow = document.createElement('div');
+  btnRow.style.cssText = 'display:flex;gap:8px;margin-top:14px';
+  const ok = document.createElement('button');
+  ok.textContent = '📝 DOCX erstellen';
+  ok.style.cssText = 'flex:2;background:linear-gradient(135deg,#5945ed,#9565ed);border:0;border-radius:5px;color:#fff;padding:10px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit';
+  const cancel = document.createElement('button');
+  cancel.textContent = 'Abbrechen';
+  cancel.style.cssText = 'flex:1;background:var(--s2);border:1px solid var(--bd);border-radius:5px;color:var(--m);padding:10px;font-size:11px;cursor:pointer;font-family:inherit';
+  btnRow.appendChild(ok); btnRow.appendChild(cancel);
+  box.appendChild(btnRow);
+  bg.appendChild(box);
+  document.body.appendChild(bg);
+  inputs.recruiter.focus();
+  const close = (info) => {
+    document.body.removeChild(bg);
+    callback(info);
+  };
+  cancel.addEventListener('click', () => close(null));
+  ok.addEventListener('click', () => {
+    const info = {};
+    for(const k in inputs) info[k] = (inputs[k].value || '').trim();
+    try{ localStorage.setItem(firmaKey, JSON.stringify(info)); }catch{}
+    close(info);
+  });
+  bg.addEventListener('click', (ev) => { if(ev.target === bg) close(null); });
+  // ESC → Cancel
+  const escHandler = (ev) => { if(ev.key === 'Escape'){ document.removeEventListener('keydown', escHandler); close(null); } };
+  document.addEventListener('keydown', escHandler);
+}
+
+// Betreff-Cleanup (Andy 2026-05-28): m/w/d, all gender, Datum, interne Refs raus
+function cleanStellentitel(t){
+  if(!t) return t;
+  let s = t;
+  // Klammer-Varianten m/w/d, w/m/d, m/w, d, all gender(s), divers, x, *
+  s = s.replace(/\s*\(\s*(?:[mwdfxa\*][\s\/\\\.\-]*){1,5}\s*\)\s*/gi, ' ');
+  s = s.replace(/\s*\(\s*(?:all[\s\-]*genders?|m\s*\/\s*w\s*\/\s*d|w\s*\/\s*m\s*\/\s*d|f\s*\/\s*m\s*\/\s*x|gn|divers)\s*\)\s*/gi, ' ');
+  // Bindestrich-Varianten: " - all genders", " m/w/d" am Ende
+  s = s.replace(/\s+[\-–]\s*all[\s\-]*genders?\s*/gi, ' ');
+  s = s.replace(/\s+(?:m\/w\/d|w\/m\/d|m\/w|all genders?)\s*$/gi, '');
+  // Datum-Patterns z.B. " · 28.05.2026" oder " (ab Q3 2026)"
+  s = s.replace(/\s*[·\|]\s*\d{1,2}\.\d{1,2}\.\d{2,4}\s*/g, ' ');
+  s = s.replace(/\s*\(\s*ab\s+[QH][1-4]\s*\d{4}\s*\)\s*/gi, ' ');
+  // Interne Referenz-IDs aus Crawler-Quellen (Bundesagentur etc): "Ref-Nr 12345-AB-..." nur entfernen wenn nicht user-explicit
+  s = s.replace(/\s*[·\|]\s*(?:Ref(?:erenz)?[\.\-\s]?(?:Nr\.?)?|Job[\s\-]?ID|Stellen[\s\-]?ID|ID)\s*[:\s\-]*\s*\S+\s*/gi, ' ');
+  // 100% Remote / Vollzeit / Teilzeit Anhänge
+  s = s.replace(/\s*[·\|]\s*(?:100\s*%\s*Remote|Vollzeit|Teilzeit|Festanstellung|Remote)\s*/gi, ' ');
+  // Mehrfach-Spaces zu einem
+  s = s.replace(/\s{2,}/g, ' ').trim();
+  // Trailing-Spezialzeichen
+  s = s.replace(/[\s·\|\-–_]+$/g, '').trim();
+  return s;
+}
+
+function _generateMSWith(job, btn, recipientInfo){
   btn.disabled = true;
   btn.textContent = '⏳ Generiere DOCX …';
   try{
     const D = docx;
     // === HEURISTIK 2026-05-28: Crawler-Bug "company == title" säubern ===
-    // Manche Quellen (linkedin, kimeta) setzen company == title. Wenn so, Firma als "Personalabteilung" + Hinweis.
     let rawTitle = (job.title || 'die ausgeschriebene Stelle').trim();
     let rawCompany = (job.company || '').trim();
     let stellentitel = rawTitle;
     let firma = rawCompany;
-    // Wenn company quasi gleich title oder Substring → wir haben kein sauberes Firmen-Feld
     if(!firma || firma.toLowerCase() === rawTitle.toLowerCase() ||
        firma.length > 80 || rawTitle.toLowerCase().includes(firma.toLowerCase().slice(0, 25))){
-      // Versuche, Firma aus dem Titel zu extrahieren — wenn nicht möglich, "Personalabteilung"
-      // Beispiel: "OSB AG Ingenieur- und IT-Dienstleistungen Program Manager / Projektmanager Automotive"
-      // → Firma = "OSB AG Ingenieur- und IT-Dienstleistungen", Stelle = "Program Manager / Projektmanager Automotive"
       const splitMarkers = [' Program Manager', ' Projektmanager', ' Project Manager', ' Senior Projekt', ' Senior Project',
                             ' Entwicklungsing', ' Engineer', ' Manager', ' Lead', ' Specialist', ' Spezialist',
                             ' Consultant', ' Berater', ' Projektleiter', ' Teamleiter'];
@@ -721,9 +826,27 @@ function generateMS(job, btn, _retry){
         stellentitel = rawTitle.length > 80 ? rawTitle.substring(0, 80) + '…' : rawTitle;
       }
     }
-    // Trim Stellentitel auf max 90 Zeichen
+    // Betreff-Cleanup nach Andys 2026-05-28-Regeln
+    stellentitel = cleanStellentitel(stellentitel);
     if(stellentitel.length > 90) stellentitel = stellentitel.substring(0, 90).trim() + '…';
     const heute = new Date().toLocaleDateString('de-DE', { day:'2-digit', month:'long', year:'numeric' });
+    // === Anrede aus Ansprechpartner ableiten (Andy 2026-05-28) ===
+    // "Frau Schmidt · Recruiting" → "Sehr geehrte Frau Schmidt,"
+    // "Herr Mustermann ..." → "Sehr geehrter Herr Mustermann,"
+    // Sonst → "Sehr geehrte Damen und Herren,"
+    let anrede = 'Sehr geehrte Damen und Herren,';
+    if(recipientInfo && recipientInfo.recruiter){
+      const r = recipientInfo.recruiter;
+      const mFrau = r.match(/Frau\s+([A-ZÄÖÜ][a-zäöüß\-]+)/);
+      const mHerr = r.match(/Herrn?\s+([A-ZÄÖÜ][a-zäöüß\-]+)/);
+      if(mFrau) anrede = 'Sehr geehrte Frau ' + mFrau[1] + ',';
+      else if(mHerr) anrede = 'Sehr geehrter Herr ' + mHerr[1] + ',';
+    }
+    // === Betreff mit optionaler Kennziffer (Andy: NUR wenn offiziell ausgeschrieben) ===
+    let betreff = 'Bewerbung als ' + stellentitel;
+    if(recipientInfo && recipientInfo.kennziffer){
+      betreff += ' · ' + recipientInfo.kennziffer;
+    }
     // V14-ALTEN-PM-Pattern: 5 Absätze A1-A5
     const A1 = 'Ihre Ausschreibung als ' + stellentitel + ' hat mich aus zwei Gründen sofort angesprochen. Bei Magna Engineering & Infotainment habe ich zuletzt den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI über alle Bauphasen. Parallel habe ich mir eine produktive n8n-Praxis im Eigenbetrieb aufgebaut, mit Workflows für Reporting und Anforderungs-Aufbereitung. Beide Stränge treffen den Kern Ihrer Stellenbeschreibung.';
     const A2 = 'Zwölf Jahre Premium-OEM bei BMW, VW, Rolls-Royce, Bugatti, Audi und Mercedes bilden meinen Hintergrund. Als staatlich geprüfter Maschinenbau-Techniker habe ich meinen IPMA Level D sowie die scrum.org-Zertifizierungen Professional Scrum Master und Product Owner erworben. Jira und Confluence nutze ich für KPI-Aufbereitung und Reporting täglich. Mein Englisch ist auf B2-Niveau und reicht für den fachlichen Alltag mit internationalen Teams.';
@@ -741,48 +864,64 @@ function generateMS(job, btn, _retry){
       spacing: { after: 120, line: 300 },
       alignment: D.AlignmentType.JUSTIFIED
     }, opts || {}));
-    // Adressblock-Paragraph: 10pt, Default-Align, sa=40 (2pt)
-    const PA = (txt, align, bold) => new D.Paragraph({
-      children: [new D.TextRun({ text: txt, font: 'Calibri', size: bold ? 22 : 20, bold: !!bold })],
-      spacing: { after: 40, line: 260 },
-      alignment: align || D.AlignmentType.LEFT
+    // Empfänger-Adresszeile: 11pt schwarz LEFT sa=0
+    const PEmpf = (txt) => new D.Paragraph({
+      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22 })],
+      spacing: { after: 0, line: 260 }
     });
-    // Datum-Paragraph: 10pt, RIGHT, grau #6B7280, sa=80 (4pt)
-    const PDatum = (txt) => new D.Paragraph({
+    // Sender-Adresszeile: 10pt GRAU #6B7280 RIGHT sa=0
+    const PSendAddr = (txt) => new D.Paragraph({
       children: [new D.TextRun({ text: txt, font: 'Calibri', size: 20, color: GREY })],
-      spacing: { after: 80, line: 260 },
+      spacing: { after: 0, line: 260 },
       alignment: D.AlignmentType.RIGHT
     });
-    // Betreff-Paragraph: 11pt BOLD Navy #1B365D sa=120 (6pt)
+    // Sender-Name: 11pt BOLD NAVY #1B365D RIGHT sa=0
+    const PSendName = (txt) => new D.Paragraph({
+      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22, bold: true, color: NAVY })],
+      spacing: { after: 0, line: 260 },
+      alignment: D.AlignmentType.RIGHT
+    });
+    // Datum-Paragraph: 10pt, RIGHT, grau #6B7280
+    // Andy 2026-05-28: "Mehr Abstand zwischen Datum und Betreff" → sa = 240 Twips (12pt) statt 80
+    const PDatum = (txt) => new D.Paragraph({
+      children: [new D.TextRun({ text: txt, font: 'Calibri', size: 20, color: GREY })],
+      spacing: { after: 240, line: 260 },
+      alignment: D.AlignmentType.RIGHT
+    });
+    // Betreff-Paragraph: 11pt BOLD Navy #1B365D
+    // Andy 2026-05-28: "minimal kleinerer Abstand bis sehr geehrte von Betreff" → sa = 80 (4pt) statt 120
     const PB = (txt) => new D.Paragraph({
       children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22, bold: true, color: NAVY })],
-      spacing: { after: 120, line: 300 }
+      spacing: { after: 80, line: 300 }
     });
     // Name-Schluss-Paragraph: 11pt BOLD Navy
     const PName = (txt) => new D.Paragraph({
       children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22, bold: true, color: NAVY })],
       spacing: { after: 0, line: 300 }
     });
-    // === Layout-Tabelle 1×2: Empfänger links (11pt) | Sender rechts (Andy bold 11pt, Adresse 10pt) ===
+    // === Layout-Tabelle 1×2: Empfänger links | Sender rechts ===
     const noBorder = { style: D.BorderStyle.NONE, size: 0, color: 'FFFFFF' };
     const cellBorders = { top: noBorder, bottom: noBorder, left: noBorder, right: noBorder };
+    // Empfänger-Zellen-Inhalt: Firma + (optional Ansprechpartner) + (optional Adresse)
+    const empfChildren = [PEmpf(firma)];
+    if(recipientInfo && recipientInfo.recruiter) empfChildren.push(PEmpf(recipientInfo.recruiter));
+    else empfChildren.push(PEmpf('Personalabteilung'));
+    if(recipientInfo && recipientInfo.strasse) empfChildren.push(PEmpf(recipientInfo.strasse));
+    if(recipientInfo && recipientInfo.plzort) empfChildren.push(PEmpf(recipientInfo.plzort));
     const empfCell = new D.TableCell({
       width: { size: 50, type: D.WidthType.PERCENTAGE },
       borders: cellBorders,
-      children: [
-        new D.Paragraph({ children: [new D.TextRun({ text: firma, font: 'Calibri', size: 22 })], spacing: { after: 40, line: 260 } }),
-        new D.Paragraph({ children: [new D.TextRun({ text: 'Personalabteilung', font: 'Calibri', size: 22 })], spacing: { after: 40, line: 260 } }),
-      ]
+      children: empfChildren
     });
     const senderCell = new D.TableCell({
       width: { size: 50, type: D.WidthType.PERCENTAGE },
       borders: cellBorders,
       children: [
-        PA('Andreas Schengel', D.AlignmentType.RIGHT, true),
-        PA('Johann-Fichte-Straße 11', D.AlignmentType.RIGHT),
-        PA('80805 München', D.AlignmentType.RIGHT),
-        PA('0160 / 555 12 61', D.AlignmentType.RIGHT),
-        PA('andreas.schengel@gmx.de', D.AlignmentType.RIGHT),
+        PSendName('Andreas Schengel'),
+        PSendAddr('Johann-Fichte-Straße 11'),
+        PSendAddr('80805 München'),
+        PSendAddr('0160 / 555 12 61'),
+        PSendAddr('andreas.schengel@gmx.de'),
       ]
     });
     const layoutTable = new D.Table({
@@ -814,10 +953,9 @@ function generateMS(job, btn, _retry){
     const childrenList = [
       layoutTable,
       P(''),                                                   // Leerzeile nach Tabelle
-      PDatum('München, ' + heute),                             // Datum 10pt grau RIGHT
-      PB('Bewerbung als ' + stellentitel),                     // Betreff 11pt BOLD NAVY
-      P(''),                                                   // Leerzeile nach Betreff
-      P('Sehr geehrte Damen und Herren,', { alignment: D.AlignmentType.LEFT, spacing: { after: 120, line: 300 } }),
+      PDatum('München, ' + heute),                             // Datum 10pt grau RIGHT — sa 12pt (mehr Abstand zu Betreff)
+      PB(betreff),                                             // Betreff: cleaned + optional Kennziffer — sa 4pt (weniger zu Anrede)
+      P(anrede, { alignment: D.AlignmentType.LEFT, spacing: { after: 120, line: 300 } }),
       P(A1), P(A2), P(A3), P(A4), P(A5),
       P(''),                                                   // Leerzeile vor Grußformel
       new D.Paragraph({                                        // Grußformel 11pt sa=2pt (V14)
