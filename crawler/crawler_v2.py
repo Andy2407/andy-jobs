@@ -26,7 +26,7 @@ from urllib.parse import urlparse, urljoin, unquote
 import requests
 from bs4 import BeautifulSoup
 
-from profile import score_job, categorize, clean_title, MIN_SCORE_TO_INCLUDE, OTHER_MIN_SCORE
+from profile import score_job, categorize, clean_title, MIN_SCORE_TO_INCLUDE, OTHER_MIN_SCORE, USER_BLOCKED_URLS
 
 BASE = Path(__file__).resolve().parent.parent
 DATA_PATH = BASE / "data.json"
@@ -1367,6 +1367,10 @@ def apply_filter(jobs) -> list:
             duped += 1
             continue
         seen_url.add(url)
+        # NEU 2026-06-01: einzelne von Andy geblockte Stellen-URLs (user_overrides.json) raus
+        if USER_BLOCKED_URLS and any(b in url.lower() for b in USER_BLOCKED_URLS):
+            blocked += 1
+            continue
         score, reasons = score_job(
             j.get("title", ""), j.get("raw_text", "") or j.get("description", ""),
             j.get("location", ""), j.get("company", "")

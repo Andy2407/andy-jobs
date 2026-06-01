@@ -1,0 +1,8 @@
+{
+  "_kommentar": "Andys persistente Job-Overrides. Der Crawler liest diese Datei bei JEDEM Lauf (auch der GitHub-Cloud-Crawl 4x taeglich) und wendet sie an. Bleibt ueber ALLE Updates erhalten, weil sie im Repo liegt. So kommt geblockter Muell NIE wieder rein.",
+  "_anleitung": "blocked_companies: Firmen (Teilstring, lowercase), die NIE angezeigt werden. blocked_title_substrings: Titel-Teilstrings, die raus sollen. blocked_url_substrings: einzelne Stellen-URLs raus. favorite_companies: Firmen mit +Boost (ranken oben). Andy sagt im Chat 'Firma X raus' oder 'Firma Y Favorit', Claude traegt es hier ein.",
+  "blocked_companies": [],
+  "blocked_title_substrings": [],
+  "blocked_url_substrings": [],
+  "favorite_companies": []
+}

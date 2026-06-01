@@ -205,8 +205,37 @@ TITLE_BLOCK = [
     "technical consultant", "technischer berater",
     "implementation consultant", "implementierungsberater",
     "sap consultant", "salesforce consultant", "oracle consultant",
-    # Vorsicht: KI/AI-Consultant SOLLEN erlaubt sein — sind in TITLE_BOOST schon explizit
-    # → Folgendes NICHT blocken: "ai consultant", "ki-consultant", "ki-berater", "ai project manager"
+    # ---------- NEU 2026-06-01 (Andy-Feedback #2, HART) ----------
+    # Andy: "Wenn ich nochmal sowas sehe, spinne ich komplett." Kein Vertrieb, keine Software-
+    # Entwicklung, kein Testing, kein QM/Qualität, KEIN Consulting (auch KI-Consultant), keine
+    # Assistenz/Labor, keine Teilzeit, kein Marketing/Loyalty.
+    # --- Vertrieb (Andy ist KEIN Vertriebler) ---
+    "vertrieb", "vertriebsingenieur", "sales engineer", "vertriebsmanager",
+    "außendienst", "aussendienst", "kundenbetreuung", "kundenberater",
+    "vertriebsmitarbeiter", "inside sales", "pre-sales", "presales", "pre sales",
+    # --- Software-Entwicklung (Andy ist KEIN Softwareentwickler; "developer" NICHT pauschal,
+    #     sonst fliegt Produktentwickler/Product Developer mit) ---
+    "softwareentwickl", "software-entwickl", "programmierer", "webentwickl",
+    "app-entwickl", "app developer", "web developer", "coder",
+    # --- Testing/Absicherung ---
+    "pentester", "it-tester", "it tester", "testautomat", "absicherungsingenieur",
+    "validierungsingenieur", "verifikationsingenieur",
+    # --- Qualität/QM (Andy ist KEIN Qualitätsmanager) ---
+    "qualitätsmanager", "quality manager", "quality engineer", "qualitätsingenieur",
+    "softwarequalität", "qualitätssicherung", "qmb ", "qm-manager", "qs-ingenieur",
+    "qualitätsplaner",
+    # --- Consulting (Andy will GAR KEIN Consulting, auch KI-Consultant raus) ---
+    # "consult" als Kurzform fängt consultant/consulting/bauconsult/X-Consult GmbH alle auf einmal
+    "consult", "consultant", "consulting", "berater", "beraterin", "beratung", "advisory",
+    "personalberatung",
+    # --- Assistenz/Labor (Andy ist Senior, keine Assistenz) ---
+    "assistent", "assistentin", "assistenz", "laborant", "laborassist",
+    "technische assist", "technischer assist",
+    # --- Teilzeit / Hilfskraft (Andy will Vollzeit) ---
+    "teilzeit", "part-time", "part time", "reinigungskraft", "minijob", "geringfügig",
+    "aushilfe", "hilfskraft",
+    # --- Marketing/Loyalty/CRM (Andy ist kein Marketing-PM) ---
+    "loyalty", "marketing services", "crm manager", "kampagnenmanage", "brand manager",
 ]
 
 # ===== DESCRIPTION-LEVEL HARD BLOCK (sicherheits-net wenn Title nicht klar) =====
@@ -311,7 +340,7 @@ COMPANY_BLOCK = [
 # Andy 2026-05-28: "Ferchau als Ingenieurdienstleister nicht so hoch priorisieren"
 # Engineering-Dienstleister liefern viel Volumen, aber Andy will direkten OEM/Tech-Bezug vorne
 COMPANY_DEMOTE = {
-    "ferchau": 0.65,        # Andys Hauptkritik — −35% Score
+    "ferchau": 0.50,        # Andy 2026-06-01: "Ferchau nur Prio 2-3 bei Auto" — −50% Score
     "bertrandt": 0.80,      # auch Engineering-Dienstleister
     "akkodis": 0.85,        # Engineering-Dienstleister, aber mit Automotive-Bezug
     "alten": 0.85,          # Engineering-Dienstleister
@@ -364,6 +393,34 @@ MIN_SCORE_TO_INCLUDE = 22
 # Rollen-Match braucht jetzt deutlich mehr Punkte, sonst fliegt sie raus. Echte München-/Remote-
 # PM-/Produktentwicklungs-Stellen landen ohnehin in "pm"/"auto"/"ki" und sind nicht betroffen.
 OTHER_MIN_SCORE = 40
+
+# ===== NEU 2026-06-01: User-Overrides aus user_overrides.json (persistent im Repo) =====
+# Der Crawler liest Andys dauerhafte Blocks/Favoriten bei JEDEM Lauf (auch der GitHub-Cloud-Crawl
+# 4x taeglich). So kommt geblockter Muell NIE wieder rein, ueber ALLE Updates hinweg. Andy sagt
+# "Firma X raus" oder "Firma Y Favorit" -> Eintrag in user_overrides.json, der Rest laeuft automatisch.
+import json as _json
+import os as _os
+USER_BLOCKED_URLS = []
+try:
+    with open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "user_overrides.json"),
+              encoding="utf-8") as _f:
+        _ov = _json.load(_f)
+    for _c in _ov.get("blocked_companies", []):
+        _cl = str(_c).strip().lower()
+        if _cl and _cl not in COMPANY_BLOCK:
+            COMPANY_BLOCK.append(_cl)
+    for _t in _ov.get("blocked_title_substrings", []):
+        _tl = str(_t).strip().lower()
+        if _tl and _tl not in TITLE_BLOCK:
+            TITLE_BLOCK.append(_tl)
+    USER_BLOCKED_URLS = [str(_u).strip().lower() for _u in _ov.get("blocked_url_substrings", [])
+                         if str(_u).strip()]
+    for _c in _ov.get("favorite_companies", []):
+        _cl = str(_c).strip().lower()
+        if _cl:
+            COMPANY_BOOST_FIRMS.setdefault(_cl, 10)
+except Exception:
+    pass
 
 
 OTHER_CITIES = ["karlsruhe", "stuttgart", "berlin", "hamburg", "köln", "koeln",
@@ -592,16 +649,17 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
         score += best_loc_pts
         reasons.append(f"📍 {best_loc_kw} (+{best_loc_pts})")
 
-    # Company-Boost (Andys gezielte Wunschfirmen)
+    # Company-Boost (Andys gezielte Wunschfirmen) — Firma in Titel ODER Firmenfeld
     for fkw, pts in COMPANY_BOOST_FIRMS.items():
-        if fkw in company_lower:
+        if fkw in title_co:
             score += pts
             reasons.append(f"🏢 Wunschfirma {fkw.strip().title()} (+{pts})")
             break  # nur eine Firma matched
 
-    # Company-Demote (Engineering-Dienstleister, Andy will weniger Volumen vorn)
+    # Company-Demote (Eng-Dienstleister) — NEU 2026-06-01: Firma in Titel ODER Firmenfeld.
+    # StepStone packt den Firmennamen oft in den Titel (company-Feld leer) → sonst Ferchau-Bug.
     for dkw, mult in COMPANY_DEMOTE.items():
-        if dkw in company_lower:
+        if dkw in title_co:
             old_score = score
             score = int(score * mult)
             delta = old_score - score
