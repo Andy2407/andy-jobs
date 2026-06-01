@@ -21,12 +21,12 @@ import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
-from urllib.parse import urlparse, urljoin
+from urllib.parse import urlparse, urljoin, unquote
 
 import requests
 from bs4 import BeautifulSoup
 
-from profile import score_job, categorize, clean_title, MIN_SCORE_TO_INCLUDE
+from profile import score_job, categorize, clean_title, MIN_SCORE_TO_INCLUDE, OTHER_MIN_SCORE
 
 BASE = Path(__file__).resolve().parent.parent
 DATA_PATH = BASE / "data.json"
@@ -171,6 +171,9 @@ PERSONIO_COMPANIES = [
     ("luminovo", "Luminovo", None), ("logivations", "Logivations", None),
     ("kaeser-kompressoren", "KAESER", None),
     ("mep-werke", "MEP Werke", None), ("trumpf", "TRUMPF", None),
+    # NEU 2026-06-01 (Robotik/Mechatronik München, ATS-verifiziert: 100% München-Treffer)
+    ("franka-robotics", "Franka Robotics", None),
+    ("magazino", "Magazino", None),
 ]
 
 
@@ -213,16 +216,18 @@ def crawl_personio(session) -> list:
 # Greenhouse
 # ============================================================
 GREENHOUSE_COMPANIES = [
-    "celonis", "n26", "traderepublic", "sennder", "gostudent", "pitch",
-    "taxfix", "raisin", "mambu", "contentful", "awin", "infarm",
-    "choco", "tier", "tiermobility", "lightyear", "omio", "klarna",
-    "scalable", "scalablecapital", "getyourguide", "idagio", "blinkist",
-    "remotecom", "zalando", "hellofresh", "deliveryhero", "sumup",
-    "openai", "anthropic", "stripe", "scaleai", "elevenlabs",
-    "perplexityai", "huggingface", "stabilityai", "neon", "supabase",
-    "vercel", "linear", "notion", "applied-intuition", "anduril",
-    "joby", "wayve", "cohere", "mongodb", "formlabs", "databricks", "flix",
-    "bitpanda", "grover", "mithril", "thinkingmachines",
+    # NEU 2026-06-01 (Andy): nur DACH / Mobility / Hardware mit potenziellen PM-/Produkt-Rollen.
+    # US-Pure-AI/SWE/Defense entfernt (openai, anthropic, stripe, scaleai, elevenlabs, perplexityai,
+    # huggingface, stabilityai, neon, supabase, vercel, linear, notion, mongodb, databricks, cohere,
+    # anduril, joby, wayve, mithril, thinkingmachines, pitch, contentful, lightyear, idagio, blinkist,
+    # remotecom, klarna, taxfix) — die liefern nur Software-Engineer-/ML-Stellen ohne DE-Bezug = Rauschen.
+    "celonis", "flix", "formlabs", "applied-intuition", "tiermobility", "tier",
+    "n26", "traderepublic", "sennder", "gostudent",
+    "raisin", "mambu", "awin", "infarm", "choco", "omio",
+    "scalable", "scalablecapital", "getyourguide",
+    "zalando", "hellofresh", "deliveryhero", "sumup", "bitpanda", "grover",
+    # NEU 2026-06-01 (München-Bezug, ATS-verifiziert)
+    "roboyo",
 ]
 
 
@@ -252,8 +257,10 @@ def crawl_greenhouse(session) -> list:
 # ============================================================
 # Lever / Ashby / Workable / Recruitee / SmartRecruiters
 # ============================================================
-LEVER_COMPANIES = ["munichelectrification", "intersystems", "vehicle", "spacex",
-                   "palantir", "freenome", "anthropic", "openai"]
+# NEU 2026-06-01 (Andy): US-Pure-AI/SWE/Defense raus (intersystems, spacex, palantir, freenome,
+# anthropic, openai). Munich Electrification behalten (München, E-Mobility-Hardware, lieferte im
+# God-Mode-Lauf den NPI-Treffer).
+LEVER_COMPANIES = ["munichelectrification", "vehicle"]
 
 
 def crawl_lever(session) -> list:
@@ -279,8 +286,10 @@ def crawl_lever(session) -> list:
     return jobs
 
 
-ASHBY_COMPANIES = ["anthropic", "openai", "elevenlabs", "anysphere",
-                   "perplexity", "mistral", "stabilityai", "weaviate"]
+# NEU 2026-06-01 (Andy): Ashby-Liste war ausschließlich US-Pure-AI/SWE (anthropic, openai,
+# elevenlabs, anysphere, perplexity, mistral, stabilityai, weaviate) — kein DE-Produktentwicklungs-
+# Bezug, reines Rauschen. Geleert; kann später mit DACH-Ashby-Boards gefüllt werden.
+ASHBY_COMPANIES = []
 
 
 def crawl_ashby(session) -> list:
@@ -365,6 +374,7 @@ SMARTRECRUITERS_COMPANIES = [
     "MiltenyiBiotec", "SIXT",
     "REWEInternationalDienstleistungsgesellschaftmbH",
     "DiscoverDeloitte",
+    "Gerresheimer",  # NEU 2026-06-01 (MedTech-Verpackung/Pharma-Glas, SmartRecruiters)
 ]
 
 
@@ -432,6 +442,17 @@ BA_API_QUERIES = [
     {"was": "Konzeptkonstrukteur", "wo": "München", "umkreis": "25"},
     {"was": "SE-Teamleiter", "wo": "München", "umkreis": "25"},
     {"was": "PMO", "wo": "München", "umkreis": "25"},
+    # NEU 2026-06-01 (Andy-Fokus: Produktentwicklung / Konzept / Prototyp / Teilprojektleitung)
+    {"was": "Projektleiter Produktentwicklung", "wo": "München", "umkreis": "25"},
+    {"was": "Teilprojektleiter", "wo": "München", "umkreis": "25"},
+    {"was": "Projektleiter Entwicklung", "wo": "München", "umkreis": "25"},
+    {"was": "Entwicklungsprojektleiter", "wo": "München", "umkreis": "25"},
+    {"was": "Technischer Projektleiter", "wo": "München", "umkreis": "25"},
+    {"was": "Projektleiter Vorentwicklung", "wo": "München", "umkreis": "25"},
+    {"was": "Projektingenieur Entwicklung", "wo": "München", "umkreis": "25"},
+    {"was": "Konstruktionsleiter", "wo": "München", "umkreis": "25"},
+    {"was": "Projektleiter Produktentwicklung"},
+    {"was": "Teilprojektleiter Entwicklung"},
     {"was": "Senior Consultant", "wo": "München", "umkreis": "25"},
     {"was": "Agile Projektmanager", "wo": "München", "umkreis": "25"},
     {"was": "Scrum Master", "wo": "München", "umkreis": "25"},
@@ -500,6 +521,16 @@ STEPSTONE_QUERIES = [
     ("senior-projektmanager", None), ("senior-projektleiter", "muenchen"),
     ("konzeptkonstrukteur", "muenchen"), ("se-teamleiter", "muenchen"),
     ("pmo", "muenchen"),
+    # NEU 2026-06-01 (Andy-Fokus Produktentwicklung/Teilprojektleitung/Konzept/Prototyp)
+    ("projektleiter-produktentwicklung", "muenchen"),
+    ("teilprojektleiter", "muenchen"),
+    ("projektleiter-entwicklung", "muenchen"),
+    ("technischer-projektleiter", "muenchen"),
+    ("entwicklungsprojektleiter", "muenchen"),
+    ("projektleiter-vorentwicklung", "muenchen"),
+    ("konstruktionsleiter", "muenchen"),
+    ("projektleiter-produktentwicklung", None),
+    ("teilprojektleiter", None),
     # Engineering-Dienstleister firmen-spezifisch (NEU v5)
     ("bertrandt", "muenchen"), ("bertrandt", None),
     ("alten", "muenchen"), ("alten", None),
@@ -610,6 +641,11 @@ KIMETA_QUERIES = [
     "projektmanager-pharma-jobs-münchen",
     "modulleiter-jobs-münchen", "programmleiter-jobs-münchen",
     "baugruppenverantwortlicher-jobs-münchen",
+    # NEU 2026-06-01 (Andy-Fokus)
+    "stellenangebote-teilprojektleiter-in-münchen",
+    "projektleiter-produktentwicklung-jobs-münchen",
+    "technischer-projektleiter-jobs-münchen",
+    "entwicklungsprojektleiter-jobs-münchen",
 ]
 
 
@@ -653,6 +689,9 @@ def crawl_jobvector(session) -> list:
         ("projektleiter-automotive", "muenchen"),
         ("baugruppenverantwortlicher", "muenchen"),
         ("modulleiter", "muenchen"),
+        ("projektleiter-produktentwicklung", "muenchen"),
+        ("teilprojektleiter", "muenchen"),
+        ("technischer-projektleiter", "muenchen"),
     ]
     for q, loc in queries:
         url = f"https://www.jobvector.de/jobs/?wo={loc}&was={q}"
@@ -705,6 +744,11 @@ LINKEDIN_QUERIES = [
     {"keywords": "KI Manager", "location": "Germany", "geoId": "101282230"},
     {"keywords": "Agile Projektmanager", "location": "Munich, Germany", "geoId": "100477049"},
     {"keywords": "PMO", "location": "Munich, Germany", "geoId": "100477049"},
+    # NEU 2026-06-01 (Andy-Fokus: Produktentwicklung / Teilprojektleitung / Konzept)
+    {"keywords": "Projektleiter Produktentwicklung", "location": "Munich, Germany", "geoId": "100477049"},
+    {"keywords": "Teilprojektleiter", "location": "Munich, Germany", "geoId": "100477049"},
+    {"keywords": "Technischer Projektleiter", "location": "Munich, Germany", "geoId": "100477049"},
+    {"keywords": "Entwicklungsprojektleiter", "location": "Munich, Germany", "geoId": "100477049"},
 ]
 
 
@@ -1333,6 +1377,13 @@ def apply_filter(jobs) -> list:
         if score < MIN_SCORE_TO_INCLUDE:
             low += 1
             continue
+        # NEU 2026-06-01: "other"-Kategorie strenger filtern. Das Dashboard zeigt im PM-Tab
+        # pm+other zusammen; "other" war zuletzt 159/283 = Rauschen. Echte PM/Auto/KI-Stellen
+        # sind nicht betroffen (eigene Kategorie), nur unklare Rest-Treffer fliegen jetzt raus.
+        cat = categorize(j.get("title", ""), j.get("description", ""), j.get("company", ""))
+        if cat == "other" and score < OTHER_MIN_SCORE:
+            low += 1
+            continue
         h = (_normalize_for_dedupe(j.get("title", "")) + "|" +
              _normalize_for_dedupe(j.get("company", "")) + "|" +
              _normalize_for_dedupe(j.get("location", "")[:30]))
@@ -1354,7 +1405,7 @@ def apply_filter(jobs) -> list:
             fresh += 1
         j["score"] = score
         j["score_reasons"] = reasons[:5]
-        j["category"] = categorize(j.get("title", ""), j.get("description", ""))
+        j["category"] = cat
         j["alt_sources"] = []
         by_hash[h] = j
         out.append(j)
@@ -1489,6 +1540,530 @@ def crawl_mtu(session) -> list:
 
 
 # ============================================================
+# NEU 2026-06-01 (Andy God-Mode): Top-Treffer-Firmen als Direkt-Quellen.
+# ATS-Endpoints live verifiziert (alle requests-scrapebar, kein Browser nötig).
+# ============================================================
+def crawl_dvinci(session, host, company, muc_keys) -> list:
+    """d.vinci JSON-Feed (FEV, SÜSS MicroTec). Endpoint: https://{host}/jobPublication/list.json
+    Root ist ein JSON-Array. Standort-Filter auf muc_keys (München/Garching)."""
+    log.info(f"[{company}] d.vinci Feed…")
+    jobs = []
+    try:
+        r = session.get(f"https://{host}/jobPublication/list.json",
+                        params={"language": "de"}, timeout=15)
+        if r.status_code != 200:
+            log.warning(f"[{company}] HTTP {r.status_code}")
+            return []
+        data = r.json()
+        items = data if isinstance(data, list) else (
+            data.get("jobPublications") or data.get("items") or [])
+        for it in items:
+            if not isinstance(it, dict):
+                continue
+            title = it.get("position", "") or it.get("title", "")
+            url = it.get("jobPublicationURL", "") or it.get("url", "")
+            jo = it.get("jobOpening", {}) or {}
+            loc = jo.get("location", "") or ""
+            locs = jo.get("locations", []) or []
+            loc_names = [L.get("name", "") for L in locs if isinstance(L, dict)]
+            loc_full = (loc + " " + " ".join(loc_names)).strip()
+            if not any(k in loc_full.lower() for k in muc_keys):
+                continue
+            rc = it.get("renderedContent", {}) or {}
+            desc = ""
+            if isinstance(rc, dict):
+                desc = " ".join(str(v) for v in rc.values() if isinstance(v, str))[:1500]
+            if not desc:
+                desc = (str(it.get("tasks", "")) + " " + str(it.get("profile", "")))[:1500]
+            if not url or not title:
+                continue
+            jobs.append({"source": f"dvinci:{company}", "url": url, "title": title[:200],
+                         "company": company, "location": loc_full or "München",
+                         "description": desc, "raw_text": title})
+    except Exception as e:
+        log.warning(f"[{company}] {e}")
+    log.info(f"[{company}] {len(jobs)} Jobs (München/Garching)")
+    return jobs
+
+
+def crawl_fev(session) -> list:
+    return crawl_dvinci(session, "career.fev.com", "FEV", ["münchen", "munich"])
+
+
+def crawl_suss(session) -> list:
+    return crawl_dvinci(session, "career.suss.com", "SÜSS MicroTec",
+                        ["garching", "münchen", "munich"])
+
+
+def crawl_successfactors_sitemap(session, host, company, muc_regex) -> list:
+    """SAP SuccessFactors via sitemap.xml (MAN, Webasto, Knorr-Bremse). Die /search/-SPA ist
+    nicht scrapebar, aber die sitemap.xml listet jede Stelle als /job/{Stadt}-{Titel}-{Suffix}-{PLZ}/{id}/.
+    Volltext zieht der JSON-LD-Parser später aus der Detailseite."""
+    log.info(f"[{company}] SF-Sitemap…")
+    jobs = []
+    try:
+        r = session.get(f"https://{host}/sitemap.xml", timeout=20)
+        if r.status_code != 200:
+            log.warning(f"[{company}] sitemap HTTP {r.status_code}")
+            return []
+        text = r.text.replace("&amp;", "&")
+        locs = re.findall(r"<loc>\s*([^<]+?)\s*</loc>", text)
+        muc = re.compile(muc_regex, re.I)
+        seen = set()
+        for raw in locs:
+            url = unquote(raw.strip())
+            if "/job/" not in url or not muc.search(url):
+                continue
+            m = re.search(r"/job/(.+?)/(\d+)/?$", url)
+            if not m:
+                continue
+            slug, jid = m.group(1), m.group(2)
+            if jid in seen:
+                continue
+            seen.add(jid)
+            parts = slug.split("-")
+            slug_l = slug.lower()
+            KNOWN_CITIES = ["münchen", "muenchen", "garching", "ismaning", "unterschleißheim",
+                            "putzbrunn", "stockdorf", "gilching", "augsburg", "penzberg",
+                            "taufkirchen", "parsdorf", "ottobrunn", "unterhaching", "haar",
+                            "feldkirchen", "aschheim", "kirchheim", "germering", "martinsried"]
+            city = next((c.title() for c in KNOWN_CITIES if c in slug_l),
+                        parts[0] if parts else "")
+            title_words = [p for p in parts[1:] if p and not re.fullmatch(r"\d{4,5}", p)
+                           and p.lower() not in ("mwd", "wmd", "fmx", "wmx", "fmd",
+                                                  "m", "w", "d", "x")]
+            title = " ".join(title_words).strip() or slug.replace("-", " ")
+            jobs.append({"source": f"sf:{company}", "url": url, "title": title[:200],
+                         "company": company, "location": city,
+                         "description": "", "raw_text": title})
+    except Exception as e:
+        log.warning(f"[{company}] {e}")
+    log.info(f"[{company}] {len(jobs)} Jobs (München-Region)")
+    return jobs
+
+
+def crawl_man(session) -> list:
+    return crawl_successfactors_sitemap(session, "jobs.man.eu", "MAN Truck & Bus",
+                                        r"/job/M[üu]nchen-")
+
+
+def crawl_webasto(session) -> list:
+    return crawl_successfactors_sitemap(session, "jobs.webasto.com", "Webasto",
+                                        r"/job/(M[üu]nchen|Stockdorf|Gilching|Garching)-")
+
+
+def crawl_knorr(session) -> list:
+    return crawl_successfactors_sitemap(session, "careers.knorr-bremse.com", "Knorr-Bremse",
+                                        r"/job/M[üu]nchen-")
+
+
+def crawl_silver_atena(session) -> list:
+    """Silver Atena TYPO3 (sajobcenter). Liste server-seitig als HTML-Tabelle gerendert:
+    karriere.silver-atena.de/stellenangebote, eine Stelle pro <tr> mit 3 <td>
+    (Titel+Link, Funktionsbereich, Standort). Standort-Hardfilter macht location_passes."""
+    log.info("[Silver Atena] Stellenliste…")
+    jobs = []
+    base = "https://karriere.silver-atena.de"
+    try:
+        r = session.get(f"{base}/stellenangebote", timeout=15)
+        if r.status_code != 200:
+            log.warning(f"[Silver Atena] HTTP {r.status_code}")
+            return []
+        soup = BeautifulSoup(r.text, "lxml")
+        seen = set()
+        for tr in soup.select("tr"):
+            a = tr.find("a", href=re.compile(r"/stellenangebote/"))
+            tds = tr.find_all("td")
+            if not a or len(tds) < 3:
+                continue
+            href = a.get("href", "")
+            # Werkstudenten/Praktika über Kategorie-Pfad ausschließen
+            if any(x in href.lower() for x in ["/studenten", "/praktik", "/werkstud"]):
+                continue
+            url = href if href.startswith("http") else base + href
+            if url in seen:
+                continue
+            seen.add(url)
+            title = a.get_text(" ", strip=True)
+            loc = tds[-1].get_text(" ", strip=True)
+            if not title:
+                continue
+            jobs.append({"source": "silver-atena", "url": url, "title": title[:200],
+                         "company": "Silver Atena", "location": loc or "München",
+                         "description": "", "raw_text": title})
+    except Exception as e:
+        log.warning(f"[Silver Atena] {e}")
+    log.info(f"[Silver Atena] {len(jobs)} Jobs")
+    return jobs
+
+
+# ---- Workday (generisch, POST) ----
+def crawl_workday(session, tenant, wd, site, company, search="München") -> list:
+    """Generischer Workday-Crawler. Workday liefert global → searchText (Standort) serverseitig;
+    location_passes filtert zusätzlich hart."""
+    log.info(f"[{company}] Workday…")
+    jobs = []
+    url = f"https://{tenant}.wd{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
+    hdrs = {"Content-Type": "application/json", "Accept": "application/json"}
+    try:
+        offset = 0
+        while offset < 160:
+            r = session.post(url, timeout=15, headers=hdrs,
+                             json={"limit": 20, "offset": offset, "searchText": search})
+            if r.status_code != 200:
+                break
+            posts = r.json().get("jobPostings", [])
+            if not posts:
+                break
+            for p in posts:
+                title = p.get("title", "")
+                path = p.get("externalPath", "")
+                if not title or not path:
+                    continue
+                jobs.append({"source": f"workday:{company}",
+                             "url": f"https://{tenant}.wd{wd}.myworkdayjobs.com{path}",
+                             "title": title[:200], "company": company,
+                             "location": p.get("locationsText", "") or "", "description": "",
+                             "raw_text": title})
+            if len(posts) < 20:
+                break
+            offset += 20
+            time.sleep(0.2)
+    except Exception as e:
+        log.warning(f"[{company}] {e}")
+    log.info(f"[{company}] {len(jobs)} Jobs (Workday)")
+    return jobs
+
+
+def crawl_zeiss_meditec(session) -> list:
+    return crawl_workday(session, "zeissgroup", 3, "External", "Carl Zeiss Meditec", "München")
+
+
+# ---- SuccessFactors-Sitemap-Wrapper (neue München-Firmen) ----
+def crawl_kuka(session) -> list:
+    return crawl_successfactors_sitemap(session, "jobs.kuka.com", "KUKA",
+                                        r"/job/(M[üu]nchen|Augsburg)")
+def crawl_gore(session) -> list:
+    return crawl_successfactors_sitemap(session, "wlgore.jobs.hr.cloud.sap", "W. L. Gore",
+                                        r"(Putzbrunn|M[üu]nchen)")
+def crawl_gd(session) -> list:
+    return crawl_successfactors_sitemap(session, "careers.gi-de.com", "Giesecke+Devrient",
+                                        r"/job/(M[üu]nchen|Munich)")
+def crawl_kraussmaffei(session) -> list:
+    return crawl_successfactors_sitemap(session, "jobs.kraussmaffei.com", "KraussMaffei",
+                                        r"/job/(Parsdorf|M[üu]nchen)")
+def crawl_amsosram(session) -> list:
+    return crawl_successfactors_sitemap(session, "jobs.ams-osram.com", "ams OSRAM",
+                                        r"(M[üu]nchen|Munich)")
+
+
+# ---- Infineon (Eightfold PCSX) ----
+def crawl_infineon(session) -> list:
+    log.info("[Infineon] Eightfold PCSX…")
+    jobs = []
+    hdrs = {**HEADERS, "Referer": "https://jobs.infineon.com/careers", "Accept": "application/json"}
+    try:
+        start = 0
+        while start < 300:
+            url = ("https://jobs.infineon.com/api/pcsx/search?domain=infineon.com"
+                   f"&start={start}&num=100&location=Munich%2C%20Germany"
+                   "&sort_by=distance&filter_distance=40")
+            r = session.get(url, headers=hdrs, timeout=15)
+            if r.status_code != 200:
+                break
+            data = r.json()
+            positions = data.get("positions") or (data.get("data") or {}).get("positions") or []
+            if not positions:
+                break
+            for p in positions:
+                title = p.get("name", "")
+                purl = p.get("positionUrl", "") or p.get("canonicalPositionUrl", "")
+                locs = p.get("locations", []) or []
+                loc = ", ".join(locs) if isinstance(locs, list) else str(locs)
+                full = purl if str(purl).startswith("http") else f"https://jobs.infineon.com{purl}"
+                if not title:
+                    continue
+                jobs.append({"source": "infineon", "url": full, "title": title[:200],
+                             "company": "Infineon Technologies", "location": loc or "München",
+                             "description": "", "raw_text": title})
+            if len(positions) < 100:
+                break
+            start += 100
+            time.sleep(0.3)
+    except Exception as e:
+        log.warning(f"[Infineon] {e}")
+    log.info(f"[Infineon] {len(jobs)} Jobs")
+    return jobs
+
+
+# ---- Allianz (Phenom People POST) ----
+def crawl_allianz(session) -> list:
+    log.info("[Allianz] Phenom…")
+    jobs = []
+    body = {"lang": "en_global", "deviceType": "desktop", "country": "global",
+            "pageName": "search-results", "ddoKey": "refineSearch", "from": 0, "jobs": True,
+            "counts": True, "all_fields": ["country", "state", "city", "category"],
+            "size": 100, "keywords": "", "global": True,
+            "selected_fields": {"city": ["München"]}}
+    try:
+        r = session.post("https://careers.allianz.com/widgets", json=body, timeout=15,
+                         headers={"Content-Type": "application/json", "Accept": "application/json"})
+        if r.status_code == 200:
+            joblist = (((r.json().get("refineSearch") or {}).get("data") or {}).get("jobs")) or []
+            for p in joblist:
+                title = p.get("title", "")
+                url = p.get("applyUrl") or p.get("jobUrl") or p.get("url", "")
+                if not title:
+                    continue
+                jobs.append({"source": "allianz", "url": url, "title": title[:200],
+                             "company": "Allianz", "location": p.get("city", "") or "München",
+                             "description": "", "raw_text": title})
+    except Exception as e:
+        log.warning(f"[Allianz] {e}")
+    log.info(f"[Allianz] {len(jobs)} Jobs")
+    return jobs
+
+
+# ============================================================
+# Job-Portale (NEU 2026-06-01, ATS-Recherche verifiziert)
+# ============================================================
+PORTAL_QUERIES = ["Projektmanager", "Projektleiter", "Teilprojektleiter",
+                  "Produktentwicklung", "technischer Projektleiter", "KI Manager"]
+
+
+def crawl_xing(session) -> list:
+    """Xing Jobs — server-seitiges inline-JSON im HTML (kein Key, Gehalt inklusive)."""
+    log.info("[Xing] Jobs…")
+    jobs, seen = [], set()
+    for q in PORTAL_QUERIES:
+        for page in (1, 2):
+            url = (f"https://www.xing.com/jobs/search/ki?keywords={requests.utils.quote(q)}"
+                   f"&location=M%C3%BCnchen&radius=25&page={page}")
+            try:
+                r = session.get(url, timeout=15)
+                if r.status_code != 200:
+                    break
+                txt = r.text.replace("\\u002F", "/")
+                for m in re.finditer(r'"url":"(https://www\.xing\.com/jobs/[^"]+)"', txt):
+                    jurl = m.group(1).split("?")[0]
+                    if jurl in seen:
+                        continue
+                    seen.add(jurl)
+                    ctx = txt[max(0, m.start() - 700):m.start() + 700]
+                    tm = re.search(r'"title":"([^"]{4,140})"', ctx)
+                    cm = (re.search(r'"companyNameOverride":"([^"]{2,80})"', ctx)
+                          or re.search(r'"companyName":"([^"]{2,80})"', ctx))
+                    lm = re.search(r'"city":"([^"]{2,60})"', ctx)
+                    if not tm:
+                        continue
+                    jobs.append({"source": "xing", "url": jurl, "title": tm.group(1)[:200],
+                                 "company": (cm.group(1) if cm else ""),
+                                 "location": (lm.group(1) if lm else "München"),
+                                 "description": "", "raw_text": tm.group(1)})
+                time.sleep(0.4)
+            except Exception as e:
+                log.debug(f"[Xing] {q} p{page}: {e}")
+    log.info(f"[Xing] {len(jobs)} Jobs")
+    return jobs
+
+
+def crawl_talent(session) -> list:
+    """talent.com — HTML-Cards mit gehashten CSS-Modulen (Substring-Selektoren)."""
+    log.info("[talent.com] Jobs…")
+    jobs, seen = [], set()
+    for q in PORTAL_QUERIES:
+        url = f"https://de.talent.com/jobs?k={requests.utils.quote(q)}&l=M%C3%BCnchen"
+        try:
+            r = session.get(url, timeout=15)
+            if r.status_code != 200:
+                continue
+            soup = BeautifulSoup(r.text, "lxml")
+            for card in soup.select('[class*="JobCard_card__"]'):
+                t = card.select_one('[class*="JobCard_title__"]')
+                a = card.find("a", href=re.compile(r"/view\?id="))
+                if not t:
+                    continue
+                href = a.get("href", "") if a else ""
+                full = ("https://de.talent.com" + href) if href.startswith("/") else href
+                if not full or full in seen:
+                    continue
+                seen.add(full)
+                co = card.select_one('[class*="JobCard_company__"]')
+                lo = card.select_one('[class*="JobCard_location__"]')
+                jobs.append({"source": "talent", "url": full.split("?id=")[0] + "?id=" + full.split("id=")[-1],
+                             "title": t.get_text(" ", strip=True)[:200],
+                             "company": (co.get_text(" ", strip=True) if co else ""),
+                             "location": (lo.get_text(" ", strip=True) if lo else "München"),
+                             "description": "", "raw_text": t.get_text(" ", strip=True)})
+            time.sleep(0.4)
+        except Exception as e:
+            log.debug(f"[talent] {q}: {e}")
+    log.info(f"[talent.com] {len(jobs)} Jobs")
+    return jobs
+
+
+def crawl_jobrapido(session) -> list:
+    """jobrapido.de — HTML-Cards (Firma fehlt oft)."""
+    log.info("[jobrapido] Jobs…")
+    jobs, seen = [], set()
+    for q in PORTAL_QUERIES:
+        url = f"https://de.jobrapido.com/?w={requests.utils.quote(q)}&l=M%C3%BCnchen"
+        try:
+            r = session.get(url, timeout=15)
+            if r.status_code != 200:
+                continue
+            soup = BeautifulSoup(r.text, "lxml")
+            for card in soup.select(".result-item__wrapper"):
+                tl = card.select_one('[class*="result-item__title"]')
+                a = card.find("a", href=True)
+                if not tl or not a:
+                    continue
+                href = a.get("href", "")
+                if not href.startswith("http") or href in seen:
+                    continue
+                seen.add(href)
+                lo = card.select_one(".result-item__location")
+                jobs.append({"source": "jobrapido", "url": href.split("?")[0],
+                             "title": tl.get_text(" ", strip=True)[:200], "company": "",
+                             "location": (lo.get_text(" ", strip=True) if lo else "München"),
+                             "description": "", "raw_text": tl.get_text(" ", strip=True)})
+            time.sleep(0.4)
+        except Exception as e:
+            log.debug(f"[jobrapido] {q}: {e}")
+    log.info(f"[jobrapido] {len(jobs)} Jobs")
+    return jobs
+
+
+def crawl_whatjobs(session) -> list:
+    """whatjobs.de — HTML-Cards (Firma als URL-Slug)."""
+    log.info("[whatjobs] Jobs…")
+    jobs, seen = [], set()
+    for q in PORTAL_QUERIES:
+        url = f"https://de.whatjobs.com/jobs/{requests.utils.quote(q)}/M%C3%BCnchen"
+        try:
+            r = session.get(url, timeout=15)
+            if r.status_code != 200:
+                continue
+            soup = BeautifulSoup(r.text, "lxml")
+            for card in soup.select('div[class*="jobCard"]'):
+                h = card.find(["h2", "h3"])
+                a = card.find("a", href=True)
+                if not h or not a:
+                    continue
+                href = a.get("href", "")
+                full = href if href.startswith("http") else "https://de.whatjobs.com" + href
+                if full in seen:
+                    continue
+                seen.add(full)
+                jobs.append({"source": "whatjobs", "url": full.split("?")[0],
+                             "title": h.get_text(" ", strip=True)[:200], "company": "",
+                             "location": "München", "description": "",
+                             "raw_text": h.get_text(" ", strip=True)})
+            time.sleep(0.4)
+        except Exception as e:
+            log.debug(f"[whatjobs] {q}: {e}")
+    log.info(f"[whatjobs] {len(jobs)} Jobs")
+    return jobs
+
+
+def crawl_germantechjobs(session) -> list:
+    """germantechjobs.de — RSS-Feed, Titel-Format 'Rolle @ Firma [Gehalt]'. Nur München-Bezug."""
+    log.info("[germantechjobs] RSS…")
+    jobs = []
+    try:
+        r = session.get("https://germantechjobs.de/rss", timeout=30)
+        if r.status_code != 200:
+            return []
+        root = ET.fromstring(r.text)
+        for item in root.findall(".//item"):
+            title_raw = (item.findtext("title") or "").strip()
+            link = (item.findtext("link") or "").strip()
+            desc = (item.findtext("description") or "")[:600]
+            if not title_raw or not link:
+                continue
+            blob = (title_raw + " " + desc).lower()
+            if "münchen" not in blob and "munich" not in blob:
+                continue
+            company, title = "", title_raw
+            if " @ " in title_raw:
+                title, rest = title_raw.split(" @ ", 1)
+                company = rest.split("[")[0].strip()
+            jobs.append({"source": "germantechjobs", "url": link.split("?")[0],
+                         "title": title.strip()[:200], "company": company,
+                         "location": "München", "description": desc, "raw_text": title})
+    except Exception as e:
+        log.warning(f"[germantechjobs] {e}")
+    log.info(f"[germantechjobs] {len(jobs)} Jobs")
+    return jobs
+
+
+# ---- Automotive OEM / Tier1 (SuccessFactors-Sitemap + Workday + Jobbase) ----
+def crawl_bmw(session) -> list:
+    return crawl_successfactors_sitemap(session, "jobs.bmwgroup.com", "BMW Group", r"/job/M[üu]nchen")
+def crawl_bertrandt(session) -> list:
+    return crawl_successfactors_sitemap(session, "bertrandt.jobs.hr.cloud.sap", "Bertrandt",
+                                        r"/job/(M[üu]nchen|Muenchen|Taufkirchen)")
+def crawl_capgemini_eng(session) -> list:
+    return crawl_successfactors_sitemap(session, "careers.capgemini.com", "Capgemini",
+                                        r"/job/(M[üu]nchen|Muenchen)")
+def crawl_schaeffler(session) -> list:
+    return crawl_successfactors_sitemap(session, "jobs.schaeffler.com", "Schaeffler",
+                                        r"/job/(M[üu]nchen|Muenchen)")
+def crawl_zf(session) -> list:
+    return crawl_successfactors_sitemap(session, "jobs.zf.com", "ZF", r"/job/(M[üu]nchen|Muenchen)")
+def crawl_avl(session) -> list:
+    return crawl_successfactors_sitemap(session, "jobs.avl.com", "AVL", r"/job/(M[üu]nchen|Muenchen)")
+def crawl_vitesco(session) -> list:
+    return crawl_successfactors_sitemap(session, "jobs.vitesco-technologies.com", "Vitesco",
+                                        r"/job/(M[üu]nchen|Muenchen)")
+def crawl_valeo(session) -> list:
+    return crawl_workday(session, "valeo", 3, "valeo_jobs", "Valeo", "München")
+
+
+def crawl_arrk(session) -> list:
+    """ARRK Engineering — Jobbase AJAX-Liste (HTML-Fragment, kein JSON). Nur München-Treffer."""
+    log.info("[ARRK] Jobbase…")
+    jobs, seen = [], set()
+    try:
+        hdrs = {**HEADERS, "X-Requested-With": "XMLHttpRequest"}
+        for page in range(1, 4):
+            url = ("https://arrkeurope.jobbase.io/candidate/job/ajax_list?"
+                   f"display_length=100&page={page}&sort=date&sort_dir=DESC&search=")
+            r = session.get(url, headers=hdrs, timeout=15)
+            if r.status_code != 200:
+                break
+            soup = BeautifulSoup(r.text, "lxml")
+            links = soup.select('a[href*="/job/"]')
+            if not links:
+                break
+            added = 0
+            for a in links:
+                href = a.get("href", "")
+                full = href if href.startswith("http") else "https://arrkeurope.jobbase.io" + href
+                if full in seen:
+                    continue
+                seen.add(full)
+                title = a.get_text(" ", strip=True)
+                if not title or len(title) < 5:
+                    continue
+                parent = a.find_parent("tr") or a.find_parent("div") or a
+                ptext = parent.get_text(" ", strip=True).lower()
+                if "münchen" not in ptext and "munich" not in ptext:
+                    continue
+                jobs.append({"source": "arrk", "url": full, "title": title[:200],
+                             "company": "ARRK Engineering", "location": "München",
+                             "description": "", "raw_text": title})
+                added += 1
+            if added == 0:
+                break
+            time.sleep(0.3)
+    except Exception as e:
+        log.warning(f"[ARRK] {e}")
+    log.info(f"[ARRK] {len(jobs)} Jobs")
+    return jobs
+
+
+# ============================================================
 # Main
 # ============================================================
 def main():
@@ -1522,6 +2097,38 @@ def main():
         (crawl_rodenstock, "Rodenstock"),
         (crawl_cariad, "CARIAD"),
         (crawl_mtu, "MTU Aero Engines"),
+        # NEU 2026-06-01 (Andy God-Mode: Top-Treffer-Firmen als Direkt-Quellen, ATS-verifiziert)
+        (crawl_fev, "FEV"),
+        (crawl_suss, "SÜSS MicroTec"),
+        (crawl_man, "MAN Truck & Bus"),
+        (crawl_webasto, "Webasto"),
+        (crawl_knorr, "Knorr-Bremse"),
+        (crawl_silver_atena, "Silver Atena"),
+        # NEU 2026-06-01 Phase 2 (Robotik/MedTech/Tech/Industrie München, ATS-verifiziert)
+        (crawl_zeiss_meditec, "Carl Zeiss Meditec"),
+        (crawl_kuka, "KUKA"),
+        (crawl_gore, "W. L. Gore"),
+        (crawl_gd, "Giesecke+Devrient"),
+        (crawl_kraussmaffei, "KraussMaffei"),
+        (crawl_amsosram, "ams OSRAM"),
+        (crawl_infineon, "Infineon"),
+        (crawl_allianz, "Allianz"),
+        # NEU 2026-06-01 Phase 2 (Job-Portale, keyfrei)
+        (crawl_xing, "Xing"),
+        (crawl_talent, "talent.com"),
+        (crawl_jobrapido, "jobrapido"),
+        (crawl_whatjobs, "whatjobs"),
+        (crawl_germantechjobs, "germantechjobs"),
+        # NEU 2026-06-01 Phase 3 (Automotive OEM/Tier1 München, ATS-verifiziert; BMW = 482 MUC!)
+        (crawl_bmw, "BMW Group"),
+        (crawl_bertrandt, "Bertrandt"),
+        (crawl_capgemini_eng, "Capgemini Engineering"),
+        (crawl_schaeffler, "Schaeffler"),
+        (crawl_zf, "ZF"),
+        (crawl_avl, "AVL"),
+        (crawl_vitesco, "Vitesco"),
+        (crawl_valeo, "Valeo"),
+        (crawl_arrk, "ARRK Engineering"),
     ]
     sources_no_session = [
         (crawl_indeed_playwright, "Indeed (Playwright)"),
@@ -1542,6 +2149,18 @@ def main():
 
     filtered = apply_filter(all_jobs)
     verified = parallel_verify(filtered, s, max_workers=10)
+    # NEU 2026-06-01: Nach JSON-LD-Verifikation steht die Firma oft erst sauber in clean_company
+    # (beim Filter war company leer, z.B. StepStone). Blacklist erneut gegen clean_company prüfen,
+    # damit Deutsche Bahn / Drees & Sommer / Strabag etc. auch dann rausfliegen, wenn ihr Name
+    # erst aus der Detailseite kam.
+    before_recheck = len(verified)
+    verified = [j for j in verified
+                if score_job(j.get("title", ""),
+                             j.get("description", ""),
+                             j.get("location", ""),
+                             j.get("clean_company") or j.get("company") or "")[0] >= 0]
+    if before_recheck != len(verified):
+        log.info(f"  → clean_company-Recheck: {before_recheck - len(verified)} nachträglich geblockt")
 
     payload = {
         "generated_at": started.isoformat(),

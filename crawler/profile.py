@@ -2,6 +2,7 @@
 Wird von crawler.py importiert. Beim Anpassen der Regeln NUR hier ändern.
 """
 import re
+import html
 
 # ===== HARD EXCLUDES (Title-Substring → Job verworfen) =====
 TITLE_BLOCK = [
@@ -57,6 +58,10 @@ TITLE_BLOCK = [
     "junior ", "junior-", "werkstudent", "praktikant", "praktikum", "intern ",
     "internship", "ausbildung", "auszubildende", "duales studium", "trainee",
     "absolvent", "berufseinsteiger",
+    # NEU 2026-06-01: Studienarbeiten + Azubi-/Werker-Berufe (kamen über BMW/Bertrandt-Sitemaps rein)
+    "bachelorarbeit", "masterarbeit", "studienarbeit", "abschlussarbeit", "diplomarbeit",
+    "kfz mechatroniker", "kfz-mechatroniker", "produktionsmitarbeiter", "maschinenbediener",
+    "industriemechaniker", "fachkraft lager", "fachkraft für lager", "anlagenführer",
     # ---------- Bau ----------
     "bauleiter", "bauingenieur", "projektleiter bau", "projektsteuerer bau",
     "projektleiter tga", "versorgungstechnik", "hochbau", "tiefbau", "gebäudetechnik",
@@ -92,6 +97,10 @@ TITLE_BLOCK = [
     # ---------- Sonstiges Off-Topic ----------
     "interior designer", "retail designer", "ugc content", "ugc-content",
     "content creator",
+    # NEU 2026-06-01: Long-Tail-Branchen, die nicht zu Andys Engineering-/PM-Profil passen
+    "creative media", "werbeagentur", "mediaagentur", "media agentur",
+    "arcadis", "socotec", "building solutions", "building technologies",
+    "immobilien", "steuerberatung", "wirtschaftsprüfung", "tax advisory",
     "property manager", "facility manager", "objektverwalter",
     "real estate property", "real estate manager",
     "hv cable", "kabeljointing", "kabel-jointing",
@@ -160,6 +169,14 @@ TITLE_BLOCK = [
     "tga-planung", "tga planung", "tga-projektleitung",
     "hochbauprojekt", "wohnbauprojekt", "infrastrukturprojekt bau",
     "projektsteuerer hochbau", "projektsteuerer tiefbau",
+    # NEU 2026-06-01: Bau-/Bahn-Begriffe die durch die Titel-Blacklist rutschten
+    "bauherrenvertreter", "bauherrenvertretung", "geotechnik", "spezialtiefbau",
+    "schienenbau", "verkehrsanlagen", "ingenieurbau", "schlüsselfertig",
+    "bahnbau", "siedlungswasser", "kanalbau", "straßenbau", "strassenbau",
+    "gleisbau", "oberleitung", "fahrleitung",
+    # IT-/SW-Teilprojektleitung (Andy ist Hardware-/GFZ-PM, NICHT IT)
+    "it-teilprojektleiter", "it- teilprojektleiter", "it teilprojektleiter",
+    "it-teilprojektleitung", "softwareprojektleiter", "software-projektleiter",
     # Aerospace-Raumfahrt (Andy ist Aero-Engines = MTU OK, aber nicht reine Raumfahrt-PM)
     # → NICHT geblockt, MTU ist Wunschfirma. Nur Generika ausschließen.
     "satellite engineer", "satellitenentwickl", "raumfahrtingenieur",
@@ -234,6 +251,19 @@ TITLE_BOOST = {
     "technical project manager": 18, "technical project lead": 18,
     "ai consultant": 16, "ki-consultant": 16, "ki-berater": 16,
     "ai transformation": 18, "digital transformation": 14,
+    # NEU 2026-06-01 (Andy-Fokus: Produktentwicklung / Konzept / Prototyp / Teilprojektleitung
+    # in steuernder Rolle). Einzelbegriffe statt Kombi-Keys, damit additiv fair (keine Über-Boosts).
+    "teilprojektleit": 20, "subprojektleit": 16, "teil-projektleit": 20,
+    "produktentwicklung": 16, "produktentstehung": 16, "product development": 12,
+    "vorentwicklung": 16, "konzeptentwicklung": 16, "konzeptingenieur": 16,
+    "entwicklungsprojektleiter": 18, "projektingenieur": 10,
+    "prototyp": 12, "new product introduction": 16,
+    "konstruktionsleit": 18,
+    "r&d projektleiter": 14, "r&d-projektleiter": 14, "f&e-projektleiter": 14,
+    "serienentwicklung": 10, "industrialisierung": 8, "serienreife": 8,
+    # -ung-Varianten (deutsche Stellen nutzen sowohl -leiter als auch -leitung)
+    "projektleitung": 16, "se-teamleitung": 25, "se teamleitung": 25,
+    "teamleitung": 10, "entwicklungsleitung": 14, "modulleitung": 16,
     # Engineering / Domain
     "fahrzeug": 10, "automotive": 12, "elektrik/elektronik": 12, "elektrik elektronik": 12,
     "after sales": 10, "pmo": 12,
@@ -241,6 +271,15 @@ TITLE_BOOST = {
     "klimatisierung": 10, "i-tafel": 10, "mittelkonsole": 10,
     "smart vehicle": 10, "sdv": 12, "software-defined vehicle": 12,
     "elektromobilität": 10, "ladeinfrastruktur": 8,
+    # Gesamtfahrzeug-Bauteile/Fachbereiche (Andy 2026-06-01: jedes Bauteil im GFZ über ALLE
+    # Gewerke, nicht nur EE-Package — Zonenarchitektur, Interieur, Exterieur, Sitze, Steuergeräte ...)
+    "gesamtfahrzeugentwicklung": 25, "zonenarchitektur": 22, "zonenkonzept": 22,
+    "zonenverantwort": 22, "interieur": 14, "exterieur": 14, "interior": 12, "exterior": 12,
+    "sitzentwicklung": 16, "sitzsystem": 14, "steuergerät": 16, "steuergeraet": 16,
+    "bordnetz": 16, "boardnetz": 16, "kabelbaum": 14, "kabelsatz": 14,
+    "cockpit": 12, "instrumententafel": 12, "bauraum": 12, "geometrische integration": 14,
+    "thermomanagement": 12, "adas": 12, "fahrerassistenz": 12, "türsystem": 12,
+    "verdeck": 12, "karosseriebau": 14, "package engineer": 14,
     # Tools (Bonus)
     "n8n": 6, "make.com": 4,
     "catia": 6, "teamcenter": 6, "windchill": 6, "ms project": 4,
@@ -320,6 +359,11 @@ COMPANY_BOOST_FIRMS = {
 }
 
 MIN_SCORE_TO_INCLUDE = 22
+# NEU 2026-06-01 (Andy): "other"-Kategorie strenger. Das Dashboard zeigt im PM-Tab pm+other
+# zusammen, und "other" war zuletzt 159/283 Treffer (Rauschen). Eine Stelle ohne klaren
+# Rollen-Match braucht jetzt deutlich mehr Punkte, sonst fliegt sie raus. Echte München-/Remote-
+# PM-/Produktentwicklungs-Stellen landen ohnehin in "pm"/"auto"/"ki" und sind nicht betroffen.
+OTHER_MIN_SCORE = 40
 
 
 OTHER_CITIES = ["karlsruhe", "stuttgart", "berlin", "hamburg", "köln", "koeln",
@@ -354,7 +398,12 @@ def location_passes(location_text: str) -> bool:
     # München-Kern
     munich_ok = any(k in loc for k in ["münchen", "muenchen", "munich", "ismaning", "garching",
                                         "unterschleiß", "starnberg", "fürstenfeldbruck", "80805",
-                                        "haar", "putzbrunn", "neubiberg", "gräfelfing"])
+                                        "haar", "putzbrunn", "neubiberg", "gräfelfing",
+                                        # NEU 2026-06-01: weitere München-Umland-Orte im 25-km-Radius
+                                        "taufkirchen", "parsdorf", "ottobrunn", "unterhaching",
+                                        "planegg", "dachau", "feldkirchen", "aschheim", "kirchheim",
+                                        "grasbrunn", "vaterstetten", "oberschleiß", "höhenkirchen",
+                                        "martinsried", "germering", "gilching", "stockdorf"])
     if munich_ok:
         return True
 
@@ -378,32 +427,83 @@ def location_passes(location_text: str) -> bool:
     return False  # Default: lieber raus als Müll
 
 
-def categorize(title: str, description: str = "") -> str:
-    """Ordne Stelle einer der 5 Kategorien zu: ki / pm / auto / pharma / other"""
-    text = (title + " " + description).lower()
+def categorize(title: str, description: str = "", company: str = "") -> str:
+    """Ordne Stelle einer Dashboard-Kategorie zu: ki / pm / auto / pharma(=MedTech) / other.
+
+    Andy-Semantik (2026-06-01, Dashboard-Tabs):
+      - ki:     KI-/Automatisierungs-Themen passend zu Andys Profil (KI-Manager TÜV, CASA 2035,
+                n8n, künstliche Intelligenz allgemein). Breit, nicht nur exakt "KI-Manager".
+      - auto:   Automotive / Fahrzeug.
+      - pharma: ANZEIGE-LABEL "MedTech". Medizintechnik-Quereinstieg, GROSSZÜGIG: PM/Entwicklungs-
+                ingenieur/Konstruktion/Konstruktionsleitung bei Medizintechnik-Firmen. Reines
+                Pharma/Chemie/Tabletten gehört NICHT hier rein (kein Andy-Profil). Interner Key
+                bleibt "pharma", damit das Frontend-Filter unverändert funktioniert (nur Label
+                im Dashboard heißt MedTech).
+      - pm:     SAMMELKATEGORIE (Andy nennt es auch "Allgemein"). Alles andere profil-passende,
+                was nicht auto/medtech/ki ist: Halbleiter/Chip-PM, Industrie, Maschinenbau,
+                Robotik (bis es einen eigenen Tab gibt), IT-/Software-PROJEKTLEITUNG als Steuerung.
+                Reines Coding ist bereits über TITLE_BLOCK in score_job hart geblockt.
+      - other:  Rest. Wird im Crawler mit OTHER_MIN_SCORE strenger gefiltert.
+
+    company wird mitbewertet, damit MedTech-Gerätehersteller auch erkannt werden, wenn der
+    Firmenname nicht im Titel steht.
+    """
+    text = (title + " " + description + " " + company).lower()
+
+    # 1. KI / Automatisierung (Andys Schwerpunkt-Tab — breit, aber profil-nah; reines
+    #    Coding/ML-Engineering ist schon über TITLE_BLOCK draußen)
     if any(k in text for k in ["ki-manager", "ki manager", "ai manager", "ai project",
                                  "ai program", "intelligent automation", "ai consultant",
                                  "ki-consultant", "ki-berater", "künstliche intelligenz",
-                                 "genai", "ai transformation", "smart vehicle", "sdv",
-                                 "automation manager", "ki-projektleiter"]):
+                                 "artificial intelligence", "genai", "generative ai",
+                                 "ai transformation", "ki-transformation", "ki-projektleiter",
+                                 "ki-projektmanager", "ki-projekt", "smart vehicle", "sdv",
+                                 "automation manager", "prozessautomatisierung",
+                                 "workflow-automation", "ki-einführung", "ki-strategie"]):
         return "ki"
-    if any(k in text for k in ["pharma", "medtech", "medizintechnik", "biotech",
-                                 "clinical", "rodenstock", "brainlab", "siemens healthineers",
-                                 "regulatory affair", "klinisch", "life science"]):
+
+    # 2. MedTech (Anzeige "MedTech", Key "pharma"): Medizintechnik-Quereinstieg, großzügig.
+    #    Echte Medizintechnik-Gerätehersteller + Device-Begriffe. Reines Pharma/Chemie NICHT.
+    if any(k in text for k in ["medtech", "medizintechnik", "medical device", "medizinprodukt",
+                                 "medical technology", "medizingerät", "in-vitro", "in vitro diagnost",
+                                 "klinische entwicklung", "clinical engineering", "implantat",
+                                 "prothes", "dental", "healthcare technology",
+                                 # Medizintechnik-Gerätehersteller (auch nur im company-Feld)
+                                 "brainlab", "siemens healthineers", "stryker", "rodenstock",
+                                 "zeiss meditec", "carl zeiss meditec", "medi-globe", "medi globe",
+                                 "biotronik", "ottobock", "b. braun", "b.braun", "aesculap",
+                                 "drägerwerk", "draegerwerk", "fresenius medical", "sartorius",
+                                 "qiagen", "geuder", "medtronic", "boston scientific", "getinge",
+                                 "raumedic", "wl gore", "ziehm imaging"]):
         return "pharma"
+
+    # 3. Automotive / Fahrzeug
     if any(k in text for k in ["automotive", "fahrzeug", "automobil", "ee-package",
-                                 "ee package", "gesamtfahrzeug", "se-teamleiter",
-                                 "modulleiter", "baugruppe", "chassis", "karosserie",
+                                 "ee package", "gesamtfahrzeug", "se-teamleiter", "se-teamleitung",
+                                 "modulleiter", "modulleitung", "baugruppe", "chassis", "karosserie",
+                                 "zonenarchitektur", "zonenkonzept", "zonenverantwort", "interieur",
+                                 "exterieur", "sitzentwicklung", "sitzsystem", "steuergerät", "bordnetz",
+                                 "kabelbaum", "cockpit", "instrumententafel", "thermomanagement",
+                                 "fahrerassistenz", "türsystem", "verdeck", "karosseriebau",
                                  "bmw", "audi", "mercedes", "porsche", " vw ", "rolls",
                                  "cariad", "magna", "edag", "bertrandt", "ferchau",
                                  "akkodis", "cognizant mobility", "ce.optimum",
                                  "elektromobilität", "ladeinfrastruktur", "nvh",
                                  "fahrwerk", "antrieb"]):
         return "auto"
+
+    # 4. PM = Sammelkategorie ("Allgemein"): alles andere profil-passende (Halbleiter, Industrie,
+    #    Maschinenbau, Robotik, IT-/SW-Projektleitung als Steuerung)
     if any(k in text for k in ["projektmanager", "project manager", "projektleiter",
                                  "programmleiter", "programmmanager", "scrum master",
                                  "product owner", "agile pm", "pmo", "consultant",
-                                 "berater", "program manager"]):
+                                 "berater", "program manager",
+                                 "projektleitung", "teamleitung", "entwicklungsleitung",
+                                 "teilprojektleit", "subprojektleit", "produktentwicklung",
+                                 "produktentstehung", "vorentwicklung", "konzeptentwicklung",
+                                 "konzeptingenieur", "entwicklungsprojektleiter",
+                                 "new product introduction", "konstruktionsleit",
+                                 "projektingenieur"]):
         return "pm"
     return "other"
 
@@ -415,12 +515,17 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
       "✅ Standort München (+25)" / "🎯 Projektmanager (+16)" / "🏢 Rodenstock (+8)"
       "⚠️ Engineering-Dienstleister Ferchau (×0.65)"
     """
-    title_lower = title.lower()
-    text = (title + " " + description).lower()
+    title_lower = html.unescape(title or "").lower()
+    company_lower = html.unescape(company or "").lower()
+    # NEU 2026-06-01: Branchen-/Firmen-Blacklist greift auf Titel UND Firma. Sonst rutschen
+    # Deutsche Bahn / Drees & Sommer / Strabag / Hochtief etc. durch, deren Name nur im
+    # company-Feld steht (nicht im Titel). text bekommt company mit (für Boost + DESC-Block).
+    title_co = title_lower + " " + company_lower
+    text = (title + " " + description + " " + (company or "")).lower()
 
-    # Hard Block — Title
+    # Hard Block — Title + Firma
     for block in TITLE_BLOCK:
-        if block in title_lower:
+        if block in title_co:
             return (-1, [f"🚫 BLOCK_T:{block}"])
 
     # Hard Block — Description (strict only)
@@ -429,7 +534,6 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
             return (-1, [f"🚫 BLOCK_D:{block}"])
 
     # Hard Block — Firma
-    company_lower = (company or "").lower()
     for block in COMPANY_BLOCK:
         if block in company_lower:
             return (-1, [f"🚫 BLOCK_CO:{block}"])
