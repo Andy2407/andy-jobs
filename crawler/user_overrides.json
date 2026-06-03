@@ -1,8 +1,45 @@
 {
   "_kommentar": "Andys persistente Job-Overrides. Der Crawler liest diese Datei bei JEDEM Lauf (auch der GitHub-Cloud-Crawl 4x taeglich) und wendet sie an. Bleibt ueber ALLE Updates erhalten, weil sie im Repo liegt. So kommt geblockter Muell NIE wieder rein.",
-  "_anleitung": "blocked_companies: Firmen (Teilstring, lowercase), die NIE angezeigt werden. blocked_title_substrings: Titel-Teilstrings, die raus sollen. blocked_url_substrings: einzelne Stellen-URLs raus. favorite_companies: Firmen mit +Boost (ranken oben). Andy sagt im Chat 'Firma X raus' oder 'Firma Y Favorit', Claude traegt es hier ein.",
+  "_anleitung": "blocked_companies: Firmen (Teilstring, lowercase), die NIE angezeigt werden. blocked_title_substrings: Titel-Teilstrings, die raus sollen. blocked_url_substrings: einzelne Stellen-URLs raus. favorite_companies: Firmen mit +Boost (ranken oben). manual_jobs: Stellen, die KEIN Crawler erreicht (HRworks-/JS-Portale wie OmniVision/FEV) - werden persistent in die Live-Liste gemergt und ueberstehen jeden Lauf (Pflichtfeld url; optional title/company/location/category[ki|pm|auto|pharma]/score/score_reasons/contact/verified_on). Andy sagt im Chat 'Firma X raus' / 'Firma Y Favorit' / 'Stelle Z manuell rein', Claude traegt es hier ein.",
   "blocked_companies": [],
   "blocked_title_substrings": [],
-  "blocked_url_substrings": [],
-  "favorite_companies": []
+  "blocked_url_substrings": [
+    "Senior--Agiler-Projektleiter--m-w-x----Manufacturing-Solutions",
+    "JR_1046773",
+    "JR_1046774"
+  ],
+  "favorite_companies": [],
+  "manual_jobs": [
+    {
+      "source": "manual:hrworks",
+      "url": "https://karriere.omnivision-pharma.com/de?id=079aca",
+      "title": "Projektmanager Pharmazeutische Entwicklung (w/m/d)",
+      "company": "OmniVision GmbH",
+      "location": "Puchheim b. München",
+      "category": "pharma",
+      "score": 45,
+      "score_reasons": [
+        "🎯 PM-Ebene + echte Pharma-Produktentwicklung (Andys erklärtes Quereinstiegsziel)",
+        "📍 Puchheim ~18 km · mobiles Arbeiten · 30 Tage Urlaub",
+        "⚠️ Stretch: verlangt Studium Pharmazie/Chemie/Biologie + 2–3 J. + GMP/GLP"
+      ],
+      "contact": "z. Hd. Francisco Lopez, Snr. HR Manager (Bewerbung inkl. Gehaltsvorstellung)",
+      "verified_on": "2026-06-02"
+    },
+    {
+      "source": "manual:fev-career",
+      "url": "https://career.fev.com/en/jobs/90681/projektleitung-mwd-nv-boardnetz-in-der-serienbetreuung",
+      "title": "Projektleitung (m/w/d) NV-Boardnetz in der Serienbetreuung",
+      "company": "FEV EVA GmbH",
+      "location": "München",
+      "category": "auto",
+      "score": 72,
+      "score_reasons": [
+        "🚗 Inhaltlich bester Auto-Match: BMW NV-Boardnetz Serienbetreuung = Andys Kerngebiet",
+        "🤖 KI-Integration explizit gefordert · Jira/Confluence/MS Project",
+        "⚠️ Gehaltsschätzung 60–75k — evtl. unter Zielband 70k+"
+      ],
+      "verified_on": "2026-06-03"
+    }
+  ]
 }
