@@ -2,11 +2,28 @@
   "_kommentar": "Andys persistente Job-Overrides. Der Crawler liest diese Datei bei JEDEM Lauf (auch der GitHub-Cloud-Crawl 4x taeglich) und wendet sie an. Bleibt ueber ALLE Updates erhalten, weil sie im Repo liegt. So kommt geblockter Muell NIE wieder rein.",
   "_anleitung": "blocked_companies: Firmen (Teilstring, lowercase), die NIE angezeigt werden. blocked_title_substrings: Titel-Teilstrings, die raus sollen. blocked_url_substrings: einzelne Stellen-URLs raus. favorite_companies: Firmen mit +Boost (ranken oben). manual_jobs: Stellen, die KEIN Crawler erreicht (HRworks-/JS-Portale wie OmniVision/FEV) - werden persistent in die Live-Liste gemergt und ueberstehen jeden Lauf (Pflichtfeld url; optional title/company/location/category[ki|pm|auto|pharma]/score/score_reasons/contact/verified_on). Andy sagt im Chat 'Firma X raus' / 'Firma Y Favorit' / 'Stelle Z manuell rein', Claude traegt es hier ein.",
   "blocked_companies": [],
-  "blocked_title_substrings": [],
+  "blocked_title_substrings": [
+    "dualer student", "duale studentin", "werkstudent", "working student",
+    "masterand", "master thesis", "masterarbeit", "doktorand", "praktikum", "praktikant", "trainee",
+    "automobilverkäufer", "automobilverkauf", "verkäufer",
+    "syndikus", "rechtsreferendar", "patentanwalt", "anwaltsfachangestellt", "jurist",
+    "personenschützer", "sicherheitsfahrer", "sicherheitsmanager", "personenschutz",
+    "mlops", "ml application engineer", "data platform engineer", "data architect",
+    "ai platform", "ai & data", "embedded ai", "validation engineer",
+    "agentic ai process designer", "ai strategy lead", "ai vehicle architect", "ai solution architect",
+    "experience strategist", "it auditor", "risk manager b2b",
+    "cybersecurity", "cyber security",
+    "service engineer", "mechatroniker"
+  ],
   "blocked_url_substrings": [
     "Senior--Agiler-Projektleiter--m-w-x----Manufacturing-Solutions",
     "JR_1046773",
-    "JR_1046774"
+    "JR_1046774",
+    "JR_1048173",
+    "JR_1049860",
+    "JR_1046621",
+    "solution-architect-und-teilprojektleiter-in-ismaning-muenchen",
+    "7622-teilprojektleiter-einfuehrung-msp-hr-services"
   ],
   "favorite_companies": [],
   "manual_jobs": [
