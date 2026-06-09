@@ -62,6 +62,18 @@ TITLE_BLOCK = [
     "bachelorarbeit", "masterarbeit", "studienarbeit", "abschlussarbeit", "diplomarbeit",
     "kfz mechatroniker", "kfz-mechatroniker", "produktionsmitarbeiter", "maschinenbediener",
     "industriemechaniker", "fachkraft lager", "fachkraft für lager", "anlagenführer",
+    # NEU 2026-06-02: Promotions-/Werkstudenten-Vorstufen (BMW-Sitemap: 47 Treffer, ~0 passend —
+    # Masterand/Doktorand/Dualer Student rutschten durch, weil nur "masterarbeit" geblockt war)
+    "masterand", "masterandin", "doktorand", "doktorandin", "promovend", "promovendin",
+    "dualer student", "duale studentin", "dualer studentin", "dual student", "dualer master",
+    "working student", "studentische aushilfe", "studentische hilfskraft", "studentenjob",
+    "master thesis", "bachelor thesis", "master-thesis", "praxissemester", "diplomand",
+    # NEU 2026-06-02: Off-Topic-Berufe aus OEM-Sitemaps (Recht / Verkauf / Personenschutz)
+    "rechtsanwalt", "rechtsanwältin", "syndikus", "patentanwalt", "patentanwältin",
+    "patentanwaltsfach", "rechtsreferendar", "referendar", "notariat",
+    "automobilverkäufer", "automobilverkäuferin", "verkaufsberater", "verkäufer (",
+    "personenschützer", "sicherheitsfahrer", "personenschutz", "objektschutz", "werkschutz",
+    "veranstaltungssicherheit", "sicherheitsmanager", "werksfeuerwehr",
     # ---------- Bau ----------
     "bauleiter", "bauingenieur", "projektleiter bau", "projektsteuerer bau",
     "projektleiter tga", "versorgungstechnik", "hochbau", "tiefbau", "gebäudetechnik",
@@ -617,6 +629,22 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
     # (z.B. "AI Technical Project Manager (m/w/d) Consultant") — wenn explizit KI/AI
     if has_consultant_word and not has_ki_signal:
         return (-1, [f"🚫 BLOCK_CONSULTING: Consultant/Berater ohne KI/AI-Bezug"])
+
+    # NEU 2026-06-02: AI/ML-Engineering-Rollen blocken — Andy ist KI-MANAGER/PM, KEIN AI-Coder.
+    # BMW lieferte "Senior AI ADAS Engineer", "MLOps Engineer", "Embedded AI Developer",
+    # "Principal AI Vehicle Architect", "Entwickler für KI-Prozessautomatisierung" etc.
+    # Der Substring "ai engineer" griff nicht, weil Zwischenwörter ("AI ADAS Engineer") ihn brechen.
+    # Regel: AI/ML-Signal UND Engineering-Wort (Engineer/Developer/Architect/Scientist/Designer)
+    # ABER kein PM-/Manager-/Lead-Wort → reiner Coder → block.
+    ai_sig = re.search(r"\b(ai|ki|ml|genai|llm|nlp)\b|künstliche|machine\s*learning|"
+                       r"deep\s*learning|mlops|agentic|generative", title_lower)
+    eng_sig = re.search(r"\b(engineer|engineering|developer|entwickler|architect|architekt|"
+                        r"scientist|designer|researcher|programmer|programmierer)\b", title_lower)
+    pm_sig = re.search(r"\b(manager|management|project|projekt|program|programm|portfolio|"
+                       r"product\s*owner|lead|leiter|leitung|head|transformation|strateg|"
+                       r"consultant|berater|coach|trainer|referent|koordinat)\b", title_lower)
+    if ai_sig and eng_sig and not pm_sig:
+        return (-1, [f"🚫 BLOCK_AI_ENG: AI/ML-Engineering-Rolle ohne PM-Bezug"])
 
     # Positiv-Score (Title + Beschreibung)
     score = 0

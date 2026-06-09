@@ -174,6 +174,14 @@ PERSONIO_COMPANIES = [
     # NEU 2026-06-01 (Robotik/Mechatronik München, ATS-verifiziert: 100% München-Treffer)
     ("franka-robotics", "Franka Robotics", None),
     ("magazino", "Magazino", None),
+    # NEU 2026-06-03 (Handoff Andy, Stellen verifiziert 02.06.2026 — München-Treffer):
+    # ACHTUNG: pmgholding (PMMG Group) BEWUSST NICHT aufgenommen — der Titel "Senior Consultant"
+    # trifft den Consultant-Hardblock in profile.py; Andy-Entscheidung 03.06.: "PMMG weglassen".
+    # OmniVision (HRworks) + FEV (career.fev.com) erreicht kein Crawler -> laufen als manual_jobs
+    # in user_overrides.json (siehe load_manual_jobs).
+    ("avenyr", "AVENYR GmbH", None),
+    ("vdwbayern", "VdW Bayern", None),
+    ("start2", "Start2 Group", None),
 ]
 
 
@@ -955,6 +963,7 @@ def crawl_indeed_playwright() -> list:
         log.info("[Indeed-PW] playwright nicht installiert — skip")
         return []
     jobs = []
+    seen = set()
     queries = [
         ("Senior Projektmanager", "München"),
         ("KI Manager", "München"),
@@ -987,31 +996,36 @@ def crawl_indeed_playwright() -> list:
                         log.info(f"[Indeed-PW] Captcha bei {query}/{location} — skip")
                         continue
                     soup = BeautifulSoup(html, "lxml")
-                    cards = soup.select('a[data-jk]')
+                    # NEU 2026-06-02: moderne Indeed-Card = div.job_seen_beacon (statt a[data-jk]).
+                    # Liefert ~16 statt 6 pro Suche und extrahiert Firma + Ort.
+                    cards = soup.select('div.job_seen_beacon')
                     if not cards:
-                        cards = soup.select('a[href*="/viewjob"]')
-                    seen = set()
-                    for a in cards:
-                        jk = a.get("data-jk", "")
-                        href = a.get("href", "")
-                        if jk:
-                            full = f"https://de.indeed.com/viewjob?jk={jk}"
-                        elif "/viewjob" in href:
-                            full = "https://de.indeed.com" + href if href.startswith("/") else href
-                        else:
+                        cards = soup.select('a[data-jk]')
+                    for card in cards:
+                        a = card.select_one('a[data-jk]')
+                        jk = a.get("data-jk", "") if a else (card.get("data-jk", "") if card.has_attr("data-jk") else "")
+                        if not jk:
+                            link = card.select_one('a[href*="jk="]')
+                            m = re.search(r'jk=([0-9a-fA-F]+)', link.get("href", "")) if link else None
+                            jk = m.group(1) if m else ""
+                        if not jk or jk in seen:
                             continue
-                        if full in seen:
-                            continue
-                        seen.add(full)
-                        title = a.get_text(" ", strip=True) or (a.find("h2") or a).get_text(" ", strip=True)
+                        seen.add(jk)
+                        full = f"https://de.indeed.com/viewjob?jk={jk}"
+                        te = card.select_one('h2.jobTitle span[title]') or card.select_one('h2.jobTitle a') or card.select_one('h2.jobTitle span') or card.select_one('.jobTitle')
+                        title = te.get_text(" ", strip=True) if te else ""
                         if not title or len(title) < 5:
                             continue
+                        ce = card.select_one('[data-testid="company-name"]') or card.select_one('span.companyName')
+                        company = ce.get_text(" ", strip=True) if ce else ""
+                        le = card.select_one('[data-testid="text-location"]') or card.select_one('.companyLocation')
+                        loc = le.get_text(" ", strip=True) if le else location
                         jobs.append({
                             "source": "indeed",
                             "url": full,
                             "title": title[:200],
-                            "company": "",
-                            "location": location,
+                            "company": company[:80],
+                            "location": (loc[:80] or location),
                             "description": "",
                             "raw_text": title,
                         })
@@ -1121,14 +1135,20 @@ def crawl_cognizant_mobility(session) -> list:
 EXPIRED_INDICATORS = [
     "diese url existiert nicht", "url existiert nicht", "stelle wurde besetzt",
     "stellenangebot ist nicht mehr verfügbar", "dieses stellenangebot ist abgelaufen",
-    "page not found", "position closed", "job has been filled", "expired",
+    "page not found", "position closed", "job has been filled",
+    # NEU 2026-06-02: nacktes "expired" ENTFERNT — es war ein False-Positive-Killer. Es matchte
+    # JS/CSS auf LIVE-Seiten (z.B. "tokenExpired", "expired:false" bei Yourfirm) und verwarf
+    # massenhaft valide Jobs quer durch alle HTML-Quellen. Ersetzt durch präzise Status-Phrasen:
+    "job expired", "this job has expired", "posting has expired", "vacancy has expired",
+    "ad has expired", "anzeige ist abgelaufen", "stellenanzeige ist abgelaufen",
+    "angebot ist abgelaufen", "inserat ist abgelaufen",
     "nicht mehr verfügbar", "no longer available", "stelle besetzt",
 ]
 SPA_DOMAINS = ("jobs.personio.de", "smartrecruiters.com", "myworkdayjobs.com",
                "ashbyhq.com", "lever.co", "boards.greenhouse.io",
                "workable.com", "recruitee.com", "stepstone.de",
                "linkedin.com", "indeed.com", "remoteok.com", "remotive.com",
-               "weworkremotely.com")
+               "weworkremotely.com", "remotely.de")
 
 
 def verify_url(url: str, session) -> tuple:
@@ -1416,6 +1436,54 @@ def apply_filter(jobs) -> list:
     # Sortierung: zuerst nach first_seen DESC (neueste oben), dann score DESC
     out.sort(key=lambda x: (x.get("first_seen") or "", x.get("score") or 0), reverse=True)
     log.info(f"  → {len(out)} · {blocked} blocked · {low} low · {duped} dupes · {fresh} NEU")
+    return out
+
+
+def load_manual_jobs() -> list:
+    """Manuelle Stellen aus user_overrides.json -> Job-Schema (NEU 2026-06-03).
+
+    Fuer Treffer, die KEIN Crawler erreicht (HRworks-/JS-Portale wie OmniVision, FEV).
+    Die Eintraege liegen persistent im Repo (user_overrides.json -> manual_jobs) und
+    ueberstehen JEDEN Lauf. Sie durchlaufen NICHT score_job (wuerden sonst evtl. geblockt),
+    sondern werden in main() dedupe-sicher per URL an die verifizierten Jobs angehaengt.
+    Pflichtfeld pro Eintrag: url. Optional: title, company, location, category, score,
+    score_reasons, contact, verified_on (YYYY-MM-DD), description.
+    """
+    path = Path(__file__).resolve().parent / "user_overrides.json"
+    try:
+        ov = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as e:
+        log.debug(f"[manual_jobs] {e}")
+        return []
+    out = []
+    for m in ov.get("manual_jobs", []):
+        url = str(m.get("url", "")).strip()
+        if not url:
+            continue
+        vdate = str(m.get("verified_on", "")).strip()
+        reasons = [str(r) for r in (m.get("score_reasons") or [])]
+        if vdate and not any("erifiziert" in r for r in reasons):
+            reasons.insert(0, f"✋ Manuell verifiziert {vdate}")
+        out.append({
+            "source": str(m.get("source", "manual")),
+            "url": url,
+            "title": str(m.get("title", "")),
+            "company": str(m.get("company", "")),
+            "location": str(m.get("location", "")),
+            "description": str(m.get("description", "")),
+            "category": str(m.get("category", "pm")),
+            "score": int(m.get("score", 0) or 0),
+            "score_reasons": reasons[:5],
+            "first_seen": (vdate + "T12:00:00") if re.match(r"^\d{4}-\d{2}-\d{2}$", vdate)
+                          else datetime.now().isoformat(),
+            "is_new": True,
+            "manual": True,
+            "verified": True,
+            "verify_status": "manual",
+            "recruiter": str(m.get("contact", "")),
+            "alt_sources": [],
+        })
+    log.info(f"[manual_jobs] {len(out)} manuelle Stellen geladen")
     return out
 
 
@@ -2068,6 +2136,149 @@ def crawl_arrk(session) -> list:
 
 
 # ============================================================
+# NEU 2026-06-02: Yourfirm (KMU-Mittelstand München, server-rendered, ?page=N-Paginierung)
+# Stadt-Filter via /stellenangebote/muenchen/, Keyword-Filter macht der lokale score_job.
+# ============================================================
+def crawl_yourfirm(session) -> list:
+    # NEU 2026-06-02: gezielte Keyword-Suche (?q=) statt wahlloser Stadt-Liste.
+    # Die nackte /muenchen/-Liste lieferte 148 Zufalls-Jobs aller Branchen (0 PM-Treffer).
+    # ?q=Projektmanager etc. liefert direkt Andys Cluster.
+    log.info("[Yourfirm] Jobs…")
+    jobs, seen = [], set()
+    base = "https://www.yourfirm.de"
+    for q in PORTAL_QUERIES:
+        for page in range(1, 4):
+            url = f"{base}/stellenangebote/muenchen/?q={requests.utils.quote(q)}"
+            if page > 1:
+                url += f"&page={page}"
+            try:
+                r = session.get(url, timeout=15)
+                if r.status_code != 200:
+                    break
+                soup = BeautifulSoup(r.text, "lxml")
+                added = 0
+                for a in soup.select('a[href^="/job/"]'):
+                    href = a.get("href", "").split("?")[0]
+                    title = a.get_text(" ", strip=True)
+                    if not title or len(title) < 4:
+                        continue
+                    full = base + href
+                    if full in seen:
+                        continue
+                    seen.add(full)
+                    parts = href.strip("/").split("/")
+                    firma = ""
+                    if len(parts) > 1:
+                        firma = re.sub(r"-(gmbh|co-kg|kg|ag|se|mbh|und|co)\b", " ", parts[1]).replace("-", " ").strip().title()
+                    jobs.append({"source": "yourfirm", "url": full, "title": title[:200],
+                                 "company": firma[:80], "location": "München", "description": "",
+                                 "raw_text": title})
+                    added += 1
+                if added == 0:
+                    break
+                time.sleep(0.3)
+            except Exception as e:
+                log.warning(f"[Yourfirm] {e}")
+                break
+    log.info(f"[Yourfirm] {len(jobs)} Jobs")
+    return jobs
+
+
+# ============================================================
+# NEU 2026-06-02: remotely.de (deutsche Remote-Jobbörse, eigener Bestand).
+# Detailseiten bot-geblockt (requests sieht "nicht mehr verfügbar"), ABER im echten Browser live
+# (verifiziert). Listen + Sitemap gehen mit requests. Darum: Sitemap-Slugs lesen, Titel daraus,
+# location=Remote, und remotely.de in SPA_DOMAINS → verify_url akzeptiert ohne expired-Check.
+# ============================================================
+def crawl_remotely(session) -> list:
+    log.info("[remotely.de] Jobs…")
+    jobs = []
+    try:
+        r = session.get("https://www.remotely.de/sitemap-jobs.xml", timeout=25)
+        locs = re.findall(r"<loc>(.*?)</loc>", r.text)
+    except Exception as e:
+        log.warning(f"[remotely.de] Sitemap: {e}")
+        return []
+    PM = ["-projektmanager", "-projektleiter", "-project-manager", "-program-manager",
+          "-programm-manager", "-teilprojektleiter", "-pmo-", "-ki-manager", "-ai-project",
+          "-ai-program", "-prozessmanager", "-technical-project", "-senior-project",
+          "-it-projektleit", "-it-projektmanager", "-projekt-manager", "-portfolio-manager",
+          "-produktmanager"]
+    cand = []
+    for l in locs:
+        if not any(k in l.lower() for k in PM):
+            continue
+        slug = l.rstrip("/").split("/job/")[-1]
+        title = re.sub(r"-(mwd|m-w-d|wmd|w-m-d|all-genders|fully-remote|remote|deutschlandweit|"
+                       r"homeoffice|m-f-d|mfd|gn|divers)\b.*$", "", slug).replace("-", " ").strip()
+        sc, _ = score_job(title, "", "Remote Deutschland", "")
+        if sc >= 30:
+            cand.append((sc, title, l))
+    cand.sort(key=lambda x: x[0], reverse=True)
+    seen_keys = set()
+    for sc, title, l in cand:
+        # Dedup nach Kern-Titel: remotely.de listet denselben Job doppelt (mit/ohne Rechtsform
+        # im Firmen-Slug, z.B. "stur ..." und "stur gmbh ...").
+        key = re.sub(r'[^a-z0-9]', '',
+                     re.sub(r'\b(gmbh|ag|se|kg|co|mbh|kgaa|ohg|initiative|group|holding|deutschland)\b',
+                            '', title.lower()))
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
+        jobs.append({"source": "remotely", "url": l, "title": title[:200], "company": "",
+                     "location": "Remote Deutschland", "description": "", "raw_text": title})
+        if len(jobs) >= 150:
+            break
+    log.info(f"[remotely.de] {len(jobs)} Jobs (aus {len(locs)} Sitemap-URLs, Score>=30, Top-150)")
+    return jobs
+
+
+# ============================================================
+# NEU 2026-06-02: jobninja.com (server-rendered, Firma+Standort ausgezeichnet).
+# München-Suche zeigt auch deutschlandweit → nur München/Remote-Standort behalten.
+# ============================================================
+def crawl_jobninja(session) -> list:
+    log.info("[jobninja] Jobs…")
+    jobs, seen = [], set()
+    base = "https://www.jobninja.com"
+    for q in PORTAL_QUERIES:
+        url = f"{base}/search?keywords={requests.utils.quote(q)}&location=M%C3%BCnchen"
+        try:
+            r = session.get(url, timeout=15)
+            if r.status_code != 200:
+                continue
+            soup = BeautifulSoup(r.text, "lxml")
+            for a in soup.select('a[href*="/jobs/"]'):
+                href = a.get("href", "").split("?")[0]
+                if not href.startswith("/jobs/"):
+                    continue
+                full = base + href
+                if full in seen:
+                    continue
+                card = a.find_parent(['article', 'li', 'div'])
+                if not card:
+                    continue
+                loc_el = card.select_one('[class*="location"]')
+                loc = loc_el.get_text(" ", strip=True) if loc_el else ""
+                if not re.search(r'münchen|munich|remote|homeoffice|home office', loc, re.I):
+                    continue
+                seen.add(full)
+                co_el = card.select_one('[class*="company"]')
+                company = co_el.get_text(" ", strip=True) if co_el else ""
+                slug = href.split("/jobs/")[-1]
+                title = re.sub(r'-+\d+$', '', slug)
+                title = re.sub(r'-(m-w-d|mwd|in)$', '', title).replace("-", " ").strip()
+                jobs.append({"source": "jobninja", "url": full, "title": title[:200],
+                             "company": company[:80], "location": loc[:80] or "München",
+                             "description": "", "raw_text": title})
+        except Exception as e:
+            log.debug(f"[jobninja] {q}: {e}")
+        time.sleep(0.3)
+    log.info(f"[jobninja] {len(jobs)} Jobs")
+    return jobs
+
+
+# ============================================================
 # Main
 # ============================================================
 def main():
@@ -2133,6 +2344,12 @@ def main():
         (crawl_vitesco, "Vitesco"),
         (crawl_valeo, "Valeo"),
         (crawl_arrk, "ARRK Engineering"),
+        # NEU 2026-06-02 (Andy Voll-Ausbau): KMU-Mittelstand-Portal München
+        (crawl_yourfirm, "Yourfirm"),
+        # NEU 2026-06-02: deutsche Remote-Jobbörse (eigener Bestand, Sitemap-basiert)
+        (crawl_remotely, "remotely.de"),
+        # NEU 2026-06-02: jobninja.com (server-rendered, München/Remote-gefiltert)
+        (crawl_jobninja, "jobninja.com"),
     ]
     sources_no_session = [
         (crawl_indeed_playwright, "Indeed (Playwright)"),
@@ -2165,6 +2382,17 @@ def main():
                              j.get("clean_company") or j.get("company") or "")[0] >= 0]
     if before_recheck != len(verified):
         log.info(f"  → clean_company-Recheck: {before_recheck - len(verified)} nachträglich geblockt")
+
+    # NEU 2026-06-03: Manuelle Stellen (HRworks/JS-Portale, die kein Crawler erreicht) mergen.
+    # Sie durchlaufen NICHT score_job (sonst ggf. geblockt), werden aber dedupe-sicher per URL
+    # angehängt und wie Crawler-Jobs sortiert/angezeigt ("manual":true-Flag fürs Frontend).
+    manual = load_manual_jobs()
+    if manual:
+        existing_urls = {j.get("url") for j in verified}
+        added = [m for m in manual if m["url"] not in existing_urls]
+        verified.extend(added)
+        verified.sort(key=lambda x: (x.get("first_seen") or "", x.get("score") or 0), reverse=True)
+        log.info(f"  → {len(added)}/{len(manual)} manuelle Stellen gemergt")
 
     payload = {
         "generated_at": started.isoformat(),
