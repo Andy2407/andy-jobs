@@ -748,6 +748,91 @@ function cleanStellentitel(t){
   return s;
 }
 
+// === MS-ENGINE-START ===
+// ===== MS-Engine v16 (Andy 2026-06-10): stellen-spezifische Bodies statt Einheits-Text =====
+// Problem zuvor: A1-A5 waren statisch, nur der Stellentitel wurde eingesetzt -> jedes MS gleich.
+// Jetzt: Kategorie (ki/auto/pm/pharma) + JD-Keywords waehlen Hook, Zweitbeleg, KI-Block, Gehalt.
+// Deterministisch: gleiche Stelle -> gleicher Text (URL-Hash waehlt Formulierungs-Variante),
+// verschiedene Stellen -> verschiedene Opener und Belege (Anti-Copy-Paste).
+// Stationen-Wahrheit fest verdrahtet: AdCam NUR mit Magna Electronics; "zuletzt" = Magna E&I
+// (EE-Package Lead VW Scout); Zonenverantwortung G21/G28 NIE ohne RLE-Anfang.
+// Kein Make.com, kein ISO 9001 im KI-Block, keine em-dashes. Body-Ziel 220-260 Woerter.
+function msHash(s){ let h = 0; for(let i = 0; i < s.length; i++){ h = (h * 31 + s.charCodeAt(i)) >>> 0; } return h; }
+function buildMSBody(job, stellentitel){
+  const txt = ((job.title || '') + ' ' + (job.description || '')).toLowerCase();
+  const has = function(){ for(const w of arguments){ if(txt.indexOf(w) !== -1) return true; } return false; };
+  const h = msHash(job.url || stellentitel);
+  const pick = arr => arr[h % arr.length];
+  const cat = job.category || 'pm';
+  const loc = ((job.location || '') + ' ' + (job.address_city || '')).toLowerCase();
+  const remote = loc.indexOf('remote') !== -1 || loc.indexOf('home') !== -1;
+  const sigEE   = has('bordnetz','boardnetz','steuergerät','steuergeraet',' e/e','elektronik','elektrik','niedervolt','ee-package','schaltplan','ecu');
+  const sigKaro = has('karosserie','gesamtfahrzeug','exterieur','interieur','rohbau','zonenverantwort','package');
+  const sigPMO  = has('pmo','reporting','kpi','statusbericht','lenkungskreis','steuerkreis','terminplan','management-report');
+  const sigLief = has('lieferant','supplier','zulieferer','sourcing','vergabe');
+  const sigKI   = has(' ki ','ki-',' ai ','genai','llm','künstliche intelligenz','automatisierung','automation','n8n','prompt','machine learning','digitalisierung');
+  const sigAgil = has('scrum','agil','sprint','kanban');
+  const sigSerie= has('serienbetreuung','validierung','absicherung','freigabe','änderungsmanagement','sop','anlauf');
+  const opener = 'Ihre Ausschreibung als ' + stellentitel + ' ' + pick([
+    'hat mich aus zwei Gründen sofort angesprochen.',
+    'trifft an zwei Punkten direkt meinen Schwerpunkt.',
+    'passt aus zwei Gründen direkt auf meine Praxis.'
+  ]);
+  const hookKI   = 'Ich konzipiere Workflows mit n8n, verbinde Tools und APIs mit Large Language Models und überführe wiederkehrende Abläufe in stabile, dokumentierte Prozesse. Das Fundament dafür ist der KI-Manager TÜV Rheinland mit 400 Stunden, getragen von zwölf Jahren Projektverantwortung im Premium-OEM-Umfeld.';
+  const hookEE   = 'Bei Magna Engineering & Infotainment habe ich als SE-Teamleiter die BMW-Steuergeräte LIN-Stromverteiler sowie ENS 1 und ENS 2 in der Serienbetreuung gesteuert. Zuletzt habe ich den EE-Package Lead für den VW Scout eigenständig verantwortet, mit 100 Prozent KPI-Erfüllung über alle Bauphasen.';
+  const hookKaro = 'Zuletzt habe ich bei Magna Engineering & Infotainment den EE-Package Lead für den VW Scout im Gesamtfahrzeug verantwortet. Die Zonenverantwortung für die BMW-Derivate G21 und G28 habe ich bei RLE begonnen und bei Pininfarina fortgeführt, jeweils mit Gremienleitung, Anforderungsmanagement und Entscheidungsherbeiführung.';
+  const hookPMO  = 'Als PMO im BMW-Programm AdCam bei Magna Electronics habe ich KPIs aufbereitet, Managementberichte erstellt und Change Requests koordiniert. Zuletzt habe ich bei Magna Engineering & Infotainment den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI-Erfüllung über alle Bauphasen.';
+  const hookPM   = 'Bei Magna Engineering & Infotainment habe ich zuletzt den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI-Erfüllung über alle Bauphasen. Parallel habe ich mir eine produktive n8n-Praxis aufgebaut, mit Workflows für Reporting und Anforderungs-Aufbereitung.';
+  const hookMed  = 'Bei Magna Engineering & Infotainment habe ich zuletzt den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI-Erfüllung über alle Bauphasen. Validierung, Änderungsmanagement und dokumentierte Freigaben gehören dabei zu meinem Tagesgeschäft, also genau die regulierte Arbeitsweise Ihrer Branche.';
+  let hook;
+  if(cat === 'ki') hook = hookKI;
+  else if(cat === 'pharma') hook = hookMed;
+  else if(cat === 'auto' && sigKaro && !sigEE) hook = hookKaro;
+  else if(cat === 'auto') hook = hookEE;
+  else if(sigKI && has('ki manager','ki-manager','ai manager','automatisierung')) hook = hookKI;
+  else if(sigPMO) hook = hookPMO;
+  else if(sigKaro) hook = hookKaro;
+  else if(sigEE) hook = hookEE;
+  else hook = hookPM;
+  const A1 = opener + ' ' + hook + ' ' + pick([
+    'Beide Stränge treffen genau den Kern der Aufgaben, die Sie in Ihrer Ausschreibung beschreiben.',
+    'Genau diese Kombination aus Praxis und Methodik verlangt Ihre Ausschreibung an mehreren Stellen.'
+  ]);
+  const A2 = 'Zwölf Jahre Premium-OEM bei BMW, VW, Rolls-Royce, Bugatti, Audi und Mercedes bilden meinen Hintergrund. Ich bin staatlich geprüfter Maschinenbau-Techniker mit IPMA Level D sowie den scrum.org-Zertifizierungen Professional Scrum Master und Product Owner' + (sigAgil ? ', die ich in agilen Teams aktiv einsetze' : '') + '. Jira und Confluence nutze ich täglich für KPI-Aufbereitung, Statusberichte und Reporting. Englisch nutze ich auf B2-Niveau fachlich sicher im internationalen Projektalltag.';
+  let A3;
+  if(hook === hookKI){
+    A3 = 'Diese KI-Praxis trägt eine lange Projektgeschichte: Bei Magna Engineering & Infotainment habe ich als EE-Package Lead vier bis acht Konstrukteure gesteuert, davor als PMO im BMW-Programm AdCam bei Magna Electronics die PM-Tools und Prozesse projektspezifisch verbessert. Prozessanalyse mit Fachbereichen ist mein Kerngeschäft.';
+  } else if(hook === hookPMO){
+    A3 = 'Workshops und Steuerkreise moderiere ich seit der Gremienleitung der GGKA-Runde im Karosserie-Hybridbaukasten F30NF bei RLE. Die Steuerung externer Entwicklungspartner und Hauptzulieferer kenne ich aus den SE-Teamleiter-Rollen bei Magna. Genau diese Mischung bringe ich in Ihre Projekte mit.';
+  } else {
+    A3 = 'Ergänzend habe ich als PMO im BMW-Programm AdCam bei Magna Electronics KPIs aufbereitet, Managementberichte erstellt und die PM-Tools projektspezifisch optimiert.';
+    if(sigLief) A3 += ' Lieferantensteuerung gehört seit den SE-Teamleiter-Rollen zu meinem Tagesgeschäft.';
+    else if(sigSerie && hook !== hookEE) A3 += ' Serienbetreuung mit Änderungs- und Problemmanagement kenne ich aus den BMW-Steuergeräte-Projekten.';
+    else if(sigKaro && hook !== hookKaro) A3 += ' Workshops und Gremien moderiere ich seit der GGKA-Runde im Karosserie-Hybridbaukasten F30NF bei RLE.';
+    A3 += ' Genau diese Mischung aus Reporting-Disziplin und Schnittstellen-Steuerung bringe ich in Ihre Projekte mit.';
+  }
+  let A4;
+  if(hook === hookKI){
+    A4 = 'Ergänzend bringe ich den EU AI Act aus der TÜV-Schulung praxisnah mit, dazu Prompt Engineering und API-Integrationen. Prototypen teste ich mit den Beteiligten und überführe sie in belastbare, dokumentierte Workflows. Genau dieser Dreiklang passt zu den Automatisierungs-Themen Ihrer Ausschreibung.';
+  } else if(sigKI){
+    A4 = 'Ergänzend habe ich 2025 den KI-Manager TÜV Rheinland mit 400 Stunden abgeschlossen, inklusive EU AI Act und Prompt Engineering. Workflow-Automation mit n8n und API-Integrationen setze ich pragmatisch ein. Genau dieser Effizienz-Hebel passt zu den in Ihrer Ausschreibung genannten Automatisierungs-Themen.';
+  } else {
+    A4 = 'Ergänzend habe ich 2025 den KI-Manager TÜV Rheinland mit 400 Stunden abgeschlossen, inklusive EU AI Act und Prompt Engineering. Workflow-Automation mit n8n und API-Integrationen setze ich pragmatisch im PM-Alltag ein, etwa für Reporting, Status-Logik und Lieferanten-Kommunikation. Genau dieser Effizienz-Hebel passt zu Ihrer Position.';
+  }
+  const anker = (cat === 'auto' && !remote) ? '82.000' : '80.000';
+  const A5 = pick([
+    'Über ein persönliches Kennenlerngespräch freue ich mich. Meine Gehaltsvorstellung liegt bei ' + anker + ' Euro brutto pro Jahr, verhandelbar, und ich kann ab sofort beginnen.',
+    'Auf ein erstes Gespräch freue ich mich sehr. Beim Gehalt orientiere ich mich an ' + anker + ' Euro brutto pro Jahr, verhandelbar, verfügbar bin ich ab sofort.'
+  ]);
+  const count = s => s.split(/\s+/).filter(Boolean).length;
+  const total = count(A1) + count(A2) + count(A3) + count(A4) + count(A5);
+  let A3final = A3;
+  if(total > 262 && hook !== hookKI && hook !== hookPMO){
+    A3final = 'Ergänzend habe ich als PMO im BMW-Programm AdCam bei Magna Electronics KPIs aufbereitet, Managementberichte erstellt und die PM-Tools projektspezifisch optimiert. Genau diese Reporting-Disziplin bringe ich in Ihre Projekte mit.';
+  }
+  return { A1: A1, A2: A2, A3: A3final, A4: A4, A5: A5 };
+}
+// === MS-ENGINE-END ===
 function _generateMSWith(job, btn, recipientInfo){
   btn.disabled = true;
   btn.textContent = '⏳ Generiere DOCX …';
@@ -798,12 +883,9 @@ function _generateMSWith(job, btn, recipientInfo){
     if(recipientInfo && recipientInfo.kennziffer){
       betreff += ', Kennziffer ' + recipientInfo.kennziffer.replace(/^kennziffer\s*/i, '').trim();
     }
-    // V14-ALTEN-PM-Pattern: 5 Absätze A1-A5
-    const A1 = 'Ihre Ausschreibung als ' + stellentitel + ' hat mich aus zwei Gründen sofort angesprochen. Bei Magna Engineering & Infotainment habe ich zuletzt den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI über alle Bauphasen. Parallel habe ich mir eine produktive n8n-Praxis im Eigenbetrieb aufgebaut, mit Workflows für Reporting und Anforderungs-Aufbereitung. Beide Stränge treffen den Kern Ihrer Stellenbeschreibung.';
-    const A2 = 'Zwölf Jahre Premium-OEM bei BMW, VW, Rolls-Royce, Bugatti, Audi und Mercedes bilden meinen Hintergrund. Als staatlich geprüfter Maschinenbau-Techniker habe ich meinen IPMA Level D sowie die scrum.org-Zertifizierungen Professional Scrum Master und Product Owner erworben. Jira und Confluence nutze ich für KPI-Aufbereitung und Reporting täglich. Mein Englisch ist auf B2-Niveau und reicht für den fachlichen Alltag mit internationalen Teams.';
-    const A3 = 'Davor war ich bei Anthropus als PMO im BMW-AdCam-Programm bei Magna Electronics für KPI-Aufbereitung, Managementberichte und Change-Request-Koordination zuständig. Workshops und Steuerkreis-Moderation gehören seit der GGKA-Runde im Karosserie-Hybridbaukasten F30NF bei RLE zu meinem Alltag. Genau diese Mischung aus Reporting-Disziplin, Kundenkommunikation und Schnittstellen-Steuerung bringe ich in Ihre Projekte mit.';
-    const A4 = 'Ergänzend habe ich 2025 den KI-Manager TÜV Rheinland mit 400 Stunden abgeschlossen, inklusive EU AI Act und Prompt Engineering. Workflow-Automation mit n8n und API-Integrationen setze ich pragmatisch im PM-Alltag ein, etwa für Anforderungs-Aufbereitung, Status-Logik und Lieferanten-Kommunikation. Genau dieser Effizienz-Hebel passt zu Ihrer Position.';
-    const A5 = 'Über ein persönliches Kennenlerngespräch freue ich mich. Meine Gehaltsvorstellung liegt bei 80.000 Euro brutto pro Jahr, verhandelbar, und ich kann ab sofort beginnen.';
+    // MS-Engine v16 (2026-06-10): stellen-spezifischer Body aus Kategorie + JD-Keywords
+    const B = buildMSBody(job, stellentitel);
+    const A1 = B.A1, A2 = B.A2, A3 = B.A3, A4 = B.A4, A5 = B.A5;
     // === Paragraph-Helpers — alle EXAKT nach V14 ALTEN PM Specs (Andy 2026-05-28) ===
     // V14: Body 11pt JUSTIFY sa=6pt | Anrede 11pt sa=6pt | Datum 10pt RIGHT grau #6B7280 sa=4pt
     //      Betreff 11pt BOLD navy #1B365D sa=6pt | "Mit freundl. Grüßen" 11pt sa=2pt | Name 11pt BOLD navy
