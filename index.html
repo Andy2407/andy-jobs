@@ -758,6 +758,34 @@ function cleanStellentitel(t){
 // (EE-Package Lead VW Scout); Zonenverantwortung G21/G28 NIE ohne RLE-Anfang.
 // Kein Make.com, kein ISO 9001 im KI-Block, keine em-dashes. Body-Ziel 220-260 Woerter.
 function msHash(s){ let h = 0; for(let i = 0; i < s.length; i++){ h = (h * 31 + s.charCodeAt(i)) >>> 0; } return h; }
+// ===== Gehaltsmodell v16.1 (Andy 2026-06-10: "Das Ding muss je nach Position mein
+// Jahresgehalt berechnen, damit ich einen Fixpunkt habe — nicht pauschal 80/82k.")
+// Regelbasiert nach Andys Gehaltsstrategie: Cluster erkennen -> Basis-Anker ->
+// Senioritaets-Zuschlag -> Pre-Screen-Deckel (NIE ueber Cluster-Anker im
+// Erstanschreiben, Andys harte Regel). Deterministisch, gleiche Stelle = gleicher Anker.
+function computeGehalt(job, stellentitel){
+  const t = ((stellentitel || '') + ' ' + (job.title || '') + ' ' + (job.company || '') + ' ' +
+             (job.clean_company || '') + ' ' + (job.description || '')).toLowerCase();
+  const loc2 = ((job.location || '') + ' ' + (job.address_city || '')).toLowerCase();
+  const rem = loc2.indexOf('remote') !== -1 || loc2.indexOf('home') !== -1;
+  const cat2 = job.category || 'pm';
+  const CONSULTING = /(unternehmensberat|strategieberat|mhp |porsche consulting|capgemini invent|accenture|deloitte|kpmg|pwc|mckinsey|bcg )/;
+  const DIENSTLEISTER = /(ferchau|akkodis|alten |alten-|bertrandt|brunel|hays|expleo|edag|arrk|tecosim|segula|solcom|gulp|osb ag|in-tech|invenio|etteplan|cognizant mobility|engineering-dienstleist|personaldienstleist|arbeitnehmerüberlass|zeitarbeit)/;
+  let cluster, deckel, basis;
+  if(CONSULTING.test(t)){           cluster = 'Consulting';                    basis = 88000; deckel = 88000; }
+  else if(DIENSTLEISTER.test(t)){   cluster = 'Engineering-Dienstleister';     basis = 78000; deckel = 82000; }
+  else if(cat2 === 'auto' && !rem){ cluster = 'Industrie/OEM München';         basis = 82000; deckel = 82000; }
+  else if(rem){                     cluster = 'Mittelstand/Remote';            basis = 80000; deckel = 80000; }
+  else if(cat2 === 'ki'){           cluster = 'KI-Manager (BA-Median ~80k)';   basis = 80000; deckel = 82000; }
+  else {                            cluster = 'Industrie München';             basis = 82000; deckel = 82000; }
+  let anker = basis;
+  if(/(program[m]?\s*manager|programmleit|head of|abteilungsleit|gesamtprojektleit)/.test(t)) anker += 3000;
+  else if(/(senior|lead\b)/.test(t)) anker += 2000;
+  if(/(junior\b|koordinator\b|assistenz|sachbearbeit)/.test(t)) anker = 72000;
+  anker = Math.min(anker, deckel);
+  anker = Math.max(anker, 72000);
+  return { anker: anker, fmt: String(Math.round(anker / 1000)) + '.000', cluster: cluster };
+}
 function buildMSBody(job, stellentitel){
   const txt = ((job.title || '') + ' ' + (job.description || '')).toLowerCase();
   const has = function(){ for(const w of arguments){ if(txt.indexOf(w) !== -1) return true; } return false; };
@@ -819,10 +847,10 @@ function buildMSBody(job, stellentitel){
   } else {
     A4 = 'Ergänzend habe ich 2025 den KI-Manager TÜV Rheinland mit 400 Stunden abgeschlossen, inklusive EU AI Act und Prompt Engineering. Workflow-Automation mit n8n und API-Integrationen setze ich pragmatisch im PM-Alltag ein, etwa für Reporting, Status-Logik und Lieferanten-Kommunikation. Genau dieser Effizienz-Hebel passt zu Ihrer Position.';
   }
-  const anker = (cat === 'auto' && !remote) ? '82.000' : '80.000';
+  const G = computeGehalt(job, stellentitel);   // v16.1: berechneter Anker je Position (Cluster + Senioritaet)
   const A5 = pick([
-    'Über ein persönliches Kennenlerngespräch freue ich mich. Meine Gehaltsvorstellung liegt bei ' + anker + ' Euro brutto pro Jahr, verhandelbar, und ich kann ab sofort beginnen.',
-    'Auf ein erstes Gespräch freue ich mich sehr. Beim Gehalt orientiere ich mich an ' + anker + ' Euro brutto pro Jahr, verhandelbar, verfügbar bin ich ab sofort.'
+    'Über ein persönliches Kennenlerngespräch freue ich mich. Meine Gehaltsvorstellung liegt bei ' + G.fmt + ' Euro brutto pro Jahr, verhandelbar, und ich kann ab sofort beginnen.',
+    'Auf ein erstes Gespräch freue ich mich sehr. Beim Gehalt orientiere ich mich an ' + G.fmt + ' Euro brutto pro Jahr, verhandelbar, verfügbar bin ich ab sofort.'
   ]);
   const count = s => s.split(/\s+/).filter(Boolean).length;
   const total = count(A1) + count(A2) + count(A3) + count(A4) + count(A5);

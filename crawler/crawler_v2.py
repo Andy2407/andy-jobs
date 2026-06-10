@@ -294,10 +294,13 @@ def crawl_lever(session) -> list:
     return jobs
 
 
+# UPDATE 2026-06-10 (Andy, hart): RobCo (Robotik-Startup München, rob.co) fehlte komplett —
+# Andy musste die Firma selbst zufällig finden. RobCo nutzt Ashby (jobs.ashbyhq.com/robco,
+# verifiziert via Embed-iframe auf rob.co/de/karriere). Ashby-API liefert sauberes JSON.
 # NEU 2026-06-01 (Andy): Ashby-Liste war ausschließlich US-Pure-AI/SWE (anthropic, openai,
 # elevenlabs, anysphere, perplexity, mistral, stabilityai, weaviate) — kein DE-Produktentwicklungs-
 # Bezug, reines Rauschen. Geleert; kann später mit DACH-Ashby-Boards gefüllt werden.
-ASHBY_COMPANIES = []
+ASHBY_COMPANIES = ["robco"]
 
 
 def crawl_ashby(session) -> list:
@@ -1036,6 +1039,139 @@ def crawl_indeed_playwright() -> list:
     except Exception as e:
         log.warning(f"[Indeed-PW] Browser-Fehler: {e}")
     log.info(f"[Indeed-PW] {len(jobs)} Jobs ({len(queries)} Suchen)")
+    return jobs
+
+
+# ============================================================
+# PW-Firmen-Harvester (NEU 2026-06-10, Andy-Order: "Diese Firmen werden nie
+# durchsucht? Sofort abschalten — egal wie, stell sicher, dass diese Firmen
+# in der Quelle drin sind.")
+# Generischer Playwright-Link-Harvester fuer Karriereseiten mit Browser-Schutz
+# (Apple/Siemens/Brose/IAV/ALTEN-DE/...). Laedt die Stellenliste im echten
+# Chromium, sammelt alle Links, filtert per Job-URL-Muster; score_job() +
+# Live-Verify filtern danach wie bei jeder anderen Quelle.
+# Laeuft lokal UND im Cloud-Workflow (dort wird Playwright-Chromium bereits
+# fuer Indeed installiert). Diehl bleibt draussen: Defense-Hard-Filter (§-Regel).
+# ============================================================
+# (Name, Listen-URL [wo moeglich Muenchen/Keyword vorgefiltert], href-Regex,
+#  need_muc: True = Link nur uebernehmen, wenn muenchen/munich in Text+URL)
+# URLs am 2026-06-10 per HTTP-Check verifiziert (viele alte Vermutungen waren 404/DNS-tot)
+PW_COMPANY_SOURCES = [
+    ("Apple",          "https://jobs.apple.com/de-de/search?location=munich-MUC",                                  r"/de-de/details/",            False),
+    ("Siemens",        "https://jobs.siemens.com/careers?query=Projektmanager&location=Munich%2C%20Bavaria%2C%20Germany", r"/careers/job",        False),
+    ("Siemens Healthineers", "https://jobs.siemens-healthineers.com/careers?location=Munich",                      r"/careers/job",               False),
+    ("Rohde & Schwarz","https://jobs.rohde-schwarz.com/en_US/careers?location=Munich%2C%20Bavaria%2C%20Germany",   r"/careers/job|/job/",         False),
+    ("Brose",          "https://www.brose.com/de-de/karriere/",                                                    r"(successfactors|/job)",      True),
+    ("Dräxlmaier",     "https://www.draexlmaier.com/karriere",                                                     r"(job|stellen|vacanc)",       True),
+    ("IAV",            "https://www.iav.com/de/karriere/",                                                         r"/(jobs?|stellen)[/-]",       True),
+    ("Marquardt",      "https://www.marquardt.com/de/karriere",                                                    r"(job|stellen|vacanc)",       True),
+    ("Mahle",          "https://www.jobs.mahle.com/germany/en/",                                                   r"/job/",                      True),
+    ("Leoni",          "https://www.leoni-germany.com/en/",                                                        r"(job|career/)",              True),
+    ("Brunel",         "https://www.brunel.net/de-de/jobs",                                                        r"/de-de/jobs?/.{6,}",         True),
+    ("Telefónica",     "https://www.telefonica.de/karriere",                                                       r"(job|stellen)",              True),
+    ("Expleo",         "https://careers.expleo.com/de/",                                                           r"/(de/)?jobs?/.{4,}",         True),
+    ("Preh",           "https://www.preh.com/karriere/stellenangebote",                                            r"(jobad|jobdb|stellenangebote/.)", True),
+    ("Kostal",         "https://www.kostal.com/de/karriere",                                                       r"(job|stellen|vacanc)",       True),
+    ("ALTEN",          "https://www.alten-consulting.de/karriere/",                                                r"/(job|stellenangebot)",      False),
+]
+
+_PW_LINKTEXT_JUNK = {"mehr erfahren", "details", "apply", "jetzt bewerben", "learn more",
+                     "read more", "mehr", "ansehen", "zur stelle", "alle jobs", "karriere"}
+
+
+def crawl_pw_companies() -> list:
+    log.info("[PW-Firmen] Playwright-Harvester…")
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        log.info("[PW-Firmen] playwright nicht installiert — skip")
+        return []
+    jobs = []
+    seen = set()
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True, args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+            ])
+            context = browser.new_context(user_agent=UA, locale="de-DE",
+                                          viewport={"width": 1366, "height": 950})
+
+            def _collect(pg):
+                return pg.eval_on_selector_all(
+                    "a[href]",
+                    "els => els.map(e => ({href: e.href, text: (e.innerText||'').trim()}))")
+
+            for company, url, pat, need_muc in PW_COMPANY_SOURCES:
+                cnt = 0
+                page = context.new_page()  # frische Page je Quelle — verhindert Navigations-Kaskaden
+                try:
+                    page.goto(url, timeout=30000, wait_until="domcontentloaded")
+                    try:
+                        page.wait_for_load_state("networkidle", timeout=12000)  # SPA fertig laden
+                    except Exception:
+                        pass
+                    page.wait_for_timeout(2500)
+                    # Cookie-Banner: privacy-schonend ablehnen (nie Accept-All)
+                    for sel in ('#onetrust-reject-all-handler',
+                                'button:has-text("Ablehnen")',
+                                'button:has-text("Alle ablehnen")',
+                                'button:has-text("Nur erforderliche")',
+                                'button:has-text("Reject all")'):
+                        try:
+                            page.click(sel, timeout=1200)
+                            page.wait_for_timeout(600)
+                            break
+                        except Exception:
+                            pass
+                    for _ in range(3):
+                        page.mouse.wheel(0, 2600)
+                        page.wait_for_timeout(900)
+                    links = _collect(page)
+                    # SPA-Nachzügler: wenn noch kein Treffer-Muster, einmal nachwarten
+                    if not any(re.search(pat, (l.get("href") or ""), re.I) for l in links):
+                        page.wait_for_timeout(4000)
+                        links = _collect(page)
+                except Exception as e:
+                    log.warning(f"[PW:{company}] {e}")
+                    try:
+                        page.close()
+                    except Exception:
+                        pass
+                    continue
+                finally:
+                    pass
+                for l in links:
+                    href = (l.get("href") or "").split("#")[0]
+                    text = re.sub(r"\s+", " ", l.get("text") or "").strip()
+                    if not href or href in seen:
+                        continue
+                    if not re.search(pat, href, re.I):
+                        continue
+                    if len(text) < 10 or text.lower() in _PW_LINKTEXT_JUNK:
+                        continue
+                    if not re.search(r"[a-zäöüß]", text, re.I):
+                        continue
+                    blob = (href + " " + text).lower()
+                    if need_muc and not re.search(r"m(ü|u|%c3%bc)nchen|munich|muenchen", blob):
+                        continue
+                    seen.add(href)
+                    cnt += 1
+                    if cnt > 40:
+                        break
+                    jobs.append({"source": f"pw:{company}", "url": href,
+                                 "title": text[:200], "company": company,
+                                 "location": "München", "description": "",
+                                 "raw_text": text})
+                log.info(f"[PW:{company}] {cnt} Job-Links")
+                try:
+                    page.close()
+                except Exception:
+                    pass
+            browser.close()
+    except Exception as e:
+        log.warning(f"[PW-Firmen] Browser-Fehler: {e}")
+    log.info(f"[PW-Firmen] {len(jobs)} Jobs gesamt ({len(PW_COMPANY_SOURCES)} Firmen)")
     return jobs
 
 
@@ -2353,6 +2489,7 @@ def main():
     ]
     sources_no_session = [
         (crawl_indeed_playwright, "Indeed (Playwright)"),
+        (crawl_pw_companies, "PW-Firmen (Apple/Siemens/Brose/IAV/ALTEN…)"),
     ]
     source_names = []
     for fn, name in sources_session:
