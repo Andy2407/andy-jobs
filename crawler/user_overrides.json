@@ -1,7 +1,21 @@
 {
   "_kommentar": "Andys persistente Job-Overrides. Der Crawler liest diese Datei bei JEDEM Lauf (auch der GitHub-Cloud-Crawl 4x taeglich) und wendet sie an. Bleibt ueber ALLE Updates erhalten, weil sie im Repo liegt. So kommt geblockter Muell NIE wieder rein.",
   "_anleitung": "blocked_companies: Firmen (Teilstring, lowercase), die NIE angezeigt werden. blocked_title_substrings: Titel-Teilstrings, die raus sollen. blocked_url_substrings: einzelne Stellen-URLs raus. favorite_companies: Firmen mit +Boost (ranken oben). manual_jobs: Stellen, die KEIN Crawler erreicht (HRworks-/JS-Portale wie OmniVision/FEV) - werden persistent in die Live-Liste gemergt und ueberstehen jeden Lauf (Pflichtfeld url; optional title/company/location/category[ki|pm|auto|pharma]/score/score_reasons/contact/verified_on). Andy sagt im Chat 'Firma X raus' / 'Firma Y Favorit' / 'Stelle Z manuell rein', Claude traegt es hier ein.",
-  "blocked_companies": [],
+  "blocked_companies": [
+    "knds", "bwi gmbh", "jung von matt", "dentsu", "international rescue committee",
+    "turner & townsend", "turner &amp; townsend", "vonovia", "dawonia", "alfatraining",
+    "sony music", "innocean", "intermate media", "agentur kuhnen", "glow25",
+    "fliesen röhlich", "g2 recruitment", "stein promotions", "follow red", "moccu",
+    "wob ag", "port-neo", "pmi growth", "think11", "oberender", "berliner wasserbetriebe",
+    "kassenärztliche vereinigung", "bundesnotarkammer", "hessische zentrale", "stadt konstanz",
+    "rewe group", "dirk rossmann", "about you", "getyourguide", "elis ", "flix se",
+    "thost projektmanagement", "baumit", "sikla", "towa gmbh", "docuware", "50hertz",
+    "bayernwerk", "vensys", "wisag", "cobalt deutschland", "ehret+klein", "ehret + klein",
+    "jan schreiner", "denergies", "bkw engineering", "raible + partner", "gebrüder peters",
+    "igt mikrolink", "oehmichen", "provinzial", "burgerwerke", "auxmoney", "headraft",
+    "spire government", "reiser simulation", "salvia elektrotechnik", "actemium",
+    "polarstern gmbh", "mrk media", "jobgether", "wynwood tech"
+  ],
   "blocked_title_substrings": [
     "dualer student", "duale studentin", "werkstudent", "working student",
     "masterand", "master thesis", "masterarbeit", "doktorand", "praktikum", "praktikant", "trainee",
@@ -13,7 +27,41 @@
     "agentic ai process designer", "ai strategy lead", "ai vehicle architect", "ai solution architect",
     "experience strategist", "it auditor", "risk manager b2b",
     "cybersecurity", "cyber security",
-    "service engineer", "mechatroniker"
+    "service engineer", "mechatroniker",
+
+    "hkls", "hlsk", "sanitär", "heizungs-", "lüftungs-", "klimatechnik", "kältetechnik",
+    "gebäudeautomation", "gebäuderückbau", "tragwerk", "wasserbau", "fernwärme", "reinraum",
+    "isolierung", "innenausbau", "objektüberwachung", "wohnungsbau", "real estate",
+    "immobilien", "quartiersentwicklung", "stadterneuerung", "effizienzhaus", "fertighaus",
+    "baubranche", "betoninstandsetzung", "flächenrecycling", "epcm", "projektsteuerer",
+    "infrastrukturprojekte", "mittelspannung", "umweltplanung", "ausgleichsflächen",
+    "kompensationsmaßnahmen", "wasserschaden", "brandschutz", "facility",
+
+    "social media", "influencer", "marketing", "brand experience", "esports", "gaming",
+    "werbeagentur", "promotion", "event", "crm", "e-commerce", "ecommerce", "fulfillment",
+    "retail media", "label group",
+
+    "bank", "versicherung", "investmentprodukte", "zahlungsverkehr", "asset management",
+    "assetmanagement", "financeaccounting", "accounting", "chief of staff", "payroll",
+
+    "salesforce", "servicenow", "cyberark", "erp", " ecm", "m365", "microsoft 365", "azure",
+    "cloud services", "it transformation", "it-transformation", "it-systeme",
+    "unified communications", "ejustice", " dms", "it-koordination", "tether", "wallet",
+    "kundenschulung", "kundenservice", "hr technology", "hr services", "adobe",
+
+    "logistik", "logistics", "intralogistik", "warehouse", "materialfluss",
+    "kontraktlogistik", "einkaufskoordinator", "purchasing",
+
+    "rescue committee", "öffentliche verwaltung", "science relations", "klinische studien",
+    "clinical research", "agile coach",
+
+    "railservice", "rail service", "railway", "schienenfahrzeug",
+    "defence", "defense", "unmanned ground", "wehrtechnik",
+
+    "scrum master", " public", "government", "cloud-services", "sicherheitsprodukte",
+    "sicherheitsmanagement", "software entwicklung", " tga", "latam", "industrieplanung",
+    "energienetze", "energielösungen", "lifecycle solutions", "cash life cycle",
+    "high security printing", "security technology mena"
   ],
   "blocked_url_substrings": [
     "Senior--Agiler-Projektleiter--m-w-x----Manufacturing-Solutions",
@@ -23,7 +71,8 @@
     "JR_1049860",
     "JR_1046621",
     "solution-architect-und-teilprojektleiter-in-ismaning-muenchen",
-    "7622-teilprojektleiter-einfuehrung-msp-hr-services"
+    "7622-teilprojektleiter-einfuehrung-msp-hr-services",
+    "whatjobs.com/company/"
   ],
   "favorite_companies": [],
   "manual_jobs": [

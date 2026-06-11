@@ -603,8 +603,11 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
             return (-1, [f"🚫 BLOCK_D:{block}"])
 
     # Hard Block — Firma
+    # FIX 2026-06-11: bei remotely/kimeta steckt der Firmenname im TITEL (company-Feld
+    # leer) -> Firmen-Blocks muessen auch gegen title_co greifen, sonst rutschen
+    # "agentur kuhnen ...", "vonovia senior projektleiter ..." etc. durch.
     for block in COMPANY_BLOCK:
-        if block in company_lower:
+        if block in company_lower or block in title_co:
             return (-1, [f"🚫 BLOCK_CO:{block}"])
 
     # Standort-Filter
@@ -645,6 +648,24 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
                        r"consultant|berater|coach|trainer|referent|koordinat)\b", title_lower)
     if ai_sig and eng_sig and not pm_sig:
         return (-1, [f"🚫 BLOCK_AI_ENG: AI/ML-Engineering-Rolle ohne PM-Bezug"])
+
+    # NEU 2026-06-11 (Andy: "PM-Bereich ausmisten — die Haelfte passt nicht"):
+    # Stadt-Mismatch: Fremd-Grossstadt im TITEL, aber kein Muenchen-Bezug in Titel+Location
+    # -> Stelle sitzt real woanders (kimeta/BA/remotely taggen sie trotzdem Muenchen/Remote).
+    # Beispiele aus dem Dashboard: "Customer PM Hannover", "Teilprojektleiterin Dresden",
+    # "HKLS in Regensburg", "BridgingIT Koeln". Muenchen im Titel (Multi-Standort) bleibt.
+    FREMD_STAEDTE = ("hannover", "hamburg", "berlin", "köln", "koeln", "dresden", "essen",
+                     "duisburg", "karlsruhe", "bielefeld", "jena", "stuttgart", "frankfurt",
+                     "düsseldorf", "duesseldorf", "nürnberg", "nuernberg", "leipzig", "bremen",
+                     "dortmund", "regensburg", "wolfsburg", "kassel", "mannheim", "wiesbaden",
+                     "osnabrück", "ravensburg", "gießen", "hannover", "ingolstadt", "ulm")
+    # Nur der TITEL zaehlt — die Boersen-Location ist genau die Fehlerquelle
+    # ("Customer PM Hannover" wird von kimeta trotzdem als Muenchen gelistet).
+    _muc_in = ("münchen" in title_lower or "muenchen" in title_lower or "munich" in title_lower)
+    if not _muc_in:
+        for _stadt in FREMD_STAEDTE:
+            if re.search(r"\b" + _stadt + r"\b", title_lower):
+                return (-1, [f"🚫 BLOCK_CITY: {_stadt.title()} im Titel ohne München-Bezug"])
 
     # Positiv-Score (Title + Beschreibung)
     score = 0
