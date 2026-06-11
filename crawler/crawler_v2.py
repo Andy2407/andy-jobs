@@ -166,7 +166,7 @@ PERSONIO_COMPANIES = [
     ("thost-projektmanagement", "THOST", None),
     ("bachert-partner-1", "bachert&partner", None),
     ("p3-group", "P3 group", None),
-    ("agilerobots", "Agile Robots", None),
+    ("agile-robots-se", "Agile Robots", None),  # FIX 2026-06-11: alter Slug "agilerobots" tot (307); echtes Board 87 Jobs — Radar-Fund (800-Mio-$-Runde 02.06., Bloomberg)
     ("kinexon", "Kinexon", None), ("konux-gmbh", "KONUX", None),
     ("luminovo", "Luminovo", None), ("logivations", "Logivations", None),
     ("kaeser-kompressoren", "KAESER", None),
