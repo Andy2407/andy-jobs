@@ -2085,6 +2085,56 @@ def crawl_avature(session) -> list:
 
 
 # ============================================================
+# NEURA Robotics (NEU 2026-06-11, Andy: "Mega-Investment, schreibt jetzt
+# Muenchen aus — wieso nicht im Dashboard?!")
+# Historie: Personio-Board war 06/2026 ein totes Testboard -> Firma hat jetzt
+# eigenes Portal jobs.neura-robotics.com (my-job-shop.com/Nuxt + Typesense).
+# Weg: sitemap.xml (179 Offer-URLs) + <title> der Detailseite traegt
+# "Titel (Stadt) > NEURA Robotics" -> nur ~4kB je Stelle noetig (Stream-Abbruch).
+# ============================================================
+def crawl_neura(session) -> list:
+    log.info("[NEURA] Sitemap + Titel-Snippets…")
+    jobs = []
+    try:
+        r = session.get("https://jobs.neura-robotics.com/sitemap.xml", timeout=15)
+        urls = re.findall(r"<loc>(https://jobs\.neura-robotics\.com/offer/[^<]+)</loc>", r.text)
+    except Exception as e:
+        log.warning(f"[NEURA] Sitemap: {e}")
+        return jobs
+    log.info(f"[NEURA] {len(urls)} Offer-URLs in Sitemap")
+    muc = 0
+    for url in urls[:220]:
+        try:
+            resp = session.get(url, stream=True, timeout=10)
+            head = b""
+            for chunk in resp.iter_content(chunk_size=2048):
+                head += chunk
+                if b"</title>" in head or len(head) > 30000:
+                    break
+            resp.close()
+            m = re.search(rb"<title>([^<]+)</title>", head)
+            if not m:
+                continue
+            full = m.group(1).decode("utf-8", "replace").strip()
+            # "Concept Engineer (Mensch) (Muenchen) > NEURA Robotics"
+            title = re.sub(r"\s*[›>|].*$", "", full).strip()
+            cm = re.findall(r"\(([^()]+)\)", title)
+            city = cm[-1].strip() if cm else ""
+            if not re.search(r"m(ü|u|ue)nchen|munich", city, re.I):
+                continue
+            clean_title = re.sub(r"\s*\(" + re.escape(city) + r"\)\s*$", "", title).strip()
+            clean_title = clean_title.replace("&amp;", "&").replace("&#39;", "'")
+            muc += 1
+            jobs.append({"source": "neura", "url": url, "title": clean_title[:200],
+                         "company": "NEURA Robotics", "location": "München",
+                         "description": "", "raw_text": clean_title})
+        except Exception:
+            continue
+    log.info(f"[NEURA] {muc} München-Jobs (von {len(urls)} gesamt)")
+    return jobs
+
+
+# ============================================================
 # Job-Portale (NEU 2026-06-01, ATS-Recherche verifiziert)
 # ============================================================
 PORTAL_QUERIES = ["Projektmanager", "Projektleiter", "Teilprojektleiter",
@@ -2517,6 +2567,7 @@ def main():
         (crawl_infineon, "Infineon"),
         (crawl_allianz, "Allianz"),
         (crawl_avature, "Avature (Rohde & Schwarz)"),
+        (crawl_neura, "NEURA Robotics"),
         # NEU 2026-06-01 Phase 2 (Job-Portale, keyfrei)
         (crawl_xing, "Xing"),
         (crawl_talent, "talent.com"),
