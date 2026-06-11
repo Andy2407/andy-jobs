@@ -1060,7 +1060,6 @@ PW_COMPANY_SOURCES = [
     ("Apple",          "https://jobs.apple.com/de-de/search?location=munich-MUC",                                  r"/de-de/details/",            False),
     ("Siemens",        "https://jobs.siemens.com/careers?query=Projektmanager&location=Munich%2C%20Bavaria%2C%20Germany", r"/careers/job",        False),
     ("Siemens Healthineers", "https://jobs.siemens-healthineers.com/careers?location=Munich",                      r"/careers/job",               False),
-    ("Rohde & Schwarz","https://jobs.rohde-schwarz.com/en_US/careers?location=Munich%2C%20Bavaria%2C%20Germany",   r"/careers/job|/job/",         False),
     ("Brose",          "https://www.brose.com/de-de/karriere/",                                                    r"(successfactors|/job)",      True),
     ("Dräxlmaier",     "https://www.draexlmaier.com/karriere",                                                     r"(job|stellen|vacanc)",       True),
     ("IAV",            "https://www.iav.com/de/karriere/",                                                         r"/(jobs?|stellen)[/-]",       True),
@@ -2033,6 +2032,59 @@ def crawl_allianz(session) -> list:
 
 
 # ============================================================
+# Avature-Portale (NEU 2026-06-11, Andy "SPA-Quellen fertigmachen")
+# Avature rendert SearchJobs server-seitig; der /feed/-Endpoint liefert mit
+# jobRecordsPerPage=100 alle Treffer in EINEM Request (verifiziert R&S: 40
+# Muenchen-Jobs, 9.7kB). Kein Browser noetig. Siemens nutzt zwar auch Avature,
+# rendert die Liste aber client-seitig -> separater Schritt (Netzwerk-API).
+# ============================================================
+AVATURE_SOURCES = [
+    ("Rohde & Schwarz",
+     "https://jobs.rohde-schwarz.com/en_US/careers/SearchJobs/Munich/feed/?jobRecordsPerPage=100",
+     "München"),
+]
+
+
+def crawl_avature(session) -> list:
+    """Der /feed/-Endpoint liefert RSS 2.0: <item> mit <title><![CDATA[..]]> + <link>.
+    20 Items je Seite, Pagination via jobOffset."""
+    log.info("[Avature] SearchJobs-RSS-Feeds…")
+    jobs, seen = [], set()
+    item_pat = re.compile(
+        r"<item>[\s\S]*?<title><!\[CDATA\[(.*?)\]\]></title>[\s\S]*?<link>([^<]+)</link>", re.I)
+    for company, url, loc in AVATURE_SOURCES:
+        cnt = 0
+        for offset in (0, 20, 40, 60):
+            try:
+                r = session.get(f"{url}&jobOffset={offset}", timeout=15)
+                if r.status_code != 200:
+                    break
+                found = item_pat.findall(r.text)
+                if not found:
+                    break
+                new_here = 0
+                for title, href in found:
+                    href = href.strip().split("?")[0]
+                    title = re.sub(r"\s+", " ", title).strip()
+                    if not href or href in seen or len(title) < 8:
+                        continue
+                    seen.add(href)
+                    cnt += 1
+                    new_here += 1
+                    jobs.append({"source": f"avature:{company}", "url": href,
+                                 "title": title[:200], "company": company,
+                                 "location": loc, "description": "", "raw_text": title})
+                if new_here == 0:
+                    break
+            except Exception as e:
+                log.warning(f"[Avature:{company}] {e}")
+                break
+        log.info(f"[Avature:{company}] {cnt} Jobs")
+    log.info(f"[Avature] {len(jobs)} Jobs gesamt")
+    return jobs
+
+
+# ============================================================
 # Job-Portale (NEU 2026-06-01, ATS-Recherche verifiziert)
 # ============================================================
 PORTAL_QUERIES = ["Projektmanager", "Projektleiter", "Teilprojektleiter",
@@ -2464,6 +2516,7 @@ def main():
         (crawl_amsosram, "ams OSRAM"),
         (crawl_infineon, "Infineon"),
         (crawl_allianz, "Allianz"),
+        (crawl_avature, "Avature (Rohde & Schwarz)"),
         # NEU 2026-06-01 Phase 2 (Job-Portale, keyfrei)
         (crawl_xing, "Xing"),
         (crawl_talent, "talent.com"),
