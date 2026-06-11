@@ -22,6 +22,7 @@ TITLE_BLOCK = [
     "software - releasemanager", "software - release",
     "requirements engineer",
     "business manager", "key account manager",
+    "gtm manager", "go-to-market", "go to market",  # 2026-06-11: Vertriebsrollen bei Robotik-Favoriten (NEURA GTM) hart raus
     "plc programmier", "sps programmier", "plc-programmier",
     "projekt manager softwareentwicklung", "projektmanager softwareentwicklung",
     "system engineer", "systems engineer", "systemingenieur", "sysadmin", "systemadministrator",
@@ -327,7 +328,9 @@ TITLE_BOOST = {
     "ipma": 6, "psm ": 4, "pspo ": 4, "scrum": 4,
     # Branchen-Quereinstieg
     "medtech": 8, "medizintechnik": 8, "pharma": 6, "biotech": 6,
-    "robotik": 8, "robotics": 8,
+    "robotik": 16, "robotics": 16,  # 2026-06-11 hochgestuft: Auto/Robotics ist Andys Ziel-Tab
+    "concept engineer": 20, "konzept engineer": 20,  # NEURA-Titel sind englisch; Andy IST Konzeptkonstrukteur
+    "humanoid": 10, "technical program manager": 18,
     "energie": 4, "renewable": 4,
     "regulatory affairs": 8,
 }
@@ -528,7 +531,10 @@ def categorize(title: str, description: str = "", company: str = "") -> str:
                                  "ai transformation", "ki-transformation", "ki-projektleiter",
                                  "ki-projektmanager", "ki-projekt", "smart vehicle", "sdv",
                                  "automation manager", "prozessautomatisierung",
-                                 "workflow-automation", "ki-einführung", "ki-strategie"]):
+                                 "workflow-automation", "ki-einführung", "ki-strategie",
+                                 # 2026-06-11: RPA ist KI-Automatisierung, KEINE Robotik —
+                                 # muss VOR dem Robotik->auto-Check gefangen werden
+                                 "robotic process automation", "process automation"]):
         return "ki"
 
     # 2. MedTech (Anzeige "MedTech", Key "pharma"): Medizintechnik-Quereinstieg, großzügig.
@@ -546,11 +552,19 @@ def categorize(title: str, description: str = "", company: str = "") -> str:
                                  "raumedic", "wl gore", "ziehm imaging"]):
         return "pharma"
 
-    # 3. Automotive / Fahrzeug
+    # 3. Robotik -> auto (Andy 2026-06-11: "Sortiere NEURA zu Auto ein. Aus Auto machen
+    #    wir Auto/Robotics." Robotik raus aus der PM-Sammelkategorie; Tab-Label geaendert.)
+    if any(k in text for k in ["robotik", "robotic", "robot ", "roboter", "humanoid", "cobot",
+                                 "neura robotics", "agile robots", "robco", "franka robotics",
+                                 "magazino", "kuka"]):
+        return "auto"
+
+    # 3b. Automotive / Fahrzeug
     if any(k in text for k in ["automotive", "fahrzeug", "automobil", "ee-package",
                                  "ee package", "gesamtfahrzeug", "se-teamleiter", "se-teamleitung",
                                  "modulleiter", "modulleitung", "baugruppe", "chassis", "karosserie",
                                  "zonenarchitektur", "zonenkonzept", "zonenverantwort", "interieur",
+                                 "boardnetz", "e-mobility", "e-mobilität", "silver atena",
                                  "exterieur", "sitzentwicklung", "sitzsystem", "steuergerät", "bordnetz",
                                  "kabelbaum", "cockpit", "instrumententafel", "thermomanagement",
                                  "fahrerassistenz", "türsystem", "verdeck", "karosseriebau",

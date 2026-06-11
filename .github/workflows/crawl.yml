@@ -5,6 +5,13 @@ on:
     - cron: "0 4,8,12,16 * * *"
   workflow_dispatch: {}
 
+# FIX 2026-06-11: Parallele Laeufe zerschossen sich gegenseitig den Daten-Push
+# (Rebase-Konflikt in data.json -> "success" ohne Deploy, Andy sah 14:19-Stand).
+# Laeufe werden ab jetzt serialisiert; ein laufender Crawl wird nie abgebrochen.
+concurrency:
+  group: crawl-deploy
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -29,20 +36,50 @@ jobs:
       - name: Run crawler v2 (25 Quellen inkl. SII/Rodenstock/CARIAD/MTU)
         working-directory: crawler
         run: python crawler_v2.py
-      - name: Commit and push with rebase
-        env:
-          NOW: ${{ github.run_started_at }}
+      - name: Commit and push (konfliktfrei + verifiziert)
         run: |
           set -euo pipefail
+          # FIX: github.run_started_at existiert nicht im github-Kontext (Commit-Messages
+          # waren deshalb ohne Timestamp) -> echten UTC-Zeitstempel selbst setzen.
+          NOW="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git config user.name "Crawler Bot"
           git config user.email "bot@users.noreply.github.com"
-          git add data.js data.json index.html jobsuche_standalone.html 2>/dev/null || true
-          if git diff --cached --quiet; then
-            echo "Keine Aenderungen"
-          else
+          # FIX 2026-06-11: pull --rebase konfligierte in data.json und liess den
+          # Lauf als "success" enden, obwohl NICHTS deployt wurde. Neue Strategie:
+          # frische Daten sichern -> hart auf origin/main -> Daten drueberlegen ->
+          # committen -> pushen (Retry). Konfliktfrei per Konstruktion.
+          mkdir -p /tmp/crawlout
+          cp data.js data.json index.html jobsuche_standalone.html /tmp/crawlout/
+          PUSHED=0
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/crawlout/data.js /tmp/crawlout/data.json /tmp/crawlout/index.html /tmp/crawlout/jobsuche_standalone.html .
+            git add data.js data.json index.html jobsuche_standalone.html
+            if git diff --cached --quiet; then
+              echo "Keine Aenderungen gegenueber origin"
+              PUSHED=1
+              break
+            fi
             git commit -m "data: cloud crawl v7 ${NOW}"
-            for i in 1 2 3 4; do
-              git pull --rebase origin main && git push && break || sleep 5
-            done
+            if git push origin main; then
+              echo "PUSH OK (Versuch $i)"
+              PUSHED=1
+              break
+            fi
+            echo "Push-Kollision, Versuch $i — neuer Anlauf"
+            sleep $((i * 5))
+          done
+          # Deploy-Verifikation: Lauf darf NIE "success" melden, wenn nichts live ging
+          if [ "$PUSHED" -ne 1 ]; then
+            echo "::error::Daten wurden NICHT gepusht — Lauf schlaegt laut fehl"
+            exit 1
+          fi
+          git fetch origin main
+          if git diff --quiet origin/main -- data.js data.json index.html jobsuche_standalone.html; then
+            echo "DEPLOY VERIFIZIERT: alle 4 Dashboard-Dateien sind auf origin/main"
+          else
+            echo "::error::Deploy unvollstaendig — Dashboard-Dateien weichen von origin/main ab"
+            exit 1
           fi
 
