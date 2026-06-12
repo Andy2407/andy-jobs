@@ -485,7 +485,7 @@ function el(tag, cls, text){
 function buildCard(j, cat){
   const [mc, ml] = matchBadge(j.score);
   const cta = CAT_CTA[cat] || 'cta-pm';
-  const id = 'j-' + (j.url || '').replace(/[^a-z0-9]+/gi,'').slice(0, 40);
+  const id = 'j-' + msHash(j.url || '');  // FIX 2026-06-11: Hash der VOLLEN URL statt slice(0,40). slice kollidierte (alle Bundesagentur/StepStone-URLs teilen das Praefix) -> markierte Stellen wurden falsch/unzuverlaessig versteckt.
   const card = el('div', 'jc');
   card.dataset.id = id;
   // Top: Titel + ggf. NEU-Badge + Match
@@ -1400,6 +1400,27 @@ function renderArchiv(){
 }
 
 (function init(){
+  // === ID-Migration v2 (2026-06-11): Card-IDs von url.slice(0,40) auf url-Hash umstellen.
+  // Die alten slice-IDs kollidierten (alle Bundesagentur/StepStone-URLs teilen das Praefix),
+  // dadurch wurden markierte Stellen unzuverlaessig versteckt. Diese Migration re-keyt
+  // bestehende Markierungen VERLUSTFREI: nur EINDEUTIGE alte IDs (genau 1 aktueller Job)
+  // werden auf die neue Hash-ID uebertragen; mehrdeutige bleiben unangetastet. Loescht nie.
+  try{
+    if(localStorage.getItem('jsa12_status_idv2') !== '1' && DATA && DATA.jobs){
+      const map = JSON.parse(localStorage.getItem('jsa12_status') || '{}');
+      if(Object.keys(map).length){
+        const oldId = u => 'j-' + (u || '').replace(/[^a-z0-9]+/gi,'').slice(0, 40);
+        const cnt = {};
+        DATA.jobs.forEach(j => { const o = oldId(j.url); cnt[o] = (cnt[o] || 0) + 1; });
+        DATA.jobs.forEach(j => {
+          const o = oldId(j.url), n = 'j-' + msHash(j.url || '');
+          if(map[o] && cnt[o] === 1 && !map[n]) map[n] = map[o];
+        });
+        localStorage.setItem('jsa12_status', JSON.stringify(map));
+      }
+      localStorage.setItem('jsa12_status_idv2', '1');
+    }
+  }catch(e){}
   const ta = document.getElementById('ft');
   try{ const s = localStorage.getItem('jsa12_ft'); if(s) ta.value = s; }catch{}
   ta.addEventListener('input', () => { try{ localStorage.setItem('jsa12_ft', ta.value); }catch{} });
