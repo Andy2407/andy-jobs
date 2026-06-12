@@ -36,6 +36,10 @@ jobs:
       - name: Run crawler v2 (25 Quellen inkl. SII/Rodenstock/CARIAD/MTU)
         working-directory: crawler
         run: python crawler_v2.py
+      - name: Encrypt dashboards (StaticCrypt)
+        run: npx --yes staticrypt@3.5.4 index.html jobsuche_standalone.html -p "$STATICRYPT_PASSWORD" --short -d .
+        env:
+          STATICRYPT_PASSWORD: ${{ secrets.STATICRYPT_PASSWORD }}
       - name: Commit and push (konfliktfrei + verifiziert)
         run: |
           set -euo pipefail
