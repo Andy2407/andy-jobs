@@ -144,6 +144,7 @@ def crawl_arbeitnow(session, max_pages: int = 15) -> list:
 # ============================================================
 PERSONIO_COMPANIES = [
     ("appliedai", "appliedAI Initiative", None),
+    ("filics", "Filics", None),
     ("attempto", "attempto GmbH", "https://www.attempto.eu/de/karriere/job/{id}?language=de"),
     ("amiconsult", "amiconsult GmbH", "https://amiconsult.de/job/{id}?language=de"),
     ("perelyn", "Perelyn", None), ("vaeridion", "VÆRIDION", None),
@@ -268,7 +269,7 @@ def crawl_greenhouse(session) -> list:
 # NEU 2026-06-01 (Andy): US-Pure-AI/SWE/Defense raus (intersystems, spacex, palantir, freenome,
 # anthropic, openai). Munich Electrification behalten (München, E-Mobility-Hardware, lieferte im
 # God-Mode-Lauf den NPI-Treffer).
-LEVER_COMPANIES = ["munichelectrification", "vehicle"]
+LEVER_COMPANIES = ["munichelectrification", "vehicle", "finn"]
 
 
 def crawl_lever(session) -> list:
@@ -300,7 +301,7 @@ def crawl_lever(session) -> list:
 # NEU 2026-06-01 (Andy): Ashby-Liste war ausschließlich US-Pure-AI/SWE (anthropic, openai,
 # elevenlabs, anysphere, perplexity, mistral, stabilityai, weaviate) — kein DE-Produktentwicklungs-
 # Bezug, reines Rauschen. Geleert; kann später mit DACH-Ashby-Boards gefüllt werden.
-ASHBY_COMPANIES = ["robco"]
+ASHBY_COMPANIES = ["robco", "orbem"]
 
 
 def crawl_ashby(session) -> list:
