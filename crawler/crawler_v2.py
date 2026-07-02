@@ -301,7 +301,7 @@ def crawl_lever(session) -> list:
 # NEU 2026-06-01 (Andy): Ashby-Liste war ausschließlich US-Pure-AI/SWE (anthropic, openai,
 # elevenlabs, anysphere, perplexity, mistral, stabilityai, weaviate) — kein DE-Produktentwicklungs-
 # Bezug, reines Rauschen. Geleert; kann später mit DACH-Ashby-Boards gefüllt werden.
-ASHBY_COMPANIES = ["robco", "orbem"]
+ASHBY_COMPANIES = ["robco", "orbem", "lio"]  # lio: NEU 2026-07-02, Radar 01.07. (a16z Series A, 15 München-Stellen, u.a. AI Implementation Manager)
 
 
 def crawl_ashby(session) -> list:

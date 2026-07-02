@@ -438,6 +438,19 @@ except Exception:
     pass
 
 
+# ===== NEU 2026-07-02: Akzent-/Bindestrich-Faltung fuer Blocklisten-Matching =====
+# remotely.de-Slugs sind ASCII ohne Bindestriche ("e commerce", "fordertechnik", "sanitar"),
+# wodurch Blocklisten-Eintraege mit Umlaut/Bindestrich ("e-commerce", "fördertechnik",
+# "sanitär") dort nie griffen. Jeder Block wird zusaetzlich in gefalteter Form geprueft.
+def _fold(s: str) -> str:
+    return (s.replace("ä", "a").replace("ö", "o").replace("ü", "u").replace("ß", "ss")
+             .replace("-", " "))
+
+
+TITLE_BLOCK_FOLDED = [_fold(b) for b in TITLE_BLOCK]
+COMPANY_BLOCK_FOLDED = [_fold(b) for b in COMPANY_BLOCK]
+
+
 OTHER_CITIES = ["karlsruhe", "stuttgart", "berlin", "hamburg", "köln", "koeln",
                 "frankfurt", "düsseldorf", "duesseldorf", "leipzig", "hannover",
                 "nürnberg", "nuernberg", "dresden", "essen", "bremen", "ulm",
@@ -606,9 +619,10 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
     title_co = title_lower + " " + company_lower
     text = (title + " " + description + " " + (company or "")).lower()
 
-    # Hard Block — Title + Firma
-    for block in TITLE_BLOCK:
-        if block in title_co:
+    # Hard Block — Title + Firma (auch in gefalteter Form gegen ASCII-Slugs, siehe _fold)
+    title_co_fold = _fold(title_co)
+    for block, block_f in zip(TITLE_BLOCK, TITLE_BLOCK_FOLDED):
+        if block in title_co or block_f in title_co_fold:
             return (-1, [f"🚫 BLOCK_T:{block}"])
 
     # Hard Block — Description (strict only)
@@ -620,8 +634,8 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
     # FIX 2026-06-11: bei remotely/kimeta steckt der Firmenname im TITEL (company-Feld
     # leer) -> Firmen-Blocks muessen auch gegen title_co greifen, sonst rutschen
     # "agentur kuhnen ...", "vonovia senior projektleiter ..." etc. durch.
-    for block in COMPANY_BLOCK:
-        if block in company_lower or block in title_co:
+    for block, block_f in zip(COMPANY_BLOCK, COMPANY_BLOCK_FOLDED):
+        if block in company_lower or block in title_co or block_f in title_co_fold:
             return (-1, [f"🚫 BLOCK_CO:{block}"])
 
     # Standort-Filter
