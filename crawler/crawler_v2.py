@@ -183,6 +183,9 @@ PERSONIO_COMPANIES = [
     ("avenyr", "AVENYR GmbH", None),
     ("vdwbayern", "VdW Bayern", None),
     ("start2", "Start2 Group", None),
+    # NEU 2026-07-15 (Radar-Funde, Andy-Go "alle aktuellsten Links rein"):
+    ("deepdrive-gmbh", "DeepDrive", None),   # E-Mobility/Doppelrotor-E-Motor, Garching (BMW i Ventures/Continental)
+    ("clearops", "ClearOps", None),          # KI-After-Sales-Plattform OEM/Industrie, München
 ]
 
 

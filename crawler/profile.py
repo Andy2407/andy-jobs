@@ -467,18 +467,30 @@ OTHER_CITIES = ["karlsruhe", "stuttgart", "berlin", "hamburg", "köln", "koeln",
                 "offenbach", "fulda", "passau", "lindau", "rosenheim"]
 
 
-def location_passes(location_text: str) -> bool:
-    """STRIKT NUR München + 25 km ODER 100 % Remote ortsunabhängig.
+def location_passes(location_text: str, extra_text: str = "") -> bool:
+    """München + 25 km ODER 100 % Remote ortsunabhängig.
     Jede andere DE-Stadt im Standort → RAUS (auch mit Hybrid-Hinweis).
     User-Anweisung 05.05.2026: 'Konzentrier dich auf München, nur auf München.
-    25 Kilometer plus maximal. Alles andere 100% remote, ortsunabhängig.'"""
+    25 Kilometer plus maximal. Alles andere 100% remote, ortsunabhängig.'
+    AUSNAHME (Andy 2026-07-15): Stuttgart ODER Augsburg sind OK, WENN die Anzeige ein
+    starkes Remote-/Homeoffice-Signal trägt ('80% Homeoffice + 20% Stuttgart' bzw.
+    'Augsburg mit mind. 80% Remote'). extra_text = Titel+Beschreibung für die Signal-Prüfung."""
     if not location_text:
         return True  # ohne Standort drin lassen
     loc = location_text.lower()
 
-    # Andere DE-Stadt im Standort → IMMER raus (auch mit Hybrid)
-    if any(c in loc for c in OTHER_CITIES):
-        return False
+    # Andere DE-Stadt im Standort → raus. Ausnahme: Stuttgart/Augsburg + Remote-Anker.
+    hits = [c for c in OTHER_CITIES if c in loc]
+    if hits:
+        blob = (location_text + " " + (extra_text or "")).lower()
+        remote_anchor = bool(re.search(
+            r"100\s*%\s*remote|vollst\w*\s*remote|überwiegend\s*remote|remote[- ]first|"
+            r"\b80\s*%|\b4\s*tage\b|home[- ]?office|homeoffice|mobiles\s*arbeiten|\bremote\b|"
+            r"deutschlandweit|bundesweit", blob))
+        non_exempt = [c for c in hits if c not in ("stuttgart", "augsburg")]
+        if non_exempt or not remote_anchor:
+            return False
+        return True  # nur Stuttgart/Augsburg + Remote-Anker → durchlassen
 
     # München-Kern
     munich_ok = any(k in loc for k in ["münchen", "muenchen", "munich", "ismaning", "garching",
@@ -638,8 +650,9 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
         if block in company_lower or block in title_co or block_f in title_co_fold:
             return (-1, [f"🚫 BLOCK_CO:{block}"])
 
-    # Standort-Filter
-    if not location_passes(location):
+    # Standort-Filter (Andy 2026-07-15: Titel+Beschreibung mitgeben, damit Stuttgart/Augsburg
+    # mit >=80%-Remote-Signal durchkommen — s. location_passes)
+    if not location_passes(location, (title or "") + " " + (description or "")):
         return (-1, [f"🚫 BLOCK_LOC:{location[:60]}"])
 
     # NEU 2026-05-28 (Andy): Consultant/Berater nur OK wenn KI/AI-Bezug im Titel
@@ -690,8 +703,16 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
     # Nur der TITEL zaehlt — die Boersen-Location ist genau die Fehlerquelle
     # ("Customer PM Hannover" wird von kimeta trotzdem als Muenchen gelistet).
     _muc_in = ("münchen" in title_lower or "muenchen" in title_lower or "munich" in title_lower)
+    # Andy 2026-07-15: Stuttgart im Titel NICHT sperren, wenn Remote-Anker im Text (Augsburg
+    # steht ohnehin nicht in FREMD_STAEDTE).
+    _remote_anchor = bool(re.search(
+        r"100\s*%\s*remote|vollst\w*\s*remote|überwiegend\s*remote|remote[- ]first|\b80\s*%|"
+        r"\b4\s*tage\b|home[- ]?office|homeoffice|mobiles\s*arbeiten|\bremote\b|"
+        r"deutschlandweit|bundesweit", text))
     if not _muc_in:
         for _stadt in FREMD_STAEDTE:
+            if _stadt == "stuttgart" and _remote_anchor:
+                continue
             if re.search(r"\b" + _stadt + r"\b", title_lower):
                 return (-1, [f"🚫 BLOCK_CITY: {_stadt.title()} im Titel ohne München-Bezug"])
 
