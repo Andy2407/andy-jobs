@@ -1781,6 +1781,52 @@ def dedupe_after_verify(jobs) -> list:
     return reihenfolge
 
 
+def load_static_tabs(session) -> dict:
+    """NEU 2026-08-06 (Andy: "Headhunter-/Initiativ-Tab in den Crawler").
+
+    Beide Tabs waren bis heute statisches HTML in jobsuche_v12.html, zuletzt am
+    12.06.2026 angefasst — sie pflegten sich also nicht selbst, und beim Audit
+    waren vier der 23 Links tot (Hays-Suchseite 404, zwei Initiativ-Stellen von
+    Juni 404). Die Eintraege liegen jetzt in crawler/tabs_static.json und werden
+    bei JEDEM Lauf live geprueft. Tote Links werden nicht geloescht (Andys Regel:
+    nichts streichen), sondern als "tot" markiert und im Dashboard sichtbar
+    ausgegraut — so faellt es auf, statt still zu verrotten.
+    """
+    path = Path(__file__).resolve().parent / "tabs_static.json"
+    if not path.exists():
+        return {}
+    try:
+        cfg = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as e:
+        log.warning(f"[tabs] nicht lesbar: {e}")
+        return {}
+
+    def pruefe(eintrag):
+        url = eintrag.get("url") or ""
+        if not url:
+            eintrag["live"] = None
+            return eintrag
+        try:
+            r = session.get(url, timeout=15, allow_redirects=True)
+            eintrag["http"] = r.status_code
+            # 403 = Bot-Schutz, im Browser meist erreichbar -> nicht als tot werten
+            eintrag["live"] = r.status_code in (200, 403)
+        except Exception as e:
+            eintrag["http"] = type(e).__name__
+            eintrag["live"] = False
+        return eintrag
+
+    alle = cfg.get("initiativ", []) + cfg.get("headhunter", [])
+    with ThreadPoolExecutor(max_workers=6) as ex:
+        list(ex.map(pruefe, alle))
+    tot = [e for e in alle if e.get("live") is False]
+    log.info(f"[tabs] {len(alle) - len(tot)}/{len(alle)} Links live"
+             + (f" — TOT: {', '.join(e['titel'][:24] for e in tot)}" if tot else ""))
+    return {"initiativ": cfg.get("initiativ", []),
+            "headhunter": cfg.get("headhunter", []),
+            "geprueft_am": datetime.now().isoformat(timespec="seconds")}
+
+
 def stamp_bewerbungs_status(jobs) -> int:
     """NEU 2026-08-06 (Andy: 'Haben wir uns schon beworben oder nicht?').
 
@@ -3029,6 +3075,9 @@ def main():
             "source_yield": source_yield,
             "dead_sources": tote_quellen,
         },
+        # NEU 2026-08-06: Headhunter- und Initiativ-Eintraege kommen nicht mehr als
+        # statisches HTML ins Dashboard, sondern hier — bei jedem Lauf live geprueft.
+        "tabs": load_static_tabs(s),
         "jobs": [{k: v for k, v in j.items() if k != "raw_text"} for j in verified],
     }
     for j in verified:

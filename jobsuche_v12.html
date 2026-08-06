@@ -1291,10 +1291,61 @@ function jobsForTab(tab){
   });
 }
 
+// NEU 2026-08-06 (Andy: "Headhunter-/Initiativ-Tab in den Crawler"):
+// Beide Tabs waren statisches HTML vom 12.06. und pflegten sich nicht selbst —
+// vier von 23 Links waren tot. Sie kommen jetzt aus DATA.tabs, wo der Crawler sie
+// bei jedem Lauf live prueft. Tote Links werden NICHT entfernt (Andys Regel), sondern
+// sichtbar markiert. Faellt data.tabs weg, bleibt das alte HTML als Rueckfallebene.
+function renderStaticTab(tab){
+  const sec = document.getElementById('sec-' + tab);
+  const key = (tab === 'hh') ? 'headhunter' : 'initiativ';
+  const liste = (DATA && DATA.tabs && DATA.tabs[key]) || null;
+  if(!sec || !liste || !liste.length) return false;   // -> altes HTML bleibt stehen
+  while(sec.firstChild) sec.removeChild(sec.firstChild);
+  const ban = el('div', 'banner');
+  ban.style.cssText = (tab === 'hh')
+    ? 'border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05)'
+    : 'border-color:rgba(6,182,212,.3);background:rgba(6,182,212,.05)';
+  ban.appendChild(el('b', null, tab === 'hh'
+    ? '🎯 Headhunter & Personalberatungen München'
+    : '📨 Verifizierte Initiativbewerbungs-Adressen'));
+  ban.appendChild(document.createElement('br'));
+  const geprueft = (DATA.tabs.geprueft_am || '').slice(0, 16).replace('T', ' ');
+  const tot = liste.filter(e => e.live === false).length;
+  ban.appendChild(document.createTextNode(
+    'Alle Links beim letzten Crawl geprüft' + (geprueft ? ' (' + geprueft + ')' : '') + '. '
+    + (tot ? tot + ' Link(e) antworten nicht — unten markiert.' : 'Alle erreichbar.')));
+  sec.appendChild(ban);
+  for(const e of liste){
+    const card = el('div', 'jc');
+    const top = el('div', 'jc-top');
+    top.appendChild(el('div', 'jc-t', e.titel || '—'));
+    if(e.match) top.appendChild(el('div', 'jc-m m-h', e.match));
+    card.appendChild(top);
+    const meta = el('div', 'jc-meta');
+    if(e.untertitel) meta.appendChild(el('span', 'jc-co', e.untertitel));
+    if(e.ort) meta.appendChild(el('span', 'jc-loc', e.ort));
+    card.appendChild(meta);
+    if(e.hinweis) card.appendChild(el('span', 'dt dt-' + (tab === 'hh' ? 'src' : 'init'), e.hinweis));
+    if(e.live === false){
+      const warn = el('div', 'bw-badge bw-rej', '🚫 Link antwortet nicht (' + (e.http || '?') + ')');
+      card.appendChild(warn);
+      card.classList.add('has-bw');
+    }
+    const a = document.createElement('a');
+    a.className = 'cta cta-' + (tab === 'hh' ? 'pm' : 'init');
+    a.href = e.url || '#'; a.target = '_blank'; a.rel = 'noopener';
+    a.style.marginTop = '6px';
+    a.textContent = e.cta || 'Zur Seite →';
+    card.appendChild(a);
+    sec.appendChild(card);
+  }
+  return true;
+}
 function renderTab(tab){
   const sec = document.getElementById('sec-' + tab);
-  // hh + init sind hardcoded HTML-Tabs — NICHT dynamisch rendern (würde Cards killen!)
-  if(!sec || tab === 'init' || tab === 'hh') return;
+  if(!sec) return;
+  if(tab === 'init' || tab === 'hh'){ renderStaticTab(tab); return; }
   // Clear sec
   while(sec.firstChild) sec.removeChild(sec.firstChild);
   if(!DATA){
@@ -1372,8 +1423,10 @@ function go(c){
   document.querySelector('.tb[data-c="' + c + '"]').classList.add('on');
   document.getElementById('sec-' + c).classList.add('on');
   CURRENT_TAB = c;
-  // hh + init sind hardcoded — kein dynamisches Re-Render (Bug-Fix Andy 2026-05-28)
-  if(c !== 'init' && c !== 'hh') renderTab(c);
+  // 2026-08-06: hh + init sind nicht mehr hardcoded, sondern kommen aus DATA.tabs.
+  // renderTab() leitet sie an renderStaticTab() weiter; faellt DATA.tabs weg, bleibt
+  // das alte HTML unangetastet stehen (Rueckfallebene).
+  renderTab(c);
   try{ localStorage.setItem('jsa12_tab', c); }catch{}
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
