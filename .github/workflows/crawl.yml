@@ -81,9 +81,34 @@ jobs:
           fi
           git fetch origin main
           if git diff --quiet origin/main -- data.js data.json index.html jobsuche_standalone.html; then
-            echo "DEPLOY VERIFIZIERT: alle 4 Dashboard-Dateien sind auf origin/main"
+            echo "PUSH VERIFIZIERT: alle 4 Dashboard-Dateien sind auf origin/main"
           else
-            echo "::error::Deploy unvollstaendig — Dashboard-Dateien weichen von origin/main ab"
+            echo "::error::Push unvollstaendig — Dashboard-Dateien weichen von origin/main ab"
             exit 1
           fi
+
+      # NEU 2026-08-06: Der Schritt oben belegt nur, dass die Dateien IM REPO liegen —
+      # nicht, dass GitHub Pages sie ausliefert. Genau diese Verwechslung fuehrte am
+      # 06.08. dazu, dass die Live-Seite stundenlang auf dem Stand von 10:30 festhing,
+      # waehrend im Repo laengst neue Daten lagen und jeder Lauf "success" meldete.
+      # Ab jetzt wird die AUSGELIEFERTE data.js geprueft, nicht die gepushte.
+      # Keine Fremd-Eingaben im Skript: feste URL + eigener Zeitstempel aus data.json.
+      - name: Live-Auslieferung verifizieren (Pages)
+        run: |
+          set -uo pipefail
+          SOLL="$(python3 -c "import json;print(json.load(open('data.json'))['generated_at'])")"
+          echo "Erwarteter Stand auf der Live-Seite: $SOLL"
+          URL="https://andy2407.github.io/andy-jobs/data.js"
+          for i in $(seq 1 30); do
+            IST="$(curl -fsSL --max-time 25 "$URL" 2>/dev/null | python3 -c "import sys,re;t=sys.stdin.read();m=re.search(r'\"generated_at\":\s*\"([^\"]+)\"',t);print(m.group(1) if m else '')" 2>/dev/null || echo "")"
+            if [ "$IST" = "$SOLL" ]; then
+              echo "LIVE VERIFIZIERT nach $((i*20))s — die Seite liefert $IST"
+              exit 0
+            fi
+            echo "  Versuch $i/30: live steht noch auf '${IST:-nicht lesbar}'"
+            sleep 20
+          done
+          echo "::error::Pages liefert nach 10 Minuten weiterhin nicht den neuen Stand ($SOLL)."
+          echo "::error::Daten sind im Repo, aber NICHT beim Nutzer."
+          exit 1
 
