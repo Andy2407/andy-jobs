@@ -630,15 +630,22 @@ STEPSTONE_QUERIES = [
 
 
 def crawl_stepstone(session) -> list:
-    """DIAGNOSE 2026-08-06: StepStone liefert in der GitHub-Actions-Cloud seit
-    mindestens 23.07.2026 durchgaengig 0 Treffer bei 49 Suchen, LOKAL aber 25
-    Jobs pro Suche mit exakt demselben Code und Selektor (am 06.08. gegengeprueft).
-    Das ist also keine Selektor-Aenderung, sondern eine IP-Sperre gegen
-    Rechenzentrums-IPs. Der Ausfall blieb 14 Tage unbemerkt, weil non-200 still
-    uebersprungen und der Fehler nur auf log.debug geschrieben wurde.
-    Ab jetzt: Status-Code wird geloggt (log.warning), damit der naechste Cloud-Lauf
-    zeigt, OB 403 (harte Sperre) oder 429 (Rate-Limit) kommt. Erst danach laesst
-    sich entscheiden zwischen PW-Harvester, Proxy oder bewusstem Verzicht.
+    """DIAGNOSE 2026-08-06 (inkl. Korrektur am selben Tag — bitte ganz lesen).
+
+    Befund: StepStone lieferte in der Cloud vom 23.07. bis 06.08. durchgaengig
+    0 Treffer bei 49 Suchen, lokal aber 25 Jobs pro Suche mit demselben Code.
+    Erste Erklaerung war "IP-Sperre gegen Rechenzentrums-IPs". **Diese Erklaerung
+    ist widerlegt:** im Cloud-Lauf 31098650067 am 06.08. um 11:47 UTC lieferte
+    StepStone 1125 Jobs, und die neu eingebaute Statuscode-Zaehlung meldete
+    KEINE einzige Nicht-200-Antwort. Es war also weder eine dauerhafte Sperre
+    noch eine Selektor-Aenderung.
+
+    Was die Ursache wirklich war, ist offen. Wahrscheinlichster Kandidat bleibt
+    ein zeitweiliges Rate-Limit (dazu passt die Notiz vom 02.06.: "StepStone-
+    0-Ausfall ist temporaer, kommt von selbst zurueck") — belegt ist es nicht.
+    Deshalb bleibt die Statuscode-Zaehlung unten drin: Wenn es wiederkommt,
+    steht im Log, ob 403 (Sperre) oder 429 (Rate-Limit) die Ursache ist,
+    statt dass wieder 14 Tage lang gar nichts auffaellt.
     """
     jobs = []
     bad_status = {}
