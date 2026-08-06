@@ -186,6 +186,25 @@ PERSONIO_COMPANIES = [
     # NEU 2026-07-15 (Radar-Funde, Andy-Go "alle aktuellsten Links rein"):
     ("deepdrive-gmbh", "DeepDrive", None),   # E-Mobility/Doppelrotor-E-Motor, Garching (BMW i Ventures/Continental)
     ("clearops", "ClearOps", None),          # KI-After-Sales-Plattform OEM/Industrie, München
+    # NEU 2026-08-06 (Radar-Funde 03.08./06.08., Boards am 06.08. live verifiziert):
+    ("aampere", "Aampere", None),            # E-Mobility, Gebraucht-E-Auto-Plattform, München-Werksviertel (4,2 Mio. € 07/2026)
+    ("stabl-energy-gmbh", "STABL Energy", None),  # Batteriespeicher/BESS, München (Radar 03.08.)
+    ("alqemgmbh", "alqem", None),            # KI-gestuetzte Materialforschung/Magnete, München (8 Mio. € 07/2026)
+    # NEU 2026-08-06 (Quellen-Offensive, 153 Firmen gegen 8 ATS geprueft, Inhalt gesichtet):
+    ("circus", "Circus SE", None),          # Robotik-Kantine/Food-Automation, 9 Stellen München
+    ("idealworks", "idealworks", None),     # BMW-Spinoff, mobile Robotik, 18 Stellen München
+    ("gridx", "gridX", None),               # Energie-Plattform, Remote DE + Aachen (echtes Board;
+                                            # der Recruitee-Eintrag "gridx" liefert nichts mehr)
+    ("xolife", "XO Life", None),            # MedTech/Digital Health, Remote
+    # GEPRUEFT UND BEWUSST NICHT AUFGENOMMEN 2026-08-06:
+    # XPENG -> Greenhouse-Board "xpengmotors" ist das US/China-Board (21 Stellen, 0 München,
+    # alles Santa Clara/Shenzhen). Das Muenchner F&E-Zentrum laeuft nicht darueber.
+    # FALSCHE PERSONIO-BOARDS (Slug existiert, gehoert aber NICHT der Firma) — Inhalt geprueft,
+    # deshalb bewusst draussen: "webasto"/"certhub"/"langdock"/"tractive"/"edag" liefern alle
+    # identisch "SEO Marketing Manager / Social Media (Werkstudent)"; "schaeffler"/"gestamp"/
+    # "implantcast" liefern alle identisch "Bewerberpool / Fahrer-in Berlin / Junior IT-Sicherheit";
+    # "randstad" ist eine oesterreichische HR-Beratung; "scalablecapital" hat nur eine "Teststelle".
+    # Wer diese Slugs eintraegt, kippt Fremd-Stellen in Andys Dashboard.
 ]
 
 
@@ -240,6 +259,13 @@ GREENHOUSE_COMPANIES = [
     "zalando", "hellofresh", "deliveryhero", "sumup", "bitpanda", "grover",
     # NEU 2026-06-01 (München-Bezug, ATS-verifiziert)
     "roboyo",
+    # NEU 2026-08-06 (Quellen-Offensive — Zahlen sind live gemessene München-Stellen):
+    "kinexon",        # 31 München-Stellen. ACHTUNG: stand bisher faelschlich als Personio-Slug
+                      # "kinexon" in der Personio-Liste — das echte Board ist Greenhouse.
+    "konux",          # 4 München (stand als "konux-gmbh" Personio + "konux" Workable, beides schwach)
+    "parloa",         # 11 München (KI-Sprachagenten, heute keine PM-Rolle)
+    "lucidmotors",    # 3 München (E-Auto, Sales/Service-Rollen)
+    "isaraerospace",  # 90 Stellen, Sitz Ottobrunn bei München (Personio-Slug "isarvalley" bleibt drin)
 ]
 
 
@@ -304,7 +330,16 @@ def crawl_lever(session) -> list:
 # NEU 2026-06-01 (Andy): Ashby-Liste war ausschließlich US-Pure-AI/SWE (anthropic, openai,
 # elevenlabs, anysphere, perplexity, mistral, stabilityai, weaviate) — kein DE-Produktentwicklungs-
 # Bezug, reines Rauschen. Geleert; kann später mit DACH-Ashby-Boards gefüllt werden.
-ASHBY_COMPANIES = ["robco", "orbem", "lio"]  # lio: NEU 2026-07-02, Radar 01.07. (a16z Series A, 15 München-Stellen, u.a. AI Implementation Manager)
+ASHBY_COMPANIES = ["robco", "orbem", "lio",
+                   # NEU 2026-08-06 (Quellen-Offensive, München-Stellen live gezaehlt):
+                   "munich-electrification",  # 34 Stellen, ALLE München — u.a. Program
+                                              # Planning Manager, Product Owner Hardware.
+                                              # Der Lever-Slug "munichelectrification" ist tot.
+                   "tacto",                   # 26 Stellen, alle München (Beschaffungs-KI)
+                   "luminovo",                # echtes Board (Personio-Slug liefert nichts)
+                   "sereact",                 # 45 Stellen Robotik-KI, Stuttgart — 0 München,
+                                              # bleibt als Fruehwarnung fuer kuenftige DE-Rollen
+                   ]  # lio: NEU 2026-07-02, Radar 01.07. (a16z Series A, 15 München-Stellen, u.a. AI Implementation Manager)
 
 
 def crawl_ashby(session) -> list:
@@ -358,7 +393,11 @@ def crawl_workable(session) -> list:
     return jobs
 
 
-RECRUITEE_COMPANIES = ["sennder", "gridx"]
+RECRUITEE_COMPANIES = ["sennder", "gridx",
+                       "tecosim",  # NEU 2026-08-06: 12 Stellen, 1 München. Die Notiz von
+                                   # 06/2026 fuehrte Tecosim als "nicht scrapebar" — falsch,
+                                   # das Recruitee-Board antwortet sauber.
+                       ]
 
 
 def crawl_recruitee(session) -> list:
@@ -390,6 +429,11 @@ SMARTRECRUITERS_COMPANIES = [
     "REWEInternationalDienstleistungsgesellschaftmbH",
     "DiscoverDeloitte",
     "Gerresheimer",  # NEU 2026-06-01 (MedTech-Verpackung/Pharma-Glas, SmartRecruiters)
+    # NEU 2026-08-06 (Quellen-Offensive): 12 München-Stellen live gezaehlt, u.a.
+    # "Project Manager Officer". KORREKTUR der Notiz von 06/2026, die SmartRecruiters-ID
+    # "ALTEN" als reine Frankreich-Instanz abgeschrieben hatte — sie hat sehr wohl München.
+    "alten",
+    "continental",  # 100 Stellen DE, heute 0 München — bleibt als Fruehwarnung drin
 ]
 
 
@@ -487,29 +531,49 @@ BA_API_QUERIES = [
 
 
 def crawl_bundesagentur(session) -> list:
+    """FIX 2026-08-06: Die BA-API ist von v4 auf v6 umgezogen.
+
+    Symptom: seit ~23.07.2026 lieferte die Quelle stumm 0 Treffer bei 43 Suchen
+    (kein Fehler im Log, weil der alte Code non-200 einfach ueberspringt).
+    Ursache, am 06.08.2026 live nachgemessen:
+      * alter Pfad  /pc/v4/jobs      -> HTTP 404
+      * neuer Pfad  /pc/v6/app/jobs  -> HTTP 200
+      * Ergebnis-Key   "stellenangebote"   -> "ergebnisliste"
+      * Titel-Feld     "titel"/"beruf"     -> "stellenangebotsTitel"
+      * Firma-Feld     "arbeitgeber"       -> "firma"
+      * Referenz-Feld  "refnr"             -> "referenznummer"
+      * Ort-Feld       "arbeitsort".ort    -> "stellenlokationen"[0]."adresse"."ort"
+    v6 liefert zusaetzlich "festgehalt" (Jahresgehalt) und "homeofficemoeglich" —
+    beides wird mitgenommen, weil es fuer Gehalts-Anker und die 80%-Remote-Regel taugt.
+    """
     jobs = []
     hdrs = {**HEADERS, "X-API-Key": "jobboerse-jobsuche"}
-    base = "https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v4/jobs"
+    base = "https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v6/app/jobs"
     seen = set()
     for q in BA_API_QUERIES:
         params = {**q, "size": "100"}
         try:
             r = session.get(base, params=params, headers=hdrs, timeout=15)
             if r.status_code != 200:
+                log.warning(f"[BA-API] HTTP {r.status_code} bei {q}")
                 continue
-            for st in r.json().get("stellenangebote", []):
-                ref = st.get("refnr")
+            for st in r.json().get("ergebnisliste", []):
+                ref = st.get("referenznummer")
                 if not ref or ref in seen:
                     continue
                 seen.add(ref)
-                title = st.get("titel", "") or st.get("beruf", "")
+                title = st.get("stellenangebotsTitel", "") or st.get("hauptberuf", "") or ""
+                lok = (st.get("stellenlokationen") or [{}])[0].get("adresse") or {}
+                gehalt = st.get("festgehalt")
                 jobs.append({
                     "source": "bundesagentur",
                     "url": f"https://www.arbeitsagentur.de/jobsuche/jobdetail/{ref}",
                     "title": title[:200],
-                    "company": st.get("arbeitgeber", "") or "",
-                    "location": (st.get("arbeitsort") or {}).get("ort", "") or q.get("wo", ""),
+                    "company": st.get("firma", "") or "",
+                    "location": lok.get("ort", "") or q.get("wo", ""),
                     "description": "", "raw_text": title,
+                    "salary": f"{gehalt:.0f} EUR/Jahr" if isinstance(gehalt, (int, float)) else "",
+                    "homeoffice": bool(st.get("homeofficemoeglich")),
                 })
         except Exception as e:
             log.warning(f"[BA-API] {q}: {e}")
@@ -566,13 +630,25 @@ STEPSTONE_QUERIES = [
 
 
 def crawl_stepstone(session) -> list:
+    """DIAGNOSE 2026-08-06: StepStone liefert in der GitHub-Actions-Cloud seit
+    mindestens 23.07.2026 durchgaengig 0 Treffer bei 49 Suchen, LOKAL aber 25
+    Jobs pro Suche mit exakt demselben Code und Selektor (am 06.08. gegengeprueft).
+    Das ist also keine Selektor-Aenderung, sondern eine IP-Sperre gegen
+    Rechenzentrums-IPs. Der Ausfall blieb 14 Tage unbemerkt, weil non-200 still
+    uebersprungen und der Fehler nur auf log.debug geschrieben wurde.
+    Ab jetzt: Status-Code wird geloggt (log.warning), damit der naechste Cloud-Lauf
+    zeigt, OB 403 (harte Sperre) oder 429 (Rate-Limit) kommt. Erst danach laesst
+    sich entscheiden zwischen PW-Harvester, Proxy oder bewusstem Verzicht.
+    """
     jobs = []
+    bad_status = {}
     for q, loc in STEPSTONE_QUERIES:
         url = (f"https://www.stepstone.de/jobs/{q}/in-{loc}" if loc
                else f"https://www.stepstone.de/jobs/{q}")
         try:
             r = session.get(url, timeout=15)
             if r.status_code != 200:
+                bad_status[r.status_code] = bad_status.get(r.status_code, 0) + 1
                 continue
             soup = BeautifulSoup(r.text, "lxml")
             seen = set()
@@ -594,9 +670,12 @@ def crawl_stepstone(session) -> list:
                              "company": "", "location": loc or "",
                              "description": "", "raw_text": title + " " + meta})
         except Exception as e:
-            log.debug(f"[StepStone] {q}: {e}")
+            log.warning(f"[StepStone] {q}: {e}")
         time.sleep(0.4)
     log.info(f"[StepStone] {len(jobs)} ({len(STEPSTONE_QUERIES)} Suchen)")
+    if bad_status:
+        log.warning(f"[StepStone] NICHT-200-Antworten: {bad_status} "
+                    f"-> bei 403 = IP-Sperre gegen Cloud-Runner, bei 429 = Rate-Limit")
     return jobs
 
 
@@ -2479,12 +2558,63 @@ def crawl_remotely(session) -> list:
 # NEU 2026-06-02: jobninja.com (server-rendered, Firma+Standort ausgezeichnet).
 # München-Suche zeigt auch deutschlandweit → nur München/Remote-Standort behalten.
 # ============================================================
+def crawl_stellenanzeigen(session) -> list:
+    """NEU 2026-08-06 (Quellen-Offensive).
+
+    Die Notiz vom 02.06.2026 hatte stellenanzeigen.de mit "Suche filtert nicht, Müll"
+    verworfen. Der erste Teil stimmt weiterhin: Der Ortsparameter wird ignoriert, die
+    Trefferliste enthaelt Kassel, Dresden, Bremen. Der Schluss daraus war aber falsch —
+    die Stadt steckt sauber im Job-Slug ("...-muenchen-sde-106218/"), laesst sich also
+    selbst filtern. Live gemessen am 06.08.: 204 eindeutige Links, davon 13 München,
+    davon 5 durch Andys Filter — u.a. "Technischer Projektleiter After Sales" (Score 69).
+    Kleine, aber echte Quelle.
+    """
+    log.info("[stellenanzeigen] Jobs…")
+    jobs, seen = [], set()
+    base = "https://www.stellenanzeigen.de"
+    muc_re = re.compile(r"muenchen|munchen|munich|garching|ismaning|unterschleissheim|"
+                        r"oberhaching|martinsried|planegg|puchheim|germering", re.I)
+    for q in PORTAL_QUERIES:
+        url = (f"{base}/suche/?fulltext={requests.utils.quote(q)}"
+               f"&locationName=M%C3%BCnchen&radius=30")
+        try:
+            r = session.get(url, timeout=15)
+            if r.status_code != 200:
+                continue
+            soup = BeautifulSoup(r.text, "lxml")
+            for a in soup.select('a[href*="/job/"]'):
+                href = a.get("href", "").split("?")[0]
+                if not href or href in seen:
+                    continue
+                if not muc_re.search(href):
+                    continue          # Ort steckt im Slug — alles ausserhalb Münchens raus
+                title = a.get_text(" ", strip=True)
+                if len(title) < 8:
+                    continue
+                seen.add(href)
+                full = href if href.startswith("http") else base + href
+                jobs.append({"source": "stellenanzeigen", "url": full,
+                             "title": title[:200], "company": "",
+                             "location": "München", "description": "",
+                             "raw_text": title})
+        except Exception as e:
+            log.warning(f"[stellenanzeigen] {q}: {e}")
+        time.sleep(0.4)
+    log.info(f"[stellenanzeigen] {len(jobs)} Jobs")
+    return jobs
+
+
 def crawl_jobninja(session) -> list:
     log.info("[jobninja] Jobs…")
     jobs, seen = [], set()
     base = "https://www.jobninja.com"
     for q in PORTAL_QUERIES:
-        url = f"{base}/search?keywords={requests.utils.quote(q)}&location=M%C3%BCnchen"
+        # 2026-08-06: Parameter auf "query" korrigiert (alt: "keywords"). EHRLICHER BEFUND
+        # aus der Gegenprobe: JobNinja ignoriert BEIDE Varianten — "Projektmanager" und
+        # "Projektleiter" liefern exakt dieselben 20 Links, und davon trägt genau einer
+        # München im Slug. Das Portal ist damit eine Rand-Quelle (~1 relevante Stelle),
+        # kein Lieferant. Bleibt drin, weil es nichts kostet; nicht ausbauen.
+        url = f"{base}/search?query={requests.utils.quote(q)}&location=M%C3%BCnchen"
         try:
             r = session.get(url, timeout=15)
             if r.status_code != 200:
@@ -2502,7 +2632,14 @@ def crawl_jobninja(session) -> list:
                     continue
                 loc_el = card.select_one('[class*="location"]')
                 loc = loc_el.get_text(" ", strip=True) if loc_el else ""
-                if not re.search(r'münchen|munich|remote|homeoffice|home office', loc, re.I):
+                # FIX 2026-08-06: JobNinja rendert den Ort nicht mehr zuverlaessig in ein
+                # eigenes location-Element — er steckt im Slug ("...-in-muenchen--11348403").
+                # Ohne diesen Fallback wurde JEDE Stelle verworfen.
+                if not loc:
+                    m_slug = re.search(r"-in-([a-z0-9-]+?)--\d+$", href)
+                    if m_slug:
+                        loc = m_slug.group(1).replace("-", " ")
+                if not re.search(r'münchen|muenchen|munich|remote|homeoffice|home office', loc, re.I):
                     continue
                 seen.add(full)
                 co_el = card.select_one('[class*="company"]')
@@ -2594,24 +2731,44 @@ def main():
         (crawl_remotely, "remotely.de"),
         # NEU 2026-06-02: jobninja.com (server-rendered, München/Remote-gefiltert)
         (crawl_jobninja, "jobninja.com"),
+        (crawl_stellenanzeigen, "stellenanzeigen.de"),  # NEU 2026-08-06
     ]
     sources_no_session = [
         (crawl_indeed_playwright, "Indeed (Playwright)"),
         (crawl_pw_companies, "PW-Firmen (Apple/Siemens/Brose/IAV/ALTEN…)"),
     ]
     source_names = []
+    # NEU 2026-08-06 (Quellen-Gesundheit): Bis heute konnte eine Quelle stumm auf 0
+    # fallen, ohne dass es jemandem auffiel — die Bundesagentur-API war seit dem
+    # 23.07. tot (v4 -> v6 umgezogen) und StepStone in der Cloud IP-gesperrt, beides
+    # 14 Tage lang unbemerkt. Ab jetzt wird pro Quelle die Roh-Ausbeute gemessen und
+    # am Ende eine explizite Warnliste ausgegeben.
+    source_yield = {}
     for fn, name in sources_session:
+        n_before = len(all_jobs)
         try:
             all_jobs.extend(fn(s))
         except Exception as e:
             log.error(f"[{name}] Fehler: {e}")
         source_names.append(name)
+        source_yield[name] = len(all_jobs) - n_before
     for fn, name in sources_no_session:
+        n_before = len(all_jobs)
         try:
             all_jobs.extend(fn())
         except Exception as e:
             log.error(f"[{name}] Fehler: {e}")
         source_names.append(name)
+        source_yield[name] = len(all_jobs) - n_before
+
+    tote_quellen = sorted(n for n, v in source_yield.items() if v == 0)
+    if tote_quellen:
+        log.warning("=" * 70)
+        log.warning(f"⚠️  QUELLEN OHNE JEDEN TREFFER ({len(tote_quellen)}): "
+                    + ", ".join(tote_quellen))
+        log.warning("    Nicht ignorieren — genau so sind BA-API und StepStone "
+                    "14 Tage lang stumm ausgefallen.")
+        log.warning("=" * 70)
 
     filtered = apply_filter(all_jobs)
     verified = parallel_verify(filtered, s, max_workers=10)
@@ -2648,6 +2805,10 @@ def main():
             "verified": len(verified),
             "by_category": {},
             "sources": source_names,
+            # NEU 2026-08-06: Roh-Ausbeute je Quelle + Liste der Nuller wandern in
+            # data.json, damit ein Quellen-Ausfall auch ohne Cloud-Log sichtbar ist.
+            "source_yield": source_yield,
+            "dead_sources": tote_quellen,
         },
         "jobs": [{k: v for k, v in j.items() if k != "raw_text"} for j in verified],
     }

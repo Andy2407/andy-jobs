@@ -93,6 +93,18 @@ TITLE_BLOCK = [
     "marine ", "marineschiff", "marineschiffbau",
     "schiffbau",
     "vincorion", "t60 consulting",
+    # NEU 2026-08-06 (Quellen-Offensive): Luecke aufgefallen, als stellenanzeigen.de
+    # "Abteilungsleiter Projektmanagement - BOXER Programm" durchliess (Score 25) und
+    # "Projektleiter Waffensysteme" sogar mit Score 41 durchkam. "ruestung" allein
+    # deckt die Branche nicht ab — die Anzeigen nennen das Produkt, nicht die Branche.
+    "waffensystem", "waffentechnik", "wehrtechnik", "wehrtechnisch",
+    "munition", "flugabwehr", "boxer programm", "boxer-programm",
+    # "panzer" allein waere zu breit — es trifft auch ziviles Panzerglas und
+    # Panzerschraenke. Deshalb nur die eindeutig militaerischen Zusammensetzungen:
+    "kampfpanzer", "schützenpanzer", "schuetzenpanzer", "panzerhaubitze",
+    "panzerfahrzeug",
+    "militär", "militaer", "streitkräfte", "streitkraefte", "nato ",
+    "gefechts", "waffenträger", "waffentraeger",
     # ---------- HR / Recruiting / Sales ----------
     "personaldienstleistung", "kaltakquise", "outbound sales",
     "field sales", "telesales",
