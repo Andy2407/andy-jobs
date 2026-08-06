@@ -1664,6 +1664,192 @@ def apply_filter(jobs) -> list:
     return out
 
 
+_JOBWORT = re.compile(
+    r"\b(senior|junior|technischer?|technische|leitende?r?|stellv|projekt(?:leiter|leitung|manager|"
+    r"managerin|ingenieur|koordinator)|program+m?\s*manager|project\s*(?:manager|engineer|lead)|"
+    r"produkt(?:manager|owner)|product\s*(?:manager|owner)|teamleit|gruppenleit|abteilungsleit|"
+    r"entwicklungsingenieur|ingenieur|konstrukteur|referent|spezialist|specialist|consultant|"
+    r"berater|manager|engineer|lead\b|architekt)", re.I)
+_RECHTSFORM = re.compile(
+    r"^(.{2,60}?\b(?:gmbh(?:\s*&\s*co\.?\s*kg)?|ag|se|kgaa|kg|ug|mbh|e\.?\s?v\.?|group|holding|"
+    r"gruppe|ingenieure|solutions|systems|technologies)\b)", re.I)
+
+
+def firma_aus_titel(titel: str) -> str:
+    """NEU 2026-08-06 (Dashboard-Audit): Firmenname aus dem Titel schaelen.
+
+    kimeta und remotely.de liefern KEIN Firmenfeld — der Name steckt vorne im Titel
+    ("AMADEUS FIRE AG Senior Projektmanager", "micro epsilon optronic gmbh technischer
+    projektleiter"). Bisher zeigte das Dashboard bei 125 Karten nur "—", und weil
+    Sperrliste und Suche auf denselben leeren Wert schauen, wirkten sie dort nicht.
+
+    Zwei Wege, in dieser Reihenfolge:
+      1. Alles bis einschliesslich einer Rechtsform (GmbH, AG, SE, KG, ...).
+      2. Sonst: die Woerter vor dem ersten eindeutigen Job-Wort (Projektleiter, Senior, ...).
+    Gibt "" zurueck, wenn nichts Belastbares erkennbar ist — lieber kein Name als ein falscher.
+    """
+    t = (titel or "").strip()
+    if not t:
+        return ""
+    t = re.sub(r"^(neu|new)\s+", "", t, flags=re.I)
+
+    def sauber(kand):
+        """Kandidat verwerfen, wenn es offensichtlich ein Stellentitel ist."""
+        if re.search(r"\(\s*[mwdfxa][\s/\\*]", kand, re.I):   # "(m/w/d)" im Namen
+            return ""
+        if re.search(r"\*in\b|:in\b|/-?in\b", kand):           # "Landschaftsarchitekt*in"
+            return ""
+        if re.search(r"(architekt|techniker|ingenieur|planer|entwickler|assistenz|"
+                     r"koordinator|referent|leiter|leitung)\b", kand, re.I):
+            return ""
+        if kand.islower():
+            kand = kand.title()
+        # Rechtsformen korrekt schreiben (title() macht daraus sonst "Gmbh"/"Ag")
+        for falsch, richtig in [("Gmbh", "GmbH"), ("Kgaa", "KGaA"), ("Mbh", "mbH"),
+                                (" Ag ", " AG "), (" Se ", " SE "), (" Kg ", " KG "),
+                                (" Ug ", " UG ")]:
+            kand = kand.replace(falsch, richtig)
+        kand = re.sub(r"\bAg$", "AG", kand)
+        kand = re.sub(r"\bSe$", "SE", kand)
+        kand = re.sub(r"\bKg$", "KG", kand)
+        return kand.strip()
+
+    m = _RECHTSFORM.match(t)
+    if m:
+        kand = m.group(1).strip()
+        if 2 <= len(kand.split()) <= 7 and not _JOBWORT.match(kand):
+            k = sauber(kand)
+            if k:
+                return k
+    m2 = _JOBWORT.search(t)
+    if m2 and m2.start() > 0:
+        kand = t[:m2.start()].strip(" -–—,|·")
+        if 1 <= len(kand.split()) <= 5 and len(kand) >= 4:
+            return sauber(kand)
+    return ""
+
+
+def fill_missing_companies(jobs) -> int:
+    """Setzt clean_company aus dem Titel, wo gar kein Firmenname vorliegt."""
+    n = 0
+    for j in jobs:
+        if (j.get("clean_company") or j.get("company") or "").strip():
+            continue
+        firma = firma_aus_titel(j.get("title", ""))
+        if firma:
+            j["clean_company"] = firma
+            n += 1
+    if n:
+        log.info(f"  → Firmenname aus Titel ergaenzt: {n} Jobs")
+    return n
+
+
+def dedupe_after_verify(jobs) -> list:
+    """NEU 2026-08-06 (Dashboard-Audit): zweite Dublettenpruefung NACH der Verifikation.
+
+    Die erste Pruefung in apply_filter() nutzt das Feld 'company'. Das ist bei
+    StepStone und einigen Portalen LEER — der echte Firmenname entsteht erst bei
+    der Live-Verifikation als 'clean_company'. Folge: dieselbe Stelle stand bis zu
+    viermal im Dashboard (Menlo Systems: StepStone + Bundesagentur + Xing + Lead).
+    Hier wird nach Titel + echtem Firmennamen erneut zusammengefasst; die Verlierer
+    wandern als alt_sources an den Gewinner, es geht keine Fundstelle verloren.
+    """
+    best, reihenfolge = {}, []
+    zusammengefasst = 0
+    for j in jobs:
+        titel = _normalize_for_dedupe(j.get("title", ""))
+        firma = _normalize_for_dedupe(j.get("clean_company") or j.get("company") or "")
+        if len(titel) < 6 or not firma:
+            reihenfolge.append(j)
+            continue
+        key = titel + "|" + firma
+        if key in best:
+            gewinner = best[key]
+            gewinner.setdefault("alt_sources", []).append(
+                {"source": j.get("source"), "url": j.get("url")})
+            # Der Eintrag mit dem hoeheren Score gewinnt die Karte
+            if (j.get("score") or 0) > (gewinner.get("score") or 0):
+                for feld in ("url", "source", "score", "score_reasons", "description"):
+                    if j.get(feld) is not None:
+                        gewinner[feld] = j[feld]
+            zusammengefasst += 1
+            continue
+        best[key] = j
+        reihenfolge.append(j)
+    if zusammengefasst:
+        log.info(f"  → Nach-Verifikations-Dedup: {zusammengefasst} Dubletten zusammengefasst")
+    return reihenfolge
+
+
+def stamp_bewerbungs_status(jobs) -> int:
+    """NEU 2026-08-06 (Andy: 'Haben wir uns schon beworben oder nicht?').
+
+    Liest crawler/bewerbungen_status.json und stempelt auf jeden Job, dessen Firma
+    dort auftaucht, ein Feld 'bewerbung' = {status, stelle, datum}. Das Dashboard
+    macht daraus ein Abzeichen, damit keine Stelle zweimal bearbeitet wird.
+    Drei belegte Stufen (gesendet / offen / absage) plus 'mappe' fuer Ordner ohne
+    Versandnachweis — die Unterscheidung ist Andys Regel aus VERSAND_REGISTER.md:
+    eine Mappe auf der Platte ist KEINE Bewerbung.
+    """
+    path = Path(__file__).resolve().parent / "bewerbungen_status.json"
+    if not path.exists():
+        return 0
+    try:
+        cfg = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as e:
+        log.warning(f"[bewerbungs-status] nicht lesbar: {e}")
+        return 0
+
+    def norm(s):
+        s = (s or "").lower()
+        for a, b in [("ü", "ue"), ("ö", "oe"), ("ä", "ae"), ("ß", "ss")]:
+            s = s.replace(a, b)
+        return re.sub(r"[^a-z0-9]+", " ", s).strip()
+
+    def passt(key, co):
+        """Wort-genauer Abgleich statt Teilstring.
+
+        FIX 2026-08-06: Die erste Fassung verglich per 'key in co'. Damit matchte
+        "MAN" auf "Blueprint Advanced MANufacturing", "BauMANn", "LuehMANn" und
+        "Personal-MANagement", und "FEV" auf "FEVerUp" — 10 von 53 Markierungen
+        waren falsch. Jetzt muessen die Tokens des Schluessels als zusammenhaengende
+        Wortfolge in der Firma vorkommen.
+        """
+        kt, ct = key.split(), co.split()
+        if not kt or not ct:
+            return False
+        for i in range(len(ct) - len(kt) + 1):
+            if ct[i:i + len(kt)] == kt:
+                return True
+        return False
+
+    eintraege = [(norm(e["firma"]), e) for e in cfg.get("eintraege", [])]
+    mappen = [(norm(m), m) for m in cfg.get("_mappen_ohne_versandnachweis", [])]
+    RANG = {"gesendet": 3, "offen": 3, "absage": 2, "mappe": 1}
+    treffer = 0
+    for j in jobs:
+        co = norm(j.get("clean_company") or j.get("company") or "")
+        if not co:
+            continue
+        best = None
+        for key, e in eintraege:
+            if passt(key, co):
+                cand = {"status": e["status"], "stelle": e.get("stelle", ""), "datum": e.get("datum", "")}
+                if best is None or RANG.get(cand["status"], 0) > RANG.get(best["status"], 0):
+                    best = cand
+        if best is None:
+            for key, orig in mappen:
+                if passt(key, co):
+                    best = {"status": "mappe", "stelle": "", "datum": ""}
+                    break
+        if best:
+            j["bewerbung"] = best
+            treffer += 1
+    if treffer:
+        log.info(f"[bewerbungs-status] {treffer} Jobs markiert (beworben/offen/absage/mappe)")
+    return treffer
+
+
 def load_manual_jobs() -> list:
     """Manuelle Stellen aus user_overrides.json -> Job-Schema (NEU 2026-06-03).
 
@@ -2795,7 +2981,33 @@ def main():
     # NEU 2026-06-03: Manuelle Stellen (HRworks/JS-Portale, die kein Crawler erreicht) mergen.
     # Sie durchlaufen NICHT score_job (sonst ggf. geblockt), werden aber dedupe-sicher per URL
     # angehängt und wie Crawler-Jobs sortiert/angezeigt ("manual":true-Flag fürs Frontend).
+    # NEU 2026-08-06: erst fehlende Firmennamen aus dem Titel ergaenzen (kimeta/remotely
+    # liefern kein Firmenfeld), dann zweite Dublettenpruefung mit dem echten Namen,
+    # dann Bewerbungs-Status stempeln. Reihenfolge ist wichtig: der Dedup braucht den Namen.
+    fill_missing_companies(verified)
+    verified = dedupe_after_verify(verified)
+    stamp_bewerbungs_status(verified)
+
     manual = load_manual_jobs()
+    if manual:
+        # NEU 2026-08-06 (Andy: "Ich will keine alte Information mehr im Dashboard sehen"):
+        # Manuelle/Lead-Stellen wurden bisher UNGEPRUEFT angehaengt und blieben deshalb
+        # ewig stehen — der aelteste Eintrag im Dashboard war vom 02.06. Jetzt laufen sie
+        # durch dieselbe Live-Verifikation wie alle anderen; tote Anzeigen fliegen raus.
+        vor = len(manual)
+        manual = parallel_verify(manual, s, max_workers=6)
+        if len(manual) < vor:
+            log.warning(f"[manual] {vor - len(manual)} von {vor} manuellen/Lead-Stellen "
+                        f"sind nicht mehr live und wurden entfernt")
+        # Doppelte URLs unter den manuellen Eintraegen selbst rauswerfen
+        gesehen, entdoppelt = set(), []
+        for m in manual:
+            if m.get("url") in gesehen:
+                log.warning(f"[manual] Dublette verworfen: {m.get('title','')[:50]}")
+                continue
+            gesehen.add(m.get("url"))
+            entdoppelt.append(m)
+        manual = entdoppelt
     if manual:
         existing_urls = {j.get("url") for j in verified}
         added = [m for m in manual if m["url"] not in existing_urls]

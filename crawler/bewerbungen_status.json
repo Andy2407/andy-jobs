@@ -1,0 +1,30 @@
+{
+  "_kommentar": "Bewerbungs-Status je Firma. Wird von crawler_v2.py gelesen und auf jeden Job gestempelt, dessen Firma hier auftaucht. Das Dashboard zeigt daraus ein Abzeichen, damit Andy nie wieder eine Stelle bearbeitet, auf die er sich schon beworben hat.",
+  "_regel": "Nur eintragen, was belegt ist. Eine Mappe auf der Platte ist KEINE Bewerbung (Regel aus VERSAND_REGISTER.md). Drei Stufen: 'gesendet' = nachweislich raus, 'offen' = laeuft, Antwort steht aus, 'absage' = abgelehnt, 'mappe' = Unterlagen liegen bereit, Versand unbestaetigt.",
+  "_stand": "2026-08-06",
+  "eintraege": [
+    { "firma": "EDAG", "stelle": "Entwicklungsingenieur HW Systems Engineering", "status": "gesendet", "datum": "2026-08-05", "quelle": "Andy 05.08." },
+    { "firma": "Randstad", "stelle": "Projektmanager Automotive (GULP)", "status": "gesendet", "datum": "2026-08-05", "quelle": "Andy 05.08." },
+    { "firma": "GULP", "stelle": "Projektmanager Automotive", "status": "gesendet", "datum": "2026-08-05", "quelle": "Andy 05.08." },
+    { "firma": "Thüga", "stelle": "Projektmanager KI und Digitalisierung", "status": "gesendet", "datum": "2026-08-05", "quelle": "Andy 05.08." },
+    { "firma": "Thuega", "stelle": "Projektmanager KI und Digitalisierung", "status": "gesendet", "datum": "2026-08-05", "quelle": "Andy 05.08." },
+
+    { "firma": "NEURA Robotics", "stelle": "Concept Engineer / Konzeptingenieur", "status": "offen", "datum": "2026-08-06", "quelle": "Andy 06.08.: 'Bei Neura haben wir noch eine offene Bewerbung zum Konzeptingenieur'" },
+    { "firma": "prognum", "stelle": "—", "status": "offen", "datum": "2026-07", "quelle": "memory bewerbungs_historie" },
+
+    { "firma": "ALTEN", "stelle": "Consulting Services", "status": "absage", "datum": "2026-07", "quelle": "99_Absagen" },
+    { "firma": "Rodenstock", "stelle": "—", "status": "absage", "datum": "2026-07", "quelle": "99_Absagen" },
+    { "firma": "in-tech", "stelle": "—", "status": "absage", "datum": "2026-07", "quelle": "99_Absagen" },
+    { "firma": "Infineon", "stelle": "—", "status": "absage", "datum": "2026-06", "quelle": "memory bewerbungs_historie" },
+    { "firma": "KET", "stelle": "2 Stellen", "status": "absage", "datum": "2026-06", "quelle": "memory bewerbungs_historie (on ice bis ~24.06.)" },
+    { "firma": "Silver Atena", "stelle": "—", "status": "absage", "datum": "2026-07", "quelle": "blocked_companies + Historie" }
+  ],
+  "_mappen_ohne_versandnachweis": [
+    "Actana", "Akkodis", "Apriori", "ARRK", "Atlantik Networxx", "AutoScout24", "BKW Engineering",
+    "Brainlab", "Cognizant", "DiNC", "Dorsch-Engineers", "E.ON", "FERCHAU", "FEV", "FUTRUE",
+    "Haas", "Hoffmann SE", "Holzer", "Knorr-Bremse", "LOGSOL", "MAN", "MCA", "MEDIFOX DAN",
+    "Medi-Globe", "MTU", "Munich Electrification", "Primazon", "RATHGEBER", "Roboyo", "SAL",
+    "SII Deutschland"
+  ],
+  "_hinweis_mappen": "Diese Ordner enthalten fertige Unterlagen, ein Versand ist NICHT bestaetigt. Sie werden im Dashboard als 'Mappe liegt bereit' markiert, nicht als 'beworben'."
+}

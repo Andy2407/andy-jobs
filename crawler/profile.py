@@ -77,6 +77,10 @@ TITLE_BLOCK = [
     "veranstaltungssicherheit", "sicherheitsmanager", "werksfeuerwehr",
     # ---------- Bau ----------
     "bauleiter", "bauingenieur", "projektleiter bau", "projektsteuerer bau",
+    # NEU 2026-08-06 (Dashboard-Audit): "Projektleiter Bau" war geblockt, die Variante
+    # "Projektmanager Bau" kam mit Score 41 durch — dieselbe Branche, anderes Wort.
+    "projektmanager bau", "projektmanagerin bau", "projektmanagement bau",
+    "projektleitung bau", "bauprojektleit", "bauherrenvertret",
     "projektleiter tga", "versorgungstechnik", "hochbau", "tiefbau", "gebäudetechnik",
     "bauprojekt", "bautechnik", "hlks", "heizung-sanitär", "klempner",
     "bauwesen",  # "Senior Projektmanager:in im Bauwesen"
@@ -112,6 +116,10 @@ TITLE_BLOCK = [
     "sales manager", "sales managerin", "sales director",
     "account executive", "account director", "account manager",
     "business development manager", "bdr",
+    # NEU 2026-08-06: "Senior Manager New Business Development" kam durch, weil nur die
+    # Wortfolge "business development manager" gesperrt war. Vertriebsrolle = Andys No-Go.
+    "new business development", "business development director",
+    "head of business development", "leiter business development",
     "performance manager", "paid social", "social media manager",
     "marketing manager", "growth manager",
     "co-founder", "founder", "vp of",
@@ -133,6 +141,15 @@ TITLE_BLOCK = [
     "sicherheitsmitarbeiter", "wachschutz",
     "sanierung", "objektplanung",
     "producer", "creative director",
+    # ---------- Talentpool / Initiativ / Karteileichen (NEU 2026-08-06) ----------
+    # Andy-Regel (memory liveness_und_pool_check_pflicht): Dienstleister-Talentpools sind
+    # keine bewerbbaren Stellen. Sie standen bisher mit Score 25 im Dashboard und waren
+    # genau der "Muell", den Andy raus haben will. Der eigene Initiativ-Tab bleibt davon
+    # unberuehrt, der wird separat gepflegt.
+    "talentpool", "talent pool", "talent-pool", "bewerberpool", "bewerber-pool",
+    "initiativbewerbung", "initiativ-bewerbung", "unsolicited application",
+    "general application", "join our talent", "kandidatenpool", "talentnetzwerk",
+    "talent community", "spontanbewerbung",
     # ---------- Sachbearbeitung / Verwaltung / Buchhaltung ----------
     "sachbearbeiter", "sachbearbeitung",
     "buchhalter", "buchhaltung", "weg-buchhalter",
@@ -645,8 +662,17 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
 
     # Hard Block — Title + Firma (auch in gefalteter Form gegen ASCII-Slugs, siehe _fold)
     title_co_fold = _fold(title_co)
+    # NEU 2026-08-06 (Dashboard-Audit): dritte Vergleichsform OHNE Gender-Einschuebe.
+    # Grund: die Sperrbegriffe sind Wortfolgen ("projektleiter tga", "junior "), und ein
+    # eingeschobenes "(m/w/d)" zerreisst sie. Dadurch kamen "Projektleiter (m/w/d) TGA
+    # Elektrotechnik" und "(Junior) Projektmanager TGA" trotz Sperre ins Dashboard.
+    # Hier werden Gender-Klammern entfernt und Satzzeichen zu Leerzeichen normalisiert.
+    title_co_clean = re.sub(r"\(\s*(?:[mwdfxa][\s/\\.\-]*){1,5}\)", " ", title_co)
+    title_co_clean = re.sub(r"\b(?:all\s*genders?|divers|gn)\b", " ", title_co_clean)
+    title_co_clean = re.sub(r"[^\wäöüß]+", " ", title_co_clean)
+    title_co_clean = re.sub(r"\s{2,}", " ", title_co_clean).strip() + " "
     for block, block_f in zip(TITLE_BLOCK, TITLE_BLOCK_FOLDED):
-        if block in title_co or block_f in title_co_fold:
+        if block in title_co or block_f in title_co_fold or block in title_co_clean:
             return (-1, [f"🚫 BLOCK_T:{block}"])
 
     # Hard Block — Description (strict only)

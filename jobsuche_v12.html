@@ -115,6 +115,23 @@ padding-bottom:env(safe-area-inset-bottom)}
 .ms-btn{display:block;width:100%;background:linear-gradient(135deg,#5945ed,#9565ed);border:0;border-radius:6px;padding:9px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;margin-top:6px;min-height:38px}
 .ms-btn:active{filter:brightness(.85)}
 .ms-btn:disabled{opacity:.5;cursor:wait}
+/* Bewerbungs-Status-Abzeichen (NEU 2026-08-06, Andy: "Haben wir uns schon beworben?") */
+.bw-badge{display:block;margin:6px 0 2px;padding:5px 8px;border-radius:5px;font-size:10px;font-weight:800;letter-spacing:.2px}
+.bw-badge .bw-sub{font-weight:500;opacity:.8}
+.bw-app{background:rgba(34,197,94,.16);color:#22c55e;border-left:3px solid #22c55e}
+.bw-off{background:rgba(59,130,246,.16);color:#60a5fa;border-left:3px solid #60a5fa}
+.bw-rej{background:rgba(239,68,68,.16);color:#f87171;border-left:3px solid #f87171}
+.bw-map{background:rgba(234,179,8,.13);color:#eab308;border-left:3px solid #eab308}
+.jc.has-gesendet,.jc.has-absage{opacity:.62}
+/* CV-Empfehlung (NEU 2026-08-06, Andy: "Button, welchen Lebenslauf ich nehmen soll") */
+.cv-btn{display:block;width:100%;background:linear-gradient(135deg,#0f766e,#14b8a6);border:0;border-radius:6px;padding:9px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;margin-top:6px;min-height:38px}
+.cv-btn:active{filter:brightness(.85)}
+.cv-box{margin-top:6px;padding:8px 9px;background:var(--s2);border-radius:6px;border-left:2px solid #14b8a6;font-size:10px;line-height:1.5}
+.cv-box .cv-name{font-weight:700;color:var(--t);font-size:11.5px}
+.cv-box .cv-why{color:var(--m);margin:2px 0 7px}
+.cv-box .cv-open{display:inline-block;background:#14b8a6;color:#fff;text-decoration:none;padding:6px 10px;border-radius:5px;font-weight:700;font-size:10px;margin-right:6px}
+.cv-box .cv-copy{display:inline-block;background:var(--s);color:var(--t);padding:6px 10px;border-radius:5px;font-weight:700;font-size:10px;cursor:pointer;border:1px solid var(--bd)}
+.cv-box .cv-path{margin-top:7px;font-size:8.5px;color:var(--m);word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 /* Fit-Score-Detail (Andy 2026-05-28: "Fit ... wieso, weshalb, warum") */
 .score-det{font-size:9px;color:var(--m);margin:5px 0 7px;padding:6px 8px;background:var(--s2);border-radius:5px;border-left:2px solid var(--b);line-height:1.55}
 .score-det b{color:var(--t);font-size:10px}
@@ -320,13 +337,13 @@ padding-bottom:env(safe-area-inset-bottom)}
     <div class="jc-top"><div class="jc-t">attempto · Initiativbewerbung<span class="dn" onclick="td(this,'in-6')">erledigt?</span></div><div class="jc-m m-h">85%</div></div>
     <div class="jc-meta"><span class="jc-co">IT/Banking/Insurance Consulting</span><span class="jc-loc">📍 München · KA · Münster · Hybrid</span></div>
     <span class="dt dt-init">📨 Eigener Init-Slot Job-ID 872933</span>
-    <a href="https://www.attempto.eu/de/karriere/job/872933?language=de" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 attempto Initiativ →</a>
+    <a href="https://attempto.jobs.personio.de/?language=de" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 attempto Initiativ →</a>
   </div>
   <div class="jc" data-id="in-7">
     <div class="jc-top"><div class="jc-t">amiconsult · Initiativbewerbung<span class="dn" onclick="td(this,'in-7')">erledigt?</span></div><div class="jc-m m-m">78%</div></div>
     <div class="jc-meta"><span class="jc-co">Identity Security Consulting</span><span class="jc-loc">📍 Karlsruhe · Remote möglich</span></div>
     <span class="dt dt-init">📨 Eigener Init-Slot Job-ID 948925</span>
-    <a href="https://amiconsult.de/job/948925?language=de" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 amiconsult Initiativ →</a>
+    <a href="https://amiconsult.jobs.personio.de/?language=de" target="_blank" rel="noopener" class="cta cta-init" style="margin-top:6px">📨 amiconsult Initiativ →</a>
   </div>
   <div class="jc" data-id="in-8">
     <div class="jc-top"><div class="jc-t">appliedAI Initiative<span class="dn" onclick="td(this,'in-8')">erledigt?</span></div><div class="jc-m m-h">90%</div></div>
@@ -410,7 +427,7 @@ padding-bottom:env(safe-area-inset-bottom)}
     <div class="jc-top"><div class="jc-t">Hays<span class="dn" onclick="td(this,'hh-11')">erledigt?</span></div><div class="jc-m m-h">90%</div></div>
     <div class="jc-meta"><span class="jc-co">Personalvermittler IT/Engineering</span><span class="jc-loc">📍 München · DACH</span></div>
     <span class="dt dt-init">💼 Andy hat 2019 schon mit Hays gearbeitet</span>
-    <a href="https://www.hays.de/jobs/jobsuche?location_text=M%C3%BCnchen&jobtitle=Senior+Projektmanager" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 Hays München →</a>
+    <a href="https://www.hays.de/jobsuche/stellenangebote" target="_blank" rel="noopener" class="cta cta-init" style="background:linear-gradient(135deg,#a78112,#facc15);color:#1a1a1a;margin-top:6px">💼 Hays München →</a>
   </div>
   <div class="jc" data-id="hh-12">
     <div class="jc-top"><div class="jc-t">Michael Page<span class="dn" onclick="td(this,'hh-12')">erledigt?</span></div><div class="jc-m m-h">85%</div></div>
@@ -482,6 +499,12 @@ function el(tag, cls, text){
   return e;
 }
 
+// FIX 2026-08-06 (Dashboard-Audit): Der echte Firmenname steht bei StepStone,
+// Bundesagentur und weiteren Quellen NICHT in j.company (leer), sondern erst in
+// j.clean_company aus der Live-Verifikation. Folge bisher: 171 Karten zeigten "—",
+// und Firmen-Sperrliste wie Suche liefen bei genau diesen Jobs ins Leere.
+// Ab jetzt greift ueberall dieselbe Quelle.
+function firmaVon(j){ return (j.clean_company || j.company || '').trim(); }
 function buildCard(j, cat){
   const [mc, ml] = matchBadge(j.score);
   const cta = CAT_CTA[cat] || 'cta-pm';
@@ -498,30 +521,48 @@ function buildCard(j, cat){
   const matchBdg = el('div', 'jc-m ' + mc, ml);
   top.appendChild(titleWrap); top.appendChild(matchBdg);
   card.appendChild(top);
+  // NEU 2026-08-06 (Andy: "Haben wir uns schon beworben oder nicht?")
+  // Der Crawler stempelt j.bewerbung aus crawler/bewerbungen_status.json.
+  if(j.bewerbung && j.bewerbung.status){
+    const BW = {
+      gesendet: ['✅ BEREITS BEWORBEN', 'bw-app'],
+      offen:    ['⏳ BEWERBUNG LÄUFT',  'bw-off'],
+      absage:   ['🚫 ABSAGE ERHALTEN',  'bw-rej'],
+      mappe:    ['📁 Mappe liegt bereit (Versand unbestätigt)', 'bw-map']
+    };
+    const [txt, cls] = BW[j.bewerbung.status] || ['', ''];
+    if(txt){
+      const bw = el('div', 'bw-badge ' + cls, txt);
+      if(j.bewerbung.stelle) bw.appendChild(el('span', 'bw-sub', ' · ' + j.bewerbung.stelle));
+      if(j.bewerbung.datum)  bw.appendChild(el('span', 'bw-sub', ' · ' + j.bewerbung.datum));
+      card.appendChild(bw);
+      card.classList.add('has-bw', 'has-' + j.bewerbung.status);
+    }
+  }
   // Meta
   const meta = el('div', 'jc-meta');
   const coSpan = el('span', 'jc-co');
-  coSpan.appendChild(document.createTextNode(j.company || '—'));
+  coSpan.appendChild(document.createTextNode(firmaVon(j) || '—'));
   // NEU 2026-05-28 (Andy): Firma-Blacklist + Wunschfirma-Buttons
-  if(j.company){
+  if(firmaVon(j)){
     const acts = el('span', 'co-actions');
     // ⭐ Wunschfirma-Toggle
     const wishBtn = el('span', 'co-wish');
-    const isWish = isWishCompany(j.company);
+    const isWish = isWishCompany(firmaVon(j));
     wishBtn.textContent = isWish ? '⭐ Wunsch' : '☆ Wunsch';
     if(isWish) wishBtn.classList.add('on');
     wishBtn.title = isWish ? 'Aus Wunschfirmen entfernen' : 'Firma als Wunschfirma markieren (+10 Score, goldener Border)';
     wishBtn.addEventListener('click', (ev) => {
       ev.preventDefault(); ev.stopPropagation();
-      toggleWishCompany(j.company);
+      toggleWishCompany(firmaVon(j));
     });
     acts.appendChild(wishBtn);
     // 🗑️ Firma blockieren
     const coBtn = el('span', 'co-block', '🗑️ weg');
-    coBtn.title = 'Diese Firma komplett blockieren — keine Stellen mehr von ' + j.company;
+    coBtn.title = 'Diese Firma komplett blockieren — keine Stellen mehr von ' + firmaVon(j);
     coBtn.addEventListener('click', (ev) => {
       ev.preventDefault(); ev.stopPropagation();
-      blockCompany(j.company);
+      blockCompany(firmaVon(j));
     });
     acts.appendChild(coBtn);
     coSpan.appendChild(acts);
@@ -529,7 +570,7 @@ function buildCard(j, cat){
   meta.appendChild(coSpan);
   meta.appendChild(el('span', 'jc-loc', '📍 ' + (j.location || '—')));
   // Wunschfirma visuelle Markierung
-  if(j.company && isWishCompany(j.company)) card.classList.add('is-wish');
+  if(firmaVon(j) && isWishCompany(firmaVon(j))) card.classList.add('is-wish');
   // NEU 2026-05-28 (Andy): Veröffentlichungsdatum (first_seen) als Meta-Eintrag
   if(j.first_seen){
     const d = new Date(j.first_seen);
@@ -583,6 +624,41 @@ function buildCard(j, cat){
   msBtn.textContent = '📝 Motivationsschreiben erstellen (DOCX)';
   msBtn.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); generateMS(j, msBtn); });
   card.appendChild(msBtn);
+  // NEU 2026-08-06 (Andy): CV-Empfehlung mit Direktlink zur passenden Lebenslauf-Datei.
+  // Bewusst ohne innerHTML aufgebaut — alle Werte stammen aus Crawler-Daten (Fremdtext).
+  const cvBtn = document.createElement('button');
+  cvBtn.className = 'cv-btn';
+  cvBtn.textContent = '📋 Welchen Lebenslauf?';
+  const cvBox = el('div', 'cv-box');
+  cvBox.style.display = 'none';
+  cvBtn.addEventListener('click', (ev) => {
+    ev.preventDefault(); ev.stopPropagation();
+    if(cvBox.style.display === 'block'){ cvBox.style.display = 'none'; return; }
+    const rec = recommendCV(j);
+    const pfad = CV_BASE + rec.datei;
+    while(cvBox.firstChild) cvBox.removeChild(cvBox.firstChild);
+    cvBox.appendChild(el('div', 'cv-name', '➜ ' + rec.label));
+    cvBox.appendChild(el('div', 'cv-why', rec.grund + ' · Stand ' + rec.stand));
+    const openA = document.createElement('a');
+    openA.href = 'file://' + encodeURI(pfad);
+    openA.target = '_blank'; openA.rel = 'noopener';
+    openA.className = 'cv-open';
+    openA.textContent = '📂 Lebenslauf öffnen';
+    cvBox.appendChild(openA);
+    const copyB = el('span', 'cv-copy', '📄 Pfad kopieren');
+    copyB.addEventListener('click', (e2) => {
+      e2.preventDefault(); e2.stopPropagation();
+      navigator.clipboard.writeText(pfad).then(
+        () => showToast('Pfad kopiert', true),
+        () => showToast('Kopieren nicht möglich — Pfad steht unten', false)
+      );
+    });
+    cvBox.appendChild(copyB);
+    cvBox.appendChild(el('div', 'cv-path', pfad));
+    cvBox.style.display = 'block';
+  });
+  card.appendChild(cvBtn);
+  card.appendChild(cvBox);
   // URL klein
   card.appendChild(el('div', 'url-sm', urlShort(j.url)));
   // 4-Status-Buttons (Andy 2026-05-28: beworben/unpassend/absage/n.r.)
@@ -741,7 +817,22 @@ function cleanStellentitel(t){
   s = s.replace(/\s*[·\|]\s*(?:100\s*%\s*Remote|Vollzeit|Teilzeit|Festanstellung|Remote)\s*/gi, ' ');
   // LinkedIn-Crawler-Bug: Title fängt mit Firma an "OSB AG Ingenieur- und IT-Dienstleistungen Program Manager ..."
   // Pattern: Anfangs-Block bis GmbH/AG/SE/KG/UG/Dienstleistungen + dann der echte Job-Titel
-  s = s.replace(/^(?:[A-ZÄÖÜ][\wäöüß\-&\.]+\s+){0,6}(?:GmbH|AG|SE|KG|UG|Dienstleistungen?|Consulting|Engineering|Services|Solutions|Group|Holding|Technologies|Tech)\s+(?=(?:Program|Senior|Project|Projekt|Lead|Manager|Engineer|Consultant|Director|Spezialist|Specialist|Architect|Developer|Entwickl|Konstrukt|Teamleiter|Modulleiter|Berater))/i, '');
+  // FIX 2026-08-06: "[\wäöüß\-]*" vor der Rechtsform, sonst scheitert der Ausdruck an
+  // zusammengesetzten Woertern wie "IT-Dienstleistungen" ("OSB AG Ingenieur- und
+  // IT-Dienstleistungen Projektmanager ..." blieb komplett im Titel und blaehte den Opener).
+  s = s.replace(/^(?:[A-ZÄÖÜ][\wäöüß\-&\.]+\s+){0,6}[\wäöüß\-]*(?:GmbH|AG|SE|KG|UG|Dienstleistungen?|Consulting|Engineering|Services|Solutions|Group|Holding|Technologies|Tech)\s+(?=(?:Program|Senior|Project|Projekt|Lead|Manager|Engineer|Consultant|Director|Spezialist|Specialist|Architect|Developer|Entwickl|Konstrukt|Teamleiter|Modulleiter|Berater))/i, '');
+  // FIX 2026-08-06 (Audit gegen alle 445 Dashboard-Jobs):
+  // (a) Em-/En-Dash im Stellentitel landete 1:1 im Anschreiben -> §15 verbietet den
+  //     Gedankenstrich als Satztrenner. Beispiel: "Projektmanager (m/w/d) — Standort München".
+  //     Alles ab dem Dash abschneiden, der Kern-Titel steht immer davor.
+  s = s.replace(/\s*[—–]\s*.*$/g, '').trim();
+  // (b) Angehaengte PLZ ("... Programmleiter - AI Accelerator 81675") raus.
+  s = s.replace(/\s+\d{5}\s*$/g, '');
+  // (c) Klinik-/Institutsnamen als Titel-Praefix (LinkedIn-Bug, greift nicht ueber die
+  //     GmbH/AG-Regel oben): "TUM Klinikum Rechts der Isar Programmleiter ..." -> Job-Titel.
+  // Kein abschliessendes \b im Lookahead: "Program" hat in "Programmleiter" keine
+  // Wortgrenze danach, der Ausdruck haette dort nie gegriffen.
+  s = s.replace(/^.*?\b(?:Klinikum|Kliniken|Universit(?:ät|aet)|Hochschule|Stiftung|Institut|Verband)\b.*?(?=\b(?:Program|Senior|Project|Projekt|Lead|Manager|Referent|Leiter|Ingenieur|Consultant|Spezialist|Specialist|Wirtschaftsinformatiker))/i, '');
   // Mehrfach-Spaces zu einem
   s = s.replace(/\s{2,}/g, ' ').trim();
   s = s.replace(/[\s·\|\-–_,]+$/g, '').trim();
@@ -758,6 +849,30 @@ function cleanStellentitel(t){
 // (EE-Package Lead VW Scout); Zonenverantwortung G21/G28 NIE ohne RLE-Anfang.
 // Kein Make.com, kein ISO 9001 im KI-Block, keine em-dashes. Body-Ziel 220-260 Woerter.
 function msHash(s){ let h = 0; for(let i = 0; i < s.length; i++){ h = (h * 31 + s.charCodeAt(i)) >>> 0; } return h; }
+// ===== CV-Empfehlung (NEU 2026-08-06, Andy: "Button, welchen Lebenslauf ich nehmen soll,
+// mit Direktlink zum passenden CV"). Regelwerk aus CLAUDE.md §12/§16.
+// Staende am 06.08.2026 auf der Platte verifiziert (Auswahl nach DATEIDATUM, nicht nach
+// Dateiname — Andy speichert Neustaende teils unter gleichem Namen).
+const CV_BASE = '/Users/andreasschengel/Desktop/ordner/Bewerbungen 2026/01_Vorlagen/CVs FINALE/';
+const CV_VARIANTEN = {
+  auto:   { label: 'CV Automotive',      datei: 'CV Automotive/Lebenslauf_Andreas_Schengel.pdf',                                   stand: '05.08.2026' },
+  ki:     { label: 'CV KI-Manager LEAD', datei: 'CV KI Manager/Lebenslauf_Andreas_Schengel_2026_KI-Manager_LEAD_V6.pdf',           stand: '07.07.2026' },
+  hybrid: { label: 'CV KI + PM Hybrid',  datei: 'CV KI Manager/Lebenslauf_Andreas_Schengel_2026_KI-PM_HYBRID_V3.pdf',              stand: '07.07.2026' },
+  robo:   { label: 'CV Robotics',        datei: 'CV Robotics/Lebenslauf_Andreas_Schengel_2026_Concept_Engineer_Robotics_V4.pdf',   stand: '07.07.2026' }
+};
+function recommendCV(job){
+  const t = ((job.title || '') + ' ' + (job.description || '') + ' ' + (job.company || '')).toLowerCase();
+  const cat = job.category || 'pm';
+  const kiStark = /(ki[- ]manager|ai manager|künstliche intelligenz|generative ai|genai|llm|prompt|ki-strateg|ai strateg|automatisierungsmanager)/.test(t);
+  const kiLeicht = /(\bki\b|\bai\b|automatisierung|automation|digitalisierung|n8n|machine learning)/.test(t);
+  const pmWort = /(projektleit|projektmanag|program\s*manager|teilprojekt|pmo|programmleit)/.test(t);
+  const robo = /(robotik|robotics|cobot|konzeptingenieur|concept engineer|mechatronik|prototyp|greifer|automatisierungstechnik)/.test(t);
+  if(robo && !kiStark)          return Object.assign({ grund: 'Robotik-/Konzept-Schwerpunkt in der Ausschreibung' }, CV_VARIANTEN.robo);
+  if(kiStark && !pmWort)        return Object.assign({ grund: 'Reine KI-/AI-Manager-Rolle' }, CV_VARIANTEN.ki);
+  if(kiStark && pmWort)         return Object.assign({ grund: 'PM-Rolle mit deutlichem KI-Schwerpunkt' }, CV_VARIANTEN.hybrid);
+  if(cat === 'ki' && kiLeicht)  return Object.assign({ grund: 'KI-Kategorie mit Automatisierungs-Bezug' }, CV_VARIANTEN.hybrid);
+  return Object.assign({ grund: cat === 'auto' ? 'Automotive-/OEM-Stelle' : 'Klassische PM-/Engineering-Stelle' }, CV_VARIANTEN.auto);
+}
 // ===== Gehaltsmodell v16.1 (Andy 2026-06-10: "Das Ding muss je nach Position mein
 // Jahresgehalt berechnen, damit ich einen Fixpunkt habe — nicht pauschal 80/82k.")
 // Regelbasiert nach Andys Gehaltsstrategie: Cluster erkennen -> Basis-Anker ->
@@ -808,7 +923,8 @@ function buildMSBody(job, stellentitel){
   ]);
   const hookKI   = 'Ich konzipiere Workflows mit n8n, verbinde Tools und APIs mit Large Language Models und überführe wiederkehrende Abläufe in stabile, dokumentierte Prozesse. Das Fundament dafür ist der KI-Manager TÜV Rheinland mit 400 Stunden, getragen von zwölf Jahren Projektverantwortung im Premium-OEM-Umfeld.';
   const hookEE   = 'Bei Magna Engineering & Infotainment habe ich als SE-Teamleiter die BMW-Steuergeräte LIN-Stromverteiler sowie ENS 1 und ENS 2 in der Serienbetreuung gesteuert. Zuletzt habe ich den EE-Package Lead für den VW Scout eigenständig verantwortet, mit 100 Prozent KPI-Erfüllung über alle Bauphasen.';
-  const hookKaro = 'Zuletzt habe ich bei Magna Engineering & Infotainment den EE-Package Lead für den VW Scout im Gesamtfahrzeug verantwortet. Die Zonenverantwortung für die BMW-Derivate G21 und G28 habe ich bei RLE begonnen und bei Pininfarina fortgeführt, jeweils mit Gremienleitung, Anforderungsmanagement und Entscheidungsherbeiführung.';
+  // 2026-08-06 gekuerzt: dieser Hook trieb A1 als einziger ueber 65 Woerter (§19.3).
+  const hookKaro = 'Zuletzt habe ich bei Magna Engineering & Infotainment den EE-Package Lead für den VW Scout im Gesamtfahrzeug verantwortet. Die Zonenverantwortung für die BMW-Derivate G21 und G28 habe ich bei RLE begonnen und bei Pininfarina fortgeführt, mit Gremienleitung und Anforderungsmanagement.';
   const hookPMO  = 'Als PMO im BMW-Programm AdCam bei Magna Electronics habe ich KPIs aufbereitet, Managementberichte erstellt und Change Requests koordiniert. Zuletzt habe ich bei Magna Engineering & Infotainment den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI-Erfüllung über alle Bauphasen.';
   const hookPM   = 'Bei Magna Engineering & Infotainment habe ich zuletzt den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI-Erfüllung über alle Bauphasen. Parallel habe ich mir eine produktive n8n-Praxis aufgebaut, mit Workflows für Reporting und Anforderungs-Aufbereitung.';
   const hookMed  = 'Bei Magna Engineering & Infotainment habe ich zuletzt den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI-Erfüllung über alle Bauphasen. Validierung, Änderungsmanagement und dokumentierte Freigaben gehören dabei zu meinem Tagesgeschäft, also genau die regulierte Arbeitsweise Ihrer Branche.';
@@ -822,21 +938,28 @@ function buildMSBody(job, stellentitel){
   else if(sigKaro) hook = hookKaro;
   else if(sigEE) hook = hookEE;
   else hook = hookPM;
-  const A1 = opener + ' ' + hook + ' ' + pick([
-    'Beide Stränge treffen genau den Kern der Aufgaben, die Sie in Ihrer Ausschreibung beschreiben.',
+  // FIX 2026-08-06: Der abschliessende JD-Satz stand frueher hier und trieb A1 auf
+  // 64-75 Woerter (in 271 von 445 getesteten Faellen ueber dem 65-Woerter-Limit aus §19.3).
+  // Er wandert an den ANFANG von A3, wo er den von §0d geforderten JD-Bezug traegt,
+  // ohne den Opener zu ueberladen.
+  const A1 = opener + ' ' + hook;
+  const jdBruecke = pick([
+    'Die Aufgaben Ihrer Ausschreibung decke ich aus genau dieser Praxis ab.',
+    'Beide Stränge treffen den Kern der Aufgaben, die Sie beschreiben.',
     'Genau diese Kombination aus Praxis und Methodik verlangt Ihre Ausschreibung an mehreren Stellen.'
   ]);
   const A2 = 'Zwölf Jahre Premium-OEM bei BMW, VW, Rolls-Royce, Bugatti, Audi und Mercedes bilden meinen Hintergrund. Ich bin staatlich geprüfter Maschinenbau-Techniker mit IPMA Level D sowie den scrum.org-Zertifizierungen Professional Scrum Master und Product Owner' + (sigAgil ? ', die ich in agilen Teams aktiv einsetze' : '') + '. Jira und Confluence nutze ich täglich für KPI-Aufbereitung, Statusberichte und Reporting. Englisch nutze ich auf B2-Niveau fachlich sicher im internationalen Projektalltag.';
   let A3;
   if(hook === hookKI){
-    A3 = 'Diese KI-Praxis trägt eine lange Projektgeschichte: Bei Magna Engineering & Infotainment habe ich als EE-Package Lead vier bis acht Konstrukteure gesteuert, davor als PMO im BMW-Programm AdCam bei Magna Electronics die PM-Tools und Prozesse projektspezifisch verbessert. Prozessanalyse mit Fachbereichen ist mein Kerngeschäft.';
+    A3 = jdBruecke + ' Bei Magna Engineering & Infotainment habe ich als EE-Package Lead vier bis acht Konstrukteure gesteuert, davor als PMO im BMW-Programm AdCam bei Magna Electronics die PM-Tools und Prozesse projektspezifisch verbessert. Prozessanalyse mit den Fachbereichen ist mein Kerngeschäft.';
   } else if(hook === hookPMO){
-    A3 = 'Workshops und Steuerkreise moderiere ich seit der Gremienleitung der GGKA-Runde im Karosserie-Hybridbaukasten F30NF bei RLE. Die Steuerung externer Entwicklungspartner und Hauptzulieferer kenne ich aus den SE-Teamleiter-Rollen bei Magna. Genau diese Mischung bringe ich in Ihre Projekte mit.';
+    A3 = jdBruecke + ' Workshops und Steuerkreise moderiere ich seit der Gremienleitung der GGKA-Runde im Karosserie-Hybridbaukasten F30NF bei RLE. Die Steuerung externer Entwicklungspartner und Hauptzulieferer kenne ich aus den SE-Teamleiter-Rollen bei Magna. Genau diese Mischung bringe ich in Ihre Projekte mit.';
   } else {
-    A3 = 'Ergänzend habe ich als PMO im BMW-Programm AdCam bei Magna Electronics KPIs aufbereitet, Managementberichte erstellt und die PM-Tools projektspezifisch optimiert.';
+    A3 = jdBruecke + ' Ergänzend habe ich als PMO im BMW-Programm AdCam bei Magna Electronics KPIs aufbereitet, Managementberichte erstellt und die PM-Tools projektspezifisch optimiert.';
     if(sigLief) A3 += ' Lieferantensteuerung gehört seit den SE-Teamleiter-Rollen zu meinem Tagesgeschäft.';
     else if(sigSerie && hook !== hookEE) A3 += ' Serienbetreuung mit Änderungs- und Problemmanagement kenne ich aus den BMW-Steuergeräte-Projekten.';
     else if(sigKaro && hook !== hookKaro) A3 += ' Workshops und Gremien moderiere ich seit der GGKA-Runde im Karosserie-Hybridbaukasten F30NF bei RLE.';
+    else A3 += ' Termin- und Änderungsverfolgung über alle Bauphasen kenne ich aus den BMW- und VW-Projekten.';
     A3 += ' Genau diese Mischung aus Reporting-Disziplin und Schnittstellen-Steuerung bringe ich in Ihre Projekte mit.';
   }
   let A4;
@@ -856,9 +979,27 @@ function buildMSBody(job, stellentitel){
   const total = count(A1) + count(A2) + count(A3) + count(A4) + count(A5);
   let A3final = A3;
   if(total > 262 && hook !== hookKI && hook !== hookPMO){
-    A3final = 'Ergänzend habe ich als PMO im BMW-Programm AdCam bei Magna Electronics KPIs aufbereitet, Managementberichte erstellt und die PM-Tools projektspezifisch optimiert. Genau diese Reporting-Disziplin bringe ich in Ihre Projekte mit.';
+    A3final = jdBruecke + ' Ergänzend habe ich als PMO im BMW-Programm AdCam bei Magna Electronics KPIs aufbereitet, Managementberichte erstellt und die PM-Tools projektspezifisch optimiert. Genau diese Reporting-Disziplin bringe ich in Ihre Projekte mit.';
   }
-  return { A1: A1, A2: A2, A3: A3final, A4: A4, A5: A5 };
+  // FIX 2026-08-06: Gegenstueck zur Kuerzung. Der Test ueber alle 445 Dashboard-Jobs
+  // zeigte, dass Bodies auch nach unten aus dem Korridor fielen (min 213 W bei Soll 220).
+  // Bei Unterlaenge kommt ein zweiter, inhaltlich belegter Satz in A2 dazu — A2 bleibt
+  // damit unter 65 W und der Body landet sicher im Korridor 220-260.
+  let A2final = A2;
+  if(total < 222){
+    const zusatz = pick([
+      'Fachliche Führung von vier bis acht Konstrukteuren gehört seit den Magna-Projekten dazu.',
+      'Die fachliche Führung von vier bis acht Konstrukteuren war durchgehend Teil meiner Rolle.'
+    ]);
+    // Der Zusatz geht dorthin, wo noch Platz ist: A2 nur bis 65 Woerter, sonst A3 (max 60).
+    const kurz = 'Vier bis acht Konstrukteure habe ich dabei fachlich geführt.';
+    if(count(A2) + count(zusatz) <= 65) A2final = A2 + ' ' + zusatz;
+    else if(count(A3final) + count(zusatz) <= 60) A3final = A3final + ' ' + zusatz;
+    else if(count(A2) + count(kurz) <= 65) A2final = A2 + ' ' + kurz;
+    else if(count(A3final) + count(kurz) <= 60) A3final = A3final + ' ' + kurz;
+    else A2final = A2 + ' ' + kurz;   // Notnagel: Korridor-Unterlaenge ist der groessere Fehler
+  }
+  return { A1: A1, A2: A2final, A3: A3final, A4: A4, A5: A5 };
 }
 // === MS-ENGINE-END ===
 function _generateMSWith(job, btn, recipientInfo){
@@ -945,16 +1086,21 @@ function _generateMSWith(job, btn, recipientInfo){
     // Datum-Paragraph: 10pt, RIGHT, grau #6B7280
     // Andy 2026-05-28: Spacing-Tuning final
     //   sb=240 (Abstand Tabelle-Ende → Datum) und sa=240 (Abstand Datum → Betreff) — beide gleich
+    // FIX 2026-08-06: Andys Regel "Datum→Betreff-Abstand = Betreff→Anrede-Abstand,
+    // beide 360 Twips" war hier noch nicht umgesetzt (Datum hatte 240/240, Betreff 240).
+    // Der Abstand wird jetzt allein vom Betreff getragen: Datum after = 0.
     const PDatum = (txt) => new D.Paragraph({
       children: [new D.TextRun({ text: txt, font: 'Calibri', size: 20, color: GREY })],
-      spacing: { before: 240, after: 240, line: 260 },
+      spacing: { before: 240, after: 0, line: 260 },
       alignment: D.AlignmentType.RIGHT
     });
     // Betreff-Paragraph: 11pt BOLD Navy #1B365D
     // Andy 2026-05-28 (3.iteration): "Betreff → Anrede minimal vergrößern" → sa = 240 (12pt, war 160=8pt)
+    // §21.1: Betreff-Abstand im Korridor 240-480 Twips, Default 360 (=18pt).
+    // before UND after 360 -> Datum→Betreff und Betreff→Anrede sind optisch gleich gross.
     const PB = (txt) => new D.Paragraph({
       children: [new D.TextRun({ text: txt, font: 'Calibri', size: 22, bold: true, color: NAVY })],
-      spacing: { after: 240, line: 300 }
+      spacing: { before: 360, after: 360, line: 300 }
     });
     // Name-Schluss-Paragraph: 11pt BOLD Navy
     const PName = (txt) => new D.Paragraph({
@@ -1113,7 +1259,7 @@ function toggleWishCompany(co){
 }
 // Effektiver Score = Crawler-Score + 10 wenn User-Wunschfirma
 function effectiveScore(j){
-  return (j.score || 0) + (isWishCompany(j.company || '') ? 10 : 0);
+  return (j.score || 0) + (isWishCompany(firmaVon(j)) ? 10 : 0);
 }
 function jobsForTab(tab){
   if(!DATA || !DATA.jobs) return [];
@@ -1122,7 +1268,7 @@ function jobsForTab(tab){
   const blocked = getBlockedCompanies().map(c => c.toLowerCase());
   let list = DATA.jobs.filter(j => {
     if(!want.includes(j.category)) return false;
-    const co = (j.company || '').toLowerCase();
+    const co = firmaVon(j).toLowerCase();
     if(blocked.some(b => b && co.includes(b))) return false;
     return true;
   });
@@ -1130,7 +1276,7 @@ function jobsForTab(tab){
     const f = FILTER.toLowerCase();
     list = list.filter(j =>
       (j.title || '').toLowerCase().includes(f) ||
-      (j.company || '').toLowerCase().includes(f) ||
+      firmaVon(j).toLowerCase().includes(f) ||
       (j.location || '').toLowerCase().includes(f)
     );
   }
@@ -1372,7 +1518,7 @@ function renderArchiv(){
     item.appendChild(top);
     if(job){
       const meta = el('div', 'archiv-item-meta');
-      meta.appendChild(el('span', null, (job.company || '—')));
+      meta.appendChild(el('span', null, (firmaVon(job) || '—')));
       meta.appendChild(el('span', null, '📍 ' + (job.location || '—')));
       meta.appendChild(el('span', null, '🎯 ' + (job.score || 0) + '/100'));
       if(job.first_seen) meta.appendChild(el('span', null, '📅 ' + job.first_seen.slice(0,10)));
