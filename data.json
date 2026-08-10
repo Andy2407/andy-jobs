@@ -1,16 +1,15 @@
 {
-  "generated_at": "2026-08-10T12:48:21.296410",
-  "duration_s": 1646.178234,
+  "generated_at": "2026-08-10T16:44:15.061165",
+  "duration_s": 1096.643846,
   "stats": {
-    "raw": 9075,
-    "filtered": 245,
-    "verified": 183,
+    "raw": 9518,
+    "filtered": 367,
+    "verified": 267,
     "by_category": {
-      "pm": 98,
-      "pharma": 6,
-      "auto": 72,
-      "other": 3,
-      "ki": 4
+      "ki": 10,
+      "auto": 64,
+      "pm": 186,
+      "pharma": 7
     },
     "sources": [
       "Akkodis",
@@ -78,21 +77,21 @@
       "Akkodis": 100,
       "arbeitnow": 1076,
       "Personio": 366,
-      "Greenhouse": 2168,
+      "Greenhouse": 2163,
       "Lever": 32,
       "Ashby": 185,
       "Workable": 0,
       "Recruitee": 11,
-      "SmartRecruiters": 1558,
-      "Bundesagentur (API)": 1407,
-      "StepStone": 0,
+      "SmartRecruiters": 1557,
+      "Bundesagentur (API)": 1412,
+      "StepStone": 1125,
       "sz-jobs.de": 100,
       "kimeta.de": 112,
       "jobvector": 0,
       "LinkedIn (anonymous)": 83,
       "RemoteOK": 100,
       "Remotive": 20,
-      "WeWorkRemotely": 270,
+      "WeWorkRemotely": 271,
       "EDAG-Karriere": 114,
       "Cognizant-Mobility": 0,
       "SII Group": 0,
@@ -101,35 +100,35 @@
       "MTU Aero Engines": 0,
       "FEV": 12,
       "SÜSS MicroTec": 26,
-      "MAN Truck & Bus": 68,
-      "Webasto": 52,
-      "Knorr-Bremse": 54,
+      "MAN Truck & Bus": 0,
+      "Webasto": 0,
+      "Knorr-Bremse": 0,
       "Silver Atena": 18,
       "Carl Zeiss Meditec": 50,
       "KUKA": 30,
       "W. L. Gore": 7,
-      "Giesecke+Devrient": 49,
-      "KraussMaffei": 3,
+      "Giesecke+Devrient": 0,
+      "KraussMaffei": 0,
       "ams OSRAM": 3,
       "Infineon": 10,
       "Allianz": 58,
       "Avature (Rohde & Schwarz)": 20,
       "NEURA Robotics": 28,
-      "Xing": 173,
+      "Xing": 181,
       "talent.com": 93,
       "jobrapido": 0,
       "whatjobs": 30,
-      "germantechjobs": 21,
-      "BMW Group": 374,
-      "Bertrandt": 62,
-      "Capgemini Engineering": 43,
-      "Schaeffler": 1,
-      "ZF": 1,
-      "AVL": 4,
+      "germantechjobs": 40,
+      "BMW Group": 0,
+      "Bertrandt": 0,
+      "Capgemini Engineering": 0,
+      "Schaeffler": 0,
+      "ZF": 0,
+      "AVL": 0,
       "Vitesco": 0,
       "Valeo": 1,
       "ARRK Engineering": 0,
-      "Yourfirm": 73,
+      "Yourfirm": 75,
       "remotely.de": 0,
       "jobninja.com": 0,
       "stellenanzeigen.de": 8,
@@ -138,15 +137,25 @@
     },
     "dead_sources": [
       "ARRK Engineering",
+      "AVL",
+      "BMW Group",
+      "Bertrandt",
       "CARIAD",
+      "Capgemini Engineering",
       "Cognizant-Mobility",
+      "Giesecke+Devrient",
       "Indeed (Playwright)",
+      "Knorr-Bremse",
+      "KraussMaffei",
+      "MAN Truck & Bus",
       "MTU Aero Engines",
       "Rodenstock",
       "SII Group",
-      "StepStone",
+      "Schaeffler",
       "Vitesco",
+      "Webasto",
       "Workable",
+      "ZF",
       "jobninja.com",
       "jobrapido",
       "jobvector",
@@ -434,17 +443,109 @@
         "live": true
       }
     ],
-    "geprueft_am": "2026-08-10T13:15:59"
+    "geprueft_am": "2026-08-10T17:02:43"
   },
   "jobs": [
     {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-KI-Manager-Automatisierung-m-w-d-Augsburg-Darmstadt-Karlsruhe-Koeln-Stuttgart-Dresden-Mannheim-Hamburg-Berlin-Muenchen-Ulm-Studyflix-GmbH--14025121-inline.html",
+      "title": "(Senior) KI Manager Automatisierung (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 75,
+      "score_reasons": [
+        "🤖 ki-manager (+25)",
+        "🤖 ki manager (+25)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Augsburg,Darmstadt,Karlsruhe,Köln,Stuttgart,Dresden,Mannheim,Hamburg,Berlin,München,Ulm",
+      "clean_company": "Studyflix GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Projektleiter-Robotik-Cobot-AMR-Systeme-Automation-m-w-d-Muenchen-Koeln-Marburg-Hamburg-Berlin-Frankfurt-Kiel-Heidelberg-Wien-Basel-Zuerich-o-Ae-WE4YOU-GmbH--14309097-inline.html",
+      "title": "Projektmanager / Projektleiter – Robotik, Cobot & AMR-Systeme, Automation [m/w/d]",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 73,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 projektmanager (+16)",
+        "🎯 robotik (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "WE4YOU GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-m-w-d-Operations-New-Product-Introduction-Muenchen-Denk-Pharma-GmbH-Co-KG--14368366-inline.html",
+      "title": "Project Manager (m/w/d) Operations - New Product Introduction",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 63,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "🎯 new product introduction (+16)",
+        "🎯 pharma (+6)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Prinzregentenstraße 79",
+      "address_city": "81675 München",
+      "clean_company": "Denk Pharma GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-d-Munich-CompuGroup-Medical-SE-Co-KGaA--14371402-inline.html",
+      "title": "Senior Projektmanager (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 63,
+      "score_reasons": [
+        "🎯 senior projektmanager (+22)",
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Munich",
+      "address_city": "Munich",
+      "clean_company": "CompuGroup Medical SE & Co. KGaA"
+    },
+    {
       "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/senior-project-manager-m-w-d-internationalisation-at-renk-group-4445517091",
-      "title": "Senior Project Manager (m/w/d) Internationalisation",
-      "company": "Senior Project Manager (m/w/d) Internationalisation",
+      "url": "https://de.linkedin.com/jobs/view/senior-project-manager-m-w-d-engineering-at-renk-group-4445517093",
+      "title": "Senior Project Manager (m/w/d) Engineering",
+      "company": "Senior Project Manager (m/w/d) Engineering",
       "location": "Metropolregion München",
       "description": "",
-      "first_seen": "2026-08-10T13:15:18.953275",
+      "first_seen": "2026-08-10T17:01:30.892907",
       "is_new": true,
       "score": 63,
       "score_reasons": [
@@ -460,13 +561,197 @@
       "clean_company": "RENK Group"
     },
     {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--AI-Technical-Project-Manager-m-w-d-bundesweit-Berlin-Frankfurt-Hamburg-Koeln-Leipzig-Muenchen-Sopra-Steria--13384115-inline.html",
+      "title": "AI Technical Project Manager (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 59,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "🎯 technical project manager (+18)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "bundesweit, Berlin, Frankfurt, Hamburg, Köln, Leipzig, München",
+      "address_city": "bundesweit",
+      "clean_company": "Sopra Steria"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektmanager-fuer-die-bayerische-Mobilitaetsplattform-m-w-d-Muenchen-Mentz-GmbH--14359978-inline.html",
+      "title": "Technischer Projektmanager für die bayerische Mobilitätsplattform (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 59,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "🎯 technischer projektmanager (+18)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Grillparzerstraße 18",
+      "address_city": "81675 München",
+      "clean_company": "Mentz GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-Lasersysteme-Photonik-m-w-d-Martinsried-Menlo-Systems-GmbH--14154544-inline.html",
+      "title": "Technischer Projektleiter Lasersysteme / Photonik (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 59,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 technischer projektleiter (+18)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "bundesagentur",
+          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12288-4870343327-S"
+        },
+        {
+          "source": "xing",
+          "url": "https://www.xing.com/jobs/martinsried-technischer-projektleiter-lasersysteme-photonik-155330696"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "82152 Martinsried",
+      "clean_company": "Menlo Systems GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektmanager-im-Allgaeu-m-w-d-Muenchen-Blueprint-Advanced-Manufacturing-GmbH--14074436-inline.html",
+      "title": "Technischer Projektmanager im Allgäu (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 59,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "🎯 technischer projektmanager (+18)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "München",
+      "address_city": "München",
+      "clean_company": "Blueprint Advanced Manufacturing GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-EMV-m-w-d-Muenchen-DENPAFLUX-GmbH--14316313-inline.html",
+      "title": "Technischer Projektleiter EMV (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 59,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 technischer projektleiter (+18)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Rosenheimer Strasse 116a",
+      "address_city": "81669 München",
+      "clean_company": "DENPAFLUX GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektmanager-m-w-d-Muenchen-FERCHAU-Connecting-People-and-Technologies--13490884-inline.html",
+      "title": "Technischer Projektmanager (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 59,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "🎯 technischer projektmanager (+18)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektmanager-m-w-d-Muenchen-meinestadt-de--14319589-inline.html"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Elsenheimerstraße 57",
+      "address_city": "80687 München",
+      "kennziffer": "STE96-67866-M",
+      "clean_company": "FERCHAU – Connecting People and Technologies",
+      "bewerbung": {
+        "status": "mappe",
+        "stelle": "",
+        "datum": ""
+      }
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-m-w-d-Muenchen-Josko-Fenster-und-Tueren-GmbH--14272226-inline.html",
+      "title": "Technischer Projektleiter (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 59,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 technischer projektleiter (+18)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-m-w-d-Muenchen-Efinio-Ingenieure-Stuttgart--14142993-inline.html"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "Josko Fenster und Türen GmbH"
+    },
+    {
       "source": "kimeta",
-      "url": "https://www.kimeta.de/display-job/wenglor-mel-gmbh/projektleitung-produktentwicklung-m-w-d-sensorik-bildverarbeitung/959483872.html",
-      "title": "wenglor MEL GmbH - Unterschleißheim Projektleitung Produktentwicklung (m/w/d) - Sensorik & Bildverarbeitung Unterschleißheim",
+      "url": "https://www.kimeta.de/display-job/wenglor-mel-gmbh/projektleitung-produktentwicklung/962408455.html",
+      "title": "wenglor MEL GmbH - Unterschleißheim Projektleitung Produktentwicklung Unterschleißheim",
       "company": "",
       "location": "München",
       "description": "",
-      "first_seen": "2026-08-10T13:15:18.953275",
+      "first_seen": "2026-08-10T17:01:30.892907",
       "is_new": true,
       "score": 57,
       "score_reasons": [
@@ -478,12 +763,2638 @@
       "alt_sources": [
         {
           "source": "kimeta",
-          "url": "https://www.kimeta.de/display-job/wenglor-mel-gmbh/projektleitung-produktentwicklung/962408455.html"
+          "url": "https://www.kimeta.de/display-job/wenglor-mel-gmbh/projektleitung-produktentwicklung-m-w-d-sensorik-bildverarbeitung/959483872.html"
         }
       ],
       "verified": true,
       "verify_status": "ok",
       "clean_company": "wenglor MEL GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektleiter-in-Produktentwicklung-m-w-d-Berlin-Finetech-GmbH-Co-KG--14338049-inline.html",
+      "title": "Senior Projektleiter/in Produktentwicklung (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 54,
+      "score_reasons": [
+        "🎯 senior projektleiter (+22)",
+        "🎯 projektleiter (+16)",
+        "🎯 produktentwicklung (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Boxberger Str. 14",
+      "address_city": "12681 Berlin",
+      "clean_company": "Finetech GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-in-Bau-Senior-Project-Manager-w-m-d-Berlin-GROPYUS-Technologies-GmbH--14312846-inline.html",
+      "title": "Projektleiter/in - Bau / Senior Project Manager (w/m/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 54,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 projektleiter (+16)",
+        "🎯 project manager (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Hauptstr. 27",
+      "address_city": "10827 Berlin",
+      "clean_company": "GROPYUS Technologies GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektleiter-Produktentwicklung-spektrometrischer-Messysteme-m-w-x-Jena-ZEISS--14364082-inline.html",
+      "title": "Senior Projektleiter Produktentwicklung spektrometrischer Messysteme (m/w/x)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 54,
+      "score_reasons": [
+        "🎯 senior projektleiter (+22)",
+        "🎯 projektleiter (+16)",
+        "🎯 produktentwicklung (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "07745 Jena",
+      "clean_company": "ZEISS"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Product-Owner-Projektleiter-Kreditkartenverwaltung-m-w-d-Aschheim-Frankfurt-am-Main-Atruvia-AG--14205368-inline.html",
+      "title": "Product Owner/Projektleiter Kreditkartenverwaltung (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 53,
+      "score_reasons": [
+        "🎯 product owner (+12)",
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Aschheim, Frankfurt am Main",
+      "address_city": "Aschheim",
+      "clean_company": "Atruvia AG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Schlosser-Metallbauer-Karosseriebauer-w-m-d-Muenchen-Siemens-Mobility--13791437-inline.html",
+      "title": "Schlosser / Metallbauer / Karosseriebauer (w/m/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 51,
+      "score_reasons": [
+        "🎯 karosserie (+12)",
+        "🎯 karosseriebau (+14)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Krauss-Maffei-Str. 2",
+      "address_city": "80997 München",
+      "clean_company": "Siemens Mobility"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-Automotive-Warranty-and-Services-f-m-x-Berlin-Autohero--14317131-inline.html",
+      "title": "Senior Project Manager - Automotive Warranty and Services (f/m/x)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 50,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 project manager (+16)",
+        "🚗 automotive (+12)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "10961 Berlin",
+      "clean_company": "Autohero"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-Automotive-f-m-x-Berlin-AUTO1-Group--14333633-inline.html",
+      "title": "Senior Project Manager - Automotive (f/m/x)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 50,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 project manager (+16)",
+        "🚗 automotive (+12)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "10961 Berlin",
+      "clean_company": "AUTO1 Group"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-m-w-d-Industrialisierung-befristet-fuer-24-Monate-Gilching-Diehl-Aviation--14225528-inline.html",
+      "title": "Projektleiter (m/w/d) Industrialisierung – befristet für 24 Monate",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 49,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 industrialisierung (+8)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Gilching",
+      "clean_company": "Diehl Aviation"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-fuer-Automotive-Data-Connector-Asien-m-w-d-Fridolfing-Rosenberger-Hochfrequenztechnik-GmbH-Co-KG--14380512-inline.html",
+      "title": "Technischer Projektleiter für Automotive Data Connector - Asien (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 46,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 technischer projektleiter (+18)",
+        "🚗 automotive (+12)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Fridolfing",
+      "clean_company": "Rosenberger Hochfrequenztechnik GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektmanager-Automotive-Ersatzteile-m-w-d-Kleve-Weyra-Automotive-Solutions-GmbH--14259398-inline.html",
+      "title": "Technischer Projektmanager - Automotive / Ersatzteile (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 46,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "🎯 technischer projektmanager (+18)",
+        "🚗 automotive (+12)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "47533 Kleve",
+      "clean_company": "Weyra Automotive Solutions GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-fuer-Automotive-Data-Connector-m-w-d-Fridolfing-Rosenberger-Hochfrequenztechnik-GmbH-Co-KG--13985016-inline.html",
+      "title": "Technischer Projektleiter für Automotive Data Connector (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 46,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 technischer projektleiter (+18)",
+        "🚗 automotive (+12)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Fridolfing",
+      "clean_company": "Rosenberger Hochfrequenztechnik GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Teilprojektleiter-Stromuebertragung-Freileitungsbau-m-w-d-Stuttgart-Berlin-Hamburg-FICHTNER-GmbH-Co-KG--14313396-inline.html",
+      "title": "Projektingenieur / Teilprojektleiter Stromübertragung / Freileitungsbau (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 46,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 teilprojektleit (+20)",
+        "🎯 projektingenieur (+10)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Stuttgart, Berlin, Hamburg",
+      "address_city": "Stuttgart",
+      "clean_company": "FICHTNER GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Fachprojektleiter-w-m-d-Rohrleitungsplanung-Muenchen-Martin-GmbH-Fuer-Umwelt-und-Energietechnik--14318329-inline.html",
+      "title": "Fachprojektleiter (w/m/d) Rohrleitungsplanung",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 45,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 energie (+4)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Leopoldstraße 246",
+      "address_city": "80807 München",
+      "clean_company": "Martin GmbH Für Umwelt- und Energietechnik"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/ai-transformation-manager-ai-center-of-excellence-w-m-d-at-kpmg-deutschland-4446401696",
+      "title": "AI Transformation Manager, AI Center of Excellence (w/m/d)",
+      "company": "AI Transformation Manager, AI Center of Excellence (w/m/d)",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 43,
+      "score_reasons": [
+        "🎯 ai transformation (+18)",
+        "📍 münchen (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "KPMG Deutschland"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Teamleiter-in-Senior-Projektmanager-in-M-W-D-Muenchen-Penta-GmbH--13857063-inline.html",
+      "title": "Teamleiter/in / Senior-Projektmanager/in (M/W/D)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "Penta GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Marketplace-Manager-Projektmanager-Marktplaetze-M-W-D-Vollzeit-Munich-Nakoa-Digital-GmbH--11965625-inline.html",
+      "title": "(Senior) Marketplace Manager / Projektmanager Marktplätze (M/W/D) - Vollzeit",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Munich",
+      "address_city": "Munich",
+      "clean_company": "Nakoa Digital GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-HR-Software-Implementierung-m-w-d-Grasbrunn-bei-Muenchen-Hamm-Home-Office-comvaHRo-GmbH--14231630-inline.html",
+      "title": "(Senior) Projektmanager HR-Software Implementierung (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Grasbrunn bei München, Hamm, Home-Office",
+      "address_city": "Grasbrunn bei München",
+      "clean_company": "comvaHRo GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-KI-und-Digitalisierung-m-w-d-Muenchen-Thuega-Aktiengesellschaft--14295252-inline.html",
+      "title": "Projektmanager KI und Digitalisierung (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Nymphenburger Straße",
+      "address_city": "80335 München",
+      "clean_company": "Thüga Aktiengesellschaft",
+      "bewerbung": {
+        "status": "gesendet",
+        "stelle": "Projektmanager KI und Digitalisierung",
+        "datum": "2026-08-05"
+      }
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-Sales-Transformation-AI-m-w-d-Graefelfing-TOPTICA-Photonics-SE--14372575-inline.html",
+      "title": "Project Manager Sales Transformation & AI (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Lochhamer Schlag 19",
+      "address_city": "82166 Gräfelfing",
+      "clean_company": "TOPTICA Photonics SE"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--EY-Parthenon-Senior-Manager-Projektleitung-Digitalprojekte-Strategy-and-Transactions-w-m-d-Frankfurt-Main-Stuttgart-Muenchen-Hamburg-Berlin-Duesseldorf-EY-Parthenon--14372084-inline.html",
+      "title": "EY-Parthenon Senior Manager Projektleitung Digitalprojekte - Strategy and Transactions (w/m/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleitung (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Frankfurt/Main, Stuttgart, München, Hamburg, Berlin, Düsseldorf",
+      "address_city": "Frankfurt/Main",
+      "clean_company": "EY-Parthenon"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-KI-m-w-d-Muenchen-RSD-Reise-Service-Deutschland-GmbH--14345582-inline.html",
+      "title": "Projektmanager KI (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Elsenheimerstraße 61",
+      "address_city": "80687 München",
+      "clean_company": "RSD Reise Service Deutschland GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Digitale-Prozesse-Business-Development-m-w-d-Starnberg-Cargentur-GmbH--14335559-inline.html",
+      "title": "Projektmanager Digitale Prozesse & Business Development (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "xing",
+          "url": "https://www.xing.com/jobs/starnberg-projektmanager-digitale-prozesse-business-development-156822233"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Starnberg",
+      "address_city": "Starnberg",
+      "clean_company": "Cargentur GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleitung-Intelligente-digitale-Stromnetze-m-w-d-als-Elternzeitvertretung-befristet-auf-2-Jahre-Muenchen-Thuega-Aktiengesellschaft--14331923-inline.html",
+      "title": "Projektleitung Intelligente & digitale Stromnetze (m/w/d) - als Elternzeitvertretung befristet auf 2 Jahre",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleitung (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Nymphenburger Straße",
+      "address_city": "80335 München",
+      "clean_company": "Thüga Aktiengesellschaft",
+      "bewerbung": {
+        "status": "gesendet",
+        "stelle": "Projektmanager KI und Digitalisierung",
+        "datum": "2026-08-05"
+      }
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Digital-m-w-d-Muenchen-DigitalSpital-GmbH--14122075-inline.html",
+      "title": "Projektmanager Digital (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "München",
+      "address_city": "München",
+      "clean_company": "DigitalSpital GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Digital-Health-m-w-d-Munich-CompuGroup-Medical-SE-Co-KGaA--14371404-inline.html",
+      "title": "Projektmanager Digital Health (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Digital-Health-m-w-d-Munich-CompuGroup-Medical-SE-Co-KGaA--14308532-inline.html"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Munich",
+      "address_city": "Munich",
+      "clean_company": "CompuGroup Medical SE & Co. KGaA"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-m-w-d-Projektsteuerung-Anlagenbau-Pharma-Life-Science-Muenchen-abbion-GmbH--14222065-inline.html",
+      "title": "Projektingenieur (m/w/d) Projektsteuerung | Anlagenbau | Pharma & Life Science",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "🎯 pharma (+6)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Herbststr. 3",
+      "address_city": "80335 München",
+      "clean_company": "abbion GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Lead-Ingenieur-w-m-d-Automation-Muenchen-SpiraTec-AG--14156792-inline.html",
+      "title": "Projektleiter/Lead-Ingenieur (w/m/d) Automation",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "SpiraTec AG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Kundenprojekte-m-w-d-Muenchen-BlueMetering-GmbH--14328740-inline.html",
+      "title": "Projektmanager Kundenprojekte (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "81369 München",
+      "clean_company": "BlueMetering GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-for-Spectrometer-Development-m-w-x-Bergkirchen-Thorlabs-GmbH--14000782-inline.html",
+      "title": "Project Manager for Spectrometer Development (m/w/x)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Bergkirchen",
+      "clean_company": "Thorlabs GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-m-w-d-Guestmanagement-Schwaebisch-Hall-Duesseldorf-Muenchen-Frankfurt-marbet-Marion-Bettina-Wuerth-GmbH-Co-KG--7481625-inline.html",
+      "title": "Project Manager (m/w/d) Guestmanagement",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Schwäbisch Hall, Düsseldorf, München, Frankfurt",
+      "clean_company": "marbet Marion & Bettina Würth GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Integrated-Product-Support-Sanitaet-w-m-d-Fuerstenfeldbruck-Bonn-Koblenz-HENSOLDT--14385006-inline.html",
+      "title": "Projektmanager Integrated Product Support Sanität (w/m/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Fürstenfeldbruck, Bonn, Koblenz",
+      "address_city": "Fürstenfeldbruck",
+      "clean_company": "HENSOLDT"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Gesamtprojektleiter-Spatial-Biology-m-w-x-Jena-Muenchen-ZEISS--13384615-inline.html",
+      "title": "Gesamtprojektleiter Spatial Biology (m/w/x)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Jena, München",
+      "address_city": "Jena",
+      "clean_company": "ZEISS"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-m-w-d-fuer-Automatisierungsprojekte-Bayern-Maisach-Telelift-GmbH--13987459-inline.html",
+      "title": "Project Manager (m/w/d) für Automatisierungsprojekte",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Frauenstr. 28",
+      "address_city": "82216 Bayern - Maisach",
+      "clean_company": "Telelift GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Special-Mission-Aircraft-Fuerstenfeldbruck-HENSOLDT--14360223-inline.html",
+      "title": "Projektmanager Special Mission Aircraft",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "82256 Fürstenfeldbruck",
+      "clean_company": "HENSOLDT"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-ILS-IPS-m-w-d-Maisach-Muenchen-X-LiveConnect-GmbH--13842261-inline.html",
+      "title": "Projektleiter ILS/IPS (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Maisach, München",
+      "address_city": "Maisach",
+      "clean_company": "X-LiveConnect GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Misson-UAS-w-m-d-Fuerstenfeldbruck-HENSOLDT--14360619-inline.html",
+      "title": "Projektmanager Misson UAS (w/m/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "82256 Fürstenfeldbruck",
+      "clean_company": "HENSOLDT"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Serienbetreuung-m-w-d-Thermosysteme-Gas-Putzbrunn-Truma-Geraetetechnik-GmbH-Co-KG--14385459-inline.html",
+      "title": "Projektleiter Serienbetreuung (m/w/d) Thermosysteme & Gas",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Putzbrunn",
+      "address_city": "Putzbrunn",
+      "clean_company": "Truma Gerätetechnik GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Strategische-Projekte-m-w-d-Aschau-am-Inn-Nitrochemie-Aschau-GmbH--14191697-inline.html",
+      "title": "Projektleiter Strategische Projekte (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "84544 Aschau am Inn",
+      "clean_company": "Nitrochemie Aschau GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Programmmanager-fuer-den-Hubschrauber-NH90-w-m-d-Fuerstenfeldbruck-Koblenz-Wurster-Nordseekueste-HENSOLDT--14257614-inline.html",
+      "title": "Programmmanager für den Hubschrauber NH90 (w/m/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 programmmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Fürstenfeldbruck, Koblenz, Wurster Nordseeküste",
+      "address_city": "Fürstenfeldbruck",
+      "clean_company": "HENSOLDT"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technische-Projektleitung-m-w-d-Geretsried-Gebrueder-Bagusat-GmbH-Co-KG--14287520-inline.html",
+      "title": "Technische Projektleitung (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleitung (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "82538 Geretsried",
+      "clean_company": "Gebrüder Bagusat GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Instandhaltung-m-w-d-Oberding-XERVON-Instandhaltung-GmbH--14158221-inline.html",
+      "title": "Projektleiter Instandhaltung (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Hallbergmooser Straße 5",
+      "address_city": "85445 Oberding",
+      "clean_company": "XERVON Instandhaltung GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-in-Geruestbau-Kirchdorf-an-der-Amper-Kraft-Gerueste-GmbH--10256330-inline.html",
+      "title": "Projektleiter/in Gerüstbau",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Keltenstraße 14",
+      "address_city": "85414 Kirchdorf",
+      "clean_company": "Kraft Gerüste GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-in-fuer-Fenster-und-Fassade-m-w-d-in-Rottenburg-Muenchen-HAMA-Alu-Holzbauwerk-GmbH--11867095-inline.html",
+      "title": "Projektleiter/in für Fenster und Fassade (m/w/d) in Rottenburg",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Klenzestr. 101",
+      "address_city": "80469 München",
+      "clean_company": "HAMA-Alu + Holzbauwerk GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Peer-w-m-d-Fuerstenfeldbruck-HENSOLDT--14384856-inline.html",
+      "title": "Projektmanager / Peer (w/m/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Fürstenfeldbruck",
+      "address_city": "Fürstenfeldbruck",
+      "clean_company": "HENSOLDT"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Energiemanager-m-w-d-im-Bereich-Automotive-fuer-Muenchen-Muenchen-C-P-S-Holding-GmbH-Co-KG--14296528-inline.html",
+      "title": "Energiemanager (m/w/d) im Bereich Automotive für München",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🚗 automotive (+12)",
+        "🎯 energie (+4)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "München",
+      "address_city": "München",
+      "clean_company": "C-P-S-Holding GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-zentrales-Projektmanagement-m-w-d-Ulm-Mueller-Holding-GmbH-Co-KG--14287858-inline.html",
+      "title": "Projektleiter zentrales Projektmanagement (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Albstraße 92",
+      "address_city": "89081 Ulm",
+      "clean_company": "Müller Holding GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Data-AI-Project-Manager-m-f-d-Ulm-Liebherr-Digital-Development-Center-GmbH--14363976-inline.html",
+      "title": "Data & AI Project Manager (m/f/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🤖 ai project manager (+25)",
+        "🎯 project manager (+16)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "89081 Ulm",
+      "clean_company": "Liebherr-Digital Development Center GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleitung-m-w-d-Puchheim-FMS-Flexible-Mounting-Solutions-GmbH--14074963-inline.html",
+      "title": "Projektleitung (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleitung (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Puchheim",
+      "address_city": "Puchheim",
+      "clean_company": "FMS Flexible Mounting Solutions GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Teamlead-Produktentwicklung-m-w-d-Geretsried-Muenchen-Gustavo-Gusto-GmbH-Co-KG--14283685-inline.html",
+      "title": "Teamlead Produktentwicklung (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 produktentwicklung (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Geretsried, München",
+      "address_city": "Geretsried",
+      "clean_company": "Gustavo Gusto GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-m-w-d-Muenchen-expertum-GmbH--14274968-inline.html",
+      "title": "Projektleiter (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "München",
+      "address_city": "München",
+      "clean_company": "expertum GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Engineering-Project-Manager-ELT-Meister-Ingenieur-der-Elektrotechnik-m-w-d-Muenchen-Messe-Muenchen-GmbH--14303997-inline.html",
+      "title": "Engineering & Project Manager ELT (Meister / Ingenieur der Elektrotechnik) (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "81829 München",
+      "clean_company": "Messe München GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-TLB-und-Informationssicherheit-P-8A-w-m-d-Fuerstenfeldbruck-HENSOLDT--14332466-inline.html",
+      "title": "Projektleiter TLB und Informationssicherheit P-8A (w/m/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "82256 Fürstenfeldbruck",
+      "clean_company": "HENSOLDT"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Regioausbau-FttX-m-w-d-bei-M-net-Muenchen-M-net-Telekommunikations-GmbH--14195098-inline.html",
+      "title": "Projektleiter Regioausbau FttX (m/w/d) bei M-net",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Frankfurter Ring 158",
+      "address_city": "80807 München",
+      "clean_company": "M-net Telekommunikations GmbH"
+    },
+    {
+      "source": "kimeta",
+      "url": "https://www.kimeta.de/display-job/ecclesia-reinsurance-broker-gmbh/projektmanager-captive-risikofinanzierung-m-w-d/983196952.html",
+      "title": "Ecclesia Reinsurance-Broker GmbH Projektmanager Captive/Risikofinanzierung (m/w/d) Köln, München , Detmold",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "clean_company": "Ecclesia Reinsurance-Broker GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Erfahrener-Konstrukteur-m-w-d-mit-Projektleitungsaufgaben-im-Allgemeinen-Maschinenbau-Filderstadt-Mannheim-Muenchen-Nuernberg-Ravensburg-Stuttgart-Trossingen-Ulm-SCHULER-KONSTRUKTIONEN-GmbH--13490780-inline.html",
+      "title": "Erfahrener Konstrukteur (m/w/d) mit Projektleitungsaufgaben im Allgemeinen Maschinenbau",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleitung (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Filderstadt",
+      "clean_company": "SCHULER KONSTRUKTIONEN GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-m-w-d-Modulbau-Berlin-Muenchen-ALHO-Systembau-GmbH-2026-06-09-20-55-46-968--11783420-inline.html",
+      "title": "Projektleiter (m/w/d) Modulbau",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Berlin, München, Heidelberg oder Friesenhagen bei Siegen",
+      "clean_company": "ALHO Systembau GmbH_2026-06-09-20:55:46.968"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-m-w-d-Trinkwasser-Haar-VTG-GmbH-Ingenieurbuero--14308142-inline.html",
+      "title": "Projektleiter (m/w/d) Trinkwasser",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Reitzner-Allee 1",
+      "address_city": "85540 Haar",
+      "clean_company": "VTG GmbH Ingenieurbüro"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Internationaler-Produkt-und-Projektmanager-Brillenglaeser-m-w-d-Muenchen-Rodenstock-GmbH--14345590-inline.html",
+      "title": "Internationaler Produkt- und Projektmanager Brillengläser (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Elsenheimerstr. 33",
+      "address_city": "80687 München",
+      "clean_company": "Rodenstock GmbH",
+      "bewerbung": {
+        "status": "absage",
+        "stelle": "—",
+        "datum": "2026-07"
+      }
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Elektrotechnik-m-w-d-Muenchen-Muenchen-Rocksolid-Personalvermittlung-GmbH--14294875-inline.html",
+      "title": "Projektleiter Elektrotechnik (m/w/d) München",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "München",
+      "address_city": "München",
+      "clean_company": "Rocksolid Personalvermittlung GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-IAA-MOBILITY-Conference-m-w-d-Muenchen-Messe-Muenchen-GmbH--14344631-inline.html",
+      "title": "Project Manager IAA MOBILITY Conference (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "81829 München",
+      "clean_company": "Messe München GmbH"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/project-manager-m-w-d-at-peter-park-4433841977",
+      "title": "Project Manager (m/w/d)",
+      "company": "Project Manager (m/w/d)",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "Peter Park"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/projektmanager-m-w-d-at-probis-4446633180",
+      "title": "Projektmanager (m/w/d)",
+      "company": "Projektmanager (m/w/d)",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "PROBIS"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/pre-project-manager-at-tetra-pak-4450093423",
+      "title": "Pre-Project Manager",
+      "company": "Pre-Project Manager",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "Tetra Pak"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/projektmanager-organisationsentwicklung-m-w-d-at-bertrandt-group-4448562738",
+      "title": "Projektmanager Organisationsentwicklung (m/w/d",
+      "company": "Projektmanager Organisationsentwicklung (m/w/d",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "Bertrandt Group"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Teilprojektleiter-Energie-m-w-d-Bayreuth-FERCHAU-Connecting-People-and-Technologies--13994374-inline.html",
+      "title": "Teilprojektleiter Energie (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 40,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 teilprojektleit (+20)",
+        "🎯 energie (+4)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Friedrich-von-Schiller-Str. 35",
+      "address_city": "95444 Bayreuth",
+      "kennziffer": "STE87-15014-BT",
+      "clean_company": "FERCHAU – Connecting People and Technologies",
+      "bewerbung": {
+        "status": "mappe",
+        "stelle": "",
+        "datum": ""
+      }
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-w-m-d-Genehmigungsplanung-in-der-Energie-Wirtschaft-Muenchen-bayernets-GmbH--14320285-inline.html",
+      "title": "Projektingenieur (w/m/d) Genehmigungsplanung in der Energie-Wirtschaft",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 39,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "🎯 energie (+4)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "80336 München",
+      "clean_company": "bayernets GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-in-elektrische-Antriebe-Energiesysteme-m-w-d-Dresden-Nuernberg-Muenchen-OSTWALD-GmbH--14115114-inline.html",
+      "title": "Projektingenieur:in elektrische Antriebe & Energiesysteme (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 39,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "🎯 energie (+4)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Dresden / Nürnberg / München",
+      "address_city": "Dresden / Nürnberg / München",
+      "clean_company": "OSTWALD GmbH"
+    },
+    {
+      "source": "greenhouse:isaraerospace",
+      "url": "https://job-boards.eu.greenhouse.io/isaraerospace/jobs/4756747101",
+      "title": "Senior Project Manager - Ground Systems (m/f/d)",
+      "company": "Isaraerospace",
+      "location": "Ottobrunn, Bavaria, Germany",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 38,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 project manager (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-d-Dresden-Exentec-Germany-GmbH--13868888-inline.html",
+      "title": "Senior Projektmanager (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 38,
+      "score_reasons": [
+        "🎯 senior projektmanager (+22)",
+        "🎯 projektmanager (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-d-Nordrhein-Westfalen-Rochus-Mummert--14385134-inline.html"
+        },
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-d-Wesel-am-Rhein-Evangelisches-Krankenhaus-Wesel-GmbH--14381588-inline.html"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Dresden",
+      "clean_company": "Exentec Germany GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-Anlagenbau-m-w-d-Duisburg-Krefeld-Duesseldorf-Moenchengladbach-HAPEKO-Deutschland-GmbH--14376593-inline.html",
+      "title": "Senior Project Manager Anlagenbau (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 38,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 project manager (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Duisburg, Krefeld, Düsseldorf, Mönchengladbach",
+      "address_city": "Duisburg",
+      "clean_company": "HAPEKO Deutschland GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-d-Gebaeudemodernisierung-Frankfurt-GWH-Wohnungsgesellschaft-mbH-Hessen--14369596-inline.html",
+      "title": "Senior Projektmanager (m/w/d) Gebäudemodernisierung",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 38,
+      "score_reasons": [
+        "🎯 senior projektmanager (+22)",
+        "🎯 projektmanager (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "60489 Frankfurt",
+      "clean_company": "GWH Wohnungsgesellschaft mbH Hessen"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-im-Team-Schlammtrocknung-m-w-d-Berching-HUBER-SE--14341025-inline.html",
+      "title": "Senior Projektmanager im Team Schlammtrocknung (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 38,
+      "score_reasons": [
+        "🎯 senior projektmanager (+22)",
+        "🎯 projektmanager (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Industriepark Erasbach A1",
+      "address_city": "92334 Berching",
+      "clean_company": "HUBER SE"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-in-Betriebsorganisation-fuer-den-UKE-Zukunftsplan-2050-all-genders-Hamburg-Universitaetsklinikum-Hamburg-Eppendorf-UKE--14275554-inline.html",
+      "title": "Senior Projektmanager:in Betriebsorganisation für den UKE-Zukunftsplan 2050 (all genders)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 38,
+      "score_reasons": [
+        "🎯 senior projektmanager (+22)",
+        "🎯 projektmanager (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "20457 Hamburg",
+      "clean_company": "Universitätsklinikum Hamburg-Eppendorf (UKE)"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-in-Senior-Project-Manager-in-m-w-d-Post-Merger-Integration-PMI-Duesseldorf-SPIE-Germany-Switzerland-Austria-GmbH--14264604-inline.html",
+      "title": "Project Manager:in / Senior Project Manager:in (m/w/d) Post Merger Integration (PMI)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 38,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 project manager (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "EUREF-Campus 1",
+      "address_city": "40472 Düsseldorf",
+      "kennziffer": "2026-1179",
+      "clean_company": "SPIE Germany Switzerland Austria GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-m-w-d-Anlagenbau-Verfahrenstechnik-Maschinenbau-Dresden-Exentec-Germany-GmbH--13936368-inline.html",
+      "title": "Senior Project Manager (m/w/d) Anlagenbau, Verfahrenstechnik, Maschinenbau",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 38,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 project manager (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Grenzstraße 20",
+      "address_city": "01109 Dresden",
+      "clean_company": "Exentec Germany GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-m-w-d-Mainz-SCHOTT-AG--14315234-inline.html",
+      "title": "Senior Project Manager (m/w/d)*",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 38,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 project manager (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "66122 Mainz",
+      "clean_company": "SCHOTT AG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Director-Global-Project-Management-Office-PMO-m-w-d-Muenchen-LRE-Medical-GmbH--14315438-inline.html",
+      "title": "Director Global Project Management Office (PMO) (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 37,
+      "score_reasons": [
+        "🎯 pmo (+12)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "LRE Medical GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Product-Owner-Manager-DEXIOS-SaaS-Plattform-m-w-d-Muenchen-PCS-Systemtechnik-GmbH--14376438-inline.html",
+      "title": "Product Owner / Manager – DEXIOS SaaS-Plattform (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 37,
+      "score_reasons": [
+        "🎯 product owner (+12)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Pfälzer-Wald-Str. 36",
+      "address_city": "81539 München",
+      "clean_company": "PCS Systemtechnik GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-Manager-Strategy-PMO-m-w-d-Munich-ju-niz-Energy-GmbH--14292591-inline.html",
+      "title": "Senior Manager Strategy & PMO (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 37,
+      "score_reasons": [
+        "🎯 pmo (+12)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Munich",
+      "address_city": "Munich",
+      "clean_company": "ju:niz Energy GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Head-of-Global-Automotive-Parts-Business-m-w-d-Muenchen-Encory-GmbH--14318713-inline.html",
+      "title": "Head of Global Automotive Parts Business (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 37,
+      "score_reasons": [
+        "🚗 automotive (+12)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Atelierstraße 10",
+      "address_city": "81671 München",
+      "clean_company": "Encory GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Azubi-zum-Technischen-Modellbauer-Karosserie-und-Produktion-w-m-x-Werk-2-Plaetze-Muenchen-BMW-Group--14364785-inline.html",
+      "title": "Azubi zum Technischen Modellbauer, Karosserie und Produktion (w/m/x) - Werk [2 Plätze]",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 37,
+      "score_reasons": [
+        "🎯 karosserie (+12)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "München",
+      "address_city": "München",
+      "clean_company": "BMW Group"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--PMO-Projektcontroller-m-w-d-bei-Virtual-Eye-85737-Ismaning-Virtual-Eye-GmbH--14150747-inline.html",
+      "title": "PMO-Projektcontroller (m/w/d) bei Virtual Eye",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 37,
+      "score_reasons": [
+        "🎯 pmo (+12)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "85737 Ismaning",
+      "address_city": "85737 Ismaning",
+      "clean_company": "Virtual Eye GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Teilprojektleiter-fuer-EW-Ground-Support-w-m-d-Ulm-HENSOLDT--14344408-inline.html",
+      "title": "Technischer Teilprojektleiter für EW Ground Support (w/m/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 36,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 teilprojektleit (+20)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "89077 Ulm",
+      "clean_company": "HENSOLDT"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Teilprojektleiter-m-w-d-Elektrotechnik-in-der-Automatisierung-Eislingen-bei-Stuttgart-Hirotec-Bucher-GmbH--14262166-inline.html",
+      "title": "Teilprojektleiter (m/w/d) Elektrotechnik in der Automatisierung",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 36,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 teilprojektleit (+20)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Osttangente 1",
+      "address_city": "73054 Eislingen",
+      "clean_company": "Hirotec Bucher GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Planungsingenieure-Teil-Projektleiter-Planung-w-m-d-Stuttgart-CAT-Clean-Air-Technology-GmbH--14275534-inline.html",
+      "title": "Planungsingenieure / (Teil-)Projektleiter Planung (w/m/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 36,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 teil-projektleit (+20)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Motorstraße 51",
+      "address_city": "70499 Stuttgart",
+      "clean_company": "CAT Clean Air Technology GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-m-w-d-Elektronik-Karlsfeld-Incap-Electronics-Germany--12991982-inline.html",
+      "title": "Projektingenieur (m/w/d) Elektronik",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Hertzstraße 2",
+      "address_city": "85757 Karlsfeld",
+      "clean_company": "Incap Electronics Germany"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Maschinen-und-Anlagenpruefung-w-m-d-Muenchen-TUEV-SUED--14281206-inline.html",
+      "title": "Projektingenieur Maschinen- und Anlagenprüfung (w/m/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "80686 München",
+      "clean_company": "TÜV SÜD"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-techniker-m-w-d-Sprinkler-Plattling-Halle-Erfurt-Garching-bei-Muenchen-H-E-Haustechnik-und-Elektro-GmbH--13485879-inline.html",
+      "title": "Projektingenieur/-techniker (m/w/d) Sprinkler",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Plattling, Halle, Erfurt, Garching bei München",
+      "clean_company": "H+E Haustechnik und Elektro GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Service-Projektingenieur-m-w-d-Fuerstenfeldbruck-Schleifring-GmbH--14308308-inline.html",
+      "title": "Service-Projektingenieur (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Maisacher Straße 144",
+      "address_city": "82256 Fürstenfeldbruck",
+      "clean_company": "Schleifring GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Technical-Specialist-m-w-d-Gewerbe-Industrie-Muenchen-Berlin-Hamburg-Duesseldorf-Koeln-ista-SE--14172337-inline.html",
+      "title": "Projektingenieur / Technical Specialist (m/w/d) – Gewerbe & Industrie",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "München, Berlin, Hamburg, Düsseldorf, Köln",
+      "address_city": "München",
+      "clean_company": "ista SE"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-m-w-d-Wasserstoff-Geretsried-Tyczka-Hydrogen-GmbH--14368672-inline.html",
+      "title": "Projektingenieur (m/w/d) Wasserstoff",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Blumenstraße 5",
+      "address_city": "82538 Geretsried",
+      "clean_company": "Tyczka Hydrogen GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-in-m-w-d-Hebertshausen-meinestadt-de--14182911-inline.html",
+      "title": "Projektingenieur/in (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Hebertshausen",
+      "address_city": "Hebertshausen",
+      "clean_company": "meinestadt.de"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-in-im-Kraftwerks-und-Industriebau-80-100-m-w-d-Hamburg-Muenchen-Stuttgart-TBF-Partner-AG--14162819-inline.html",
+      "title": "Projektingenieur:in im Kraftwerks- und Industriebau 80-100 % (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Hamburg, München, Stuttgart",
+      "clean_company": "TBF + Partner AG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Fahrzeugtechniker-Demontage-Entwicklungsfahrzeuge-m-w-d-Unterschleissheim-FERCHAU-Connecting-People-and-Technologies--13619155-inline.html",
+      "title": "Fahrzeugtechniker - Demontage Entwicklungsfahrzeuge (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🚗 fahrzeug (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "85716 Unterschleißheim",
+      "kennziffer": "STE95-73819-MAuto",
+      "clean_company": "FERCHAU – Connecting People and Technologies",
+      "bewerbung": {
+        "status": "mappe",
+        "stelle": "",
+        "datum": ""
+      }
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--KFZ-Mechaniker-Monteur-Fahrzeugglas-m-w-d-in-Fuerstenfeldbruck-auch-fuer-Quereinsteiger-774-Fuerstenfeldbruck-Carglass-GmbH--14127020-inline.html",
+      "title": "KFZ-Mechaniker/-Monteur Fahrzeugglas (m/w/d) in Fürstenfeldbruck - auch für Quereinsteiger – 774",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🚗 fahrzeug (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Fürstenfeldbruck",
+      "address_city": "Fürstenfeldbruck",
+      "clean_company": "Carglass GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Quereinsteiger-m-w-d-Demontage-Entwicklungsfahrzeuge-Unterschleissheim-FERCHAU-Connecting-People-and-Technologies--13619157-inline.html",
+      "title": "Quereinsteiger (m/w/d) Demontage Entwicklungsfahrzeuge",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🚗 fahrzeug (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "85716 Unterschleißheim",
+      "kennziffer": "STE94-98138-MAuto",
+      "clean_company": "FERCHAU – Connecting People and Technologies",
+      "bewerbung": {
+        "status": "mappe",
+        "stelle": "",
+        "datum": ""
+      }
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Teamleitung-Produkt-Support-w-m-div-Muenchen-Bosch-Gruppe--14168356-inline.html",
+      "title": "Teamleitung Produkt-Support (w/m/div.)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🎯 teamleitung (+10)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Fritz-Schäffer-Straße",
+      "address_city": "81737 München",
+      "clean_company": "Bosch Gruppe"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-Lead-Engineer-fuer-aktive-Antennen-Systeme-w-m-d-Ulm-HENSOLDT--14344371-inline.html",
+      "title": "Technischer Projektleiter / Lead Engineer für aktive Antennen-Systeme (w/m/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 34,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 technischer projektleiter (+18)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "89077 Ulm",
+      "clean_company": "HENSOLDT"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Teamleiter-in-Einkauf-m-w-d-Medizintechnik-Muenchen-Arthrex-GmbH--14364380-inline.html",
+      "title": "Teamleiter:in Einkauf (m/w/d) - Medizintechnik",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 33,
+      "score_reasons": [
+        "🎯 medizintechnik (+8)",
+        "📍 muenchen (+25)"
+      ],
+      "category": "pharma",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Erwin-Hielscher-Straße 9",
+      "address_city": "81249 München",
+      "clean_company": "Arthrex GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Produktentwicklung-Sicherheitstechnik-m-w-d-Luebeck-Draegerwerk-AG-Co-KGaA--14373710-inline.html",
+      "title": "Projektmanager Produktentwicklung Sicherheitstechnik (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 32,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "🎯 produktentwicklung (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Revalstraße 1",
+      "address_city": "23560 Lübeck",
+      "clean_company": "Drägerwerk AG & Co. KGaA"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Produktentwicklung-m-w-d-Vollzeit-vor-Ort-in-Harrislee-Flensburg-Harrislee-Momento-Living-GmbH--14199121-inline.html",
+      "title": "Projektmanager Produktentwicklung (m/w/d) - Vollzeit - vor Ort in Harrislee/ Flensburg",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 32,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "🎯 produktentwicklung (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Harrislee",
+      "address_city": "Harrislee",
+      "clean_company": "Momento Living GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Produktentwicklungsprojekte-m-w-d-Winterbach-PFISTERER-Kontaktsysteme-GmbH--14276170-inline.html",
+      "title": "Projektleiter Produktentwicklungsprojekte (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 32,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 produktentwicklung (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Rosenstraße 44",
+      "address_city": "73650 Winterbach",
+      "clean_company": "PFISTERER Kontaktsysteme GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Produktentwicklung-m-w-d-Bad-Salzuflen-Herford-Buende-Detmold-Bielefeld-Lemgo-POS-TUNING-GmbH--14363613-inline.html",
+      "title": "Projektmanager Produktentwicklung (m/w/d/)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 32,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "🎯 produktentwicklung (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Produktentwicklung-m-w-d-Dortmund-Dr-Ausbuettel-GmbH-Co-KG--13608896-inline.html"
+        },
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Produktentwicklung-m-w-d-Boxberg-Windischbuch-Systemair-GmbH--14283133-inline.html"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Bad Salzuflen, Herford, Bünde, Detmold, Bielefeld, Lemgo",
+      "address_city": "Bad Salzuflen",
+      "clean_company": "POS TUNING GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Eplan-Hardware-Automotive-m-w-d-Titisee-Neustadt-Morath-Automatisierung-GmbH--12868519-inline.html",
+      "title": "Projektleiter - Eplan / Hardware / Automotive (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 28,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🚗 automotive (+12)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "79822 Titisee-Neustadt",
+      "clean_company": "Morath Automatisierung GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Interim-Program-Manager-AI-Strategy-Transformation-f-m-x-limited-2-years-Muenchen-ZEISS--14384474-inline.html",
+      "title": "Interim Program Manager – AI Strategy & Transformation (f/m/x) - limited 2 years",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "81379 München",
+      "clean_company": "ZEISS"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Manager-Process-Automation-m-w-d-Geretsried-Tyczka-GmbH--14062648-inline.html",
+      "title": "Manager Process Automation (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "📍 muenchen (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Blumenstraße 5",
+      "address_city": "82538 Geretsried",
+      "clean_company": "Tyczka GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--KI-Manager-m-w-d-Iserlohn-Winner-Spedition-GmbH-Co-KG--14315899-inline.html",
+      "title": "KI-Manager (m/w/d)",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "🤖 ki-manager (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--KI-Manager-m-w-d-Gummersbach-AggerEnergie-GmbH--14278504-inline.html"
+        },
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--KI-Manager-m-w-d-Koeln-Institut-der-deutschen-Wirtschaft--14273250-inline.html"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Brinkhofstraße 41",
+      "address_city": "58642 Iserlohn",
+      "clean_company": "Winner Spedition GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--KI-Manager-m-w-d-in-Vollzeit-Stuhr-M-S-Transporte-GmbH-Co-KG--14283422-inline.html",
+      "title": "KI-Manager (m/w/d) in Vollzeit",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "🤖 ki-manager (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Carl-Zeiss-Str. 6",
+      "address_city": "28816 Stuhr",
+      "clean_company": "M+S Transporte GmbH & Co. KG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--KI-Manager-m-w-d-Prozessautomatisierung-und-digitale-Anwendungen-Heilbronn-Gerd-Baer-GmbH--14332166-inline.html",
+      "title": "KI-Manager (m/w/d) Prozessautomatisierung und digitale Anwendungen",
+      "company": "",
+      "location": "",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "🤖 ki-manager (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "74078 Heilbronn",
+      "clean_company": "Gerd Bär GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Program-Manager-m-f-d-Wessling-Dornier-Seawings-GmbH--14303111-inline.html",
+      "title": "Program Manager (m/f/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Junkersstraße 302",
+      "address_city": "82234 Weßling",
+      "clean_company": "Dornier Seawings GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Senior-IT-Program-Manager-m-f-x-Muenchen-Allane-SE--14308011-inline.html",
+      "title": "(Senior) IT Program Manager (m/f/x)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "clean_company": "Allane SE"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--CAD-Konstrukteur-3D-Modellierung-Baugruppen-m-w-d-Groebenzell-Mathias-Baumann-Ingenieurbuero--14277911-inline.html",
+      "title": "CAD Konstrukteur - 3D-Modellierung / Baugruppen (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "82194 Gröbenzell",
+      "clean_company": "Mathias Baumann Ingenieurbüro"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Customer-Program-Manager-m-w-d-Muenchen-Mynaric-AG--13921464-inline.html",
+      "title": "Customer Program Manager (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "München",
+      "address_city": "München",
+      "clean_company": "Mynaric AG"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Contracts-Program-Manager-FELDKIRCHEN-Munich-Cadence-Design-Systems-GmbH--14170362-inline.html",
+      "title": "Contracts Program Manager",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "FELDKIRCHEN (Munich)",
+      "address_city": "FELDKIRCHEN (Munich)",
+      "clean_company": "Cadence Design Systems GmbH"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Program-Manager-Contracts-Systems-and-Processes-m-w-d-Ulm-Taufkirchen-Oberkochen-HENSOLDT--14344527-inline.html",
+      "title": "Program Manager Contracts Systems and Processes (m/w/d)",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "📍 muenchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Ulm, Taufkirchen, Oberkochen",
+      "address_city": "Ulm",
+      "clean_company": "HENSOLDT"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Spezialist-m-w-d-BMW-Umfeld-Muenchen-FERCHAU-Connecting-People-and-Technologies--13703512-inline.html",
+      "title": "Spezialist (m/w/d) BMW-Umfeld",
+      "company": "",
+      "location": "muenchen",
+      "description": "",
+      "first_seen": "2026-08-10T17:01:30.892907",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Hufelandstr. 27",
+      "address_city": "80939 München",
+      "kennziffer": "STE42-70512-MAS",
+      "clean_company": "FERCHAU – Connecting People and Technologies",
+      "bewerbung": {
+        "status": "mappe",
+        "stelle": "",
+        "datum": ""
+      }
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/senior-project-manager-m-w-d-internationalisation-at-renk-group-4445517091",
+      "title": "Senior Project Manager (m/w/d) Internationalisation",
+      "company": "Senior Project Manager (m/w/d) Internationalisation",
+      "location": "Metropolregion München",
+      "description": "",
+      "first_seen": "2026-08-10T13:15:18.953275",
+      "is_new": false,
+      "score": 63,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 project manager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Metropolregion München",
+      "clean_company": "RENK Group"
+    },
+    {
+      "source": "kimeta",
+      "url": "https://www.kimeta.de/display-job/tum-klinikum-rechts-der-isar/wirtschaftsinformatiker-als-programmleiter-m-w-d/984522888.html",
+      "title": "TUM Klinikum Rechts der Isar Wirtschaftsinformatiker als Programmleiter (m/w/d) 81675 München 22.7.2026",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-08-10T13:15:18.953275",
+      "is_new": false,
+      "score": 41,
+      "score_reasons": [
+        "🎯 programmleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "81675 München"
     },
     {
       "source": "linkedin",
@@ -493,7 +3404,7 @@
       "location": "München",
       "description": "",
       "first_seen": "2026-08-10T13:15:18.953275",
-      "is_new": true,
+      "is_new": false,
       "score": 41,
       "score_reasons": [
         "🎯 project manager (+16)",
@@ -514,7 +3425,7 @@
       "location": "München",
       "description": "",
       "first_seen": "2026-08-10T13:15:18.953275",
-      "is_new": true,
+      "is_new": false,
       "score": 41,
       "score_reasons": [
         "🎯 project manager (+16)",
@@ -529,74 +3440,13 @@
     },
     {
       "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/projektleitung-instandsetzungsma%C3%9Fnahmen-m-w-d-at-m%C3%BCnchner-wohnen-4439146764",
-      "title": "Projektleitung Instandsetzungsmaßnahmen (m/w/d)",
-      "company": "Projektleitung Instandsetzungsmaßnahmen (m/w/d)",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-10T13:15:18.953275",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleitung (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "Münchner Wohnen"
-    },
-    {
-      "source": "kimeta",
-      "url": "https://www.kimeta.de/display-job/tum-klinikum-rechts-der-isar/wirtschaftsinformatiker-als-programmleiter-m-w-d/984522888.html",
-      "title": "TUM Klinikum Rechts der Isar Wirtschaftsinformatiker als Programmleiter (m/w/d) 81675 München 22.7.2026",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-10T13:15:18.953275",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 programmleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "81675 München"
-    },
-    {
-      "source": "kimeta",
-      "url": "https://www.kimeta.de/display-job/tum-klinikum-rechts-der-isar/programmleiter-ai-accelerator-m-w-d/984522887.html",
-      "title": "TUM Klinikum Rechts der Isar Programmleiter - AI Accelerator (m/w/d) 81675 München 22.7.2026",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-10T13:15:18.953275",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 programmleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "81675 München"
-    },
-    {
-      "source": "linkedin",
       "url": "https://de.linkedin.com/jobs/view/projektmanager-in-m-w-d-at-msx-international-4442108442",
       "title": "Projektmanager/-in (m/w/d)",
       "company": "Projektmanager/-in (m/w/d)",
       "location": "München",
       "description": "",
       "first_seen": "2026-08-10T13:15:18.953275",
-      "is_new": true,
+      "is_new": false,
       "score": 41,
       "score_reasons": [
         "🎯 projektmanager (+16)",
@@ -617,7 +3467,7 @@
       "location": "München",
       "description": "",
       "first_seen": "2026-08-10T13:15:18.953275",
-      "is_new": true,
+      "is_new": false,
       "score": 41,
       "score_reasons": [
         "🎯 projektleitung (+16)",
@@ -631,55 +3481,24 @@
       "clean_company": "adesso SE"
     },
     {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/isaraerospace/senior-project-manager-ground-systems-ottobrunn-bavaria-206002",
-      "title": "Senior Project Manager - Ground Systems (m/f/d)",
-      "company": "Isaraerospace",
-      "location": "Ottobrunn, Bavaria",
-      "description": "&lt;p&gt;&lt;strong&gt;&lt;span lang=&quot;EN-US&quot;&gt;Mission Brief&amp;nbsp;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;We deliver the half of the rocket that stays on the ground. As Senior Project Manager in the Ground Systems department at Isar Aerospace, you will be managing the establishment and deployment of mid- to large-scale test and launch facilities. Situated in Munich, you will be playing a key role in managing the project from the initiation, over all engineering phases, through construction and commissioning until handing over to the on-site operations crew. The multidisc",
-      "remote": false,
-      "first_seen": "2026-08-10T13:15:18.953275",
-      "is_new": true,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [
-        {
-          "source": "greenhouse:isaraerospace",
-          "url": "https://job-boards.eu.greenhouse.io/isaraerospace/jobs/4756747101"
-        }
-      ],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "xing",
-      "url": "https://www.xing.com/jobs/martinsried-technischer-projektleiter-lasersysteme-photonik-155330696",
-      "title": "Technischer Projektleiter Lasersysteme / Photonik (m/w/d)",
-      "company": "Menlo Systems GmbH",
-      "location": "Martinsried",
+      "source": "kimeta",
+      "url": "https://www.kimeta.de/display-job/tum-klinikum-rechts-der-isar/programmleiter-ai-accelerator-m-w-d/984522887.html",
+      "title": "TUM Klinikum Rechts der Isar Programmleiter - AI Accelerator (m/w/d) 81675 München 22.7.2026",
+      "company": "",
+      "location": "München",
       "description": "",
       "first_seen": "2026-08-10T13:15:18.953275",
-      "is_new": true,
-      "score": 34,
+      "is_new": false,
+      "score": 41,
       "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 technischer projektleiter (+18)"
+        "🎯 programmleiter (+16)",
+        "📍 münchen (+25)"
       ],
       "category": "pm",
-      "alt_sources": [
-        {
-          "source": "bundesagentur",
-          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12288-4870343327-S"
-        }
-      ],
+      "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "address_city": "82152 Martinsried",
-      "clean_company": "Menlo Systems GmbH"
+      "address_city": "81675 München"
     },
     {
       "source": "workday:Carl Zeiss Meditec",
@@ -689,7 +3508,7 @@
       "location": "München",
       "description": "",
       "first_seen": "2026-08-10T13:15:18.953275",
-      "is_new": true,
+      "is_new": false,
       "score": 25,
       "score_reasons": [
         "📍 münchen (+25)"
@@ -720,25 +3539,74 @@
       "verify_status": "ok-spa"
     },
     {
-      "source": "sf:Bertrandt",
-      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-Technischer-Projektleiter-(mwd)-Simulation-&-Training-80313/1394621033/",
-      "title": "Technischer Projektleiter (mwd) Simulation & Training",
-      "company": "Bertrandt",
+      "source": "kimeta",
+      "url": "https://www.kimeta.de/display-job/brueggen-engineering-gmbh/projektleiter-m-w-d-design-transfer-qualitaetskontrolle-von-diagnostikprodukten-1644/984469676.html",
+      "title": "Brüggen Engineering GmbH Neu Projektleiter (m/w/d) Design Transfer Qualitätskontrolle von Diagnostikprodukten (1644) München 9.8.2026",
+      "company": "",
       "location": "München",
       "description": "",
       "first_seen": "2026-08-10T09:34:52.307935",
       "is_new": false,
-      "score": 47,
+      "score": 41,
       "score_reasons": [
         "🎯 projektleiter (+16)",
-        "🎯 technischer projektleiter (+18)",
-        "📍 münchen (+25)",
-        "⚠️ Eng-Dienstleister Bertrandt (×0.8, −12)"
+        "📍 münchen (+25)"
       ],
-      "category": "auto",
+      "category": "pm",
       "alt_sources": [],
       "verified": true,
-      "verify_status": "ok"
+      "verify_status": "ok",
+      "address_city": "68167 Mannheim",
+      "clean_company": "Brüggen Engineering GmbH"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13552-WJA25L4IPLJHRN7V-S",
+      "title": "Projektleiter (m/w/d) Software Diagnostic Digital Product",
+      "company": "N.O.C Engineering GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-10T09:34:52.307935",
+      "is_new": false,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "78052 Villingen-Schwenningen",
+      "kennziffer": "13552-WJA25L4IPLJHRN7V-S",
+      "clean_company": "N.O.C Engineering GmbH"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/11943-8BN05JHVZX99700Q-S",
+      "title": "Projektleiter Technische Entwicklung & Simulation (m/w/d)",
+      "company": "INGSERV GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-10T09:34:52.307935",
+      "is_new": false,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Krauss-Maffei-Str. 11",
+      "address_city": "80997 München",
+      "kennziffer": "11943-8BN05JHVZX99700Q-S",
+      "clean_company": "INGSERV GmbH"
     },
     {
       "source": "bundesagentur",
@@ -761,74 +3629,8 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "72189 Vöhringen",
-      "kennziffer": "13552-HHUH7G4YLOGID00W-S"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/11943-8BN05JHVZX99700Q-S",
-      "title": "Projektleiter Technische Entwicklung & Simulation (m/w/d)",
-      "company": "INGSERV GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-10T09:34:52.307935",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80997 München",
-      "kennziffer": "11943-8BN05JHVZX99700Q-S"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13552-WJA25L4IPLJHRN7V-S",
-      "title": "Projektleiter (m/w/d) Software Diagnostic Digital Product",
-      "company": "N.O.C Engineering GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-10T09:34:52.307935",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "78052 Villingen-",
-      "kennziffer": "13552-WJA25L4IPLJHRN7V-S"
-    },
-    {
-      "source": "kimeta",
-      "url": "https://www.kimeta.de/display-job/brueggen-engineering-gmbh/projektleiter-m-w-d-design-transfer-qualitaetskontrolle-von-diagnostikprodukten-1644/984469676.html",
-      "title": "Brüggen Engineering GmbH Neu Projektleiter (m/w/d) Design Transfer Qualitätskontrolle von Diagnostikprodukten (1644) München 9.8.2026",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-10T09:34:52.307935",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "68167 Mannheim",
-      "clean_company": "Brüggen Engineering GmbH"
+      "kennziffer": "13552-HHUH7G4YLOGID00W-S",
+      "clean_company": "N.O.C Engineering GmbH"
     },
     {
       "source": "bundesagentur",
@@ -852,11 +3654,32 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "80807 München",
+      "clean_company": "Akkodis Germany Tech Experts GmbH",
       "bewerbung": {
         "status": "mappe",
         "stelle": "",
         "datum": ""
       }
+    },
+    {
+      "source": "kimeta",
+      "url": "https://www.kimeta.de/display-job/zetcon-ingenieure-gmbh/projektingenieur-m-w-d-bauwerkspruefung-bauwerkserhaltung-projektmanagement-it/984521993.html",
+      "title": "ZETCON Ingenieure Neu Projektingenieur (m/w/d) Bauwerksprüfung / Bauwerkserhaltung - Projektmanagement, IT München , Frankfurt am Main, Bochum, 8.8.2026",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-08-10T09:34:52.307935",
+      "is_new": false,
+      "score": 35,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "clean_company": "ZETCON Ingenieure"
     },
     {
       "source": "bundesagentur",
@@ -879,27 +3702,8 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "72072 Tübingen",
-      "kennziffer": "13552-JC4MB4B3GZPCT56C-S"
-    },
-    {
-      "source": "kimeta",
-      "url": "https://www.kimeta.de/display-job/zetcon-ingenieure-gmbh/projektingenieur-m-w-d-bauwerkspruefung-bauwerkserhaltung-projektmanagement-it/984521993.html",
-      "title": "ZETCON Ingenieure Neu Projektingenieur (m/w/d) Bauwerksprüfung / Bauwerkserhaltung - Projektmanagement, IT München , Frankfurt am Main, Bochum, 8.8.2026",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-10T09:34:52.307935",
-      "is_new": false,
-      "score": 35,
-      "score_reasons": [
-        "🎯 projektingenieur (+10)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "clean_company": "ZETCON Ingenieure"
+      "kennziffer": "13552-JC4MB4B3GZPCT56C-S",
+      "clean_company": "N.O.C Engineering GmbH"
     },
     {
       "source": "edag-karriere",
@@ -950,262 +3754,6 @@
       "clean_company": "Scania Deutschland GmbH"
     },
     {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/vaeridion/technical-project-manager-propulsion-system-all-genders-munich-452904",
-      "title": "Technical Project Manager - Propulsion System (all genders)",
-      "company": "væridion",
-      "location": "Munich HQ",
-      "description": "<p style=\"min-height:1.5em\"><strong>Your Mission:</strong></p><p style=\"min-height:1.5em\">As Project Manager – Propulsion System, you will lead the development and integration of VÆRIDION's electric propulsion system for next-generation electric aircraft. You will manage cross-functional activities across engineering, testing, certification, manufacturing, and supply chain to ensure propulsion system milestones are delivered on time, within budget, and in accordance with programme and airworthiness requirements.</p><div style=\"min-height:1.2em;margin-top:0;margin-bottom:0\"> </div><p style=\"min",
-      "remote": false,
-      "first_seen": "2026-08-09T12:54:32.979680",
-      "is_new": false,
-      "score": 71,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "🎯 technical project manager (+18)",
-        "🚗 automotive (+12)",
-        "📍 munich (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/navflex/senior-manager-robotic-platforms-engineering-munich-32956",
-      "title": "Senior Manager, Robotic Platforms Engineering - M/F/D",
-      "company": "Navflex",
-      "location": "Munich",
-      "description": "<p style=\"min-height:1.5em\"><strong>About Navflex</strong></p><p style=\"min-height:1.5em\">At Navflex, we're pioneering the future of logistics automation through cutting-edge AI and</p><p style=\"min-height:1.5em\">robotics. Our autonomous mobile robots (AMRs) are transforming the way goods are loaded</p><p style=\"min-height:1.5em\">and unloaded, enabling plug-and-play solutions that streamline operations and enhance</p><p style=\"min-height:1.5em\">efficiency across the global supply chain for some of the world’s most demanding warehouse</p><p style=\"min-height:1.5em\">Environments. Our internation",
-      "remote": false,
-      "first_seen": "2026-08-09T12:54:32.979680",
-      "is_new": false,
-      "score": 65,
-      "score_reasons": [
-        "🎯 product development (+12)",
-        "🎯 prototyp (+12)",
-        "🎯 robotics (+16)",
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "sf:Capgemini",
-      "url": "https://careers.capgemini.com/job/Muenchen-Technischer-Projektmanager-(wmd)/1413835033/",
-      "title": "Technischer Projektmanager (wmd)",
-      "company": "Capgemini",
-      "location": "Muenchen",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 59,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "🎯 technischer projektmanager (+18)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/clera/member-of-technical-staff-product-ai-agents-munich-452914",
-      "title": "Member of Technical Staff, Product (AI Agents)",
-      "company": "Clera",
-      "location": "Munich",
-      "description": "<h3>About the Role</h3><p style=\"min-height:1.5em\">We are an early-stage enterprise AI automation company headquartered in Munich, Germany. Our platform creates AI coworkers that observe, learn, and take over complex but repeatable workflows — freeing teams in professional services, insurance, financial services, and customer support from hours of manual busywork.</p><p style=\"min-height:1.5em\">As a <strong>Member of Technical Staff, Product</strong>, you will turn observed workflow data into production-grade AI agents that work autonomously on behalf of customers. You'll own the full lifecycl",
-      "remote": false,
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 49,
-      "score_reasons": [
-        "🎯 product development (+12)",
-        "🎯 prototyp (+12)",
-        "📍 munich (+25)"
-      ],
-      "category": "other",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/clera/forward-deployed-engineer-dach-munich-307808",
-      "title": "Forward Deployed Engineer, DACH",
-      "company": "Clera",
-      "location": "Munich",
-      "description": "<h3>About the Role</h3><p style=\"min-height:1.5em\">A fast-growing, Y Combinator–backed enterprise AI automation company is hiring a <strong>Forward Deployed Engineer</strong> based in Munich to embed directly with major DACH enterprise customers and help them become AI-native. You will work alongside an Enterprise AI Transformation Lead, scoping, building, and shipping production-grade AI agents and integrations that deliver measurable business value — and feed those learnings back into the core product.</p><p style=\"min-height:1.5em\">This is a high-ownership, high-impact role at the intersect",
-      "remote": false,
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 43,
-      "score_reasons": [
-        "🎯 ai transformation (+18)",
-        "📍 munich (+25)"
-      ],
-      "category": "ki",
-      "alt_sources": [
-        {
-          "source": "arbeitnow",
-          "url": "https://www.arbeitnow.com/jobs/companies/clera/forward-deployed-engineer-dach-munich-421861"
-        }
-      ],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/clera/founding-deployment-strategist-munich-300665",
-      "title": "Founding Deployment Strategist",
-      "company": "Clera",
-      "location": "Munich",
-      "description": "<h3>About the Role</h3><p style=\"min-height:1.5em\">A Y Combinator–backed enterprise AI startup is hiring a <strong>Founding Deployment Strategist</strong> to lead its European expansion from Munich. This is a founding-level, high-ownership role sitting at the intersection of hands-on AI engineering, enterprise customer success, and team building.</p><p style=\"min-height:1.5em\">You will work directly with the CEO to turn large enterprises into AI-native operators — diagnosing high-leverage automation opportunities, building and deploying production AI agents, and coaching C-suite stakeholders t",
-      "remote": false,
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 43,
-      "score_reasons": [
-        "🎯 ai transformation (+18)",
-        "📍 munich (+25)"
-      ],
-      "category": "other",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "sf:Knorr-Bremse",
-      "url": "https://careers.knorr-bremse.com/job/München-Teamleitung-Supply-&-Inventory-Planning-EMEA-(mwd)-80809/1416082133/",
-      "title": "Teamleitung Supply & Inventory Planning EMEA (mwd)",
-      "company": "Knorr-Bremse",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 43,
-      "score_reasons": [
-        "🎯 teamleitung (+10)",
-        "📍 münchen (+25)",
-        "🏢 Wunschfirma Knorr-Bremse (+8)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "bewerbung": {
-        "status": "mappe",
-        "stelle": "",
-        "datum": ""
-      }
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/autonomous-teaming/senior-robotics-perception-engineer-multi-object-tracking-munich-deu-5053",
-      "title": "Senior Robotics Perception Engineer – Multi-Object Tracking",
-      "company": "autonomous-teaming",
-      "location": "Munich (DEU)",
-      "description": "<p>Find <a href=\"https://www.arbeitnow.com\">Jobs in Germany</a> on Arbeitnow</a>",
-      "remote": false,
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 robotics (+16)",
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "sf:Webasto",
-      "url": "https://jobs.webasto.com/job/Stockdorf-Senior-Project-Manager-(wmx)/1419524133/",
-      "title": "Senior Project Manager (wmx)",
-      "company": "Webasto",
-      "location": "Stockdorf",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "82131 Stockdorf"
-    },
-    {
-      "source": "sf:Webasto",
-      "url": "https://jobs.webasto.com/job/Stockdorf-Senior-Project-Manager-(fmx)/1419524233/",
-      "title": "Senior Project Manager (fmx)",
-      "company": "Webasto",
-      "location": "Stockdorf",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "36417 Job"
-    },
-    {
-      "source": "sf:Bertrandt",
-      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-Projektleiter-Teamcenter-PLM-Einführung-(mwd)-80939/1394557333/",
-      "title": "Projektleiter Teamcenter PLM Einführung (mwd)",
-      "company": "Bertrandt",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 37,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🔧 teamcenter (+6)",
-        "📍 münchen (+25)",
-        "⚠️ Eng-Dienstleister Bertrandt (×0.8, −10)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Technischen-Modellbauer,-Karosserie-und-Produktion-(wmx)-Werk-2-Plätze-BY-80809/1420629433/",
-      "title": "Azubi zum Technischen Modellbauer, Karosserie und Produktion (wmx) Werk 2 Plätze BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 37,
-      "score_reasons": [
-        "🎯 karosserie (+12)",
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
       "source": "yourfirm",
       "url": "https://www.yourfirm.de/job/wittmann-entsorgungswirtschaft-gmbh/werkstattleiter-meister-m-w-d-im-bereich-nutzfahrzeugtechnik/yf-47499/",
       "title": "Werkstattleiter /-meister (m/w/d) im Bereich Nutzfahrzeugtechnik",
@@ -1230,323 +3778,9 @@
       "clean_company": "Wittmann Entsorgungswirtschaft GmbH"
     },
     {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Fahrzeuglackierer-(wmx)-in-der-Niederlassung-BY-80809/1414460533/",
-      "title": "Azubi zum Fahrzeuglackierer (wmx) in der Niederlassung BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 35,
-      "score_reasons": [
-        "🚗 fahrzeug (+10)",
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:Bertrandt",
-      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-Senior-IT-Workplace-Project-Manager-(mwd)-80313/1423813333/",
-      "title": "Senior IT Workplace Project Manager (mwd)",
-      "company": "Bertrandt",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 32,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 münchen (+25)",
-        "⚠️ Eng-Dienstleister Bertrandt (×0.8, −9)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "sf:Bertrandt",
-      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-Projektmanager-Organisationsentwicklung-(mwd-80313/1423082933/",
-      "title": "Projektmanager Organisationsentwicklung (mwd",
-      "company": "Bertrandt",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 32,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 münchen (+25)",
-        "⚠️ Eng-Dienstleister Bertrandt (×0.8, −9)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "xing",
-      "url": "https://www.xing.com/jobs/starnberg-projektmanager-digitale-prozesse-business-development-156822233",
-      "title": "Projektmanager Digitale Prozesse & Business Development (m/w/d)",
-      "company": "Cargentur GmbH",
-      "location": "Starnberg",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 30,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 starnberg (+14)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_street": "Gautinger Str. 10",
-      "address_city": "82319 Starnberg",
-      "clean_company": "Cargentur GmbH"
-    },
-    {
-      "source": "sf:Bertrandt",
-      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-UIMotion-Designer-Automotive-HMI-(mwd)-80313/1420940633/",
-      "title": "UIMotion Designer Automotive HMI (mwd)",
-      "company": "Bertrandt",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 29,
-      "score_reasons": [
-        "🚗 automotive (+12)",
-        "📍 münchen (+25)",
-        "⚠️ Eng-Dienstleister Bertrandt (×0.8, −8)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/allane-se/senior-it-program-manager-munchen-393021",
-      "title": "(Senior) IT Program Manager (m/f/x)",
-      "company": "Allane SE",
-      "location": "München",
-      "description": "<p>Find <a href=\"https://www.arbeitnow.com\">Jobs in Germany</a> on Arbeitnow</a>",
-      "remote": false,
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Werkzeugmechaniker-(wmx)-Werk-4-Plätze-BY-80809/1420646933/",
-      "title": "Azubi zum Werkzeugmechaniker (wmx) Werk 4 Plätze BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Zerspanungsmechaniker-(wmx)-5-Plätze-BY-80809/1420639733/",
-      "title": "Azubi zum Zerspanungsmechaniker (wmx) 5 Plätze BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Fachinformatiker-für-Daten-und-Prozessanalyse-(wmx)-Werk-5-Plätze-1-BY-80809/1405374433/",
-      "title": "Azubi zum Fachinformatiker für Daten und Prozessanalyse (wmx) Werk 5 Plätze 1 BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Werkfeuerwehrmann-(wmx)-Werk-6-Plätze-BY-80809/1420621133/",
-      "title": "Azubi zum Werkfeuerwehrmann (wmx) Werk 6 Plätze BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Fertigungsmechaniker-(wmx)-Werk-26-Plätze-BY-80809/1420644433/",
-      "title": "Azubi zum Fertigungsmechaniker (wmx) Werk 26 Plätze BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Automobilkaufmann-(wmx)-in-der-Niederlassung-(25-Plätze)-BY-80809/1414460433/",
-      "title": "Azubi zum Automobilkaufmann (wmx) in der Niederlassung (25 Plätze) BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Elektroniker-für-Automatisierungstechnik-(wmx)-Werk-27-Plätze-BY-80809/1419798933/",
-      "title": "Azubi zum Elektroniker für Automatisierungstechnik (wmx) Werk 27 Plätze BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Kaufmann-für-Digitalisierungsmanagement-(wmx)-Werk-6-Plätze-BY-80809/1405375833/",
-      "title": "Azubi zum Kaufmann für Digitalisierungsmanagement (wmx) Werk 6 Plätze BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:Bertrandt",
-      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-Lead-Ingenieur-elektrische-Energietechnik-(mwd)-80313/1413732633/",
-      "title": "Lead Ingenieur elektrische Energietechnik (mwd)",
-      "company": "Bertrandt",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-09T05:19:01.542855",
-      "is_new": false,
-      "score": 23,
-      "score_reasons": [
-        "🎯 energie (+4)",
-        "📍 münchen (+25)",
-        "⚠️ Eng-Dienstleister Bertrandt (×0.8, −6)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/clera/remote-founding-lead-recruiter-468030",
-      "title": "Founding Lead Recruiter",
-      "company": "Clera",
-      "location": "remote",
-      "description": "<h3>About the Role</h3><p style=\"min-height:1.5em\">This is a rare opportunity to join a fast-moving, mission-driven robotics company at the ground floor of its people function. As the <strong>Founding Lead Recruiter</strong>, you'll build the talent and recruiting operation entirely from scratch, own the full candidate lifecycle, and play a direct role in shaping a passionate team working to accelerate the global transition to renewable energy. You'll have meaningful equity and a high-impact seat at the table from day one.</p><p style=\"min-height:1.5em\">The company develops large-scale robotic",
-      "remote": false,
-      "first_seen": "2026-08-08T16:37:34.649483",
-      "is_new": false,
-      "score": 42,
-      "score_reasons": [
-        "🎯 robotics (+16)",
-        "🎯 renewable (+4)",
-        "📍 remote (+22)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
       "source": "ashby:robco",
-      "url": "https://jobs.ashbyhq.com/robco/2b9b0326-394b-4f44-a1a0-857d705becfd",
-      "title": "Senior Electrical Engineer - Robotics (m/f/d)",
+      "url": "https://jobs.ashbyhq.com/robco/abe3d615-a21d-42b9-8531-b089b56bcacd",
+      "title": "Robotics Quality & Reliability Engineering Lead (m/f/d)",
       "company": "Robco",
       "location": "Munich",
       "description": "",
@@ -1587,8 +3821,8 @@
     },
     {
       "source": "ashby:robco",
-      "url": "https://jobs.ashbyhq.com/robco/abe3d615-a21d-42b9-8531-b089b56bcacd",
-      "title": "Robotics Quality & Reliability Engineering Lead (m/f/d)",
+      "url": "https://jobs.ashbyhq.com/robco/2b9b0326-394b-4f44-a1a0-857d705becfd",
+      "title": "Senior Electrical Engineer - Robotics (m/f/d)",
       "company": "Robco",
       "location": "Munich",
       "description": "",
@@ -1649,44 +3883,6 @@
       "clean_company": "Crown Gabelstapler GmbH & Co. KG"
     },
     {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/aampere/founding-engineer-at-e-mobility-startup-munchen-187338",
-      "title": "Founding Engineer (m/f/x) @ E-Mobility Startup",
-      "company": "Aampere",
-      "location": "München",
-      "description": "<p>Find more <a href=\"https://www.arbeitnow.com/english-speaking-jobs\">English Speaking Jobs in Germany</a> on Arbeitnow</a>",
-      "remote": false,
-      "first_seen": "2026-08-08T16:37:34.649483",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/aampere/product-engineer-at-e-mobility-startup-munchen-181003",
-      "title": "Product Engineer (m/f/x) @ E-Mobility Startup",
-      "company": "Aampere",
-      "location": "München",
-      "description": "<p>Find <a href=\"https://www.arbeitnow.com\">Jobs in Germany</a> on Arbeitnow</a>",
-      "remote": false,
-      "first_seen": "2026-08-08T16:37:34.649483",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
       "source": "kimeta",
       "url": "https://www.kimeta.de/display-job/toptica-photonics-ag/project-manager-sales-transformation-ai-m-w-d/984249431.html",
       "title": "TOPTICA Photonics SE Project Manager Sales Transformation & AI (m/w/d) Gräfelfing",
@@ -1705,45 +3901,6 @@
       "verified": true,
       "verify_status": "ok",
       "clean_company": "TOPTICA Photonics SE"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/we-are-social-1/senior-konzepterin-munich-370652",
-      "title": "Senior Konzepter:in (m/w/d)",
-      "company": "We Are Social 1",
-      "location": "Munich, Germany",
-      "description": "<p>Wir suchen am Standort München oder Berlin eine:n Senior Konzepter:in (w/m/d) zur Unterstützung unseres Creative-Teams. Die Rolle ist zunächst auf 18 Monate befristet.</p><p>Wir sind eine globale, socially-led Creative Agency mit über 1.300 Mitarbeitenden in 17 Büros weltweit. In einer Welt, in der Social Media Kultur prägt, helfen wir Marken dabei, Ideen zu entwickeln, über die Menschen sprechen.</p><p>Wir verstehen Online-Communities, Kulturen und Subkulturen über die gesamte Social Landscape hinweg. Zu unseren Kund:innen in Deutschland zählen unter anderem AUDI AG, Mercedes-Benz Trucks u",
-      "remote": false,
-      "first_seen": "2026-08-08T12:53:26.615247",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "kimeta",
-      "url": "https://www.kimeta.de/display-job/ey-parthenon/ey-parthenon-senior-manager-projektleitung-digitalprojekte-strategy-and-transactions-w-m-d/984251059.html",
-      "title": "EY-Parthenon EY-Parthenon Senior Manager Projektleitung Digitalprojekte - Strategy and Transactions (w/m/d) Frankfurt/Main, Stuttgart, München , Hamburg, Berlin, Düsseldorf 7.8.2026",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-08-08T08:52:40.273707",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleitung (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "clean_company": "EY-Parthenon EY-Parthenon"
     },
     {
       "source": "kimeta",
@@ -1766,46 +3923,24 @@
       "clean_company": "HENSOLDT"
     },
     {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/everdrop-gmbh/industrial-product-designer-engineer-home-accessories-munchen-420324",
-      "title": "Industrial Product Designer & Engineer – Home Accessories (m/w/d)",
-      "company": "everdrop GmbH",
-      "location": "München, Bayern, Germany",
-      "description": "<h3 style=\"text-align:center;\"><strong><span style=\"color:#45818E\">DAS IST DER JOB</span></strong></h3><p style=\"min-height: 1.7em;\"></p><p><span style=\"color:#121317\">Du möchtest Produkte erschaffen, die durchdachtes Design und echten Impact für unseren Planeten verbinden? Bei everdrop vereinst du als </span><strong><span style=\"color:#121317\">Industrial Product Designer &amp; Engineer – Home Accessories (m/w/d)</span></strong><span style=\"color:#121317\"> Ästhetik mit technischer Konstruktion. Du übernahmst die Verantwortung für unser Produktportfolio – von der ersten Idee über die CAD-Entwic",
-      "remote": false,
-      "first_seen": "2026-08-08T05:11:41.644689",
+      "source": "kimeta",
+      "url": "https://www.kimeta.de/display-job/ey-parthenon/ey-parthenon-senior-manager-projektleitung-digitalprojekte-strategy-and-transactions-w-m-d/984251059.html",
+      "title": "EY-Parthenon EY-Parthenon Senior Manager Projektleitung Digitalprojekte - Strategy and Transactions (w/m/d) Frankfurt/Main, Stuttgart, München , Hamburg, Berlin, Düsseldorf 7.8.2026",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-08-08T08:52:40.273707",
       "is_new": false,
-      "score": 49,
+      "score": 41,
       "score_reasons": [
-        "🎯 produktentwicklung (+16)",
-        "🎯 serienreife (+8)",
+        "🎯 projektleitung (+16)",
         "📍 münchen (+25)"
-      ],
-      "category": "other",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/projektleiter-simulationssysteme-munich-270420",
-      "title": "Projektleiter (m/w/d) Simulationssysteme",
-      "company": "MY Humancapital GmbH",
-      "location": "Munich",
-      "description": "<p>Im Auftrag unseres Partnerunternehmens in München suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Projektleiter (m/w/d)</strong>“.</p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als Projektleiter (m/w/d) übernehmen Sie die Gesamtverantwortung für nationale und internationale Entwicklungsprojekte hinsichtlich Qualität, Terminen, Budget und Leistung</li>\n<li>Zudem steuern Sie komplexe technische Projekte und koordinieren interdisziplinäre Teams aus Entwicklung, Fertigung, Lieferanten und externen Partnern</li>\n<li>Auch verantworten Sie Projektplanung, Risikomanagement, Fortschritts",
-      "remote": false,
-      "first_seen": "2026-08-08T05:11:41.644689",
-      "is_new": false,
-      "score": 45,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🔧 scrum (+4)",
-        "📍 munich (+25)"
       ],
       "category": "pm",
       "alt_sources": [],
       "verified": true,
-      "verify_status": "ok"
+      "verify_status": "ok",
+      "clean_company": "EY-Parthenon EY-Parthenon"
     },
     {
       "source": "xing",
@@ -1827,25 +3962,6 @@
       "verify_status": "ok",
       "address_city": "85221 Dachau",
       "clean_company": "Instaffo GmbH"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/qualitatsprufer-wareneingang-munich-1831",
-      "title": "Qualitätsprüfer Wareneingang (m/w/d)",
-      "company": "MY Humancapital GmbH",
-      "location": "Munich",
-      "description": "<p><strong>Qualitätsprüfer Wareneingang (m/w/d) - Vollzeit | München</strong></p>\n<p>Im Auftrag unseres Partnerunternehmens in München suchen wir Sie zum nächstmöglichen Zeitpunkt als <strong>„Qualitätsprüfer Wareneingang (m/w/d)“.</strong></p>\n<h2><strong>Aufgaben</strong></h2>\n<ul>\n<li>Als Qualitätsprüfer (m/w/d) kontrollieren Sie Wareneingänge und Warenausgänge von Bauteilen und Baugruppen nach festgelegten Qualitätsstandards</li>\n<li>Sie führen Maß-, Oberflächen- und Beschichtungsprüfungen durch, setzen Mess- und Prüfmittel fachgerecht ein und dokumentieren die Ergebnisse</li>\n<li>Darüber ",
-      "remote": false,
-      "first_seen": "2026-08-08T05:11:41.644689",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
     },
     {
       "source": "infineon",
@@ -1895,45 +4011,8 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "80997 München",
-      "kennziffer": "20225-DE1VKACFLL4HXA3U-S"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/un-obtanium/wirtschaftsprufer-a-ubernahmen-beteiligungen-munich-201941",
-      "title": "Wirtschaftsprüfer (a) Übernahmen & Beteiligungen",
-      "company": "Un-Obtanium",
-      "location": "Munich",
-      "description": "<p>Beraten Sie Familienunternehmen und daraus resultierendes Vermögen bei strategischen Transaktionen!</p>\n<p>Viele Mandanten aus dem Umfeld von <strong>Familienunternehmen</strong> haben Bedarf an <strong>strukturellen Veränderungen ihres operativen Gewerbes</strong> oder der <strong>Wertsteigerung ihres Vermögens</strong>. Als Teil eines interdisziplinären Teams aus Wirtschafts-/Finanzberatern, Rechtsanwälten und Steuerberatern beraten Sie zu <strong>notwendigen Transaktionen</strong> und <strong>wirtschaftlichen Opportunitäten</strong>, sei es zu Unternehmensnachfolgen, Gesellschafteraufnah",
-      "remote": false,
-      "first_seen": "2026-08-07T17:16:34.335197",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/roderer-executive-search/international-advertising-coordinator-munich-108070",
-      "title": "International Advertising Coordinator (m/f/d)",
-      "company": "Roderer Executive Search",
-      "location": "Munich",
-      "description": "<p>Your future employer<br>\nOur client is a leading customer experience agency, partnering with international premium brands to create high-quality content and customer engagement solutions. These include premium lifestyle magazines, digital platforms, exclusive customer benefits and tailored communication concepts designed for discerning audiences.</p>\n<p>As part of an international publishing team, you will coordinate advertising operations across premium print and digital publications. You will ensure the smooth planning, booking and delivery of advertising placements while acting as the ce",
-      "remote": false,
-      "first_seen": "2026-08-07T17:16:34.335197",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
+      "kennziffer": "20225-DE1VKACFLL4HXA3U-S",
+      "clean_company": "rocket Engineering GmbH"
     },
     {
       "source": "germantechjobs",
@@ -1947,25 +4026,6 @@
       "score": 25,
       "score_reasons": [
         "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/advicon-ag/audit-specialist-munich-304537",
-      "title": "Audit Specialist (m/w/d)",
-      "company": "ADVICON AG",
-      "location": "Munich",
-      "description": "<p>Die ADVICON ist eine moderne und kreative Wirtschaftsprüfungs- und Steuerberatungsgesellschaft, die neue Wege geht. Seit unserer Gründung im Jahr 2016 verfolgen wir die Idee eines „anderen Wirtschaftsprüfers“. Unser Team aus rund 25 Mitarbeiterinnen lebt diesen modernen Beratungsansatz in einem innovativen Arbeitsumfeld. Gemeinsam entwickeln wir individuelle Lösungen für unsere spannenden Mandantinnen.</p>\n<p>Für unser Prüfungsteam suchen wir eine*n Audit Specialist (m/w/d) als Ergänzung in Voll- oder Teilzeit. Wir freuen uns über deine Bewerbung. Bei Fragen wende dich gerne an unsere HR-An",
-      "remote": false,
-      "first_seen": "2026-08-07T12:55:14.012777",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
       ],
       "category": "auto",
       "alt_sources": [],
@@ -1992,32 +4052,14 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "10001-1003506466-S"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/egym/senior-project-manager-germany-munich-187316",
-      "title": "(Senior) Project Manager (m/w/d)",
-      "company": "Egym",
-      "location": "Germany, Munich",
-      "description": "<p>Find <a href=\"https://www.arbeitnow.com\">Jobs in Germany</a> on Arbeitnow</a>",
-      "remote": false,
-      "first_seen": "2026-08-07T00:29:59.323050",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 munich (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
+      "address_city": "München",
+      "kennziffer": "10001-1003506466-S",
+      "clean_company": "Brüggen Engineering GmbH"
     },
     {
       "source": "neura",
-      "url": "https://jobs.neura-robotics.com/offer/senior-concept-engineer-human/e58fffd5-42e7-429c-abf8-7d9a6cea13a1",
-      "title": "(Senior) Concept Engineer - (human)",
+      "url": "https://jobs.neura-robotics.com/offer/concept-engineer-human/719071c3-61f2-42d8-944b-e8797b382c13",
+      "title": "Concept Engineer (human)",
       "company": "NEURA Robotics",
       "location": "München",
       "description": "",
@@ -2043,8 +4085,8 @@
     },
     {
       "source": "neura",
-      "url": "https://jobs.neura-robotics.com/offer/concept-engineer-human/719071c3-61f2-42d8-944b-e8797b382c13",
-      "title": "Concept Engineer (human)",
+      "url": "https://jobs.neura-robotics.com/offer/senior-concept-engineer-human/e58fffd5-42e7-429c-abf8-7d9a6cea13a1",
+      "title": "(Senior) Concept Engineer - (human)",
       "company": "NEURA Robotics",
       "location": "München",
       "description": "",
@@ -2184,6 +4226,26 @@
     },
     {
       "source": "ashby:robco",
+      "url": "https://jobs.ashbyhq.com/robco/9cbaf2d0-c71e-4581-9fc0-f51db130fdca",
+      "title": "Accountant (m/f/d)",
+      "company": "Robco",
+      "location": "Munich",
+      "description": "",
+      "first_seen": "2026-08-06T13:24:14.943970",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 munich (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Munich",
+      "clean_company": "RobCo"
+    },
+    {
+      "source": "ashby:robco",
       "url": "https://jobs.ashbyhq.com/robco/a792189e-f66b-450e-9ee0-25d24666f35f",
       "title": "Senior Supply Chain Manager (m/f/d)",
       "company": "Robco",
@@ -2226,26 +4288,6 @@
       "source": "ashby:robco",
       "url": "https://jobs.ashbyhq.com/robco/df53c847-6e4c-4f50-9173-157c3d90e603",
       "title": "Mechatronics Engineer (m/f/d)",
-      "company": "Robco",
-      "location": "Munich",
-      "description": "",
-      "first_seen": "2026-08-06T13:24:14.943970",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Munich",
-      "clean_company": "RobCo"
-    },
-    {
-      "source": "ashby:robco",
-      "url": "https://jobs.ashbyhq.com/robco/9cbaf2d0-c71e-4581-9fc0-f51db130fdca",
-      "title": "Accountant (m/f/d)",
       "company": "Robco",
       "location": "Munich",
       "description": "",
@@ -2364,7 +4406,8 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "80634 München",
-      "kennziffer": "12862-250548-S"
+      "kennziffer": "12862-250548-S",
+      "clean_company": "AMADEUS FIRE AG"
     },
     {
       "source": "bundesagentur",
@@ -2431,78 +4474,9 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "address_city": "26262 Begleitung",
-      "kennziffer": "13410-k13572.15826-S"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/19146-100013795276-S",
-      "title": "Technischer Projektmanager (m/w/d)",
-      "company": "Exergy3 Munchen GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 59,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "🎯 technischer projektmanager (+18)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "kennziffer": "19146-100013795276-S"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12288-4898590695-S",
-      "title": "Technischer Projektleiter für Simulation & Training Systems (m/w/d)",
-      "company": "advanced engineering GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 59,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 technischer projektleiter (+18)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "kennziffer": "12288-4898590695-S"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002460062-S",
-      "title": "Technischer Projektleiter (m/w/d)",
-      "company": "Cs2 ITEC GmbH   Co. KG",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 59,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 technischer projektleiter (+18)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "91052 Erlangen",
-      "kennziffer": "10001-1002460062-S"
+      "address_city": "80333 München",
+      "kennziffer": "13410-k13572.15826-S",
+      "clean_company": "Guldberg GmbH"
     },
     {
       "source": "bundesagentur",
@@ -2528,6 +4502,56 @@
     },
     {
       "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/19146-100013795276-S",
+      "title": "Technischer Projektmanager (m/w/d)",
+      "company": "Exergy3 Munchen GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-06T12:03:23.687822",
+      "is_new": false,
+      "score": 59,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "🎯 technischer projektmanager (+18)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80333 München",
+      "kennziffer": "19146-100013795276-S",
+      "clean_company": "Exergy3 Munchen GmbH"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12288-4898590695-S",
+      "title": "Technischer Projektleiter für Simulation & Training Systems (m/w/d)",
+      "company": "advanced engineering GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-06T12:03:23.687822",
+      "is_new": false,
+      "score": 59,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 technischer projektleiter (+18)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80997 München",
+      "kennziffer": "12288-4898590695-S",
+      "clean_company": "advanced engineering GmbH"
+    },
+    {
+      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003350850-S",
       "title": "Technical Project Manager (JetBrains Cloud Platform) (m/f/d)",
       "company": "JetBrains GmbH",
@@ -2549,7 +4573,33 @@
       "verify_status": "ok",
       "address_street": "Cuvrystraße 53",
       "address_city": "10997 Berlin",
-      "kennziffer": "10001-1003350850-S"
+      "kennziffer": "10001-1003350850-S",
+      "clean_company": "JetBrains GmbH"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1002460062-S",
+      "title": "Technischer Projektleiter (m/w/d)",
+      "company": "Cs2 ITEC GmbH   Co. KG",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-06T12:03:23.687822",
+      "is_new": false,
+      "score": 59,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 technischer projektleiter (+18)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "München",
+      "kennziffer": "10001-1002460062-S",
+      "clean_company": "Cs2 ITEC GmbH   Co. KG"
     },
     {
       "source": "bundesagentur",
@@ -2572,7 +4622,9 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "11956-2964791779141601-S"
+      "address_city": "51063 Köln",
+      "kennziffer": "11956-2964791779141601-S",
+      "clean_company": "NTT DATA Business Solutions Global Managed Services GmbH"
     },
     {
       "source": "kimeta",
@@ -2621,7 +4673,9 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "11112-46515-1782211-0-S"
+      "address_city": "80336 München",
+      "kennziffer": "11112-46515-1782211-0-S",
+      "clean_company": "Ratbacher GmbH"
     },
     {
       "source": "bundesagentur",
@@ -2646,6 +4700,7 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "80807 München",
+      "clean_company": "Akkodis Germany Tech Experts GmbH",
       "bewerbung": {
         "status": "mappe",
         "stelle": "",
@@ -2673,7 +4728,8 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "80995 München",
-      "kennziffer": "13410-k13572.15767-S"
+      "kennziffer": "13410-k13572.15767-S",
+      "clean_company": "Guldberg GmbH"
     },
     {
       "source": "bundesagentur",
@@ -2698,6 +4754,7 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "80807 München",
+      "clean_company": "Akkodis Germany Tech Experts GmbH",
       "bewerbung": {
         "status": "mappe",
         "stelle": "",
@@ -2725,7 +4782,9 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
+      "address_city": "München",
       "kennziffer": "10000-1207221807-S",
+      "clean_company": "KNORR-BREMSE AG",
       "bewerbung": {
         "status": "mappe",
         "stelle": "",
@@ -2756,28 +4815,6 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13635-c5cc016c_JB5211216-S",
-      "title": "Innovation to Market Manager - AI & Robotics (m/f/d)",
-      "company": "EIT Health",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 robotics (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "kennziffer": "13635-c5cc016c"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/20471-2287217-S",
       "title": "International Project Manager (m/w/d)",
       "company": "Hoffmann SE",
@@ -2799,6 +4836,7 @@
       "address_street": "Haberlandstraße 55",
       "address_city": "81241 München",
       "kennziffer": "20471-2287217-S",
+      "clean_company": "Hoffmann SE",
       "bewerbung": {
         "status": "mappe",
         "stelle": "",
@@ -2807,9 +4845,9 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12811-2279094-S",
-      "title": "Senior Research Project Manager Global Tracking (w/m/d) - Market Strateg...,München,Hamburg,Nürnberg",
-      "company": "Ipsos GmbH",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13635-c5cc016c_JB5211216-S",
+      "title": "Innovation to Market Manager - AI & Robotics (m/f/d)",
+      "company": "EIT Health",
       "location": "München",
       "description": "",
       "salary": "",
@@ -2818,60 +4856,16 @@
       "is_new": false,
       "score": 41,
       "score_reasons": [
-        "🎯 project manager (+16)",
+        "🎯 robotics (+16)",
         "📍 münchen (+25)"
       ],
-      "category": "pm",
+      "category": "auto",
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "12811-2279094-S"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003091505-S",
-      "title": "Projektleiter (m/w/d)",
-      "company": "My Humancapital GmbH    ",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": true,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "kennziffer": "10001-1003091505-S"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003340934-S",
-      "title": "Global Workplace Project Manager  (m/f/d)",
-      "company": "JetBrains GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": true,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_street": "Cuvrystraße 53",
-      "address_city": "10997 Berlin",
-      "kennziffer": "10001-1003340934-S"
+      "address_city": "80807 München",
+      "kennziffer": "13635-c5cc016c",
+      "clean_company": "EIT Health"
     },
     {
       "source": "bundesagentur",
@@ -2895,7 +4889,58 @@
       "verify_status": "ok",
       "address_street": "Münzstraße 12",
       "address_city": "10178 Berlin",
-      "kennziffer": "10001-1003241097-S"
+      "kennziffer": "10001-1003241097-S",
+      "clean_company": "PADOA GmbH i.G."
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003340934-S",
+      "title": "Global Workplace Project Manager  (m/f/d)",
+      "company": "JetBrains GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": true,
+      "first_seen": "2026-08-06T12:03:23.687822",
+      "is_new": false,
+      "score": 41,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Cuvrystraße 53",
+      "address_city": "10997 Berlin",
+      "kennziffer": "10001-1003340934-S",
+      "clean_company": "JetBrains GmbH"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12811-2279094-S",
+      "title": "Senior Research Project Manager Global Tracking (w/m/d) - Market Strateg...,München,Hamburg,Nürnberg",
+      "company": "Ipsos GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-06T12:03:23.687822",
+      "is_new": false,
+      "score": 41,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Amerigo-Vespucci-Platz 1",
+      "address_city": "20457 Hamburg",
+      "kennziffer": "12811-2279094-S",
+      "clean_company": "Ipsos GmbH"
     },
     {
       "source": "bundesagentur",
@@ -2918,7 +4963,32 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "78628 Rottweil",
-      "kennziffer": "13552-D0Z59REIRRFRZEPK-S"
+      "kennziffer": "13552-D0Z59REIRRFRZEPK-S",
+      "clean_company": "N.O.C Engineering GmbH"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003091505-S",
+      "title": "Projektleiter (m/w/d)",
+      "company": "My Humancapital GmbH    ",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": true,
+      "first_seen": "2026-08-06T12:03:23.687822",
+      "is_new": false,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "München",
+      "kennziffer": "10001-1003091505-S",
+      "clean_company": "My Humancapital GmbH"
     },
     {
       "source": "bundesagentur",
@@ -2942,7 +5012,8 @@
       "verify_status": "ok",
       "address_street": "Stahlgruberring 43",
       "address_city": "81829 München",
-      "kennziffer": "10001-1003460270-S"
+      "kennziffer": "10001-1003460270-S",
+      "clean_company": "Lindner SE"
     },
     {
       "source": "bundesagentur",
@@ -2964,8 +5035,10 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
+      "address_street": "Dachauer Straße 511",
       "address_city": "80993 München",
-      "kennziffer": "16195-0065096908-S"
+      "kennziffer": "16195-0065096908-S",
+      "clean_company": "Stingl GmbH München"
     },
     {
       "source": "bundesagentur",
@@ -2987,31 +5060,9 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "address_city": "01099 Dresden",
-      "kennziffer": "10001-1003403621-S"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003432834-S",
-      "title": "Projektleiter Eignungsprüfung automatischer Messeinrichtungen (w/m/d)",
-      "company": "TÜV SÜD AG",
-      "location": "Garching bei München",
-      "description": "",
-      "salary": "",
-      "homeoffice": true,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "15267 Auditierung",
-      "kennziffer": "10001-1003432834-S"
+      "address_city": "München",
+      "kennziffer": "10001-1003403621-S",
+      "clean_company": "Jürgen Tausch Personnel Service"
     },
     {
       "source": "bundesagentur",
@@ -3033,8 +5084,9 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "address_city": "35390 Gießen",
-      "kennziffer": "16493-7787POLXGVJF3NUS-S"
+      "address_city": "80997 München",
+      "kennziffer": "16493-7787POLXGVJF3NUS-S",
+      "clean_company": "FUX Solutions GmbH"
     },
     {
       "source": "bundesagentur",
@@ -3057,7 +5109,32 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "80331 München",
-      "kennziffer": "M-ND-18032026"
+      "kennziffer": "M-ND-18032026",
+      "clean_company": "serviceline Personal-Management Münch.GmbH &Co.KG"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003432834-S",
+      "title": "Projektleiter Eignungsprüfung automatischer Messeinrichtungen (w/m/d)",
+      "company": "TÜV SÜD AG",
+      "location": "Garching bei München",
+      "description": "",
+      "salary": "",
+      "homeoffice": true,
+      "first_seen": "2026-08-06T12:03:23.687822",
+      "is_new": false,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "85748 Garching bei München",
+      "kennziffer": "10001-1003432834-S",
+      "clean_company": "TÜV SÜD AG"
     },
     {
       "source": "bundesagentur",
@@ -3079,7 +5156,9 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "10001-1003469549-S"
+      "address_city": "München",
+      "kennziffer": "10001-1003469549-S",
+      "clean_company": "bestengineers Inhaber Simon Virgil"
     },
     {
       "source": "bundesagentur",
@@ -3101,8 +5180,10 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
+      "address_street": "Werner-Eckert-Straße 2",
       "address_city": "81829 München",
-      "kennziffer": "10001-1002342027-S"
+      "kennziffer": "10001-1002342027-S",
+      "clean_company": "Neilsoft GmbH"
     },
     {
       "source": "bundesagentur",
@@ -3124,28 +5205,10 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "12811-2303081-S"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13319-880524/1_613322LS-S",
-      "title": "Senior Projektmanager technische Entwicklungsprojekte",
-      "company": "Hays Professional Solutions GmbH",
-      "location": "",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior projektmanager (+22)",
-        "🎯 projektmanager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
+      "address_street": "Sonnenstraße 19",
+      "address_city": "85764 Oberschleißheim",
+      "kennziffer": "12811-2303081-S",
+      "clean_company": "Bachner Elektro GmbH & Co. KG"
     },
     {
       "source": "bundesagentur",
@@ -3167,7 +5230,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "18010-946962549-S"
+      "kennziffer": "18010-946962549-S",
+      "clean_company": "Optima packaging group GmbH"
     },
     {
       "source": "bundesagentur",
@@ -3189,8 +5253,10 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
+      "address_street": "Einsteinstr. 20",
       "address_city": "85521 Ottobrunn",
-      "kennziffer": "10001-1003232456-S"
+      "kennziffer": "10001-1003232456-S",
+      "clean_company": "IABG Industrieanlagen Betriebs-GmbH"
     },
     {
       "source": "ashby:munich-electrification",
@@ -3246,28 +5312,6 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12288-4900504109-S",
-      "title": "PMO (m/w/d)",
-      "company": "YER",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 37,
-      "score_reasons": [
-        "🎯 pmo (+12)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "kennziffer": "12288-4900504109-S"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13410-k13572.15770-S",
       "title": "Entwicklungsingenieur Chassis Integration Equipment (m/w/d)",
       "company": "Guldberg GmbH",
@@ -3287,7 +5331,32 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "80997 München",
-      "kennziffer": "13410-k13572.15770-S"
+      "kennziffer": "13410-k13572.15770-S",
+      "clean_company": "Guldberg GmbH"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12288-4900504109-S",
+      "title": "PMO (m/w/d)",
+      "company": "YER",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-06T12:03:23.687822",
+      "is_new": false,
+      "score": 37,
+      "score_reasons": [
+        "🎯 pmo (+12)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80637 München",
+      "kennziffer": "12288-4900504109-S",
+      "clean_company": "YER"
     },
     {
       "source": "bundesagentur",
@@ -3309,30 +5378,9 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "12288-4902014787-S"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13410-k13572.15821-S",
-      "title": "UI / Motion Designer Automotive HMI (m/w/d)",
-      "company": "Guldberg GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 37,
-      "score_reasons": [
-        "🚗 automotive (+12)",
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
       "address_city": "80331 München",
-      "kennziffer": "13410-k13572.15821-S"
+      "kennziffer": "12288-4902014787-S",
+      "clean_company": "Messe München GmbH"
     },
     {
       "source": "bundesagentur",
@@ -3354,8 +5402,10 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
+      "address_street": "Stiftsbogen 74",
       "address_city": "81375 München",
-      "kennziffer": "10001-1002893554-S"
+      "kennziffer": "10001-1002893554-S",
+      "clean_company": "Augustinum gGmbH"
     },
     {
       "source": "bundesagentur",
@@ -3376,7 +5426,9 @@
       "category": "pm",
       "alt_sources": [],
       "verified": true,
-      "verify_status": "ok"
+      "verify_status": "ok",
+      "address_city": "Frankfurt am Main",
+      "clean_company": "Computacenter AG & Co. oHG"
     },
     {
       "source": "bundesagentur",
@@ -3398,8 +5450,10 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
+      "address_street": "Frankfurter Ring 160",
       "address_city": "80807 München",
       "kennziffer": "10000-1188435386-S",
+      "clean_company": "ARRK Engineering GmbH",
       "bewerbung": {
         "status": "mappe",
         "stelle": "",
@@ -3426,35 +5480,13 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "address_city": "10117 Berlin"
+      "address_city": "10117 Berlin",
+      "clean_company": "EY Strategy & Transactions GmbH"
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12362-TR-293896_618484LS-S",
-      "title": "Projektingenieur ILS (m/w/d)",
-      "company": "Brunel GmbH NL München",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 35,
-      "score_reasons": [
-        "🎯 projektingenieur (+10)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80331 München",
-      "kennziffer": "12362-TR-293896"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13410-k13572.15801-S",
-      "title": "Experte (m/w/d) Smart Vehicle Functions, Digital Interfaces & Connectivity",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13410-k13572.15821-S",
+      "title": "UI / Motion Designer Automotive HMI (m/w/d)",
       "company": "Guldberg GmbH",
       "location": "München",
       "description": "",
@@ -3462,17 +5494,18 @@
       "homeoffice": false,
       "first_seen": "2026-08-06T12:03:23.687822",
       "is_new": false,
-      "score": 35,
+      "score": 37,
       "score_reasons": [
-        "🎯 smart vehicle (+10)",
+        "🚗 automotive (+12)",
         "📍 münchen (+25)"
       ],
-      "category": "ki",
+      "category": "auto",
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "address_city": "80333 München",
-      "kennziffer": "13410-k13572.15801-S"
+      "address_city": "80331 München",
+      "kennziffer": "13410-k13572.15821-S",
+      "clean_company": "Guldberg GmbH"
     },
     {
       "source": "bundesagentur",
@@ -3495,7 +5528,56 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "72072 Tübingen",
-      "kennziffer": "13552-4LM5IXJ48I8A9K31-S"
+      "kennziffer": "13552-4LM5IXJ48I8A9K31-S",
+      "clean_company": "N.O.C Engineering GmbH"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13410-k13572.15801-S",
+      "title": "Experte (m/w/d) Smart Vehicle Functions, Digital Interfaces & Connectivity",
+      "company": "Guldberg GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-06T12:03:23.687822",
+      "is_new": false,
+      "score": 35,
+      "score_reasons": [
+        "🎯 smart vehicle (+10)",
+        "📍 münchen (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80333 München",
+      "kennziffer": "13410-k13572.15801-S",
+      "clean_company": "Guldberg GmbH"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12362-TR-293896_618484LS-S",
+      "title": "Projektingenieur ILS (m/w/d)",
+      "company": "Brunel GmbH NL München",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-06T12:03:23.687822",
+      "is_new": false,
+      "score": 35,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80331 München",
+      "kennziffer": "12362-TR-293896",
+      "clean_company": "Brunel GmbH NL München"
     },
     {
       "source": "bundesagentur",
@@ -3519,6 +5601,7 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "80807 München",
+      "clean_company": "Akkodis Germany Tech Experts GmbH",
       "bewerbung": {
         "status": "mappe",
         "stelle": "",
@@ -3547,6 +5630,7 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "80807 München",
+      "clean_company": "Akkodis Germany Tech Experts GmbH",
       "bewerbung": {
         "status": "mappe",
         "stelle": "",
@@ -3578,11 +5662,37 @@
       "verify_status": "ok",
       "address_city": "80687 München",
       "kennziffer": "VA42-23404-M",
+      "clean_company": "FERCHAU GmbH Niederlassung München Mobility",
       "bewerbung": {
         "status": "mappe",
         "stelle": "",
         "datum": ""
       }
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1000857946-S",
+      "title": "Projektleiter Produktentwicklung (m/w/d)",
+      "company": "Loxone Electronics GmbH",
+      "location": "Wegscheid, Niederbayern",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-06T12:03:23.687822",
+      "is_new": false,
+      "score": 32,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 produktentwicklung (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Markstr. 47",
+      "address_city": "94110 Wegscheid",
+      "kennziffer": "10001-1000857946-S",
+      "clean_company": "Loxone Electronics GmbH"
     },
     {
       "source": "bundesagentur",
@@ -3605,30 +5715,9 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "12288-4909567364-S"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1000857946-S",
-      "title": "Projektleiter Produktentwicklung (m/w/d)",
-      "company": "Loxone Electronics GmbH",
-      "location": "Wegscheid, Niederbayern",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 32,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 produktentwicklung (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "94110 Wegscheid",
-      "kennziffer": "10001-1000857946-S"
+      "address_city": "80331 München",
+      "kennziffer": "12288-4909567364-S",
+      "clean_company": "Bertrandt AG"
     },
     {
       "source": "bundesagentur",
@@ -3650,7 +5739,9 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "12117-YF-47856-YF-S"
+      "address_city": "85716 Unterschleißheim",
+      "kennziffer": "12117-YF-47856-YF-S",
+      "clean_company": "wenglor sensoric gmbh"
     },
     {
       "source": "bundesagentur",
@@ -3681,6 +5772,7 @@
       "verify_status": "ok",
       "address_city": "80687 München",
       "kennziffer": "VA96-67866-M",
+      "clean_company": "FERCHAU GmbH Niederlassung München Mobility",
       "bewerbung": {
         "status": "mappe",
         "stelle": "",
@@ -3707,7 +5799,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "address_city": "90762 Fürth"
+      "address_city": "90762 Fürth",
+      "clean_company": "Helmi Göttler Private Arbeitsvermittlung"
     },
     {
       "source": "bundesagentur",
@@ -3730,34 +5823,12 @@
       "verify_status": "ok",
       "address_city": "80807 München",
       "kennziffer": "14688-20258g4d5dv1-000-S",
+      "clean_company": "ARRK Engineering GmbH",
       "bewerbung": {
         "status": "mappe",
         "stelle": "",
         "datum": ""
       }
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003350356-S",
-      "title": "Senior Security Engineer / Legal Tech Program Manager (m/f/d)",
-      "company": "JetBrains GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": true,
-      "first_seen": "2026-08-06T12:03:23.687822",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_street": "Cuvrystraße 53",
-      "address_city": "10997 Berlin",
-      "kennziffer": "10001-1003350356-S"
     },
     {
       "source": "kimeta",
@@ -3918,8 +5989,8 @@
     },
     {
       "source": "workday:Carl Zeiss Meditec",
-      "url": "https://zeissgroup.wd3.myworkdayjobs.com/job/Mnchen/Program-Manager---Business---Ecosystems-Lifesciences--f-m-x-_JR_1050494-1",
-      "title": "Program Manager - Business & Ecosystems Lifesciences (f/m/x)",
+      "url": "https://zeissgroup.wd3.myworkdayjobs.com/job/Mnchen/Sicherheitsingenieur-Arbeitsschutz---Prvention--m-w-x-_JR_1050806-2",
+      "title": "Sicherheitsingenieur Arbeitsschutz & Prävention (m/w/x)",
       "company": "Carl Zeiss Meditec",
       "location": "München",
       "description": "",
@@ -3936,8 +6007,8 @@
     },
     {
       "source": "workday:Carl Zeiss Meditec",
-      "url": "https://zeissgroup.wd3.myworkdayjobs.com/job/Mnchen/Sicherheitsingenieur-Arbeitsschutz---Prvention--m-w-x-_JR_1050806-2",
-      "title": "Sicherheitsingenieur Arbeitsschutz & Prävention (m/w/x)",
+      "url": "https://zeissgroup.wd3.myworkdayjobs.com/job/Mnchen/Program-Manager---Business---Ecosystems-Lifesciences--f-m-x-_JR_1050494-1",
+      "title": "Program Manager - Business & Ecosystems Lifesciences (f/m/x)",
       "company": "Carl Zeiss Meditec",
       "location": "München",
       "description": "",
@@ -4242,7 +6313,7 @@
       "is_new": true,
       "manual": true,
       "verified": true,
-      "verify_status": "ok",
+      "verify_status": "ok-403-trusted",
       "recruiter": "",
       "alt_sources": []
     },
