@@ -1,29 +1,196 @@
 {
   "_kommentar": "Bewerbungs-Status je Firma. Wird von crawler_v2.py gelesen und auf jeden Job gestempelt, dessen Firma hier auftaucht. Das Dashboard zeigt daraus ein Abzeichen, damit Andy nie wieder eine Stelle bearbeitet, auf die er sich schon beworben hat.",
   "_regel": "Nur eintragen, was belegt ist. Eine Mappe auf der Platte ist KEINE Bewerbung (Regel aus VERSAND_REGISTER.md). Drei Stufen: 'gesendet' = nachweislich raus, 'offen' = laeuft, Antwort steht aus, 'absage' = abgelehnt, 'mappe' = Unterlagen liegen bereit, Versand unbestaetigt.",
-  "_stand": "2026-08-06",
+  "_stand": "2026-09-14",
   "eintraege": [
-    { "firma": "EDAG", "stelle": "Entwicklungsingenieur HW Systems Engineering", "status": "gesendet", "datum": "2026-08-05", "quelle": "Andy 05.08." },
-    { "firma": "Randstad", "stelle": "Projektmanager Automotive (GULP)", "status": "gesendet", "datum": "2026-08-05", "quelle": "Andy 05.08." },
-    { "firma": "GULP", "stelle": "Projektmanager Automotive", "status": "gesendet", "datum": "2026-08-05", "quelle": "Andy 05.08." },
-    { "firma": "Thüga", "stelle": "Projektmanager KI und Digitalisierung", "status": "gesendet", "datum": "2026-08-05", "quelle": "Andy 05.08." },
-    { "firma": "Thuega", "stelle": "Projektmanager KI und Digitalisierung", "status": "gesendet", "datum": "2026-08-05", "quelle": "Andy 05.08." },
-
-    { "firma": "NEURA Robotics", "stelle": "Concept Engineer / Konzeptingenieur", "status": "offen", "datum": "2026-08-06", "quelle": "Andy 06.08.: 'Bei Neura haben wir noch eine offene Bewerbung zum Konzeptingenieur'" },
-    { "firma": "prognum", "stelle": "—", "status": "offen", "datum": "2026-07", "quelle": "memory bewerbungs_historie" },
-
-    { "firma": "ALTEN", "stelle": "Consulting Services", "status": "absage", "datum": "2026-07", "quelle": "99_Absagen" },
-    { "firma": "Rodenstock", "stelle": "—", "status": "absage", "datum": "2026-07", "quelle": "99_Absagen" },
-    { "firma": "in-tech", "stelle": "—", "status": "absage", "datum": "2026-07", "quelle": "99_Absagen" },
-    { "firma": "Infineon", "stelle": "—", "status": "absage", "datum": "2026-06", "quelle": "memory bewerbungs_historie" },
-    { "firma": "KET", "stelle": "2 Stellen", "status": "absage", "datum": "2026-06", "quelle": "memory bewerbungs_historie (on ice bis ~24.06.)" },
-    { "firma": "Silver Atena", "stelle": "—", "status": "absage", "datum": "2026-07", "quelle": "blocked_companies + Historie" }
+    {
+      "firma": "EDS Automotive",
+      "stelle": "Projektleiter:in Entwicklung",
+      "status": "gesendet",
+      "datum": "2026-08-12",
+      "quelle": "E-Mail an alisa.siedlaczek@eds-automotive.com, 12.08. 21:01, .eml im Firmenordner"
+    },
+    {
+      "firma": "EDAG",
+      "stelle": "Entwicklungsingenieur HW Systems Engineering",
+      "status": "absage",
+      "datum": "2026-08-13",
+      "quelle": "Absage 13.08.2026 (Andy gemeldet). Versendet 05.08., Nachfassanruf im Fenster 11.-13.08. nicht erfolgt."
+    },
+    {
+      "firma": "Randstad",
+      "stelle": "Projektmanager Automotive (GULP)",
+      "status": "absage",
+      "datum": "2026-08-10",
+      "quelle": "Absage Karsten Lohsträter, Randstad Professional Dortmund"
+    },
+    {
+      "firma": "GULP",
+      "stelle": "Projektmanager Automotive",
+      "status": "absage",
+      "datum": "2026-08-10",
+      "quelle": "Absage über Randstad Professional"
+    },
+    {
+      "firma": "Thüga",
+      "stelle": "Projektmanager KI und Digitalisierung",
+      "status": "absage",
+      "datum": "2026-08-12",
+      "quelle": "Absage Rima Hijazi, Personalentwicklung & Recruiting"
+    },
+    {
+      "firma": "Thuega",
+      "stelle": "Projektmanager KI und Digitalisierung",
+      "status": "absage",
+      "datum": "2026-08-12",
+      "quelle": "Absage Rima Hijazi, Personalentwicklung & Recruiting"
+    },
+    {
+      "firma": "NEURA Robotics",
+      "stelle": "Concept Engineer (Growth Team, München)",
+      "status": "gesendet",
+      "datum": "2026-08-19",
+      "quelle": "Ashby-Formular 19.08. 14:55, Eingangsbestaetigung + SHORTLIST-Mail von Inci Nugay (Senior Tech Recruiter) 19.08. 21:19, beide .eml im Firmenordner",
+      "notiz": "SHORTLIST 19.08.2026 - Interviewplatz laut Recruiterin noch nicht garantiert"
+    },
+    {
+      "firma": "prognum",
+      "stelle": "—",
+      "status": "absage",
+      "datum": "2026-07",
+      "quelle": "Absage, siehe Jobsuche/SPERRLISTE_EINORDNUNG_2026-08-19.md Gruppe C"
+    },
+    {
+      "firma": "ALTEN",
+      "stelle": "Consulting Services",
+      "status": "absage",
+      "datum": "2026-07",
+      "quelle": "99_Absagen"
+    },
+    {
+      "firma": "Rodenstock",
+      "stelle": "—",
+      "status": "absage",
+      "datum": "2026-07",
+      "quelle": "99_Absagen"
+    },
+    {
+      "firma": "in-tech",
+      "stelle": "—",
+      "status": "absage",
+      "datum": "2026-07",
+      "quelle": "99_Absagen"
+    },
+    {
+      "firma": "Infineon",
+      "stelle": "—",
+      "status": "absage",
+      "datum": "2026-06",
+      "quelle": "memory bewerbungs_historie"
+    },
+    {
+      "firma": "KET",
+      "stelle": "2 Stellen",
+      "status": "absage",
+      "datum": "2026-06",
+      "quelle": "memory bewerbungs_historie (on ice bis ~24.06.)"
+    },
+    {
+      "firma": "Silver Atena",
+      "stelle": "—",
+      "status": "absage",
+      "datum": "2026-07",
+      "quelle": "blocked_companies + Historie"
+    },
+    {
+      "firma": "Haas Zeitarbeit",
+      "stelle": "Produktmanager Zubehör Exterieur & Interieur",
+      "status": "absage",
+      "datum": "2026-08-07",
+      "quelle": "Absage Miguel Schäuble, Senior Recruiter"
+    },
+    {
+      "firma": "FERCHAU",
+      "stelle": "Technischer Projektmanager, FE34-57228-MC",
+      "status": "absage",
+      "datum": "2026-08-17",
+      "quelle": "Absage Laura Sophie Laengsfeld (NL Rosenheim!) 4 Tage nach Versand, Salesforce-Workflow. Anzeige danach weiter online."
+    },
+    {
+      "firma": "FUTRUE",
+      "stelle": "Manager Digital Transformation & AI",
+      "status": "gesendet",
+      "datum": "2026-08-13",
+      "quelle": "Eingangsbestaetigung 13.08. 15:10 im Firmenordner"
+    },
+    {
+      "firma": "Munich Electrification",
+      "stelle": "Product Owner Hardware",
+      "status": "gesendet",
+      "datum": "2026-08-13",
+      "quelle": "Eingangsbestaetigung 13.08. 14:47 im Firmenordner"
+    },
+    {
+      "firma": "Guldberg",
+      "stelle": "Fahrzeugfunktionsverantwortung Gesamtfahrzeug",
+      "status": "gesendet",
+      "datum": "2026-08-13",
+      "quelle": "Eingangsbestaetigung 13.08. 16:57 im Firmenordner"
+    },
+    {
+      "firma": "Truma",
+      "stelle": "Projektleiter Serienbetreuung Thermosysteme & Gas",
+      "status": "gesendet",
+      "datum": "2026-08-17",
+      "quelle": "Andy 17.08.: bereits beworben (Formular ohne Bestaetigungsmail)"
+    },
+    {
+      "firma": "VAERIDION",
+      "stelle": "Technical Project Manager - Propulsion System",
+      "status": "absage",
+      "datum": "2026-08-24",
+      "quelle": "Absage 24.08.2026 (VÆRIDION People Team, Ashby): 'decided to move forward with other candidates'. .eml im Mails-Ordner",
+      "notiz": "Nachfass 23.-25.08. bei Marina Hutter, Head of People, +49 160 9803 9675. Warmer Faden aus 12/2025. Pruefen: Propulsion, nicht ERP"
+    },
+    {
+      "firma": "RobCo",
+      "stelle": "Senior Mechanical Engineer - Robotics",
+      "status": "absage",
+      "datum": "2026-09-14",
+      "quelle": "Absage 14.09.2026 07:03 (RobCo Talent Acquisition, Ashby): 'we will not be moving forward with your candidacy'. .eml im Mails-Ordner"
+    }
   ],
   "_mappen_ohne_versandnachweis": [
-    "Actana", "Akkodis", "Apriori", "ARRK", "Atlantik Networxx", "AutoScout24", "BKW Engineering",
-    "Brainlab", "Cognizant", "DiNC", "Dorsch-Engineers", "E.ON", "FERCHAU", "FEV", "FUTRUE",
-    "Haas", "Hoffmann SE", "Holzer", "Knorr-Bremse", "LOGSOL", "MAN", "MCA", "MEDIFOX DAN",
-    "Medi-Globe", "MTU", "Munich Electrification", "Primazon", "RATHGEBER", "Roboyo", "SAL",
+    "Actana",
+    "Akkodis",
+    "Apriori",
+    "ARRK",
+    "Atlantik Networxx",
+    "AutoScout24",
+    "BKW Engineering",
+    "Brainlab",
+    "Cognizant",
+    "DiNC",
+    "Dorsch-Engineers",
+    "E.ON",
+    "FERCHAU",
+    "FEV",
+    "FUTRUE",
+    "Haas",
+    "Hoffmann SE",
+    "Holzer",
+    "Knorr-Bremse",
+    "LOGSOL",
+    "MAN",
+    "MCA",
+    "MEDIFOX DAN",
+    "Medi-Globe",
+    "MTU",
+    "Munich Electrification",
+    "Primazon",
+    "RATHGEBER",
+    "Roboyo",
+    "SAL",
     "SII Deutschland"
   ],
   "_hinweis_mappen": "Diese Ordner enthalten fertige Unterlagen, ein Versand ist NICHT bestaetigt. Sie werden im Dashboard als 'Mappe liegt bereit' markiert, nicht als 'beworben'."

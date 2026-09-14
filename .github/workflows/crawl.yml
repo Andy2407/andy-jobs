@@ -2,7 +2,8 @@ name: Jobsuche Crawl v7
 
 on:
   schedule:
-    - cron: "0 4,8,12,16 * * *"
+    # 06 UTC = 08:00 Berlin (CEST). Morgens-Lauf zuerst, dann 10/14/18 CEST.
+    - cron: "0 6,8,12,16 * * *"
   workflow_dispatch: {}
 
 # FIX 2026-06-11: Parallele Laeufe zerschossen sich gegenseitig den Daten-Push
