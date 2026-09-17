@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-09-17T10:53:17.744133",
-  "duration_s": 1222.002978,
+  "generated_at": "2026-09-17T16:08:33.457722",
+  "duration_s": 1467.464519,
   "stats": {
-    "raw": 10297,
-    "filtered": 485,
-    "verified": 407,
+    "raw": 9553,
+    "filtered": 382,
+    "verified": 330,
     "by_category": {
-      "pm": 297,
-      "auto": 79,
-      "ki": 13,
-      "other": 7,
-      "pharma": 11
+      "pm": 231,
+      "ki": 12,
+      "pharma": 10,
+      "auto": 70,
+      "other": 7
     },
     "sources": [
       "Akkodis",
@@ -75,25 +75,25 @@
       "PW-Firmen (Apple/Siemens/Brose/IAV/ALTEN…)"
     ],
     "source_yield": {
-      "Akkodis": 98,
+      "Akkodis": 100,
       "arbeitnow": 1700,
-      "Personio": 296,
-      "Greenhouse": 2337,
+      "Personio": 300,
+      "Greenhouse": 2338,
       "Lever": 28,
-      "Ashby": 171,
+      "Ashby": 168,
       "Workable": 0,
       "Recruitee": 11,
-      "SmartRecruiters": 1443,
+      "SmartRecruiters": 1450,
       "Bundesagentur (API)": 1440,
-      "StepStone": 775,
+      "StepStone": 0,
       "sz-jobs.de": 60,
-      "kimeta.de": 98,
+      "kimeta.de": 96,
       "jobvector": 0,
-      "LinkedIn (anonymous)": 86,
+      "LinkedIn (anonymous)": 88,
       "RemoteOK": 99,
-      "Remotive": 13,
+      "Remotive": 15,
       "WeWorkRemotely": 98,
-      "EDAG-Karriere": 122,
+      "EDAG-Karriere": 123,
       "Cognizant-Mobility": 0,
       "SII Group": 0,
       "Rodenstock": 0,
@@ -101,26 +101,26 @@
       "MTU Aero Engines": 0,
       "FEV": 13,
       "SÜSS MicroTec": 24,
-      "MAN Truck & Bus": 64,
-      "Webasto": 50,
+      "MAN Truck & Bus": 63,
+      "Webasto": 56,
       "Knorr-Bremse": 63,
       "Silver Atena": 22,
       "Carl Zeiss Meditec": 37,
-      "KUKA": 31,
-      "W. L. Gore": 25,
+      "KUKA": 30,
+      "W. L. Gore": 27,
       "Giesecke+Devrient": 43,
       "KraussMaffei": 6,
       "ams OSRAM": 7,
       "Infineon": 10,
-      "Allianz": 39,
+      "Allianz": 38,
       "Avature (Rohde & Schwarz)": 20,
       "NEURA Robotics": 27,
-      "Xing": 178,
-      "talent.com": 98,
+      "Xing": 185,
+      "talent.com": 101,
       "jobrapido": 0,
       "whatjobs": 0,
       "germantechjobs": 15,
-      "BMW Group": 310,
+      "BMW Group": 309,
       "Bertrandt": 62,
       "Capgemini Engineering": 35,
       "Schaeffler": 2,
@@ -129,10 +129,10 @@
       "Vitesco": 0,
       "Valeo": 3,
       "ARRK Engineering": 0,
-      "Yourfirm": 74,
+      "Yourfirm": 75,
       "remotely.de": 150,
       "jobninja.com": 0,
-      "stellenanzeigen.de": 8,
+      "stellenanzeigen.de": 10,
       "Indeed (Playwright)": 0,
       "PW-Firmen (Apple/Siemens/Brose/IAV/ALTEN…)": 1
     },
@@ -144,6 +144,7 @@
       "MTU Aero Engines",
       "Rodenstock",
       "SII Group",
+      "StepStone",
       "Vitesco",
       "Workable",
       "jobninja.com",
@@ -345,8 +346,8 @@
         "match": "82%",
         "url": "https://www.pape.de/",
         "cta": "💼 PAPE.de →",
-        "http": 200,
-        "live": true
+        "http": "ConnectionError",
+        "live": false
       },
       {
         "id": "hh-9",
@@ -381,8 +382,8 @@
         "match": "90%",
         "url": "https://www.hays.de/jobsuche",
         "cta": "💼 Hays München →",
-        "http": "ReadTimeout",
-        "live": false
+        "http": 200,
+        "live": true
       },
       {
         "id": "hh-12",
@@ -433,9 +434,290 @@
         "live": true
       }
     ],
-    "geprueft_am": "2026-09-17T11:13:59"
+    "geprueft_am": "2026-09-17T16:33:18"
   },
   "jobs": [
+    {
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.com/jobs/companies/init-ag/senior-project-manager-all-genders-munchen-195780",
+      "title": "Senior Project Manager (all genders)",
+      "company": "Init Ag",
+      "location": "München",
+      "description": "<br><strong>Über ]init[</strong><p>Du möchtest die Gesellschaft von morgen mitgestalten? Dann bist du bei ]init[ richtig. Denn unsere digitalen Lösungen sind für Menschen gemacht und haben gesellschaftliche Relevanz. Klingt spannend? Dann steig ein und arbeite gemeinsam mit über 1.400 ]init[s in interdisziplinären Teams an unseren sieben Standorten – oder flexibel von überall in Deutschland aus.</p><br><strong>Deine Mission bei ]init[</strong><p>Du möchtest die Gesellschaft von morgen mitgestalten? Dann bist du bei ]init[ richtig. Denn unsere digitalen Lösungen sind für Menschen gemacht und ha",
+      "remote": false,
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 85,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 product owner (+12)",
+        "🎯 project manager (+16)",
+        "🔧 ipma (+6)",
+        "🔧 scrum (+4)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "arbeitnow",
+          "url": "https://www.arbeitnow.com/jobs/companies/init-ag/senior-project-manager-all-genders-munchen-194405"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/senior-projektmanager-m-w-d-jobbird-com-at-jobster-4467540071",
+      "title": "Senior Projektmanager (m/w/d) - Jobbird.com",
+      "company": "Senior Projektmanager (m/w/d) - Jobbird.com",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 63,
+      "score_reasons": [
+        "🎯 senior projektmanager (+22)",
+        "🎯 projektmanager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "Jobster"
+    },
+    {
+      "source": "kimeta",
+      "url": "https://www.kimeta.de/display-job/rocksolid-personalvermittlung-gmbh/senior-projektleiter-elektrotechnik-m-w-d/988799965.html",
+      "title": "Rocksolid Personalvermittlung GmbH Neu Senior Projektleiter Elektrotechnik (m/w/d) München 16.9.2026",
+      "company": "",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 63,
+      "score_reasons": [
+        "🎯 senior projektleiter (+22)",
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "clean_company": "Rocksolid Personalvermittlung GmbH"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/technical-project-manager-jetbrains-cloud-platform-at-jetbrains-4427367038",
+      "title": "Technical Project Manager (JetBrains Cloud Platform)",
+      "company": "Technical Project Manager (JetBrains Cloud Platform)",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 59,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "🎯 technical project manager (+18)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "JetBrains"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12117-YF-50010-YF-S",
+      "title": "AI Manager (m/w/d)",
+      "company": "BATO GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": true,
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 47,
+      "score_reasons": [
+        "🤖 ai manager (+22)",
+        "📍 münchen (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [
+        {
+          "source": "stellenanzeigen",
+          "url": "https://www.stellenanzeigen.de/job/ai-manager-m-w-d-muenchen-sde-116429/"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80331 München",
+      "kennziffer": "12117-YF-50010-YF-S",
+      "clean_company": "BATO GmbH"
+    },
+    {
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.com/jobs/companies/ocumeda-ag/product-owner-ai-munchen-157075",
+      "title": "Product Owner AI (m/f/d)",
+      "company": "Ocumeda Ag",
+      "location": "München",
+      "description": "<br><strong>Your role at Ocumeda</strong><p>We are looking for a <strong>Product Owner AI (m/f/d)</strong> to take ownership of a new AI-based medical device. You will own the product's technical specification, backlog and requirements end-to-end, from feature scoping through implementation and international roll-out, acting as the central point between our medical, regulatory, and AI team. If you're motivated to take ownership of a product and shape it within a growing MedTech company, this role is for you.<br><ul><li>Own the product end-to-end: from feature scoping through implementation, la",
+      "remote": false,
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 45,
+      "score_reasons": [
+        "🎯 product owner (+12)",
+        "🎯 medtech (+8)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pharma",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/digital-projektmanager-%E2%80%93-ai-project-engineer-m-w-d-at-dr-schnell-4466067512",
+      "title": "Digital Projektmanager – AI Project Engineer (m/w/d)",
+      "company": "Digital Projektmanager – AI Project Engineer (m/w/d)",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "recruiter": "Frau Laura Neudeck",
+      "address_street": "Taunusstraße 19",
+      "address_city": "80807 München",
+      "clean_company": "DR.SCHNELL"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/senior-agiler-projektleiter-m-w-d-at-sthree-4467709473",
+      "title": "Senior Agiler Projektleiter (m/w/d)",
+      "company": "Senior Agiler Projektleiter (m/w/d)",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "SThree"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/lead-project-management-mobile-robotics-automation-m-w-d-at-idealworks-4460009627",
+      "title": "Lead Project Management - Mobile Robotics & Automation (m/w/d)",
+      "company": "Lead Project Management - Mobile Robotics & Automation (m/w/d)",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 robotics (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "Idealworks"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003688568-S",
+      "title": "Digital Projektmanager  – AI Project Engineer (m/w/d)",
+      "company": "DR.SCHNELL GmbH & Co. KGaA",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [
+        {
+          "source": "stellenanzeigen",
+          "url": "https://www.stellenanzeigen.de/job/digital-projektmanager-ai-project-engineer-m-w-d-muenchen-sde-120228/"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Taunusstr. 19",
+      "address_city": "80807 München",
+      "kennziffer": "10001-1003688568-S",
+      "clean_company": "DR.SCHNELL GmbH & Co. KGaA"
+    },
+    {
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.com/jobs/companies/auxiliusai/founding-product-manager-munich-79016",
+      "title": "Founding Product Manager (m/w/d)",
+      "company": "Auxilius.ai",
+      "location": "Munich",
+      "description": "<p>You'll join an early-stage, AI-native startup with a product that has already proven market fit. We build cutting-edge AI solutions for Governance, Risk and Compliance (GRC) for enterprises around the world.</p>\n<p>Our customers are auditors, risk managers, and compliance teams, which means evaluation rigor, auditability, and EU AI Act readiness aren't afterthoughts for us. They're product requirements.</p>\n<h2>Tasks</h2>\n<p>As our first Product Manager, you'll own product end-to-end and work directly alongside the founding team. You will:</p>\n<ul>\n<li><strong>Own product discovery and be a",
+      "remote": false,
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "📍 munich (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.fr/jobs/companies/camunda/remote-manager-adr-emea-59516",
+      "title": "Manager, ADR - EMEA",
+      "company": "Camunda",
+      "location": "Remote",
+      "description": "<p style=\"min-height:1.5em\">Camunda is <strong>the enterprise platform for agentic orchestration</strong>, enabling organizations to coordinate <strong>AI agents, people, and systems </strong>across complex, end-to-end business processes. With built-in governance, auditability, and human oversight, Camunda gives enterprises the control they need to move AI from pilots to production — safely and at scale. <strong>Trusted by over 700 organizations worldwide</strong>, including 9 of top 10 US banks, Camunda helps enterprises boost operational efficiency, accelerate time-to-value, and deliver bett",
+      "remote": false,
+      "first_seen": "2026-09-17T16:32:12.954498",
+      "is_new": true,
+      "score": 22,
+      "score_reasons": [
+        "📍 remote (+22)"
+      ],
+      "category": "auto",
+      "alt_sources": [
+        {
+          "source": "arbeitnow",
+          "url": "https://www.arbeitnow.com/jobs/companies/camunda/remote-manager-adr-emea-251044"
+        }
+      ],
+      "verified": true,
+      "verify_status": "ok"
+    },
     {
       "source": "stellenanzeigen",
       "url": "https://www.stellenanzeigen.de/job/fachliche-teil-projektleitung-energiewirtschaft-befristet-bis-30-11-2028-m-w-d-muenchen-sde-117998/",
@@ -444,7 +726,7 @@
       "location": "München",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 65,
       "score_reasons": [
         "🎯 teil-projektleit (+20)",
@@ -453,39 +735,12 @@
         "📍 münchen (+25)"
       ],
       "category": "pm",
-      "alt_sources": [
-        {
-          "source": "stepstone",
-          "url": "https://www.stepstone.de/stellenangebote--Fachliche-Teil-Projektleitung-Energiewirtschaft-befristet-bis-30-11-2028-m-w-d-Muenchen-Stadtwerke-Muenchen-GmbH--14438161-inline.html"
-        }
-      ],
+      "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
       "address_city": "80331 München",
       "kennziffer": "STD05089",
       "clean_company": "Stadtwerke München GmbH"
-    },
-    {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/senior-project-manager-at-kenton-black-4464517916",
-      "title": "Senior Project Manager",
-      "company": "Senior Project Manager",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 63,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "Kenton Black"
     },
     {
       "source": "linkedin",
@@ -495,7 +750,7 @@
       "location": "Metropolregion München",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 63,
       "score_reasons": [
         "🎯 senior project manager (+22)",
@@ -510,50 +765,6 @@
       "clean_company": "Demexios"
     },
     {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-Semiconductors-d-m-f-Garching-ams-OSRAM--14505447-inline.html",
-      "title": "Senior Project Manager Semiconductors (d/​m/​f)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 63,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Garching",
-      "clean_company": "ams OSRAM"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/init-ag/senior-project-manager-all-genders-munchen-194405",
-      "title": "(Senior) Project Manager (all genders)",
-      "company": "Init Ag",
-      "location": "München",
-      "description": "<br><strong>Über ]init[</strong><p>Du möchtest die Gesellschaft von morgen mitgestalten? Dann bist du bei ]init[ richtig. Denn unsere digitalen Lösungen sind für Menschen gemacht und haben gesellschaftliche Relevanz. Klingt spannend? Dann steig ein und arbeite gemeinsam mit über 1.400 ]init[s in interdisziplinären Teams an unseren sieben Standorten – oder flexibel von überall in Deutschland aus.</p><br><strong>Deine Mission bei ]init[</strong><p>Du möchtest die Gesellschaft von morgen mitgestalten? Dann bist du bei ]init[ richtig. Denn unsere digitalen Lösungen sind für Menschen gemacht und ha",
-      "remote": false,
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 57,
-      "score_reasons": [
-        "🎯 product owner (+12)",
-        "🎯 project manager (+16)",
-        "🔧 scrum (+4)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
       "source": "remotely",
       "url": "https://www.remotely.de/job/trusted-shops-se-de-technical-project-manager-mfd",
       "title": "trusted shops se de technical project manager",
@@ -561,7 +772,7 @@
       "location": "Remote Deutschland",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 56,
       "score_reasons": [
         "🎯 project manager (+16)",
@@ -584,7 +795,7 @@
       "description": "<h2><strong>About TACTILIA</strong></h2><p style=\"min-height:1.5em\">At TACTILIA, we are building the industry-ready robotic hand that closes one of the biggest gaps in Physical AI.  Spun out of SCHUNK, the global market leader in gripping technology, we combine a decade of robotic-hand expertise and real industrial access with the speed and ambition of a deep-tech startup.</p><p style=\"min-height:1.5em\">This isn't a research project waiting for its first customer. We already have a product, customers are ready to use it, and we are launching now. Your work will directly shape the product, road",
       "remote": false,
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 53,
       "score_reasons": [
         "🎯 prototyp (+12)",
@@ -606,7 +817,7 @@
       "salary": "",
       "homeoffice": false,
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 53,
       "score_reasons": [
         "🎯 projektmanager (+16)",
@@ -614,12 +825,7 @@
         "📍 münchen (+25)"
       ],
       "category": "pm",
-      "alt_sources": [
-        {
-          "source": "stepstone",
-          "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Projektspezialist-m-w-d-im-PMO-Muenchen-Labor-Becker-MVZ-eGbR--14415409-inline.html"
-        }
-      ],
+      "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
       "address_street": "Kirchseeoner Str. 3",
@@ -636,7 +842,7 @@
       "description": "<h2><strong>About TACTILIA</strong></h2><p style=\"min-height:1.5em\">At TACTILIA, we are building the industry-ready robotic hand that closes one of the biggest gaps in Physical AI. Spun out of SCHUNK, the global market leader in gripping technology, we combine a decade of robotic-hand expertise and real industrial access with the speed and ambition of a deep-tech startup.</p><p style=\"min-height:1.5em\">This isn't a research project waiting for its first customer. We already have a product, customers are ready to use it, and we are launching now. Your work will directly shape the electronics, a",
       "remote": false,
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 51,
       "score_reasons": [
         "🎯 robotics (+16)",
@@ -656,7 +862,7 @@
       "location": "Munich, Germany",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 47,
       "score_reasons": [
         "🎯 project manager (+16)",
@@ -669,32 +875,6 @@
       "verify_status": "ok-spa"
     },
     {
-      "source": "stellenanzeigen",
-      "url": "https://www.stellenanzeigen.de/job/ai-manager-m-w-d-muenchen-sde-116429/",
-      "title": "AI Manager (m/w/d)",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 47,
-      "score_reasons": [
-        "🤖 ai manager (+22)",
-        "📍 münchen (+25)"
-      ],
-      "category": "ki",
-      "alt_sources": [
-        {
-          "source": "bundesagentur",
-          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12117-YF-50010-YF-S"
-        }
-      ],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80331 München",
-      "clean_company": "BATO GmbH"
-    },
-    {
       "source": "infineon",
       "url": "https://jobs.infineon.com/careers/job/563808971829827",
       "title": " Principal Engineer Compact Modeling and Virtual Prototyping (w/m/div)",
@@ -702,7 +882,7 @@
       "location": "Munich, Erlangen",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 43,
       "score_reasons": [
         "🎯 prototyp (+12)",
@@ -730,7 +910,7 @@
       "description": "<h2><strong>About TACTILIA</strong></h2><p style=\"min-height:1.5em\">At TACTILIA, we are building the industry-ready robotic hand that closes one of the biggest gaps in Physical AI. Spun out of SCHUNK, the global market leader in gripping technology, we combine a decade of robotic-hand expertise and real industrial access with the speed and ambition of a deep-tech startup.</p><p style=\"min-height:1.5em\">This isn't a research project waiting for its first customer. We already have a product, customers are ready to use it, and we are launching now. Your work will directly shape the electronics, a",
       "remote": false,
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 41,
       "score_reasons": [
         "🎯 robotics (+16)",
@@ -750,7 +930,7 @@
       "description": "<p>Lust auf Broking für <strong>European Tech Champions</strong> sowie aufstrebende, skalierende Startups, Scaleups und Gamechanger aus den Bereichen <strong>DeepTech, KI, Robotics, FinTech</strong> und mehr? Wir denken bereits heute die passende Absicherung von morgen für unsere Mandanten – flexibel, global und skalierbar, von Seed über den Börsengang und darüber hinaus.</p>\n<p>Wir sind mehr als ein klassischer Versicherungsmakler! Als Teilvon <strong>Risk Partners Technology</strong> gestaltest Du als Senior Risk AdvisorIn mit uns Lösungen, die genau dort ansetzen, wo unsere Mandanten sie br",
       "remote": false,
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 41,
       "score_reasons": [
         "🎯 robotics (+16)",
@@ -762,117 +942,6 @@
       "verify_status": "ok"
     },
     {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-Third-Party-Solutions-B2P-m-w-d-Unterhaching-HUBER-SUHNER-GmbH--14405280-inline.html",
-      "title": "Project Manager Third Party Solutions (B2P) m/w/d",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "82008 Unterhaching",
-      "clean_company": "HUBER + SUHNER GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Account-Project-Manager-m-w-d-Muenchen-AIDGENCY-GmbH--14416791-inline.html",
-      "title": "Account / Project Manager (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "AIDGENCY GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-m-w-d-Gruenwald-bei-Muenchen-Smart-United-GmbH--13516753-inline.html",
-      "title": "Projektmanager (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Grünwald",
-      "clean_company": "Smart United  GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Engineering-Project-Manager-ELT-Meister-Ingenieur-der-Elektrotechnik-m-w-d-Muenchen-Messe-Muenchen-GmbH--14514523-inline.html",
-      "title": "Engineering & Project Manager ELT (Meister / Ingenieur der Elektrotechnik) (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [
-        {
-          "source": "stepstone",
-          "url": "https://www.stepstone.de/stellenangebote--Engineering-Project-Manager-ELT-Meister-Ingenieur-der-Elektrotechnik-m-w-d-Muenchen-Messe-Muenchen-GmbH--14303997-inline.html"
-        }
-      ],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "81829 München",
-      "clean_company": "Messe München GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-in-m-w-d-Muenchen-SUED-HANSA-GmbH-Co-KG--14399839-inline.html",
-      "title": "Projektleiter/-in (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "München",
-      "address_city": "München",
-      "clean_company": "SÜD-HANSA GmbH & Co. KG"
-    },
-    {
       "source": "linkedin",
       "url": "https://de.linkedin.com/jobs/view/ey-parthenon-senior-manager-projektleitung-digitalprojekte-strategy-and-transactions-w-m-d-at-ey-parthenon-4438408115",
       "title": "EY-Parthenon Senior Manager Projektleitung Digitalprojekte - Strategy and Transactions (w/m/d)",
@@ -880,7 +949,7 @@
       "location": "München",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 41,
       "score_reasons": [
         "🎯 projektleitung (+16)",
@@ -894,47 +963,6 @@
       "clean_company": "EY-Parthenon"
     },
     {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/gro%C3%9Fprojektleiter-w-m-d-onshore-leitungs-und-trassenbau-gas-wasserstoff-strom-at-ds-bauconcept-gmbh-4463911667",
-      "title": "Großprojektleiter (w/m/d) Onshore-Leitungs- und Trassenbau (Gas / Wasserstoff / Strom)",
-      "company": "Großprojektleiter (w/m/d) Onshore-Leitungs- und Trassenbau (Gas / Wasserstoff / ",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "DS-Bauconcept GmbH"
-    },
-    {
-      "source": "kimeta",
-      "url": "https://www.kimeta.de/display-job/rocksolid-personalvermittlung-gmbh/projektleiter-elektrotechnik-m-w-d/988800291.html",
-      "title": "Rocksolid Personalvermittlung GmbH Neu Projektleiter Elektrotechnik (m/w/d) München 16.9.2026",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "clean_company": "Rocksolid Personalvermittlung GmbH"
-    },
-    {
       "source": "kimeta",
       "url": "https://www.kimeta.de/display-job/lmu-klinikum/projektmanager-medizinische-organisationsentwicklung-m-w-d/988802094.html",
       "title": "LMU Klinikum Neu Projektmanager Medizinische Organisationsentwicklung (m/w/d) München 16.9.2026",
@@ -942,7 +970,7 @@
       "location": "München",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 41,
       "score_reasons": [
         "🎯 projektmanager (+16)",
@@ -955,59 +983,24 @@
       "clean_company": "LMU Klinikum Neu"
     },
     {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Digital-Projektmanager-AI-Project-Engineer-m-w-d-Muenchen-DR-SCHNELL-GmbH-Co-KGaA--14495781-inline.html",
-      "title": "Digital Projektmanager – AI Project Engineer (m/w/d)",
+      "source": "kimeta",
+      "url": "https://www.kimeta.de/display-job/rocksolid-personalvermittlung-gmbh/projektleiter-elektrotechnik-m-w-d/988800291.html",
+      "title": "Rocksolid Personalvermittlung GmbH Neu Projektleiter Elektrotechnik (m/w/d) München 16.9.2026",
       "company": "",
-      "location": "muenchen",
+      "location": "München",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 41,
       "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "ki",
-      "alt_sources": [
-        {
-          "source": "stellenanzeigen",
-          "url": "https://www.stellenanzeigen.de/job/digital-projektmanager-ai-project-engineer-m-w-d-muenchen-sde-120228/"
-        },
-        {
-          "source": "bundesagentur",
-          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003688568-S"
-        }
-      ],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "recruiter": "Frau Laura Neudeck",
-      "address_street": "Taunusstraße 19",
-      "address_city": "80807 München",
-      "clean_company": "DR.SCHNELL GmbH & Co. KGaA"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Netzanschluss-Energietechnik-m-w-d-Obertraubling-Dexcon-GmbH--14166117-inline.html",
-      "title": "Projektingenieur Netzanschluss & Energietechnik (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 39,
-      "score_reasons": [
-        "🎯 projektingenieur (+10)",
-        "🎯 energie (+4)",
-        "📍 muenchen (+25)"
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
       ],
       "category": "pm",
       "alt_sources": [],
       "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Hartinger Weg 2b",
-      "address_city": "93083 Obertraubling",
-      "clean_company": "Dexcon GmbH"
+      "verify_status": "ok",
+      "clean_company": "Rocksolid Personalvermittlung GmbH"
     },
     {
       "source": "arbeitnow",
@@ -1018,7 +1011,7 @@
       "description": "&lt;p&gt;The &lt;strong&gt;Senior Project Manager, Technical Services&lt;/strong&gt; is responsible for orchestrating Duetto&#39;s most complex global implementations and migrations, acting as central project owner and trusted advisor to mid-sized-to-enterprise and highly complex customers. This role serves as a strategic bridge across time zones, managing overlapping multi-property engagements while absorbing planning and decision-making that current cross-region coverage cannot sustain. The role carries no direct reports but is formally accountable for developing project management capabilit",
       "remote": false,
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 38,
       "score_reasons": [
         "🎯 senior project manager (+22)",
@@ -1031,34 +1024,13 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/rs-group-regeltechnik-und-schaltanlagenbau-gmbh-projektleiter-mwd-rs-group-regeltechnik-und-schaltanlagenbau-gmbh",
-      "title": "rs group regeltechnik und schaltanlagenbau gmbh projektleiter",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Großgmain",
-      "clean_company": "R+S Group Regeltechnik und Schaltanlagenbau GmbH"
-    },
-    {
-      "source": "remotely",
       "url": "https://www.remotely.de/job/techminds-gmbh-projektmanager-mwd-digitale-medien",
       "title": "techminds gmbh projektmanager",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 38,
       "score_reasons": [
         "🎯 projektmanager (+16)",
@@ -1079,7 +1051,7 @@
       "location": "Remote Deutschland",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 38,
       "score_reasons": [
         "🎯 projektmanager (+16)",
@@ -1095,13 +1067,34 @@
     },
     {
       "source": "remotely",
+      "url": "https://www.remotely.de/job/rs-group-regeltechnik-und-schaltanlagenbau-gmbh-projektleiter-mwd-rs-group-regeltechnik-und-schaltanlagenbau-gmbh",
+      "title": "rs group regeltechnik und schaltanlagenbau gmbh projektleiter",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-09-17T11:12:56.795854",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Großgmain",
+      "clean_company": "R+S Group Regeltechnik und Schaltanlagenbau GmbH"
+    },
+    {
+      "source": "remotely",
       "url": "https://www.remotely.de/job/nex-localization-project-manager-europe-fixed-term-contract",
       "title": "nex localization project manager europe fixed term contract",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 38,
       "score_reasons": [
         "🎯 project manager (+16)",
@@ -1116,26 +1109,6 @@
       "clean_company": "Nex"
     },
     {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/eqs-group/senior-sustainability-manager-munich-327802",
-      "title": "(Senior) Sustainability Manager",
-      "company": "Eqs Group",
-      "location": "Munich",
-      "description": "<br><strong>JOIN OUR TEAM</strong><p><span style=\"font-family:Arial, Helvetica, sans-serif;font-size:14px;\">As a (Senior) Sustainability Manager in our Product Management team, you will play a key role in shaping the future of our Sustainability Cockpit. Working at the intersection of product, regulation, and customer needs, you will drive the continued development of solutions supporting organisations in meeting evolving sustainability reporting requirements.<br><br>In this role, you will collaborate closely with Product, Engineering, Sales, and Customer Success to translate regulatory develo",
-      "remote": false,
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 37,
-      "score_reasons": [
-        "🎯 cockpit (+12)",
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
       "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12336-a26f993j0454364-S",
       "title": "Technical Product Owner - Cloud Infrastructure (d/m/w)",
@@ -1145,7 +1118,7 @@
       "salary": "",
       "homeoffice": false,
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 37,
       "score_reasons": [
         "🎯 product owner (+12)",
@@ -1160,6 +1133,26 @@
       "clean_company": "Haufe Group SE"
     },
     {
+      "source": "arbeitnow",
+      "url": "https://www.arbeitnow.com/jobs/companies/eqs-group/senior-sustainability-manager-munich-327802",
+      "title": "(Senior) Sustainability Manager",
+      "company": "Eqs Group",
+      "location": "Munich",
+      "description": "<br><strong>JOIN OUR TEAM</strong><p><span style=\"font-family:Arial, Helvetica, sans-serif;font-size:14px;\">As a (Senior) Sustainability Manager in our Product Management team, you will play a key role in shaping the future of our Sustainability Cockpit. Working at the intersection of product, regulation, and customer needs, you will drive the continued development of solutions supporting organisations in meeting evolving sustainability reporting requirements.<br><br>In this role, you will collaborate closely with Product, Engineering, Sales, and Customer Success to translate regulatory develo",
+      "remote": false,
+      "first_seen": "2026-09-17T11:12:56.795854",
+      "is_new": false,
+      "score": 37,
+      "score_reasons": [
+        "🎯 cockpit (+12)",
+        "📍 munich (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok"
+    },
+    {
       "source": "xing",
       "url": "https://www.xing.com/jobs/taufkirchen-technical-project-manager-aerospace-composites-157703816",
       "title": "Technical Project Manager (m/f/d) Aerospace Composites",
@@ -1167,7 +1160,7 @@
       "location": "Taufkirchen",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 34,
       "score_reasons": [
         "🎯 project manager (+16)",
@@ -1189,7 +1182,7 @@
       "description": "<p>Für ein international tätiges Unternehmen im Bereich Healthcare- und Krankenhausbau suchen wir einen <strong>Ingenieur Medizintechnik / Healthcare Planning (w/m/d)</strong>, der seine berufliche Zukunft in der Medizintechnik- und Krankenhausplanung aufbauen möchte.</p>\n<p>Die Position eignet sich besonders für <strong>Berufseinsteiger sowie Ingenieure mit ersten Berufserfahrungen (ca. 1–3 Jahre)</strong>. Sie arbeiten an modernen medizinischen Einrichtungen und entwickeln sich in einem erfahrenen Team Schritt für Schritt in die Planung und Umsetzung anspruchsvoller Healthcare- und Krankenha",
       "remote": false,
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 33,
       "score_reasons": [
         "🎯 medizintechnik (+8)",
@@ -1208,7 +1201,7 @@
       "location": "Munich, Germany",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 31,
       "score_reasons": [
         "📍 munich (+25)",
@@ -1227,7 +1220,7 @@
       "location": "Munich",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 25,
       "score_reasons": [
         "📍 munich (+25)"
@@ -1245,26 +1238,6 @@
       }
     },
     {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/program-manager-business-ecosystems-lifesciences-f-m-x-at-zeiss-group-4466060636",
-      "title": "Program Manager - Business & Ecosystems Lifesciences (f/m/x)",
-      "company": "Program Manager - Business & Ecosystems Lifesciences (f/m/x)",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "ZEISS Group"
-    },
-    {
       "source": "sf:BMW Group",
       "url": "https://jobs.bmwgroup.com/job/München-Kfz-Lackierer-(wmx)-BY-80809/1437465433/",
       "title": "Kfz Lackierer (wmx) BY",
@@ -1272,7 +1245,7 @@
       "location": "München",
       "description": "",
       "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
+      "is_new": false,
       "score": 25,
       "score_reasons": [
         "📍 münchen (+25)"
@@ -1282,266 +1255,6 @@
       "verified": true,
       "verify_status": "ok",
       "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://www.arbeitnow.com/jobs/companies/camunda/remote-manager-adr-emea-251044",
-      "title": "Manager, ADR - EMEA",
-      "company": "Camunda",
-      "location": "Remote",
-      "description": "<p style=\"min-height:1.5em\">Camunda is <strong>the enterprise platform for agentic orchestration</strong>, enabling organizations to coordinate <strong>AI agents, people, and systems </strong>across complex, end-to-end business processes. With built-in governance, auditability, and human oversight, Camunda gives enterprises the control they need to move AI from pilots to production — safely and at scale. <strong>Trusted by over 700 organizations worldwide</strong>, including 9 of top 10 US banks, Camunda helps enterprises boost operational efficiency, accelerate time-to-value, and deliver bett",
-      "remote": true,
-      "first_seen": "2026-09-17T11:12:56.795854",
-      "is_new": true,
-      "score": 22,
-      "score_reasons": [
-        "📍 remote (+22)"
-      ],
-      "category": "auto",
-      "alt_sources": [
-        {
-          "source": "arbeitnow",
-          "url": "https://www.arbeitnow.fr/jobs/companies/camunda/remote-manager-adr-emea-59516"
-        }
-      ],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-Projektleitung-m-w-d-im-Process-Engineering-Penzberg-Burghausen-Dortmund-Neu-Ulm-Hattersheim-VTU-Engineering-Deutschland-GmbH--14416335-inline.html",
-      "title": "Senior Project Manager / Projektleitung (m/w/d) im Process Engineering",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 79,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)",
-        "🎯 projektleitung (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Penzberg, Burghausen, Dortmund, Neu-Ulm, Hattersheim",
-      "address_city": "Penzberg",
-      "clean_company": "VTU Engineering Deutschland GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-Pharmazeutische-Entwicklung-w-m-d-Puchheim-OmniVision-GmbH--14466507-inline.html",
-      "title": "Senior Projektmanager Pharmazeutische Entwicklung (w/m/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 69,
-      "score_reasons": [
-        "🎯 senior projektmanager (+22)",
-        "🎯 projektmanager (+16)",
-        "🎯 pharma (+6)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Lindberghstraße 9",
-      "address_city": "82178 Puchheim",
-      "clean_company": "OmniVision GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektleiter-Flottenmanagement-Rollout-m-w-d-Ottobrunn-IABG-Industrieanlagen-Betriebsgesellschaft-mbH--14494999-inline.html",
-      "title": "Senior Projektleiter Flottenmanagement-Rollout (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 63,
-      "score_reasons": [
-        "🎯 senior projektleiter (+22)",
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Einsteinstraße 20",
-      "address_city": "85521 Ottobrunn",
-      "clean_company": "IABG Industrieanlagen - Betriebsgesellschaft mbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Teilprojektleiter-MedTech-m-w-d-Therapy-Devices-Hamburg-Loewenstein-Medical-Technology-GmbH-Co-KG--14453499-inline.html",
-      "title": "Projektmanager / Teilprojektleiter MedTech (m/w/d) Therapy Devices",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 60,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 projektmanager (+16)",
-        "🎯 teilprojektleit (+20)",
-        "🎯 medtech (+8)"
-      ],
-      "category": "pharma",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Kronsaalsweg 40",
-      "address_city": "22525 Hamburg",
-      "clean_company": "Löwenstein Medical Technology GmbH + Co. KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--AI-Technical-Project-Manager-m-w-d-bundesweit-Berlin-Frankfurt-Hamburg-Koeln-Leipzig-Muenchen-Sopra-Steria--13384115-inline.html",
-      "title": "AI Technical Project Manager (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 59,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "🎯 technical project manager (+18)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "bundesweit, Berlin, Frankfurt, Hamburg, Köln, Leipzig, München",
-      "address_city": "bundesweit",
-      "clean_company": "Sopra Steria"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektmanager-im-Allgaeu-m-w-d-Muenchen-Blueprint-Advanced-Manufacturing-GmbH--14074436-inline.html",
-      "title": "Technischer Projektmanager im Allgäu (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 59,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "🎯 technischer projektmanager (+18)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "München",
-      "address_city": "München",
-      "clean_company": "Blueprint Advanced Manufacturing GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-w-m-d-fuer-eTicketing-Muenchen-Berlin-Mentz-GmbH--14461469-inline.html",
-      "title": "Technischer Projektleiter (w/m/d) für eTicketing",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 59,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 technischer projektleiter (+18)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Grillparzerstraße 18",
-      "address_city": "81675 München",
-      "clean_company": "Mentz GmbH"
-    },
-    {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/technical-project-manager-tpm-germany-at-parloa-4447896751",
-      "title": "Technical Project Manager (TPM) Germany",
-      "company": "Technical Project Manager (TPM) Germany",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 59,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "🎯 technical project manager (+18)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "Parloa"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-m-w-d-Muenchen-Efinio-Ingenieure-Stuttgart--14142993-inline.html",
-      "title": "Technischer Projektleiter (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 59,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 technischer projektleiter (+18)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "München",
-      "address_city": "München",
-      "clean_company": "Efinio Ingenieure Stuttgart"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Produktentwicklung-m-w-d-Putzbrunn-Truma-Geraetetechnik-GmbH-Co-KG--14445911-inline.html",
-      "title": "Projektleiter Produktentwicklung (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 57,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 produktentwicklung (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "85640 Putzbrunn",
-      "clean_company": "Truma Gerätetechnik GmbH & Co. KG",
-      "bewerbung": {
-        "status": "gesendet",
-        "stelle": "Projektleiter Serienbetreuung Thermosysteme & Gas",
-        "datum": "2026-08-17"
-      }
     },
     {
       "source": "kimeta",
@@ -1564,326 +1277,6 @@
       "verify_status": "ok",
       "address_city": "80687 München",
       "clean_company": "blu Professionals GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Teilprojektleiter-Automatisierung-PEC-m-w-d-Wadern-Lockweiler-thyssenkrupp-Automotive-Body-Solutions-GmbH--14482156-inline.html",
-      "title": "Teilprojektleiter Automatisierung (PEC) (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 48,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 teilprojektleit (+20)",
-        "🚗 automotive (+12)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Schlossstraße 22",
-      "address_city": "66687 Wadern",
-      "clean_company": "thyssenkrupp Automotive Body Solutions GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Medical-Excellence-and-Project-Manager-Germany-Munich-Alexion-Pharma-Germany-GmbH--14240573-inline.html",
-      "title": "Medical Excellence- and Project Manager",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 47,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "🎯 pharma (+6)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Germany - Munich",
-      "address_city": "Germany - Munich",
-      "clean_company": "Alexion Pharma Germany GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektmanager-Automotive-Ersatzteile-m-w-d-Kleve-Weyra-Automotive-Solutions-GmbH--14259398-inline.html",
-      "title": "Technischer Projektmanager - Automotive / Ersatzteile (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 46,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "🎯 technischer projektmanager (+18)",
-        "🚗 automotive (+12)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "47533 Kleve",
-      "clean_company": "Weyra Automotive Solutions GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-fuer-Automotive-Data-Connector-m-w-d-Fridolfing-Rosenberger-Hochfrequenztechnik-GmbH-Co-KG--13985016-inline.html",
-      "title": "Technischer Projektleiter für Automotive Data Connector (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 46,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 technischer projektleiter (+18)",
-        "🚗 automotive (+12)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Fridolfing",
-      "clean_company": "Rosenberger Hochfrequenztechnik GmbH & Co. KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-fuer-Automotive-Data-Connector-Asien-m-w-d-Fridolfing-Rosenberger-Hochfrequenztechnik-GmbH-Co-KG--14380512-inline.html",
-      "title": "Technischer Projektleiter für Automotive Data Connector - Asien (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 46,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 technischer projektleiter (+18)",
-        "🚗 automotive (+12)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Fridolfing",
-      "clean_company": "Rosenberger Hochfrequenztechnik GmbH & Co. KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Teilprojektleiter-Stromuebertragung-Freileitungsbau-m-w-d-Stuttgart-Berlin-Hamburg-FICHTNER-GmbH-Co-KG--14313396-inline.html",
-      "title": "Projektingenieur / Teilprojektleiter Stromübertragung / Freileitungsbau (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 46,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 teilprojektleit (+20)",
-        "🎯 projektingenieur (+10)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Stuttgart, Berlin, Hamburg",
-      "address_city": "Stuttgart",
-      "clean_company": "FICHTNER GmbH & Co. KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Program-Manager-Aerospace-m-f-d-Muenchen-Akkodis-Germany-GmbH--14483911-inline.html",
-      "title": "Senior Program Manager - Aerospace (m/f/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 45,
-      "score_reasons": [
-        "🎯 senior program manager (+20)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "80807 München",
-      "clean_company": "Akkodis Germany GmbH",
-      "bewerbung": {
-        "status": "mappe",
-        "stelle": "",
-        "datum": ""
-      }
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-Biopharma-TechOps-m-f-d-Bad-Homburg-Fresenius-Kabi-Deutschland-GmbH--14501854-inline.html",
-      "title": "Senior Project Manager Biopharma TechOps (m/f/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 44,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)",
-        "🎯 pharma (+6)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Else-Kröner-Straße 1",
-      "address_city": "61352 Bad Homburg",
-      "clean_company": "Fresenius Kabi Deutschland GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--AI-Transformation-Lead-m-w-d-Hamburg-Muenchen-Koeln-GGW-Group-GmbH--14508780-inline.html",
-      "title": "AI Transformation Lead (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 43,
-      "score_reasons": [
-        "🎯 ai transformation (+18)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "ki",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Hamburg, München, Köln",
-      "address_city": "Hamburg",
-      "clean_company": "GGW Group GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-m-f-d-Quantum-Frontline-Industries-Wessling-Quantum-Systems-GmbH--14315594-inline.html",
-      "title": "Project Manager (m/f/d) Quantum Frontline Industries",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Wessling",
-      "address_city": "Wessling",
-      "clean_company": "Quantum-Systems GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-Digital-OR-Muenchen-Brainlab--14503873-inline.html",
-      "title": "Project Manager Digital OR",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "Brainlab",
-      "bewerbung": {
-        "status": "mappe",
-        "stelle": "",
-        "datum": ""
-      }
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Program-Manager-Gesamtprojektleiter-m-w-d-Berlin-Muenchen-FEPS-GmbH--14448225-inline.html",
-      "title": "Program Manager / Gesamtprojektleiter (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Berlin, München",
-      "address_city": "Berlin",
-      "kennziffer": "FEPS-PM-GCAP-01",
-      "clean_company": "FEPS GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Project-Manager-m-w-d-Guestmanagement-Schwaebisch-Hall-Duesseldorf-Muenchen-Frankfurt-marbet-Marion-Bettina-Wuerth-GmbH-Co-KG--7481625-inline.html",
-      "title": "Project Manager (m/w/d) Guestmanagement",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Schwäbisch Hall, Düsseldorf, München, Frankfurt",
-      "clean_company": "marbet Marion & Bettina Würth GmbH & Co. KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektleiter-Cloud-Digitale-Transformation-m-w-d-Ottobrunn-bei-Muenchen-Berlin-Bonn-IABG-Industrieanlagen-Betriebsgesellschaft-mbH--14394912-inline.html",
-      "title": "(Senior) Projektleiter Cloud / Digitale Transformation (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Ottobrunn bei München, Berlin, Bonn",
-      "address_city": "Ottobrunn bei München",
-      "clean_company": "IABG Industrieanlagen - Betriebsgesellschaft mbH"
     },
     {
       "source": "bundesagentur",
@@ -1910,384 +1303,6 @@
       "clean_company": "IndustrieAlpine GmbH & Co KG"
     },
     {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Proposal-Project-Manager-Space-Industry-Munich-Infinite-Orbits-Deutschland-GmbH--14401035-inline.html",
-      "title": "Proposal & Project Manager (Space Industry)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "Infinite Orbits Deutschland GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Novelty-Project-Manager-all-genders-befristet-2-Jahre-Muenchen-Schleich-GmbH--14423692-inline.html",
-      "title": "Novelty Project Manager (all genders) – befristet 2 Jahre",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "St.-Martin-Straße 102",
-      "address_city": "81669 München",
-      "clean_company": "Schleich GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Sondermaschinenbau-gn-Krailling-Photonics-Systems-Holding-GmbH--14418173-inline.html",
-      "title": "Projektleiter Sondermaschinenbau (gn)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Pionierstr.",
-      "address_city": "82152 Krailling",
-      "clean_company": "Photonics Systems Holding GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Internationaler-Produkt-und-Projektmanager-Brillenglaeser-m-w-d-Muenchen-Rodenstock-GmbH--14345590-inline.html",
-      "title": "Internationaler Produkt- und Projektmanager Brillengläser (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Elsenheimerstr. 33",
-      "address_city": "80687 München",
-      "clean_company": "Rodenstock GmbH",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "—",
-        "datum": "2026-07"
-      }
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Standortentwicklung-all-genders-Taufkirchen-Blackwave-GmbH--14431516-inline.html",
-      "title": "Projektleiter – Standortentwicklung (all genders)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Rotwandweg 8",
-      "address_city": "82024 Taufkirchen",
-      "clean_company": "Blackwave GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Verfahrenstechnik-m-w-d-Muenchen-Nord-HAPEKO-Deutschland-GmbH--14474230-inline.html",
-      "title": "Projektleiter - Verfahrenstechnik (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "HAPEKO Deutschland GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Elektrotechnik-m-w-d-Muenchen-Muenchen-Rocksolid-Personalvermittlung-GmbH--14294875-inline.html",
-      "title": "Projektleiter Elektrotechnik (m/w/d) München",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "München",
-      "address_city": "München",
-      "clean_company": "Rocksolid Personalvermittlung GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Jnr-Technische-r-Projektleiter-in-Munich-Luxera-Energy-Gmbh--14411438-inline.html",
-      "title": "(Jnr.) Technische:r Projektleiter:in",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Munich",
-      "address_city": "Munich",
-      "clean_company": "Luxera Energy Gmbh"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Elektronische-Kampffuehrung-EloKa-m-w-d-Ottobrunn-bei-Muenchen-Berlin-Bonn-Dresden-Hamburg-Koblenz-IABG-Industrieanlagen-Betriebsgesellschaft-mbH--13270618-inline.html",
-      "title": "Projektleiter Elektronische Kampfführung (EloKa) (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Ottobrunn bei München, Berlin, Bonn, Dresden, Hamburg, Koblenz",
-      "clean_company": "IABG Industrieanlagen - Betriebsgesellschaft mbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Waermepumpe-bundesweit-Eneto-GmbH--14421135-inline.html",
-      "title": "Projektleiter Wärmepumpe",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "bundesweit",
-      "address_city": "bundesweit",
-      "clean_company": "Eneto GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Umspannwerke-Deutschlandweit-m-w-d-bundesweit-UKA-Umweltgerechte-Kraftanlagen-GmbH-Co-KG--14405265-inline.html",
-      "title": "Projektleiter Umspannwerke - Deutschlandweit (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "bundesweit",
-      "address_city": "bundesweit",
-      "clean_company": "UKA Umweltgerechte Kraftanlagen GmbH & Co. KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Erfahrener-Konstrukteur-m-w-d-mit-Projektleitungsaufgaben-im-Allgemeinen-Maschinenbau-Filderstadt-Mannheim-Muenchen-Nuernberg-Ravensburg-Stuttgart-Trossingen-Ulm-SCHULER-KONSTRUKTIONEN-GmbH--13490780-inline.html",
-      "title": "Erfahrener Konstrukteur (m/w/d) mit Projektleitungsaufgaben im Allgemeinen Maschinenbau",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleitung (+16)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Filderstadt",
-      "clean_company": "SCHULER KONSTRUKTIONEN GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektleiter-w-m-d-Elektroantriebe-Dresden-AdditiveDrives-GmbH--14438810-inline.html",
-      "title": "Senior Projektleiter (w/m/d) Elektroantriebe",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior projektleiter (+22)",
-        "🎯 projektleiter (+16)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Dresden",
-      "clean_company": "Additive|Drives GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-Real-World-Health-Data-Platforms-f-m-x-Berlin-Potsdam-D4L-data4life-gGmbH--14409273-inline.html",
-      "title": "Senior Project Manager - Real-World Health Data Platforms (f/m/x)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Berlin, Potsdam",
-      "address_city": "Berlin",
-      "clean_company": "D4L data4life gGmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-Large-Enterprise-Projects-m-w-d-Koblenz-CompuGroup-Medical-SE-Co-KGaA--14371413-inline.html",
-      "title": "Senior Project Manager Large Enterprise Projects (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Koblenz",
-      "address_city": "Koblenz",
-      "clean_company": "CompuGroup Medical SE & Co. KGaA"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-in-m-w-d-Industriebau-Dresden-Ingerop-Deutschland--13810670-inline.html",
-      "title": "Senior Projektmanager:in (m/w/d) Industriebau",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior projektmanager (+22)",
-        "🎯 projektmanager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [
-        {
-          "source": "stepstone",
-          "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-in-m-w-d-Industriebau-Dresden-Ingerop-Deutschland--14144558-inline.html"
-        }
-      ],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Barthstraße 4",
-      "address_city": "80339 München",
-      "clean_company": "Ingérop Deutschland"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-Finance-Post-Merger-Integration-Transformation-Projects-all-genders-Darmstadt-Merck-KGaA-Darmstadt-Germany--14504048-inline.html",
-      "title": "Senior Project Manager Finance - Post-Merger Integration & Transformation Projects (all genders)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "64293 Darmstadt",
-      "clean_company": "Merck KGaA Darmstadt, Germany"
-    },
-    {
       "source": "remotely",
       "url": "https://www.remotely.de/job/delivery-hero-lead-project-manager-fintech",
       "title": "delivery hero lead project manager fintech",
@@ -2307,335 +1322,6 @@
       "verify_status": "ok-spa",
       "address_city": "Berlin",
       "clean_company": "Delivery Hero"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-in-IPA-Helmut-Schmidt-Universitaet-HSU-Hamburg-Behoerde-fuer-Stadtentwicklung-und-Wohnen--14484391-inline.html",
-      "title": "Senior Projektmanager:in IPA - Helmut-Schmidt-Universität (HSU)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior projektmanager (+22)",
-        "🎯 projektmanager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "20097 Hamburg",
-      "kennziffer": "J000043653",
-      "clean_company": "Behörde für Stadtentwicklung und Wohnen"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-d-Dresden-Exentec-Germany-GmbH--13868888-inline.html",
-      "title": "Senior Projektmanager (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior projektmanager (+22)",
-        "🎯 projektmanager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [
-        {
-          "source": "stepstone",
-          "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-d-Nordrhein-Westfalen-Rochus-Mummert--14385134-inline.html"
-        }
-      ],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Dresden",
-      "clean_company": "Exentec Germany GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-m-w-d-der-Geschaeftsfuehrung-Toepen-dennree-GmbH--14428510-inline.html",
-      "title": "Senior Projektmanager (m/w/d) der Geschäftsführung",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior projektmanager (+22)",
-        "🎯 projektmanager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Hofer Straße 11",
-      "address_city": "95183 Töpen",
-      "clean_company": "dennree GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Projektmanager-IT-Infrastruktur-m-w-d-Berlin-Allgeier-IT-GmbH--14447695-inline.html",
-      "title": "Senior Projektmanager IT-Infrastruktur (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior projektmanager (+22)",
-        "🎯 projektmanager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "10115 Berlin",
-      "clean_company": "Allgeier IT GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--PMO-Global-Projects-m-w-d-Muenchen-LRE-Medical-GmbH--14423221-inline.html",
-      "title": "PMO Global Projects (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 37,
-      "score_reasons": [
-        "🎯 pmo (+12)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "LRE Medical GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Manager-Strategy-PMO-m-w-d-Munich-ju-niz-Energy-GmbH--14292591-inline.html",
-      "title": "Senior Manager Strategy & PMO (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 37,
-      "score_reasons": [
-        "🎯 pmo (+12)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Munich",
-      "address_city": "Munich",
-      "clean_company": "ju:niz Energy GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Ingenieurin-Auditierung-typpruefrelevanter-Managementsysteme-Automotive-w-m-d-Bundesweit-TUEV-Rheinland-Group--13443504-inline.html",
-      "title": "Ingenieur*in Auditierung typprüfrelevanter Managementsysteme Automotive (w/m/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 37,
-      "score_reasons": [
-        "🚗 automotive (+12)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "70565 Stuttgart",
-      "clean_company": "TÜV Rheinland Group"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--PMO-Projektcontroller-m-w-d-bei-Virtual-Eye-85737-Ismaning-Virtual-Eye-GmbH--14150747-inline.html",
-      "title": "PMO-Projektcontroller (m/w/d) bei Virtual Eye",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 37,
-      "score_reasons": [
-        "🎯 pmo (+12)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "85737 Ismaning",
-      "address_city": "85737 Ismaning",
-      "clean_company": "Virtual Eye GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Teilprojektleitung-Genehmigung-Rhein-Main-Link-m-w-d-Dortmund-Amprion-GmbH--14453080-inline.html",
-      "title": "Teilprojektleitung Genehmigung Rhein-Main-Link (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 36,
-      "score_reasons": [
-        "🎯 teilprojektleit (+20)",
-        "🎯 projektleitung (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "44263 Dortmund",
-      "clean_company": "Amprion GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Teilprojektleiter-E-Technik-m-w-d-Anlagenbau-Rossdorf-EnviroChemie-GmbH--14433217-inline.html",
-      "title": "Teilprojektleiter E-Technik (m/w/d) Anlagenbau",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 36,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 teilprojektleit (+20)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "In den Leppsteinswiesen 9",
-      "address_city": "64380 Roßdorf",
-      "clean_company": "EnviroChemie GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Teilprojektleiter-Senior-Engineer-Schiffsbetriebstechnik-Maschinenbau-w-m-d-Bremen-Brunel-GmbH--13113576-inline.html",
-      "title": "Teilprojektleiter / Senior Engineer - Schiffsbetriebstechnik / Maschinenbau (w/m/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 36,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 teilprojektleit (+20)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "28195 Bremen",
-      "clean_company": "Brunel GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Entwicklungsingenieur-Elektrotechnik-Antriebstechnik-m-w-d-Muenchen-F-X-MEILLER-Fahrzeug-und-Maschinenfabrik-GmbH-Co-KG--14412682-inline.html",
-      "title": "Entwicklungsingenieur Elektrotechnik – Antriebstechnik (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 35,
-      "score_reasons": [
-        "🚗 fahrzeug (+10)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Ambossstraße 4",
-      "address_city": "80997 München",
-      "clean_company": "F.X. MEILLER Fahrzeug- und Maschinenfabrik GmbH & Co KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Projektplaner-w-m-d-bundesweit-Brunel-GmbH--14407074-inline.html",
-      "title": "Projektingenieur / Projektplaner (w/m/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 35,
-      "score_reasons": [
-        "🎯 projektingenieur (+10)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "bundesweit",
-      "address_city": "bundesweit",
-      "clean_company": "Brunel GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektingenieur-Netztechnik-Netzberechnung-m-w-d-Deutschlandweit-bundesweit-UKA-Umweltgerechte-Kraftanlagen-GmbH-Co-KG--14429935-inline.html",
-      "title": "Projektingenieur Netztechnik / Netzberechnung (m/w/d) - Deutschlandweit",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 35,
-      "score_reasons": [
-        "🎯 projektingenieur (+10)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "bundesweit",
-      "address_city": "bundesweit",
-      "clean_company": "UKA Umweltgerechte Kraftanlagen GmbH & Co. KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Ingenieur-in-Fahrzeugpruefung-zur-Qualifizierung-bundesweit-TUEV-NORD-Mobilitaet-GmbH-Co-KG--14338101-inline.html",
-      "title": "Ingenieur:in Fahrzeugprüfung (zur Qualifizierung)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 35,
-      "score_reasons": [
-        "🚗 fahrzeug (+10)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "bundesweit",
-      "address_city": "bundesweit",
-      "clean_company": "TÜV NORD Mobilität GmbH & Co. KG"
     },
     {
       "source": "bundesagentur",
@@ -2663,261 +1349,6 @@
       "clean_company": "Bertrandt AG"
     },
     {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Produktentwicklung-m-w-d-Dortmund-Dr-Ausbuettel-GmbH-Co-KG--13608896-inline.html",
-      "title": "Projektmanager Produktentwicklung (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 32,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "🎯 produktentwicklung (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Dortmund",
-      "clean_company": "Dr. Ausbüttel GmbH & Co. KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Produktentwicklung-m-m-d-Mettingen-bei-Osnabrueck-Conditorei-Coppenrath-Wiese-KG--14480343-inline.html",
-      "title": "Projektmanager Produktentwicklung (m/m/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 32,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "🎯 produktentwicklung (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Hansastraße 10",
-      "address_city": "49497 Mettingen",
-      "clean_company": "Conditorei Coppenrath & Wiese KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Project-Manager-Projektmanager-m-w-d-internationale-Systemprojekte-Hamburg-PLATH-GmbH-Co-KG--14502064-inline.html",
-      "title": "(Senior) Project Manager / Projektmanager (m/w/d) internationale Systemprojekte",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 32,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "🎯 project manager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Hamburg",
-      "clean_company": "PLATH GmbH & Co. KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Eplan-Hardware-Automotive-m-w-d-Titisee-Neustadt-Morath-Automatisierung-GmbH--12868519-inline.html",
-      "title": "Projektleiter - Eplan / Hardware / Automotive (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 28,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🚗 automotive (+12)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "79822 Titisee-Neustadt",
-      "clean_company": "Morath Automatisierung GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Automotive-Business-Development-Automotive-m-w-d-Kirchheim-Teck-Ingenieurbuero-Rohr-GmbH--14428517-inline.html",
-      "title": "Projektmanager Automotive / Business Development Automotive (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 28,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "🚗 automotive (+12)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Villastraße 3",
-      "address_city": "73230 Kirchheim",
-      "clean_company": "Ingenieurbüro Rohr GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Senior-Product-Owner-Projektmanager-m-w-d-Hamburg-Stulz-Digital-Solutions-GmbH--14500651-inline.html",
-      "title": "Senior Product Owner / Projektmanager (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 28,
-      "score_reasons": [
-        "🎯 product owner (+12)",
-        "🎯 projektmanager (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Holsteiner Chaussee 283",
-      "address_city": "22457 Hamburg",
-      "clean_company": "Stulz Digital Solutions GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Contracts-Program-Manager-FELDKIRCHEN-Munich-Cadence-Design-Systems-GmbH--14170362-inline.html",
-      "title": "Contracts Program Manager",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "FELDKIRCHEN (Munich)",
-      "address_city": "FELDKIRCHEN (Munich)",
-      "clean_company": "Cadence Design Systems GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Program-Manager-m-f-d-Gilching-Quantum-Systems-GmbH--14506357-inline.html",
-      "title": "Program Manager (m/f/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Gilching",
-      "address_city": "Gilching",
-      "clean_company": "Quantum-Systems GmbH"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Customer-Program-Manager-m-w-d-Muenchen-Mynaric-AG--13921464-inline.html",
-      "title": "Customer Program Manager (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 muenchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "München",
-      "address_city": "München",
-      "clean_company": "Mynaric AG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--CAD-Konstrukteur-3D-Modellierung-Baugruppen-m-w-d-Groebenzell-Mathias-Baumann-Ingenieurbuero--14277911-inline.html",
-      "title": "CAD Konstrukteur - 3D-Modellierung / Baugruppen (m/w/d)",
-      "company": "",
-      "location": "muenchen",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 muenchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "82194 Gröbenzell",
-      "clean_company": "Mathias Baumann Ingenieurbüro"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Entwicklung-Medizintechnik-Therapiegeraete-m-w-d-Hamburg-Loewenstein-Medical-Technology-GmbH-Co-KG--14453450-inline.html",
-      "title": "Projektleiter Entwicklung Medizintechnik Therapiegeräte (m/w/d)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 24,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 medizintechnik (+8)"
-      ],
-      "category": "pharma",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Kronsaalsweg 40",
-      "address_city": "22525 Hamburg",
-      "clean_company": "Löwenstein Medical Technology GmbH + Co. KG"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--AI-Manager-Enterprise-Applications-all-genders-Berlin-Duesseldorf-Frankfurt-am-Main-Hamburg-Muenchen-Stuttgart-Roland-Berger-Holding-GmbH-Co-KGaA--14504937-inline.html",
-      "title": "AI Manager – Enterprise Applications (all genders)",
-      "company": "",
-      "location": "",
-      "description": "",
-      "first_seen": "2026-09-16T16:17:24.417342",
-      "is_new": false,
-      "score": 22,
-      "score_reasons": [
-        "🤖 ai manager (+22)"
-      ],
-      "category": "ki",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Berlin, Düsseldorf, Frankfurt am Main, Hamburg, München, Stuttgart",
-      "address_city": "Berlin",
-      "clean_company": "Roland Berger Holding GmbH & Co. KGaA"
-    },
-    {
       "source": "arbeitnow",
       "url": "https://www.arbeitnow.com/jobs/companies/mobileye/senior-engineering-project-manager-adas-homologation-munich-germany-99553",
       "title": "Senior Engineering Project Manager - ADAS Homologation (M/W/D)",
@@ -2939,50 +1370,6 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok"
-    },
-    {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/senior-projektmanager-m-w-d-jobbird-com-at-jobster-4465757713",
-      "title": "Senior Projektmanager (m/w/d) - Jobbird.com",
-      "company": "Senior Projektmanager (m/w/d) - Jobbird.com",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-16T11:11:42.566867",
-      "is_new": false,
-      "score": 63,
-      "score_reasons": [
-        "🎯 senior projektmanager (+22)",
-        "🎯 projektmanager (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "Jobster"
-    },
-    {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/senior-technical-project-manager-at-omegga-4465696763",
-      "title": "(Senior) Technical Project Manager",
-      "company": "(Senior) Technical Project Manager",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-16T11:11:42.566867",
-      "is_new": false,
-      "score": 59,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "🎯 technical project manager (+18)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "Omegga"
     },
     {
       "source": "arbeitnow",
@@ -3048,87 +1435,25 @@
       "verify_status": "ok"
     },
     {
-      "source": "kimeta",
-      "url": "https://www.kimeta.de/display-job/tuev-sued-industrie-service-gmbh/projektmanager-windenergie-w-m-d/988679854.html",
-      "title": "TÜV SÜD Industrie Service GmbH Neu Projektmanager Windenergie (w/m/d) München 15.9.2026",
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/rossmann-pmo-mwd-it-projektmanagement",
+      "title": "rossmann pmo",
       "company": "",
-      "location": "München",
+      "location": "Remote Deutschland",
       "description": "",
       "first_seen": "2026-09-16T11:11:42.566867",
       "is_new": false,
-      "score": 45,
+      "score": 34,
       "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "🎯 energie (+4)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "clean_company": "TÜV SÜD Industrie Service GmbH"
-    },
-    {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/projektmanager-in-m-w-d-mit-autohauserfahrung-at-msx-international-4458223856",
-      "title": "Projektmanager/-in (m/w/d) - mit Autohauserfahrung",
-      "company": "Projektmanager/-in (m/w/d) - mit Autohauserfahrung",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-16T11:11:42.566867",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 münchen (+25)"
+        "🎯 pmo (+12)",
+        "📍 remote (+22)"
       ],
       "category": "pm",
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "MSX International"
-    },
-    {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/projektmanager-m-w-d-maklermanagement-at-fonds-finanz-maklerservice-gmbh-4452368142",
-      "title": "Projektmanager (m/w/d) Maklermanagement",
-      "company": "Projektmanager (m/w/d) Maklermanagement",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-16T11:11:42.566867",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "Fonds Finanz Maklerservice GmbH"
-    },
-    {
-      "source": "kimeta",
-      "url": "https://www.kimeta.de/display-job/i-live-group-gmbh/project-developer-projektmanager-m-w-d/988671812.html",
-      "title": "i Live Group GmbH Neu Project Developer | Projektmanager(m/w/d) Aalen, München , Frankfurt am Main 15.9.2026",
-      "company": "",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-16T11:11:42.566867",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "clean_company": "i Live Group"
+      "address_city": "Burgwedel",
+      "clean_company": "ROSSMANN"
     },
     {
       "source": "remotely",
@@ -3154,27 +1479,6 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/westhouse-professionals-gmbh-pmo-konzernentwicklung-business-transformation-mwd",
-      "title": "westhouse professionals gmbh pmo konzernentwicklung business transformation",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-09-16T11:11:42.566867",
-      "is_new": false,
-      "score": 34,
-      "score_reasons": [
-        "🎯 pmo (+12)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Karlsruhe",
-      "clean_company": "Westhouse Professionals GmbH"
-    },
-    {
-      "source": "remotely",
       "url": "https://www.remotely.de/job/hrworks-gmbh-produktmanager-product-owner-mwd-hr-software",
       "title": "hrworks gmbh produktmanager product owner",
       "company": "",
@@ -3197,8 +1501,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/rossmann-pmo-mwd-it-projektmanagement",
-      "title": "rossmann pmo",
+      "url": "https://www.remotely.de/job/westhouse-professionals-gmbh-pmo-konzernentwicklung-business-transformation-mwd",
+      "title": "westhouse professionals gmbh pmo konzernentwicklung business transformation",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -3213,8 +1517,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "Burgwedel",
-      "clean_company": "ROSSMANN"
+      "address_city": "Karlsruhe",
+      "clean_company": "Westhouse Professionals GmbH"
     },
     {
       "source": "kimeta",
@@ -3521,28 +1825,6 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/landesentwicklungsgesellschaft-thuringen-mbh-leg-thuringen-projektmanager-mwd-investorengewinnung-unternehmensansiedlung-elektronik-sicherheits-u",
-      "title": "landesentwicklungsgesellschaft thuringen mbh leg thuringen projektmanager",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-09-15T11:22:08.156128",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "10999 Berlin",
-      "kennziffer": "R1010259-HRG",
-      "clean_company": "Landesentwicklungsgesellschaft Thuringen mbH"
-    },
-    {
-      "source": "remotely",
       "url": "https://www.remotely.de/job/hitachi-rail-deutschland-projektmanager-im-bahnbereich-mwd",
       "title": "hitachi rail deutschland projektmanager im bahnbereich",
       "company": "",
@@ -3562,6 +1844,27 @@
       "address_city": "23966 Wismar",
       "kennziffer": "R1010259-HRG",
       "clean_company": "Hitachi Rail Deutschland"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/landesentwicklungsgesellschaft-thuringen-mbh-leg-thuringen-projektmanager-mwd-investorengewinnung-unternehmensansiedlung-elektronik-sicherheits-u",
+      "title": "landesentwicklungsgesellschaft thuringen mbh leg thuringen projektmanager",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-09-15T11:22:08.156128",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "78532 Tuttlingen",
+      "clean_company": "Landesentwicklungsgesellschaft Thuringen mbH"
     },
     {
       "source": "bundesagentur",
@@ -3741,6 +2044,31 @@
     },
     {
       "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/11956-3061781788991200-S",
+      "title": "Communardo GmbH: Senior Project Manager Atlassian – Schwerpunkt Cloud Migration (m/w/d)",
+      "company": "Communardo GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": true,
+      "first_seen": "2026-09-14T14:15:36.092282",
+      "is_new": false,
+      "score": 63,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 project manager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "53113 Bonn",
+      "kennziffer": "11956-3061781788991200-S",
+      "clean_company": "Communardo GmbH"
+    },
+    {
+      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003676861-S",
       "title": "Senior Projektmanager ERP (all genders)",
       "company": "Arineo  GmbH",
@@ -3764,31 +2092,6 @@
       "address_city": "20095 Hamburg",
       "kennziffer": "10001-1003676861-S",
       "clean_company": "Arineo  GmbH"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/11956-3061781788991200-S",
-      "title": "Communardo GmbH: Senior Project Manager Atlassian – Schwerpunkt Cloud Migration (m/w/d)",
-      "company": "Communardo GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": true,
-      "first_seen": "2026-09-14T14:15:36.092282",
-      "is_new": false,
-      "score": 63,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "53113 Bonn",
-      "kennziffer": "11956-3061781788991200-S",
-      "clean_company": "Communardo GmbH"
     },
     {
       "source": "remotely",
@@ -4046,28 +2349,6 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/lunisa-trust-match-gmbh-projektleiter-mechanische-konstruktion-mwd",
-      "title": "lunisa trust match gmbh projektleiter mechanische konstruktion",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-09-14T09:49:54.411708",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Würzburg",
-      "kennziffer": "AA-2026-0183",
-      "clean_company": "LUNISA trust & match GmbH"
-    },
-    {
-      "source": "remotely",
       "url": "https://www.remotely.de/job/allgeier-it-gmbh-dusseldorf-projektmanager-mwd-70-remote",
       "title": "allgeier it gmbh dusseldorf projektmanager",
       "company": "",
@@ -4111,6 +2392,49 @@
     },
     {
       "source": "remotely",
+      "url": "https://www.remotely.de/job/coltos-gmbh-office-und-projektmanagerin-mwd",
+      "title": "coltos gmbh office und projektmanagerin",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-09-14T09:49:54.411708",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Hamburg",
+      "clean_company": "Coltos GmbH"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/lunisa-trust-match-gmbh-projektleiter-mechanische-konstruktion-mwd",
+      "title": "lunisa trust match gmbh projektleiter mechanische konstruktion",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-09-14T09:49:54.411708",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Würzburg",
+      "kennziffer": "AA-2026-0183",
+      "clean_company": "LUNISA trust & match GmbH"
+    },
+    {
+      "source": "remotely",
       "url": "https://www.remotely.de/job/dyckerhoff-gmbh-hauptverwaltung-projektleiter-fur-das-technische-projektmanagement-mwd",
       "title": "dyckerhoff gmbh hauptverwaltung projektleiter fur das technische projektmanagement",
       "company": "",
@@ -4131,27 +2455,6 @@
       "address_city": "40213 Düsseldorf",
       "kennziffer": "2429-2026",
       "clean_company": "Dyckerhoff GmbH Hauptverwaltung"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/coltos-gmbh-office-und-projektmanagerin-mwd",
-      "title": "coltos gmbh office und projektmanagerin",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-09-14T09:49:54.411708",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Hamburg",
-      "clean_company": "Coltos GmbH"
     },
     {
       "source": "remotely",
@@ -4199,6 +2502,28 @@
     },
     {
       "source": "remotely",
+      "url": "https://www.remotely.de/job/documedias-gmbh-projektmanager-mwd",
+      "title": "documedias gmbh projektmanager",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-09-13T08:50:41.165327",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Hannover",
+      "kennziffer": "12-253566",
+      "clean_company": "documediaS GmbH"
+    },
+    {
+      "source": "remotely",
       "url": "https://www.remotely.de/job/stromernte-gmbh-co-kg-projektmanagerin-netzanschluss-grid-connection-manager-mwd-remote",
       "title": "stromernte gmbh co kg projektmanagerin netzanschluss grid connection manager",
       "company": "",
@@ -4219,28 +2544,6 @@
       "address_city": "82166 Gräfelfing",
       "kennziffer": "YF-44697",
       "clean_company": "Stromernte GmbH & Co. KG"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/documedias-gmbh-projektmanager-mwd",
-      "title": "documedias gmbh projektmanager",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-09-13T08:50:41.165327",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Hannover",
-      "kennziffer": "12-253566",
-      "clean_company": "documediaS GmbH"
     },
     {
       "source": "remotely",
@@ -4266,6 +2569,27 @@
       "clean_company": "Stromernte GmbH & Co. KG"
     },
     {
+      "source": "xing",
+      "url": "https://www.xing.com/jobs/aschheim-senior-projektleiter-gebaeudeausruestung-156958620",
+      "title": "Senior Projektleiter GebÃ¤udeausrÃ¼stung (m/w/d)",
+      "company": "persona service AG & Co. KG",
+      "location": "Aschheim",
+      "description": "",
+      "first_seen": "2026-09-13T08:50:41.165327",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 senior projektleiter (+22)",
+        "🎯 projektleiter (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "Aschheim",
+      "clean_company": "persona service AG & Co. KG"
+    },
+    {
       "source": "remotely",
       "url": "https://www.remotely.de/job/tgw-systems-integration-gmbh-projektleiter-in-mwd-fokus-software",
       "title": "tgw systems integration gmbh projektleiter in",
@@ -4287,27 +2611,6 @@
       "address_city": "85521 Ottobrunn",
       "kennziffer": "AA-2026-0183",
       "clean_company": "TGW Systems Integration GmbH"
-    },
-    {
-      "source": "xing",
-      "url": "https://www.xing.com/jobs/aschheim-senior-projektleiter-gebaeudeausruestung-156958620",
-      "title": "Senior Projektleiter GebÃ¤udeausrÃ¼stung (m/w/d)",
-      "company": "persona service AG & Co. KG",
-      "location": "Aschheim",
-      "description": "",
-      "first_seen": "2026-09-13T08:50:41.165327",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 senior projektleiter (+22)",
-        "🎯 projektleiter (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "Aschheim",
-      "clean_company": "persona service AG & Co. KG"
     },
     {
       "source": "remotely",
@@ -4353,6 +2656,28 @@
     },
     {
       "source": "remotely",
+      "url": "https://www.remotely.de/job/mait-germany-gmbh-senior-project-manager-multi-partner-projekte-wmd",
+      "title": "mait germany gmbh senior project manager multi partner projekte",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-09-12T08:37:43.801595",
+      "is_new": false,
+      "score": 60,
+      "score_reasons": [
+        "🎯 senior project manager (+22)",
+        "🎯 project manager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "20359 Hamburg",
+      "clean_company": "Mait Germany GmbH"
+    },
+    {
+      "source": "remotely",
       "url": "https://www.remotely.de/job/loxxess-ag-senior-projektmanagerin-mwd-projektleiterin-projektmanagerin",
       "title": "loxxess ag senior projektmanagerin",
       "company": "",
@@ -4372,28 +2697,6 @@
       "verify_status": "ok-spa",
       "address_city": "Mannheim",
       "clean_company": "LOXXESS AG"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/mait-germany-gmbh-senior-project-manager-multi-partner-projekte-wmd",
-      "title": "mait germany gmbh senior project manager multi partner projekte",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-09-12T08:37:43.801595",
-      "is_new": false,
-      "score": 60,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "70794 Filderstadt",
-      "clean_company": "Mait Germany GmbH"
     },
     {
       "source": "remotely",
@@ -4463,28 +2766,6 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/gasag-solution-plus-gmbh-projektleiterin-grossprojekte-wmd",
-      "title": "gasag solution plus gmbh projektleiterin grossprojekte",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-09-12T08:37:43.801595",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "33611 Bielefeld",
-      "kennziffer": "S0260806",
-      "clean_company": "Gasag Solution Plus GmbH"
-    },
-    {
-      "source": "remotely",
       "url": "https://www.remotely.de/job/aecom-deutschland-gmbh-projektmanager-mwd-architektur-ingenieur-design",
       "title": "aecom deutschland gmbh projektmanager",
       "company": "",
@@ -4508,8 +2789,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/3p-pipeline-petroleum-precision-services-gmbh-co-kg-sales-and-project-manager",
-      "title": "3p pipeline petroleum precision services gmbh co kg sales and project manager",
+      "url": "https://www.remotely.de/job/gasag-solution-plus-gmbh-projektleiterin-grossprojekte-wmd",
+      "title": "gasag solution plus gmbh projektleiterin grossprojekte",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -4517,15 +2798,16 @@
       "is_new": false,
       "score": 38,
       "score_reasons": [
-        "🎯 project manager (+16)",
+        "🎯 projektleiter (+16)",
         "📍 remote (+22)"
       ],
       "category": "pm",
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "53567 Asbach",
-      "clean_company": "3P Pipeline Petroleum Precision Services GmbH"
+      "address_city": "33611 Bielefeld",
+      "kennziffer": "S0260806",
+      "clean_company": "Gasag Solution Plus GmbH"
     },
     {
       "source": "remotely",
@@ -4550,8 +2832,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/jobsolutions-gmbh-betriebswirt-projektmanager-mwd-klimafreundliche-industrie-offentlicher-dienst-julich",
-      "title": "jobsolutions gmbh betriebswirt projektmanager",
+      "url": "https://www.remotely.de/job/spangler-gmbh-projektleiter-automatisierungslosungen-mwd",
+      "title": "spangler gmbh projektleiter automatisierungslosungen",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -4559,15 +2841,37 @@
       "is_new": false,
       "score": 38,
       "score_reasons": [
-        "🎯 projektmanager (+16)",
+        "🎯 projektleiter (+16)",
         "📍 remote (+22)"
       ],
       "category": "pm",
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "Jülich",
-      "clean_company": "Jobsolutions GmbH"
+      "address_city": "92345 Dietfurt",
+      "kennziffer": "YF-49634",
+      "clean_company": "Spangler GmbH"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/3p-pipeline-petroleum-precision-services-gmbh-co-kg-sales-and-project-manager",
+      "title": "3p pipeline petroleum precision services gmbh co kg sales and project manager",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-09-12T08:37:43.801595",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "53567 Asbach",
+      "clean_company": "3P Pipeline Petroleum Precision Services GmbH"
     },
     {
       "source": "remotely",
@@ -4593,8 +2897,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/spangler-gmbh-projektleiter-automatisierungslosungen-mwd",
-      "title": "spangler gmbh projektleiter automatisierungslosungen",
+      "url": "https://www.remotely.de/job/jobsolutions-gmbh-betriebswirt-projektmanager-mwd-klimafreundliche-industrie-offentlicher-dienst-julich",
+      "title": "jobsolutions gmbh betriebswirt projektmanager",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -4602,16 +2906,15 @@
       "is_new": false,
       "score": 38,
       "score_reasons": [
-        "🎯 projektleiter (+16)",
+        "🎯 projektmanager (+16)",
         "📍 remote (+22)"
       ],
       "category": "pm",
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "92345 Dietfurt",
-      "kennziffer": "YF-49634",
-      "clean_company": "Spangler GmbH"
+      "address_city": "Jülich",
+      "clean_company": "Jobsolutions GmbH"
     },
     {
       "source": "neura",
@@ -4786,49 +3089,6 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/kinderyoga-ev-projektmanagerin-kinderyoga-ev-mwd-16i-sgb-ii",
-      "title": "kinderyoga ev projektmanagerin kinderyoga ev",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-09-11T08:53:53.027708",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "60314 Frankfurt",
-      "clean_company": "Kinderyoga Ev"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/wematch-projektleiter-mwd-technische-integration-operations-energiewirtschaft-i-vollzeit-i-remote",
-      "title": "wematch projektleiter",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-09-11T08:53:53.027708",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Lichtstraße 43g",
-      "address_city": "50825 Köln",
-      "clean_company": "Wematch"
-    },
-    {
-      "source": "remotely",
       "url": "https://www.remotely.de/job/trinetx-project-manager",
       "title": "trinetx project manager",
       "company": "",
@@ -4870,6 +3130,49 @@
       "address_street": "Edisonallee 19",
       "address_city": "89231 Neu-",
       "clean_company": "Jetbrains GmbH"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/wematch-projektleiter-mwd-technische-integration-operations-energiewirtschaft-i-vollzeit-i-remote",
+      "title": "wematch projektleiter",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-09-11T08:53:53.027708",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Lichtstraße 43g",
+      "address_city": "50825 Köln",
+      "clean_company": "Wematch"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/kinderyoga-ev-projektmanagerin-kinderyoga-ev-mwd-16i-sgb-ii",
+      "title": "kinderyoga ev projektmanagerin kinderyoga ev",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-09-11T08:53:53.027708",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "60314 Frankfurt",
+      "clean_company": "Kinderyoga Ev"
     },
     {
       "source": "remotely",
@@ -5204,6 +3507,28 @@
     },
     {
       "source": "remotely",
+      "url": "https://www.remotely.de/job/feps-gmbh-program-manager-gesamtprojektleiter-mwd",
+      "title": "feps gmbh program manager gesamtprojektleiter",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-09-09T08:54:18.658807",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Berlin",
+      "kennziffer": "FEPS-PM-GCAP-01",
+      "clean_company": "FEPS GmbH"
+    },
+    {
+      "source": "remotely",
       "url": "https://www.remotely.de/job/last-mile-semiconductor-gmbh-last-mile-semiconductor-gmbh-projektleiter-software-embedded-projekte-mwd",
       "title": "last mile semiconductor gmbh last mile semiconductor gmbh projektleiter software embedded projekte",
       "company": "",
@@ -5226,27 +3551,6 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/kraft-von-wantoch-gmbh-projektleiter-bahn-infrastrukturplanung-mwd",
-      "title": "kraft von wantoch gmbh projektleiter bahn infrastrukturplanung",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-09-09T08:54:18.658807",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Essen",
-      "clean_company": "KRAFT VON WANTOCH GmbH"
-    },
-    {
-      "source": "remotely",
       "url": "https://www.remotely.de/job/gp-joule-gmbh-projektmanagerin-genehmigungsmanagement",
       "title": "gp joule gmbh projektmanagerin genehmigungsmanagement",
       "company": "",
@@ -5265,7 +3569,6 @@
       "verify_status": "ok-spa",
       "address_street": "Heidestraße 2",
       "address_city": "10557 Berlin",
-      "kennziffer": "S0260806",
       "clean_company": "GP JOULE GmbH"
     },
     {
@@ -5291,8 +3594,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/feps-gmbh-program-manager-gesamtprojektleiter-mwd",
-      "title": "feps gmbh program manager gesamtprojektleiter",
+      "url": "https://www.remotely.de/job/kraft-von-wantoch-gmbh-projektleiter-bahn-infrastrukturplanung-mwd",
+      "title": "kraft von wantoch gmbh projektleiter bahn infrastrukturplanung",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -5307,9 +3610,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "Berlin",
-      "kennziffer": "FEPS-PM-GCAP-01",
-      "clean_company": "FEPS GmbH"
+      "address_city": "Essen",
+      "clean_company": "KRAFT VON WANTOCH GmbH"
     },
     {
       "source": "remotely",
@@ -5490,8 +3792,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/neue-osnabrucker-zeitung-gmbh-co-kg-mediengestalter-projektmanager-mwd-informatikerin",
-      "title": "neue osnabrucker zeitung gmbh co kg mediengestalter projektmanager",
+      "url": "https://www.remotely.de/job/ix-tech-gmbh-gmbh-projektmanagerin",
+      "title": "ix tech gmbh gmbh projektmanagerin",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -5506,8 +3808,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "Osnabrück",
-      "clean_company": "Neue Osnabrücker Zeitung GmbH & Co. KG"
+      "address_city": "37085 Göttingen",
+      "clean_company": "Ix Tech GmbH"
     },
     {
       "source": "remotely",
@@ -5534,8 +3836,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/ix-tech-gmbh-gmbh-projektmanagerin",
-      "title": "ix tech gmbh gmbh projektmanagerin",
+      "url": "https://www.remotely.de/job/neue-osnabrucker-zeitung-gmbh-co-kg-mediengestalter-projektmanager-mwd-informatikerin",
+      "title": "neue osnabrucker zeitung gmbh co kg mediengestalter projektmanager",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -5550,8 +3852,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "37085 Göttingen",
-      "clean_company": "Ix Tech GmbH"
+      "address_city": "Osnabrück",
+      "clean_company": "Neue Osnabrücker Zeitung GmbH & Co. KG"
     },
     {
       "source": "bundesagentur",
@@ -5687,8 +3989,8 @@
     },
     {
       "source": "workday:Carl Zeiss Meditec",
-      "url": "https://zeissgroup.wd3.myworkdayjobs.com/job/Mnchen/Program-Manager---Business---Ecosystems-Lifesciences--f-m-x-_JR_1050494-1",
-      "title": "Program Manager - Business & Ecosystems Lifesciences (f/m/x)",
+      "url": "https://zeissgroup.wd3.myworkdayjobs.com/job/Mnchen/Sicherheitsingenieur-Arbeitsschutz---Prvention--m-w-x-_JR_1050806-2",
+      "title": "Sicherheitsingenieur Arbeitsschutz & Prävention (m/w/x)",
       "company": "Carl Zeiss Meditec",
       "location": "München",
       "description": "",
@@ -5705,8 +4007,8 @@
     },
     {
       "source": "workday:Carl Zeiss Meditec",
-      "url": "https://zeissgroup.wd3.myworkdayjobs.com/job/Mnchen/Sicherheitsingenieur-Arbeitsschutz---Prvention--m-w-x-_JR_1050806-2",
-      "title": "Sicherheitsingenieur Arbeitsschutz & Prävention (m/w/x)",
+      "url": "https://zeissgroup.wd3.myworkdayjobs.com/job/Mnchen/Program-Manager---Business---Ecosystems-Lifesciences--f-m-x-_JR_1050494-1",
+      "title": "Program Manager - Business & Ecosystems Lifesciences (f/m/x)",
       "company": "Carl Zeiss Meditec",
       "location": "München",
       "description": "",
@@ -5932,8 +4234,8 @@
     },
     {
       "source": "sf:Knorr-Bremse",
-      "url": "https://careers.knorr-bremse.com/job/München-Global-Product-Owner-Trailer-Business-(mwd)-80809/1429118933/",
-      "title": "Global Product Owner Trailer Business (mwd)",
+      "url": "https://careers.knorr-bremse.com/job/München-Global-Product-Owner-Trailer-Business-(mfd)-80809/1429118833/",
+      "title": "Global Product Owner Trailer Business (mfd)",
       "company": "Knorr-Bremse",
       "location": "München",
       "description": "",
@@ -5959,8 +4261,8 @@
     },
     {
       "source": "sf:Knorr-Bremse",
-      "url": "https://careers.knorr-bremse.com/job/München-Global-Product-Owner-Trailer-Business-(mfd)-80809/1429118833/",
-      "title": "Global Product Owner Trailer Business (mfd)",
+      "url": "https://careers.knorr-bremse.com/job/München-Global-Product-Owner-Trailer-Business-(mwd)-80809/1429118933/",
+      "title": "Global Product Owner Trailer Business (mwd)",
       "company": "Knorr-Bremse",
       "location": "München",
       "description": "",
@@ -6047,26 +4349,6 @@
     },
     {
       "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Senior-Automotive-Security-Engineer-(fmx)-BY-80809/1427490833/",
-      "title": "Senior Automotive Security Engineer (fmx) BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-04T08:45:04.328542",
-      "is_new": false,
-      "score": 37,
-      "score_reasons": [
-        "🚗 automotive (+12)",
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:BMW Group",
       "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Technischen-Modellbauer,-Karosserie-und-Produktion-(wmx)-Werk-2-Plätze-BY-80809/1420629433/",
       "title": "Azubi zum Technischen Modellbauer, Karosserie und Produktion (wmx) Werk 2 Plätze BY",
       "company": "BMW Group",
@@ -6077,6 +4359,26 @@
       "score": 37,
       "score_reasons": [
         "🎯 karosserie (+12)",
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80809 Deutschland"
+    },
+    {
+      "source": "sf:BMW Group",
+      "url": "https://jobs.bmwgroup.com/job/München-Senior-Automotive-Security-Engineer-(fmx)-BY-80809/1427490833/",
+      "title": "Senior Automotive Security Engineer (fmx) BY",
+      "company": "BMW Group",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-09-04T08:45:04.328542",
+      "is_new": false,
+      "score": 37,
+      "score_reasons": [
+        "🚗 automotive (+12)",
         "📍 münchen (+25)"
       ],
       "category": "auto",
@@ -6124,7 +4426,6 @@
       "verified": true,
       "verify_status": "ok-spa",
       "address_city": "Köln",
-      "kennziffer": "S0260804",
       "clean_company": "emagine"
     },
     {
@@ -6188,44 +4489,6 @@
     },
     {
       "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Werkzeugmechaniker-(wmx)-Werk-4-Plätze-BY-80809/1420646933/",
-      "title": "Azubi zum Werkzeugmechaniker (wmx) Werk 4 Plätze BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-04T08:45:04.328542",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Fertigungsmechaniker-(wmx)-Werk-26-Plätze-BY-80809/1420644433/",
-      "title": "Azubi zum Fertigungsmechaniker (wmx) Werk 26 Plätze BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-04T08:45:04.328542",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland"
-    },
-    {
-      "source": "sf:BMW Group",
       "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Elektroniker-für-Automatisierungstechnik-(wmx)-Werk-27-Plätze-BY-80809/1419798933/",
       "title": "Azubi zum Elektroniker für Automatisierungstechnik (wmx) Werk 27 Plätze BY",
       "company": "BMW Group",
@@ -6245,8 +4508,46 @@
     },
     {
       "source": "sf:BMW Group",
+      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Werkzeugmechaniker-(wmx)-Werk-4-Plätze-BY-80809/1420646933/",
+      "title": "Azubi zum Werkzeugmechaniker (wmx) Werk 4 Plätze BY",
+      "company": "BMW Group",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-09-04T08:45:04.328542",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80809 Deutschland"
+    },
+    {
+      "source": "sf:BMW Group",
       "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Zerspanungsmechaniker-(wmx)-5-Plätze-BY-80809/1420639733/",
       "title": "Azubi zum Zerspanungsmechaniker (wmx) 5 Plätze BY",
+      "company": "BMW Group",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-09-04T08:45:04.328542",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80809 Deutschland"
+    },
+    {
+      "source": "sf:BMW Group",
+      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Fertigungsmechaniker-(wmx)-Werk-26-Plätze-BY-80809/1420644433/",
+      "title": "Azubi zum Fertigungsmechaniker (wmx) Werk 26 Plätze BY",
       "company": "BMW Group",
       "location": "München",
       "description": "",
@@ -6442,7 +4743,7 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "65760 Eschborn",
+      "address_city": "37085 Göttingen",
       "clean_company": "Ivv GmbH"
     },
     {
@@ -6658,6 +4959,27 @@
     },
     {
       "source": "remotely",
+      "url": "https://www.remotely.de/job/redworkgroup-gmbh-teamleiter-projektleiter-mwd-callcenter-outbound",
+      "title": "redworkgroup gmbh teamleiter projektleiter",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-31T10:41:00.749187",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Nürnberg",
+      "clean_company": "redworkgroup GmbH"
+    },
+    {
+      "source": "remotely",
       "url": "https://www.remotely.de/job/jacobs-projektleiter-mwd",
       "title": "jacobs projektleiter",
       "company": "",
@@ -6677,27 +4999,6 @@
       "address_street": "Eisenbahnstraße 5",
       "address_city": "52353 Düren",
       "clean_company": "Jacobs"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/redworkgroup-gmbh-teamleiter-projektleiter-mwd-callcenter-outbound",
-      "title": "redworkgroup gmbh teamleiter projektleiter",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-31T10:41:00.749187",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Nürnberg",
-      "clean_company": "redworkgroup GmbH"
     },
     {
       "source": "bundesagentur",
@@ -6817,8 +5118,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/sixt-senior-project-manager-mfd-actuarial-risk-steering",
-      "title": "sixt senior project manager",
+      "url": "https://www.remotely.de/job/arup-senior-project-manager-data-centres",
+      "title": "arup senior project manager data centres",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -6834,8 +5135,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "20359 Hamburg",
-      "clean_company": "Sixt"
+      "address_city": "Frankfurt",
+      "clean_company": "Arup"
     },
     {
       "source": "remotely",
@@ -6856,13 +5157,13 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "20359 Hamburg",
+      "address_city": "78532 Tuttlingen",
       "clean_company": "Knauf Deutschland"
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/arup-senior-project-manager-data-centres",
-      "title": "arup senior project manager data centres",
+      "url": "https://www.remotely.de/job/sixt-senior-project-manager-mfd-actuarial-risk-steering",
+      "title": "sixt senior project manager",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -6878,8 +5179,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "Frankfurt",
-      "clean_company": "Arup"
+      "address_city": "20359 Hamburg",
+      "clean_company": "Sixt"
     },
     {
       "source": "remotely",
@@ -6971,6 +5272,28 @@
     },
     {
       "source": "remotely",
+      "url": "https://www.remotely.de/job/stryker-project-manager-pmo-mfd",
+      "title": "stryker project manager pmo",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 50,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "🎯 pmo (+12)",
+        "📍 remote (+22)"
+      ],
+      "category": "pharma",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Freiburg",
+      "clean_company": "Stryker"
+    },
+    {
+      "source": "remotely",
       "url": "https://www.remotely.de/job/s-markt-amp-mehrwert-gmbh-amp-co-kg-projektmanager-im-product-development-mwd",
       "title": "s markt amp mehrwert gmbh amp co kg projektmanager im product development",
       "company": "",
@@ -6992,28 +5315,6 @@
       "address_city": "06112 Halle",
       "kennziffer": "S0260804",
       "clean_company": "S-Markt &amp; Mehrwert GmbH &amp; Co. KG"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/stryker-project-manager-pmo-mfd",
-      "title": "stryker project manager pmo",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 50,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "🎯 pmo (+12)",
-        "📍 remote (+22)"
-      ],
-      "category": "pharma",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Freiburg",
-      "clean_company": "Stryker"
     },
     {
       "source": "remotely",
@@ -7062,28 +5363,6 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/sixt-technical-program-manager-finance-systems-mfd",
-      "title": "sixt technical program manager finance systems",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 40,
-      "score_reasons": [
-        "🎯 technical program manager (+18)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Hahn-Ring 6",
-      "address_city": "81739 München",
-      "clean_company": "SIXT"
-    },
-    {
-      "source": "remotely",
       "url": "https://www.remotely.de/job/natuvion-gmbh-technical-project-lead-mwd-public-business",
       "title": "natuvion gmbh technical project lead",
       "company": "",
@@ -7105,24 +5384,24 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/dr-g-pedall-ingenieurburo-gmbh-projektleiter-planer-mwd-im-bereich-geowissenschaften",
-      "title": "dr g pedall ingenieurburo gmbh projektleiter planer",
+      "url": "https://www.remotely.de/job/sixt-technical-program-manager-finance-systems-mfd",
+      "title": "sixt technical program manager finance systems",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
       "first_seen": "2026-08-30T16:11:36.776934",
       "is_new": false,
-      "score": 38,
+      "score": 40,
       "score_reasons": [
-        "🎯 projektleiter (+16)",
+        "🎯 technical program manager (+18)",
         "📍 remote (+22)"
       ],
       "category": "pm",
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "kennziffer": "YF-49956",
-      "clean_company": "Dr G Pedall Ingenieurburo GmbH"
+      "address_city": "Pullach",
+      "clean_company": "SIXT"
     },
     {
       "source": "remotely",
@@ -7144,27 +5423,6 @@
       "verify_status": "ok-spa",
       "address_city": "12099 Berlin",
       "clean_company": "Rocksolid Personalvermittlung GmbH"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/spiratec-ag-projektleiter-wmd-industrial-it",
-      "title": "spiratec ag projektleiter",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "35394 Gießen",
-      "clean_company": "Spiratec AG"
     },
     {
       "source": "remotely",
@@ -7190,8 +5448,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/hsag-heidelberger-services-ag-projektmanager-wmd-energiewirtschaft-operative-beratung-umsetzung-remote-homeoffice",
-      "title": "hsag heidelberger services ag projektmanager",
+      "url": "https://www.remotely.de/job/dr-g-pedall-ingenieurburo-gmbh-projektleiter-planer-mwd-im-bereich-geowissenschaften",
+      "title": "dr g pedall ingenieurburo gmbh projektleiter planer",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -7199,14 +5457,36 @@
       "is_new": false,
       "score": 38,
       "score_reasons": [
-        "🎯 projektmanager (+16)",
+        "🎯 projektleiter (+16)",
         "📍 remote (+22)"
       ],
       "category": "pm",
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "clean_company": "Hsag Heidelberger Services AG"
+      "address_city": "78532 Tuttlingen",
+      "clean_company": "Dr G Pedall Ingenieurburo GmbH"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/spiratec-ag-projektleiter-wmd-industrial-it",
+      "title": "spiratec ag projektleiter",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "35394 Gießen",
+      "clean_company": "Spiratec AG"
     },
     {
       "source": "remotely",
@@ -7252,27 +5532,6 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/meistro-gmbh-projektmanager-digitalisierung-und-prozessoptimierung-mwd",
-      "title": "meistro gmbh projektmanager digitalisierung und prozessoptimierung",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Ingolstadt",
-      "clean_company": "meistro GmbH"
-    },
-    {
-      "source": "remotely",
       "url": "https://www.remotely.de/job/alterric-deutschland-gmbh-it-demand-projektmanager-mwd",
       "title": "alterric deutschland gmbh it demand projektmanager",
       "company": "",
@@ -7295,8 +5554,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/gp-joule-gmbh-projektmanagerin-systemlandschaft",
-      "title": "gp joule gmbh projektmanagerin systemlandschaft",
+      "url": "https://www.remotely.de/job/meistro-gmbh-projektmanager-digitalisierung-und-prozessoptimierung-mwd",
+      "title": "meistro gmbh projektmanager digitalisierung und prozessoptimierung",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -7311,9 +5570,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "37085 Göttingen",
-      "kennziffer": "S0260806",
-      "clean_company": "Gp Joule GmbH"
+      "address_city": "Ingolstadt",
+      "clean_company": "meistro GmbH"
     },
     {
       "source": "remotely",
@@ -7333,6 +5591,7 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
+      "address_city": "78532 Tuttlingen",
       "clean_company": "Stf Gruppe"
     },
     {
@@ -7358,8 +5617,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/ttsp-hwp-projektleiter-lph-1-9",
-      "title": "ttsp hwp projektleiter lph 1 9",
+      "url": "https://www.remotely.de/job/gp-joule-gmbh-projektmanagerin-systemlandschaft",
+      "title": "gp joule gmbh projektmanagerin systemlandschaft",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -7367,56 +5626,16 @@
       "is_new": false,
       "score": 38,
       "score_reasons": [
-        "🎯 projektleiter (+16)",
+        "🎯 projektmanager (+16)",
         "📍 remote (+22)"
       ],
       "category": "pm",
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "Stuttgart",
-      "clean_company": "TTSP HWP"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/merz-therapeutics-heor-project-manager-mfd",
-      "title": "merz therapeutics heor project manager",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "35394 Gießen",
-      "clean_company": "Merz Therapeutics Heor"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/nes-global-deutschland-gmbh-projektleiterin-freileitungsbau",
-      "title": "nes global deutschland gmbh projektleiterin freileitungsbau",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "clean_company": "Nes Global Deutschland GmbH"
+      "address_city": "37085 Göttingen",
+      "kennziffer": "S0260806",
+      "clean_company": "Gp Joule GmbH"
     },
     {
       "source": "remotely",
@@ -7441,6 +5660,26 @@
     },
     {
       "source": "remotely",
+      "url": "https://www.remotely.de/job/nes-global-deutschland-gmbh-projektleiterin-freileitungsbau",
+      "title": "nes global deutschland gmbh projektleiterin freileitungsbau",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "clean_company": "Nes Global Deutschland GmbH"
+    },
+    {
+      "source": "remotely",
       "url": "https://www.remotely.de/job/msx-international-projektmanager-in-mwd",
       "title": "msx international projektmanager in",
       "company": "",
@@ -7462,8 +5701,49 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/xsuite-group-gmbh-project-manager-business-process-automation-mwd",
-      "title": "xsuite group gmbh project manager business process automation",
+      "url": "https://www.remotely.de/job/hsag-heidelberger-services-ag-projektmanager-wmd-energiewirtschaft-operative-beratung-umsetzung-remote-homeoffice",
+      "title": "hsag heidelberger services ag projektmanager",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "clean_company": "Hsag Heidelberger Services AG"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/ttsp-hwp-projektleiter-lph-1-9",
+      "title": "ttsp hwp projektleiter lph 1 9",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Stuttgart",
+      "clean_company": "TTSP HWP"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/ramboll-project-manager-mfd-civil-engineering-and-construction-supervision",
+      "title": "ramboll project manager",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -7474,13 +5754,12 @@
         "🎯 project manager (+16)",
         "📍 remote (+22)"
       ],
-      "category": "ki",
+      "category": "pm",
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_street": "Friedrichstraße 50",
-      "address_city": "10178 Berlin",
-      "clean_company": "Xsuite Group"
+      "address_city": "46483 Wesel",
+      "clean_company": "Ramboll"
     },
     {
       "source": "remotely",
@@ -7506,6 +5785,49 @@
     },
     {
       "source": "remotely",
+      "url": "https://www.remotely.de/job/merz-therapeutics-heor-project-manager-mfd",
+      "title": "merz therapeutics heor project manager",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "35394 Gießen",
+      "clean_company": "Merz Therapeutics Heor"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/xsuite-group-gmbh-project-manager-business-process-automation-mwd",
+      "title": "xsuite group gmbh project manager business process automation",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Friedrichstraße 50",
+      "address_city": "10178 Berlin",
+      "clean_company": "Xsuite Group"
+    },
+    {
+      "source": "remotely",
       "url": "https://www.remotely.de/job/feverup-project-manager",
       "title": "feverup project manager",
       "company": "",
@@ -7524,68 +5846,6 @@
       "verify_status": "ok-spa",
       "address_city": "Berlin",
       "clean_company": "FeverUp"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/ramboll-project-manager-mfd-civil-engineering-and-construction-supervision",
-      "title": "ramboll project manager",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "46483 Wesel",
-      "clean_company": "Ramboll"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/sixt-senior-fleet-purchase-project-manager-mwd",
-      "title": "sixt senior fleet purchase project manager",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "clean_company": "Sixt"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/gateway-to-germany-project-manager-dach-mwd-fur-eine-saas-plattform-aus-dem-versicherungs-und-pensionssektor",
-      "title": "gateway to germany project manager dach",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "20359 Hamburg",
-      "clean_company": "Gateway To Germany"
     },
     {
       "source": "remotely",
@@ -7631,8 +5891,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/blume2000-zentrale-projektleiter-mwd-filialbau",
-      "title": "blume2000 zentrale projektleiter",
+      "url": "https://www.remotely.de/job/gateway-to-germany-project-manager-dach-mwd-fur-eine-saas-plattform-aus-dem-versicherungs-und-pensionssektor",
+      "title": "gateway to germany project manager dach",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -7640,15 +5900,36 @@
       "is_new": false,
       "score": 38,
       "score_reasons": [
-        "🎯 projektleiter (+16)",
+        "🎯 project manager (+16)",
         "📍 remote (+22)"
       ],
       "category": "pm",
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "Hamburg",
-      "clean_company": "Blume2000 Zentrale"
+      "address_city": "20359 Hamburg",
+      "clean_company": "Gateway To Germany"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/berger-holding-gmbh-co-kg-projektmanager-operations-mwd",
+      "title": "berger holding gmbh co kg projektmanager operations",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Memmingen",
+      "clean_company": "Berger Holding GmbH & Co. KG"
     },
     {
       "source": "remotely",
@@ -7670,6 +5951,48 @@
       "verify_status": "ok-spa",
       "address_city": "Berlin",
       "clean_company": "Bitkom e.V."
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/bitkom-solution-developer-project-manager-mwd",
+      "title": "bitkom solution developer project manager",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Berlin",
+      "clean_company": "Bitkom"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/blume2000-zentrale-projektleiter-mwd-filialbau",
+      "title": "blume2000 zentrale projektleiter",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Hamburg",
+      "clean_company": "Blume2000 Zentrale"
     },
     {
       "source": "remotely",
@@ -7695,8 +6018,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/berger-holding-gmbh-co-kg-projektmanager-operations-mwd",
-      "title": "berger holding gmbh co kg projektmanager operations",
+      "url": "https://www.remotely.de/job/entero-projektmanager-mwd",
+      "title": "entero projektmanager",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -7711,8 +6034,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "Memmingen",
-      "clean_company": "Berger Holding GmbH & Co. KG"
+      "address_city": "70794 Filderstadt",
+      "clean_company": "Entero"
     },
     {
       "source": "remotely",
@@ -7737,8 +6060,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/bitkom-solution-developer-project-manager-mwd",
-      "title": "bitkom solution developer project manager",
+      "url": "https://www.remotely.de/job/interdine-gmbh-international-account-project-manager-mwd",
+      "title": "interdine gmbh international account project manager",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -7753,8 +6076,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "Berlin",
-      "clean_company": "Bitkom"
+      "address_city": "Düsseldorf",
+      "clean_company": "InterDine GmbH"
     },
     {
       "source": "remotely",
@@ -7781,48 +6104,6 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/entero-projektmanager-mwd",
-      "title": "entero projektmanager",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "65760 Eschborn",
-      "clean_company": "Entero"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/interdine-gmbh-international-account-project-manager-mwd",
-      "title": "interdine gmbh international account project manager",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Düsseldorf",
-      "clean_company": "InterDine GmbH"
-    },
-    {
-      "source": "remotely",
       "url": "https://www.remotely.de/job/dotfly-gmbh-projektmanager-digital-wmd",
       "title": "dotfly gmbh projektmanager digital",
       "company": "",
@@ -7841,48 +6122,6 @@
       "verify_status": "ok-spa",
       "address_city": "66953 Pirmasens",
       "clean_company": "Dotfly GmbH"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/dilitrust-project-manager-dach",
-      "title": "dilitrust project manager dach",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Munich",
-      "clean_company": "DiliTrust"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/mlf-mercator-leasing-gmbh-amp-co-finanz-kg-projektmanager-mwd-im-bereich-unternehmensorganisation",
-      "title": "mlf mercator leasing gmbh amp co finanz kg projektmanager",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Schweinfurt",
-      "clean_company": "MLF Mercator-Leasing GmbH &amp; Co. Finanz-KG"
     },
     {
       "source": "remotely",
@@ -7905,27 +6144,6 @@
       "address_street": "Heidestraße 2",
       "address_city": "10557 Berlin",
       "clean_company": "Vestas"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/bear-foodtec-gmbh-projektleiter-ingenieur-anlagenplanung-lebensmittel-und-kakaoverarbeitung",
-      "title": "bear foodtec gmbh projektleiter ingenieur anlagenplanung lebensmittel und kakaoverarbeitung",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Schönefeld",
-      "clean_company": "BEAR foodtec GmbH"
     },
     {
       "source": "remotely",
@@ -7956,6 +6174,134 @@
     },
     {
       "source": "remotely",
+      "url": "https://www.remotely.de/job/mlf-mercator-leasing-gmbh-amp-co-finanz-kg-projektmanager-mwd-im-bereich-unternehmensorganisation",
+      "title": "mlf mercator leasing gmbh amp co finanz kg projektmanager",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Schweinfurt",
+      "clean_company": "MLF Mercator-Leasing GmbH &amp; Co. Finanz-KG"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/dilitrust-project-manager-dach",
+      "title": "dilitrust project manager dach",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Munich",
+      "clean_company": "DiliTrust"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/bear-foodtec-gmbh-projektleiter-ingenieur-anlagenplanung-lebensmittel-und-kakaoverarbeitung",
+      "title": "bear foodtec gmbh projektleiter ingenieur anlagenplanung lebensmittel und kakaoverarbeitung",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Schönefeld",
+      "clean_company": "BEAR foodtec GmbH"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/schmieder-gmbh-projektmanager-mwd-projektleiter-mwd-ils",
+      "title": "schmieder gmbh projektmanager",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Einsteinstraße 20",
+      "address_city": "85521 Ottobrunn",
+      "clean_company": "Schmieder GmbH"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/wsg-womens-cancer-study-group-gmbh-clinical-project-manager-cpm-mwd",
+      "title": "wsg womens cancer study group gmbh clinical project manager cpm",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Mönchengladbach",
+      "clean_company": "WSG – Women’s Cancer Study Group GmbH"
+    },
+    {
+      "source": "remotely",
+      "url": "https://www.remotely.de/job/christian-luhmann-gmbh-projektleiter-tanktechnik-shop-und-waschbereich-mwd",
+      "title": "christian luhmann gmbh projektleiter tanktechnik shop und waschbereich",
+      "company": "",
+      "location": "Remote Deutschland",
+      "description": "",
+      "first_seen": "2026-08-30T16:11:36.776934",
+      "is_new": false,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "12099 Berlin",
+      "kennziffer": "S0260806",
+      "clean_company": "Christian Lühmann GmbH"
+    },
+    {
+      "source": "remotely",
       "url": "https://www.remotely.de/job/eon-batteries-sub-station-delivery-project-manager-and-portfolio-expert-fmd-inklusiver-job",
       "title": "eon batteries sub station delivery project manager and portfolio expert fmd inklusiver job",
       "company": "",
@@ -7983,52 +6329,8 @@
     },
     {
       "source": "remotely",
-      "url": "https://www.remotely.de/job/schmieder-gmbh-projektmanager-mwd-projektleiter-mwd-ils",
-      "title": "schmieder gmbh projektmanager",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Einsteinstraße 20",
-      "address_city": "85521 Ottobrunn",
-      "clean_company": "Schmieder GmbH"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/christian-luhmann-gmbh-projektleiter-tanktechnik-shop-und-waschbereich-mwd",
-      "title": "christian luhmann gmbh projektleiter tanktechnik shop und waschbereich",
-      "company": "",
-      "location": "Remote Deutschland",
-      "description": "",
-      "first_seen": "2026-08-30T16:11:36.776934",
-      "is_new": false,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "12099 Berlin",
-      "kennziffer": "S0260806",
-      "clean_company": "Christian Lühmann GmbH"
-    },
-    {
-      "source": "remotely",
-      "url": "https://www.remotely.de/job/wsg-womens-cancer-study-group-gmbh-clinical-project-manager-cpm-mwd",
-      "title": "wsg womens cancer study group gmbh clinical project manager cpm",
+      "url": "https://www.remotely.de/job/sixt-senior-fleet-purchase-project-manager-mwd",
+      "title": "sixt senior fleet purchase project manager",
       "company": "",
       "location": "Remote Deutschland",
       "description": "",
@@ -8043,8 +6345,8 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "Mönchengladbach",
-      "clean_company": "WSG – Women’s Cancer Study Group GmbH"
+      "address_city": "78532 Tuttlingen",
+      "clean_company": "Sixt"
     },
     {
       "source": "remotely",
@@ -8168,28 +6470,6 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13319-887325/1_618539LS-S",
-      "title": "Teilprojektleiter Contact Center (m/w/d)",
-      "company": "Hays Professional Solutions GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-27T15:18:45.974797",
-      "is_new": false,
-      "score": 61,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 teilprojektleit (+20)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/14108-0000460acc8001-S",
       "title": "Ärztliche Teilprojektleiterin / Ärztlicher Teilprojektleiter eKurve (w|m|d)",
       "company": "München Klinik",
@@ -8212,6 +6492,28 @@
       "address_street": "Thalkirchner Straße 48",
       "address_city": "80337 München",
       "clean_company": "München Klinik"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13319-887325/1_618539LS-S",
+      "title": "Teilprojektleiter Contact Center (m/w/d)",
+      "company": "Hays Professional Solutions GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-27T15:18:45.974797",
+      "is_new": false,
+      "score": 61,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 teilprojektleit (+20)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok"
     },
     {
       "source": "bundesagentur",
@@ -8292,6 +6594,36 @@
     },
     {
       "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12634-BB-644569-7878-1203-S",
+      "title": "Technical Project Manager - Structures & Stress Compliance (m/f/d)",
+      "company": "Akkodis Germany Tech Experts GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-27T15:18:45.974797",
+      "is_new": false,
+      "score": 50,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "🎯 technical project manager (+18)",
+        "📍 münchen (+25)",
+        "⚠️ Eng-Dienstleister Akkodis (×0.85, −9)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80807 München",
+      "clean_company": "Akkodis Germany Tech Experts GmbH",
+      "bewerbung": {
+        "status": "mappe",
+        "stelle": "",
+        "datum": ""
+      }
+    },
+    {
+      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12634-BB-644584-7878-8072-S",
       "title": "Technischer Projektmanager - Sondermaschinenbau (m/w/d)",
       "company": "Akkodis Germany Tech Experts GmbH",
@@ -8343,36 +6675,6 @@
       "address_city": "80336 München",
       "kennziffer": "11112-46515-1782211-0-S",
       "clean_company": "Ratbacher GmbH"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12634-BB-644569-7878-1203-S",
-      "title": "Technical Project Manager - Structures & Stress Compliance (m/f/d)",
-      "company": "Akkodis Germany Tech Experts GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-27T15:18:45.974797",
-      "is_new": false,
-      "score": 50,
-      "score_reasons": [
-        "🎯 project manager (+16)",
-        "🎯 technical project manager (+18)",
-        "📍 münchen (+25)",
-        "⚠️ Eng-Dienstleister Akkodis (×0.85, −9)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80807 München",
-      "clean_company": "Akkodis Germany Tech Experts GmbH",
-      "bewerbung": {
-        "status": "mappe",
-        "stelle": "",
-        "datum": ""
-      }
     },
     {
       "source": "bundesagentur",
@@ -8450,31 +6752,6 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003460270-S",
-      "title": "Projektleiter Fassade / Gebäudehülle (aGw*)",
-      "company": "Lindner SE",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-08-27T15:18:45.974797",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_street": "Stahlgruberring 43",
-      "address_city": "81829 München",
-      "kennziffer": "10001-1003460270-S",
-      "clean_company": "Lindner SE"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/16444-220253544-S",
       "title": "Projektleiter in der Prüftechnik (m/w/d)",
       "company": "OMS Prüfservice GmbH",
@@ -8500,9 +6777,9 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1207583081-S",
-      "title": "Projektleiter:in Elektrotechnik (m/w/d)",
-      "company": "john becker ingenieure GmbH & Co. KG",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003460270-S",
+      "title": "Projektleiter Fassade / Gebäudehülle (aGw*)",
+      "company": "Lindner SE",
       "location": "München",
       "description": "",
       "salary": "",
@@ -8518,10 +6795,10 @@
       "alt_sources": [],
       "verified": true,
       "verify_status": "ok",
-      "address_street": "Landsberger Straße 398",
-      "address_city": "81241 München",
-      "kennziffer": "10000-1207583081-S",
-      "clean_company": "john becker ingenieure GmbH & Co. KG"
+      "address_street": "Stahlgruberring 43",
+      "address_city": "81829 München",
+      "kennziffer": "10001-1003460270-S",
+      "clean_company": "Lindner SE"
     },
     {
       "source": "bundesagentur",
@@ -8547,6 +6824,31 @@
       "address_city": "85646 Anzing bei München",
       "kennziffer": "10000-1207609260-S",
       "clean_company": "Haberthaler GmbH"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10000-1207583081-S",
+      "title": "Projektleiter:in Elektrotechnik (m/w/d)",
+      "company": "john becker ingenieure GmbH & Co. KG",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-08-27T15:18:45.974797",
+      "is_new": false,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Landsberger Straße 398",
+      "address_city": "81241 München",
+      "kennziffer": "10000-1207583081-S",
+      "clean_company": "john becker ingenieure GmbH & Co. KG"
     },
     {
       "source": "bundesagentur",
@@ -8678,29 +6980,6 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003418463-S",
-      "title": "(Senior) Product Owner (w/m/d) - Data & AI Solutions",
-      "company": "Computacenter AG & Co. oHG",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": true,
-      "first_seen": "2026-08-27T15:18:45.974797",
-      "is_new": false,
-      "score": 37,
-      "score_reasons": [
-        "🎯 product owner (+12)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "Frankfurt am Main",
-      "clean_company": "Computacenter AG & Co. oHG"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/15548-1598186-1-S",
       "title": "EY-Parthenon Manager Business Analyst / Product Owner Healthcare - Strategy and Transactions (w/m/d)",
       "company": "EY Strategy & Transactions GmbH",
@@ -8721,6 +7000,29 @@
       "verify_status": "ok",
       "address_city": "70629 Stuttgart",
       "clean_company": "EY Strategy & Transactions GmbH"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003418463-S",
+      "title": "(Senior) Product Owner (w/m/d) - Data & AI Solutions",
+      "company": "Computacenter AG & Co. oHG",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": true,
+      "first_seen": "2026-08-27T15:18:45.974797",
+      "is_new": false,
+      "score": 37,
+      "score_reasons": [
+        "🎯 product owner (+12)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "Frankfurt am Main",
+      "clean_company": "Computacenter AG & Co. oHG"
     },
     {
       "source": "bundesagentur",
@@ -8899,8 +7201,8 @@
     },
     {
       "source": "ashby:robco",
-      "url": "https://jobs.ashbyhq.com/robco/abe3d615-a21d-42b9-8531-b089b56bcacd",
-      "title": "Robotics Quality & Reliability Engineering Lead (m/f/d)",
+      "url": "https://jobs.ashbyhq.com/robco/152094ae-3285-4dd7-b827-ceaeda5501f3",
+      "title": "Senior Mechanical Engineer - Robotics (m/f/d)",
       "company": "Robco",
       "location": "Munich",
       "description": "",
@@ -8927,32 +7229,6 @@
       "source": "ashby:robco",
       "url": "https://jobs.ashbyhq.com/robco/2b9b0326-394b-4f44-a1a0-857d705becfd",
       "title": "Senior Electrical Engineer - Robotics (m/f/d)",
-      "company": "Robco",
-      "location": "Munich",
-      "description": "",
-      "first_seen": "2026-08-08T16:37:34.649483",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 robotics (+16)",
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Munich",
-      "clean_company": "RobCo",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "Senior Mechanical Engineer - Robotics",
-        "datum": "2026-09-14"
-      }
-    },
-    {
-      "source": "ashby:robco",
-      "url": "https://jobs.ashbyhq.com/robco/152094ae-3285-4dd7-b827-ceaeda5501f3",
-      "title": "Senior Mechanical Engineer - Robotics (m/f/d)",
       "company": "Robco",
       "location": "Munich",
       "description": "",
@@ -9056,81 +7332,6 @@
     },
     {
       "source": "ashby:robco",
-      "url": "https://jobs.ashbyhq.com/robco/f5a182f9-30c6-4567-89b2-f30983c1d090",
-      "title": "Speculative Application – Create your own dream job! (m/f/d)",
-      "company": "Robco",
-      "location": "Munich",
-      "description": "",
-      "first_seen": "2026-08-06T13:24:14.943970",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Munich",
-      "clean_company": "RobCo",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "Senior Mechanical Engineer - Robotics",
-        "datum": "2026-09-14"
-      }
-    },
-    {
-      "source": "ashby:robco",
-      "url": "https://jobs.ashbyhq.com/robco/9cbaf2d0-c71e-4581-9fc0-f51db130fdca",
-      "title": "Accountant (m/f/d)",
-      "company": "Robco",
-      "location": "Munich",
-      "description": "",
-      "first_seen": "2026-08-06T13:24:14.943970",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Munich",
-      "clean_company": "RobCo",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "Senior Mechanical Engineer - Robotics",
-        "datum": "2026-09-14"
-      }
-    },
-    {
-      "source": "ashby:robco",
-      "url": "https://jobs.ashbyhq.com/robco/938f5b25-dc2d-469d-af17-9a38ccdcca08",
-      "title": "Senior Solution Development Engineer",
-      "company": "Robco",
-      "location": "Munich",
-      "description": "",
-      "first_seen": "2026-08-06T13:24:14.943970",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Munich",
-      "clean_company": "RobCo",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "Senior Mechanical Engineer - Robotics",
-        "datum": "2026-09-14"
-      }
-    },
-    {
-      "source": "ashby:robco",
       "url": "https://jobs.ashbyhq.com/robco/df53c847-6e4c-4f50-9173-157c3d90e603",
       "title": "Mechatronics Development Engineer (m/f/d)",
       "company": "Robco",
@@ -9181,8 +7382,33 @@
     },
     {
       "source": "ashby:robco",
-      "url": "https://jobs.ashbyhq.com/robco/149cdb06-5bb4-4ca4-aa8e-e01ffc1f7c6b",
-      "title": "Functional Safety Programmer",
+      "url": "https://jobs.ashbyhq.com/robco/f5a182f9-30c6-4567-89b2-f30983c1d090",
+      "title": "Speculative Application – Create your own dream job! (m/f/d)",
+      "company": "Robco",
+      "location": "Munich",
+      "description": "",
+      "first_seen": "2026-08-06T13:24:14.943970",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 munich (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Munich",
+      "clean_company": "RobCo",
+      "bewerbung": {
+        "status": "absage",
+        "stelle": "Senior Mechanical Engineer - Robotics",
+        "datum": "2026-09-14"
+      }
+    },
+    {
+      "source": "ashby:robco",
+      "url": "https://jobs.ashbyhq.com/robco/938f5b25-dc2d-469d-af17-9a38ccdcca08",
+      "title": "Senior Solution Development Engineer",
       "company": "Robco",
       "location": "Munich",
       "description": "",
@@ -9231,8 +7457,58 @@
     },
     {
       "source": "ashby:robco",
+      "url": "https://jobs.ashbyhq.com/robco/9cbaf2d0-c71e-4581-9fc0-f51db130fdca",
+      "title": "Accountant (m/f/d)",
+      "company": "Robco",
+      "location": "Munich",
+      "description": "",
+      "first_seen": "2026-08-06T13:24:14.943970",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 munich (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Munich",
+      "clean_company": "RobCo",
+      "bewerbung": {
+        "status": "absage",
+        "stelle": "Senior Mechanical Engineer - Robotics",
+        "datum": "2026-09-14"
+      }
+    },
+    {
+      "source": "ashby:robco",
       "url": "https://jobs.ashbyhq.com/robco/34b6da04-08fd-432d-9b17-1ba6dd76ed1e",
       "title": "Workplace and Company Operations Manager (m/f/d)",
+      "company": "Robco",
+      "location": "Munich",
+      "description": "",
+      "first_seen": "2026-08-06T13:24:14.943970",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 munich (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Munich",
+      "clean_company": "RobCo",
+      "bewerbung": {
+        "status": "absage",
+        "stelle": "Senior Mechanical Engineer - Robotics",
+        "datum": "2026-09-14"
+      }
+    },
+    {
+      "source": "ashby:robco",
+      "url": "https://jobs.ashbyhq.com/robco/149cdb06-5bb4-4ca4-aa8e-e01ffc1f7c6b",
+      "title": "Functional Safety Programmer",
       "company": "Robco",
       "location": "Munich",
       "description": "",
