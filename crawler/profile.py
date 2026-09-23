@@ -294,6 +294,9 @@ DESC_BLOCK_STRICT = [
     # Bau-spezifische Beschreibungs-Trigger
     "leistungsphasen 1-9", "leistungsphasen 1 bis 9", "hoai-leistungsphase",
     "vob-leistung", "vob/b", "honorarordnung architekten",
+    # Andy 23.09.2026: Bau + Deutsche Bahn/Schiene hart ausschliessen (Beschreibungsebene, nur eindeutige Fachbegriffe)
+    "eisenbahninfrastruktur", "schieneninfrastruktur", "gleisanlage", "oberleitungsanlage", "zugsicherungstechnik",
+    "bauausführung", "baustellenleitung", "rohbauarbeiten",
 ]
 
 # ===== POSITIVE BOOST (Score, höhere Werte = stärker passt zu Andy) =====
