@@ -375,7 +375,8 @@ LOCATION_BOOST = {
 
 # ===== EXCLUDED COMPANIES =====
 COMPANY_BLOCK = [
-    "everlast", "evolast", "everlast consulting", "everlast media",
+    # Andy 23.09.2026: KEINE Firma mehr blocken, Absagen sind nie ein Sperrgrund.
+    # Einzige Dauersperre: Aconext (Ex-Arbeitgeber). Everlast/Evolast am 23.09. entsperrt.
     "aconext",
     # IAV: nur für Initiativ verboten — reguläre Stellen OK
 ]
