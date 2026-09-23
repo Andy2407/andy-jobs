@@ -508,7 +508,7 @@ function firmaVon(j){ return (j.clean_company || j.company || '').trim(); }
 function buildCard(j, cat){
   const [mc, ml] = matchBadge(j.score);
   const cta = CAT_CTA[cat] || 'cta-pm';
-  const id = 'j-' + msHash(j.url || '');  // FIX 2026-06-11: Hash der VOLLEN URL statt slice(0,40). slice kollidierte (alle Bundesagentur/StepStone-URLs teilen das Praefix) -> markierte Stellen wurden falsch/unzuverlaessig versteckt.
+  const id = 'j-' + msHash(j.portal_url || j.url || '');  // 2026-09-23: Fundort-URL, damit Markierungen nach der Endlink-Umstellung erhalten bleiben. FIX 2026-06-11: Hash der VOLLEN URL statt slice(0,40). slice kollidierte (alle Bundesagentur/StepStone-URLs teilen das Praefix) -> markierte Stellen wurden falsch/unzuverlaessig versteckt.
   const card = el('div', 'jc');
   card.dataset.id = id;
   // Top: Titel + ggf. NEU-Badge + Match
@@ -616,7 +616,11 @@ function buildCard(j, cat){
   a.href = j.url || '#';
   a.target = '_blank';
   a.rel = 'noopener';
-  a.textContent = '📄 Direkt zur Stelle bewerben →';
+  // NEU 2026-09-23 (Andy: "immer den allerletzten Link"): ehrlich kennzeichnen, ob der Link
+  // beim Arbeitgeber landet oder ob das Portal den Endlink nicht preisgibt.
+  a.textContent = (j.final_link === false)
+    ? '⚠️ Nur Portal-Seite (Endlink nicht auflösbar) →'
+    : '📄 Direkt zur Stelle beim Arbeitgeber →';
   card.appendChild(a);
   // NEU 2026-05-28 (Andy): MS-DOCX-Generierung-Button
   const msBtn = document.createElement('button');
@@ -661,6 +665,9 @@ function buildCard(j, cat){
   card.appendChild(cvBox);
   // URL klein
   card.appendChild(el('div', 'url-sm', urlShort(j.url)));
+  if(j.portal_url && j.portal_url !== j.url){
+    card.appendChild(el('div', 'url-sm', 'gefunden über: ' + urlShort(j.portal_url)));
+  }
   // 4-Status-Buttons (Andy 2026-05-28: beworben/unpassend/absage/n.r.)
   const bar = el('div', 'stbar');
   const states = [

@@ -59,6 +59,7 @@ TITLE_BLOCK = [
     "junior ", "junior-", "werkstudent", "praktikant", "praktikum", "intern ",
     "internship", "ausbildung", "auszubildende", "duales studium", "trainee",
     "absolvent", "berufseinsteiger",
+    "bachelorprogramm", "studium mit vertiefter praxis",  # NEU 2026-09-23 (Würth-Treffer)
     # NEU 2026-06-01: Studienarbeiten + Azubi-/Werker-Berufe (kamen über BMW/Bertrandt-Sitemaps rein)
     "bachelorarbeit", "masterarbeit", "studienarbeit", "abschlussarbeit", "diplomarbeit",
     "kfz mechatroniker", "kfz-mechatroniker", "produktionsmitarbeiter", "maschinenbediener",
@@ -94,6 +95,9 @@ TITLE_BLOCK = [
     "rolling stock", "ros (w/", "ros(w/",
     # ---------- Defense / Rüstung / Marine ----------
     "rüstung", "defense", "verteidigung", "bundeswehr",
+    # NEU 2026-09-23: KNDS "unbemannte Landsysteme" kam mit Score 100 durch
+    "landsysteme", "unbemannte systeme", "unbemannte land", "wehrtechnik", "militär",
+    "flugabwehr", "munition",
     "marine ", "marineschiff", "marineschiffbau",
     "schiffbau",
     "vincorion", "t60 consulting",
@@ -341,6 +345,10 @@ TITLE_BOOST = {
     # Engineering / Domain
     "fahrzeug": 10, "automotive": 12, "elektrik/elektronik": 12, "elektrik elektronik": 12,
     "after sales": 10, "pmo": 12,
+    # NEU 2026-09-23: Xing-Gegencheck — "Lead Project Management …" (Idealworks) und
+    # "Process Excellence Expert R&D" (Webasto) fielen mit 16/25 Punkten unter die Schwelle.
+    "project management": 16, "projektmanagement": 14, "process excellence": 14,
+    "prozessmanager entwicklung": 12, "validierungssteuerung": 12, "fahrzeugerprobung": 12,
     "nvh": 10, "fahrwerk": 10, "karosserie": 12, "chassis": 12, "cfk": 12,
     "klimatisierung": 10, "i-tafel": 10, "mittelkonsole": 10,
     "smart vehicle": 10, "sdv": 12, "software-defined vehicle": 12,
@@ -374,7 +382,18 @@ LOCATION_BOOST = {
     "remote": 22, "homeoffice": 18, "home office": 18, "home-office": 18,
     "deutschlandweit": 18, "bundesweit": 18, "100 % remote": 30, "100% remote": 30,
     "hybrid": 12,
+    # NEU 2026-09-23: Umland im 25-km-Radius bekam bisher gar keinen Standortbonus
+    # (Webasto Stockdorf fiel dadurch mit 14 Punkten raus, obwohl S-Bahn-Nähe zu 80805).
+    "stockdorf": 18, "gauting": 16, "unterföhring": 18, "aschheim": 16, "neubiberg": 16,
+    "ottobrunn": 16, "taufkirchen": 16, "gräfelfing": 16, "planegg": 16, "martinsried": 16,
+    "germering": 14, "gilching": 14, "pullach": 16, "grünwald": 16, "feldkirchen": 16,
+    "haar": 16, "oberhaching": 14, "unterhaching": 16, "oberschleißheim": 14, "karlsfeld": 14,
+    "großraum münchen": 20, "metropolregion münchen": 20,
 }
+
+# ===== DEFENSE-GATE (Andy 28.07.2026: Ruestung nur ab belegten 100k) =====
+DEFENSE_FIRMS = ["hensoldt", "knds", "krauss-maffei wegmann", "rheinmetall", "diehl defence",
+                 "mbda", "airbus defence", "helsing", "quantum-systems", "quantum systems"]
 
 # ===== EXCLUDED COMPANIES =====
 COMPANY_BLOCK = [
@@ -533,7 +552,16 @@ def location_passes(location_text: str, extra_text: str = "") -> bool:
                                         "taufkirchen", "parsdorf", "ottobrunn", "unterhaching",
                                         "planegg", "dachau", "feldkirchen", "aschheim", "kirchheim",
                                         "grasbrunn", "vaterstetten", "oberschleiß", "höhenkirchen",
-                                        "martinsried", "germering", "gilching", "stockdorf"])
+                                        "martinsried", "germering", "gilching", "stockdorf",
+                                        # NEU 2026-09-23: Umland im 25-km-Radius, das bisher pauschal
+                                        # rausflog (Xing-Lauf: Neuried, Grünwald u. a. geblockt)
+                                        "neuried", "grünwald", "gruenwald", "pullach", "oberhaching",
+                                        "unterföhring", "unterfoehring", "krailling", "gauting",
+                                        "puchheim", "karlsfeld", "heimstetten", "hallbergmoos",
+                                        "eching", "neufahrn", "poing", "zorneding", "brunnthal",
+                                        "sauerlach", "baierbrunn", "oberpfaffenhofen", "weßling",
+                                        "wessling", "olching", "hohenbrunn", "oberschleissheim",
+                                        "großraum münchen", "grossraum muenchen"])
     if munich_ok:
         return True
 
@@ -678,6 +706,10 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
     for block, block_f in zip(TITLE_BLOCK, TITLE_BLOCK_FOLDED):
         if block in title_co or block_f in title_co_fold or block in title_co_clean:
             return (-1, [f"🚫 BLOCK_T:{block}"])
+    # NEU 2026-09-23: "Projektleiter:in TGA" zerriss die Wortfolge "projektleiter tga"
+    # (Doppelpunkt-Gender). TGA ist Hard-Stop (CLAUDE.md), deshalb als eigenes Wort sperren.
+    if re.search(r"\btga\b", title_co_clean):
+        return (-1, ["🚫 BLOCK_T:tga"])
 
     # Hard Block — Description (strict only)
     for block in DESC_BLOCK_STRICT:
@@ -691,6 +723,14 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
     for block, block_f in zip(COMPANY_BLOCK, COMPANY_BLOCK_FOLDED):
         if block in company_lower or block in title_co or block_f in title_co_fold:
             return (-1, [f"🚫 BLOCK_CO:{block}"])
+
+    # NEU 2026-09-23: Ruestungs-Gate nach Andys Regel vom 28.07.2026 (Defense nur ab
+    # belegten 100.000 EUR). Branchen-Gate, KEINE Firmensperre wegen Absage (CLAUDE.md §27).
+    # Belegtes Gehalt >= 100k im Text oeffnet das Gate.
+    if any(d in company_lower or d in title_lower for d in DEFENSE_FIRMS):
+        _sal = [int(x.replace(".", "")) for x in re.findall(r"\b(1\d{2}\.\d{3}|[2-9]\d{2}\.\d{3})\s*(?:€|eur)", text)]
+        if not _sal or max(_sal) < 100000:
+            return (-1, ["🚫 DEFENSE_GATE: Rüstung, Gehalt ≥100k nicht belegt (Regel 28.07.)"])
 
     # Standort-Filter (Andy 2026-07-15: Titel+Beschreibung mitgeben, damit Stuttgart/Augsburg
     # mit >=80%-Remote-Signal durchkommen — s. location_passes)

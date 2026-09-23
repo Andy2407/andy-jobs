@@ -27,6 +27,8 @@ import requests
 from bs4 import BeautifulSoup
 
 from profile import score_job, categorize, clean_title, MIN_SCORE_TO_INCLUDE, OTHER_MIN_SCORE, USER_BLOCKED_URLS
+# NEU 2026-09-23 (Andy: "Xing-Stellen fehlen", "immer den allerletzten Link"): siehe Moduldoku
+import quellen_offensive as qo
 
 BASE = Path(__file__).resolve().parent.parent
 DATA_PATH = BASE / "data.json"
@@ -216,6 +218,21 @@ def crawl_personio(session) -> list:
             if r.status_code != 200:
                 continue
             ok += 1
+            # NEU 2026-09-23: Ort aus dem Personio-XML-Feed (<office>). Bisher blieb "location"
+            # leer, dadurch fehlte der Standortbonus (Idealworks "Lead Project Management …"
+            # kam nur auf 16 Punkte und fiel raus).
+            offices = {}
+            try:
+                rx = session.get(f"https://{sub}.jobs.personio.de/xml?language=de", timeout=10)
+                if rx.status_code == 200:
+                    tx = rx.content.decode("utf-8", "replace")
+                    for pm in re.finditer(r"<position>.*?</position>", tx, re.S):
+                        pid = re.search(r"<id>(\d+)</id>", pm.group(0))
+                        off = re.findall(r"<office>([^<]+)</office>", pm.group(0))
+                        if pid and off:
+                            offices[pid.group(1)] = ", ".join(dict.fromkeys(o.strip() for o in off))
+            except Exception:
+                pass
             soup = BeautifulSoup(r.text, "lxml")
             for a in soup.select('a[href*="/job/"]'):
                 href = a.get("href", "")
@@ -235,7 +252,7 @@ def crawl_personio(session) -> list:
                 title = title_el.get_text(strip=True)
                 jobs.append({"source": f"personio:{sub}", "url": detail,
                              "title": title, "company": name,
-                             "location": "", "description": "", "raw_text": title})
+                             "location": offices.get(jid, ""), "description": "", "raw_text": title})
         except Exception as e:
             log.debug(f"[personio:{sub}] {e}")
         time.sleep(0.18)
@@ -1580,6 +1597,11 @@ def _load_existing_first_seen() -> dict:
             fs = j.get("first_seen") or j.get("generated_at") or ""
             if u and isinstance(fs, str) and fs:
                 out[u] = fs
+                # NEU 2026-09-23: Fundort-URL mitmerken, weil der Filter vor der Endlink-
+                # Aufloesung laeuft und sonst jede aufgeloeste Stelle wieder als NEU gilt
+                pu = j.get("portal_url")
+                if pu:
+                    out[pu] = fs
         # Globaler Fallback: payload generated_at als Hint für alte Jobs ohne first_seen
         global_ts = prev.get("generated_at") or ""
         if isinstance(global_ts, str):
@@ -2949,7 +2971,9 @@ def main():
         (crawl_avature, "Avature (Rohde & Schwarz)"),
         (crawl_neura, "NEURA Robotics"),
         # NEU 2026-06-01 Phase 2 (Job-Portale, keyfrei)
-        (crawl_xing, "Xing"),
+        # 2026-09-23: crawl_xing (6 Begriffe, nur MUC 25 km, Umlaut-Bug) ersetzt durch
+        # crawl_xing_breit (24 Begriffe, MUC 50 km + bundesweit Vollremote, UTF-8)
+        (qo.crawl_xing_breit, "Xing"),
         (crawl_talent, "talent.com"),
         (crawl_jobrapido, "jobrapido"),
         (crawl_whatjobs, "whatjobs"),
@@ -2971,6 +2995,10 @@ def main():
         # NEU 2026-06-02: jobninja.com (server-rendered, München/Remote-gefiltert)
         (crawl_jobninja, "jobninja.com"),
         (crawl_stellenanzeigen, "stellenanzeigen.de"),  # NEU 2026-08-06
+        # NEU 2026-09-23 Quellen-Offensive (deutschlandweite Boersen, live auf Lesbarkeit geprueft)
+        (qo.crawl_jobware, "jobware.de"),
+        (qo.crawl_ingenieur_de, "ingenieur.de (VDI)"),
+        (qo.crawl_adzuna, "adzuna.de"),
     ]
     sources_no_session = [
         (crawl_indeed_playwright, "Indeed (Playwright)"),
@@ -3009,7 +3037,15 @@ def main():
                     "14 Tage lang stumm ausgefallen.")
         log.warning("=" * 70)
 
+    # NEU 2026-09-23: Umlaut-Reparatur VOR dem Filter ("MÃ¼nchen" wurde als Nicht-München geblockt)
+    n_fix = qo.repair_jobs(all_jobs)
+    log.info(f"[Umlaute] {n_fix} Felder repariert")
+    qo.enrich_xing(all_jobs, s, score_job)
     filtered = apply_filter(all_jobs)
+    # NEU 2026-09-23: Portal-Zwischenlinks (arbeitnow/Xing/remotely/adzuna/yourfirm/...) auf den
+    # Arbeitgeber-Endlink aufloesen. portal_url behaelt den Fundort, final_link sagt ehrlich,
+    # ob der Endlink erreicht wurde.
+    filtered = qo.resolve_final_links(filtered, s, max_workers=10)
     verified = parallel_verify(filtered, s, max_workers=10)
     # NEU 2026-06-01: Nach JSON-LD-Verifikation steht die Firma oft erst sauber in clean_company
     # (beim Filter war company leer, z.B. StepStone). Blacklist erneut gegen clean_company prüfen,
