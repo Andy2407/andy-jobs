@@ -862,10 +862,12 @@ function msHash(s){ let h = 0; for(let i = 0; i < s.length; i++){ h = (h * 31 + 
 // Dateiname — Andy speichert Neustaende teils unter gleichem Namen).
 const CV_BASE = '/Users/andreasschengel/Desktop/ordner/Bewerbungen 2026/01_Vorlagen/CVs FINALE/';
 const CV_VARIANTEN = {
-  auto:   { label: 'CV Automotive',      datei: 'CV Automotive/Lebenslauf_Andreas_Schengel.pdf',                                   stand: '05.08.2026' },
-  ki:     { label: 'CV KI-Manager LEAD', datei: 'CV KI Manager/Lebenslauf_Andreas_Schengel_2026_KI-Manager_LEAD_V6.pdf',           stand: '07.07.2026' },
-  hybrid: { label: 'CV KI + PM Hybrid',  datei: 'CV KI Manager/Lebenslauf_Andreas_Schengel_2026_KI-PM_HYBRID_V3.pdf',              stand: '07.07.2026' },
-  robo:   { label: 'CV Robotics',        datei: 'CV Robotics/Lebenslauf_Andreas_Schengel_2026_Concept_Engineer_Robotics_V4.pdf',   stand: '07.07.2026' }
+  // 2026-09-24 (Andy): EINE Basis fuer alle CVs = V9 (an Webasto verschickt). Pro Stelle nur Kopfzeile + Profil
+  // anpassen: python3 _helper/build_cv_v9.py <config.json>. Alte Varianten (V4-V8) sind ueberholt.
+  auto:   { label: 'CV-Basis V9 (Automotive)', datei: 'CV Automotive/Lebenslauf_Andreas_Schengel_2026_Projektleiter_Automotive_V9.pdf', stand: '24.09.2026' },
+  ki:     { label: 'CV-Basis V9, Kopf + Profil auf KI anpassen', datei: 'CV Automotive/Lebenslauf_Andreas_Schengel_2026_Projektleiter_Automotive_V9.pdf', stand: '24.09.2026' },
+  hybrid: { label: 'CV-Basis V9, Kopf + Profil auf PM + KI anpassen', datei: 'CV Automotive/Lebenslauf_Andreas_Schengel_2026_Projektleiter_Automotive_V9.pdf', stand: '24.09.2026' },
+  robo:   { label: 'CV-Basis V9, Kopf + Profil auf Robotik anpassen', datei: 'CV Automotive/Lebenslauf_Andreas_Schengel_2026_Projektleiter_Automotive_V9.pdf', stand: '24.09.2026' }
 };
 function recommendCV(job){
   const t = ((job.title || '') + ' ' + (job.description || '') + ' ' + (job.company || '')).toLowerCase();
