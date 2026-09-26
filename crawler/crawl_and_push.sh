@@ -5,8 +5,8 @@ set -e
 BASE="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$BASE"
 
-# 1) Crawler
-"$BASE/crawler/.venv/bin/python" "$BASE/crawler/crawler.py"
+# 1) Crawler (v2 mit 25+ Quellen)
+"$BASE/crawler/.venv/bin/python" "$BASE/crawler/crawler_v2.py"
 
 # 2) Wenn Git-Repo existiert: committen + pushen
 if [ -d "$BASE/.git" ]; then

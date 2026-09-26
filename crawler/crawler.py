@@ -1299,4 +1299,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    print("=" * 60)
+    print("⚠️  crawler.py ist veraltet und wurde durch crawler_v2.py ersetzt!")
+    print("    Leite automatisch weiter auf crawler_v2.py...")
+    print("=" * 60)
+    import crawler_v2
+    crawler_v2.main()
+

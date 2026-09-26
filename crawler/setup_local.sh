@@ -22,26 +22,21 @@ echo "📚 Installiere Dependencies…"
 echo "   ✅ requests + beautifulsoup4 + lxml installiert"
 
 # 2) Plist erzeugen mit absolutem Pfad
-mkdir -p "$HOME/Library/LaunchAgents"
-sed "s|__BASE__|$BASE|g" "$PLIST_SRC" > "$PLIST_DST"
-echo "📄 launchd-Plist erstellt: $PLIST_DST"
+# HINWEIS: Der automatische Crawl läuft 4x täglich (08/10/14/18 Uhr CEST) zuverlässig
+# in der GitHub Actions Cloud (.github/workflows/crawl.yml).
+# Lokales launchd auf macOS Desktop wird durch macOS TCC Sandbox blockiert (Fehler 78).
+# Für manuelle lokale Läufe direkt crawler_v2.py verwenden:
 
-# 3) Plist laden
-launchctl unload "$PLIST_DST" 2>/dev/null || true
-launchctl load -w "$PLIST_DST"
-echo "🚀 launchd-Job geladen — läuft 4× täglich (06/10/14/18 Uhr)"
-
-# 4) Erster Crawl manuell
 mkdir -p "$BASE/logs"
 echo
-echo "🔁 Erster manueller Crawl…"
-"$BASE/crawler/.venv/bin/python" "$BASE/crawler/crawler.py"
+echo "🔁 Starte manuellen Crawl mit crawler_v2.py…"
+"$BASE/crawler/.venv/bin/python" "$BASE/crawler/crawler_v2.py"
 
 echo
-echo "✅ Setup fertig!"
+echo "✅ Lokale Umgebung bereit!"
 echo
-echo "   Dashboard öffnen: $BASE/jobsuche_v12.html"
-echo "   Manuell crawlen:  $BASE/crawler/.venv/bin/python $BASE/crawler/crawler.py"
-echo "   Job-Status:       launchctl list | grep com.andy.jobsuche"
-echo "   Job entfernen:    launchctl unload $PLIST_DST"
+echo "   Dashboard lokal:  $BASE/jobsuche_standalone.html"
+echo "   Live-Dashboard:   https://andy2407.github.io/andy-jobs/"
+echo "   Manuell crawlen:  $BASE/crawler/.venv/bin/python $BASE/crawler/crawler_v2.py"
 echo "   Logs:             $BASE/logs/"
+
