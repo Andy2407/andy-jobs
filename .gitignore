@@ -15,7 +15,38 @@ logs/launchd-*.log
 ~$*
 HANDOVER_*
 
-# Firmen-Ordner (private Bewerbungs-Drafts)
+# Lokale Dokumentation & Regeln (privat)
+*.md
+!README.md
+
+# Private Arbeits- und Bewerbungsordner
+.claude/
+00_Unterlagen/
+01_Vorlagen/
+06_Research/
+A-Amt/
+Bewerbungen/
+Jobsuche/
+KI Bewerbungsbilder /
+Prompts/
+_ARCHIV/
+_AUDIT*/
+_helper/
+memory/
+setup/
+logs/
+
+# Backups & Alt-Stände
+*_backup*
+_backup_*/
+crawler/_backup_*/
+crawler/*_backup*
+
+# Veraltete lokale Launchd- / Bash-Dateien
+crawler/com.andy.jobsuche-v2.plist
+crawler/crawl_v2_push.sh
+
+# Alte Firmen-Ordner (Legacy)
 ARRK/
 Actana/
 Agile\ Robots/
@@ -39,7 +70,7 @@ YER/
 appliedAI\ Initiative\ GmbH/
 akkodis/
 
-# Alles unter Bewerbungen-Ordner-Wurzel: NUR Dashboard + Crawler hochladen
+# Generische Muster für private Dokumente
 "Lebenslauf*"
 "Bewerbung*"
 "Arbeitszeugnis*"
@@ -52,7 +83,7 @@ akkodis/
 "Badge_*"
 "Bewerbungsfoto*"
 "CV*"
-"Erste\ Schritte*"
+"Erste Schritte*"
 "MakeCertificate*"
 "Prompt*"
 "Text.pdf"
@@ -61,6 +92,6 @@ akkodis/
 "Zielunternehmen*"
 "Zeugnismappe*"
 "Zeugnisse*"
-"Ai\ MAGNA*"
+"Ai MAGNA*"
 "\"Dream*"
 "\"Zielunternehmen*"
