@@ -42,7 +42,7 @@ padding-bottom:env(safe-area-inset-bottom)}
 .ft input,.ft textarea{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:6px;color:var(--t);font-family:inherit;font-size:12px;padding:7px 9px;outline:0}
 .ft input:focus,.ft textarea:focus{border-color:var(--b)}
 .ft textarea{min-height:32px;resize:vertical}
-.tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-bottom:10px;position:sticky;top:0;background:var(--bg);padding:4px 0;z-index:10}
+.tabs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin-bottom:10px;position:sticky;top:0;background:var(--bg);padding:4px 0;z-index:10}
 .tb{background:var(--s1);border:1.5px solid var(--bd);border-radius:9px;padding:7px 3px;cursor:pointer;text-align:center;transition:.15s;min-height:46px}
 .tb:active{transform:scale(.97)}
 .tb[data-c="ki"].on{border-color:var(--b);box-shadow:0 0 14px rgba(45,122,237,.1)}
@@ -132,6 +132,21 @@ padding-bottom:env(safe-area-inset-bottom)}
 .cv-box .cv-open{display:inline-block;background:#14b8a6;color:#fff;text-decoration:none;padding:6px 10px;border-radius:5px;font-weight:700;font-size:10px;margin-right:6px}
 .cv-box .cv-copy{display:inline-block;background:var(--s);color:var(--t);padding:6px 10px;border-radius:5px;font-weight:700;font-size:10px;cursor:pointer;border:1px solid var(--bd)}
 .cv-box .cv-path{margin-top:7px;font-size:8.5px;color:var(--m);word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+/* ===== NEU 2026-09-27: Werkstatt-Reiter, Andy-Fit, Set-bereit, Maschinenstatus ===== */
+.tb[data-c="ws"].on{border-color:#22c55e;box-shadow:0 0 14px rgba(34,197,94,.15)}
+@media (max-width:520px){.tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.tb .n{font-size:9.5px;overflow-wrap:anywhere}}
+.ws-box{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:10px 11px;margin-bottom:10px;font-size:10.5px;line-height:1.55}
+.ws-box h3{font-size:12px;font-weight:800;margin-bottom:6px}
+.ws-row{display:flex;justify-content:space-between;gap:8px;padding:3px 0;border-bottom:1px dashed var(--bd)}
+.ws-row:last-child{border-bottom:0}
+.ws-ok{color:#22c55e;font-weight:700}.ws-warn{color:#eab308;font-weight:700}.ws-bad{color:#f87171;font-weight:700}
+.ws-note{color:var(--m);font-size:9.5px;margin-top:5px}
+.set-badge{display:block;margin:6px 0 2px;padding:6px 8px;border-radius:5px;font-size:10px;font-weight:800;background:rgba(34,197,94,.14);color:#22c55e;border-left:3px solid #22c55e}
+.set-badge .bw-sub{font-weight:500;opacity:.85;display:block;margin-top:2px}
+.fit-ko{display:block;margin:5px 0 0;padding:5px 8px;border-radius:5px;font-size:9.5px;background:rgba(234,179,8,.10);color:#eab308;border-left:2px solid #eab308;line-height:1.45}
+.ws-btn{display:block;width:100%;background:linear-gradient(135deg,#15803d,#22c55e);border:0;border-radius:6px;padding:9px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;margin-top:6px;min-height:38px}
+.ws-btn:active{filter:brightness(.85)}
+.ms-legacy{display:block;margin-top:5px;font-size:9px;color:var(--m);text-decoration:underline;cursor:pointer;background:none;border:0;font-family:inherit;text-align:left;padding:0}
 /* Fit-Score-Detail (Andy 2026-05-28: "Fit ... wieso, weshalb, warum") */
 .score-det{font-size:9px;color:var(--m);margin:5px 0 7px;padding:6px 8px;background:var(--s2);border-radius:5px;border-left:2px solid var(--b);line-height:1.55}
 .score-det b{color:var(--t);font-size:10px}
@@ -283,6 +298,7 @@ padding-bottom:env(safe-area-inset-bottom)}
 </div>
 
 <div class="tabs">
+  <div class="tb" data-c="ws" onclick="go('ws')"><div class="i">🏭</div><div class="n">Werkstatt</div><div class="c" id="tc-ws">·</div></div>
   <div class="tb" data-c="ki" onclick="go('ki')"><div class="i">🤖</div><div class="n">KI-Mgr</div><div class="c" id="tc-ki">·</div></div>
   <div class="tb" data-c="pm" onclick="go('pm')"><div class="i">📐</div><div class="n">PM</div><div class="c" id="tc-pm">·</div></div>
   <div class="tb" data-c="auto" onclick="go('auto')"><div class="i">🚗</div><div class="n">Auto/Robotics</div><div class="c" id="tc-auto">·</div></div>
@@ -291,6 +307,7 @@ padding-bottom:env(safe-area-inset-bottom)}
   <div class="tb" data-c="hh" onclick="go('hh')"><div class="i">💼</div><div class="n">Headhunter</div><div class="c">15</div></div>
 </div>
 
+<div class="sec" id="sec-ws"></div>
 <div class="sec" id="sec-ki"></div>
 <div class="sec" id="sec-pm"></div>
 <div class="sec" id="sec-auto"></div>
@@ -505,8 +522,11 @@ function el(tag, cls, text){
 // und Firmen-Sperrliste wie Suche liefen bei genau diesen Jobs ins Leere.
 // Ab jetzt greift ueberall dieselbe Quelle.
 function firmaVon(j){ return (j.clean_company || j.company || '').trim(); }
+// NEU 2026-09-27: Andy-Fit (Volltext gegen Profil, crawler/fit_engine.py) schlaegt den alten
+// Titel-Stichwort-Score. Fehlt er (alter Datenstand), gilt weiter der alte Score.
+function andyFit(j){ return (typeof j.fit === 'number') ? j.fit : (j.score || 0); }
 function buildCard(j, cat){
-  const [mc, ml] = matchBadge(j.score);
+  const [mc, ml] = matchBadge(andyFit(j));
   const cta = CAT_CTA[cat] || 'cta-pm';
   const id = 'j-' + msHash(j.portal_url || j.url || '');  // 2026-09-23: Fundort-URL, damit Markierungen nach der Endlink-Umstellung erhalten bleiben. FIX 2026-06-11: Hash der VOLLEN URL statt slice(0,40). slice kollidierte (alle Bundesagentur/StepStone-URLs teilen das Praefix) -> markierte Stellen wurden falsch/unzuverlaessig versteckt.
   const card = el('div', 'jc');
@@ -538,6 +558,14 @@ function buildCard(j, cat){
       card.appendChild(bw);
       card.classList.add('has-bw', 'has-' + j.bewerbung.status);
     }
+  }
+  // NEU 2026-09-27: Werkstatt-Set bereit (crawler/bewerbungen_status.json -> _sets_bereit)
+  const set = setFuer(j);
+  if(set){
+    const sb = el('div', 'set-badge', '📦 SET BEREIT · ' + (set.datum || ''));
+    sb.appendChild(el('span', 'bw-sub', gremiumText(set)));
+    if(set.icloud_ordner) sb.appendChild(el('span', 'bw-sub', '📱 iCloud Drive › Jobsuche › Bewerbungs-Sets › ' + set.icloud_ordner));
+    card.appendChild(sb);
   }
   // Meta
   const meta = el('div', 'jc-meta');
@@ -602,7 +630,17 @@ function buildCard(j, cat){
     card.appendChild(ali);
   }
   // NEU 2026-05-28 (Andy): Fit-Score-Detail-Block (wieso/weshalb/warum)
-  if(j.score_reasons && j.score_reasons.length){
+  if(typeof j.fit === 'number'){
+    const det = el('div', 'score-det');
+    const basis = j.fit_basis === 'volltext' ? 'Anzeigentext gelesen' : (j.fit_basis === 'beschreibung' ? 'Kurzbeschreibung' : 'nur Titel');
+    det.appendChild(el('b', null, '🎯 Andy-Fit ' + j.fit + '/100 (' + basis + ') — Begründung:'));
+    (j.fit_reasons || []).forEach(r => det.appendChild(el('span', 'sd-row', '  ' + r)));
+    det.appendChild(el('span', 'sd-row', '  (alter Stichwort-Score: ' + (j.score || 0) + ')'));
+    card.appendChild(det);
+    if(j.fit_ko && j.fit_ko.length){
+      card.appendChild(el('div', 'fit-ko', '⚠️ Vor Bewerbung prüfen: ' + j.fit_ko.join(' · ')));
+    }
+  } else if(j.score_reasons && j.score_reasons.length){
     const det = el('div', 'score-det');
     det.appendChild(el('b', null, '🎯 Fit-Score ' + (j.score || 0) + '/100 — Begründung:'));
     j.score_reasons.forEach(r => {
@@ -622,10 +660,19 @@ function buildCard(j, cat){
     ? '⚠️ Nur Portal-Seite (Endlink nicht auflösbar) →'
     : '📄 Direkt zur Stelle beim Arbeitgeber →';
   card.appendChild(a);
-  // NEU 2026-05-28 (Andy): MS-DOCX-Generierung-Button
+  // NEU 2026-09-27: Hauptweg = Werkstatt (Anforderungs-Matrix + Gremium, CLAUDE.md §25).
+  // Der alte Vorlagen-Generator bleibt als kleiner Nebenlink erhalten, ist aber NICHT
+  // versandfaehig (Standardtext, verstoesst gegen §25.1 Individualitaet).
+  if(!set){
+    const wsBtn = document.createElement('button');
+    wsBtn.className = 'ws-btn';
+    wsBtn.textContent = '🛠 Set in der Werkstatt bauen lassen (MS + CV + Gremium)';
+    wsBtn.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); werkstattAuftrag(j); });
+    card.appendChild(wsBtn);
+  }
   const msBtn = document.createElement('button');
-  msBtn.className = 'ms-btn';
-  msBtn.textContent = '📝 Motivationsschreiben erstellen (DOCX)';
+  msBtn.className = 'ms-legacy';
+  msBtn.textContent = 'Nur Vorlage-Entwurf (DOCX, nicht versandfertig)';
   msBtn.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); generateMS(j, msBtn); });
   card.appendChild(msBtn);
   // NEU 2026-08-06 (Andy): CV-Empfehlung mit Direktlink zur passenden Lebenslauf-Datei.
@@ -643,6 +690,11 @@ function buildCard(j, cat){
     while(cvBox.firstChild) cvBox.removeChild(cvBox.firstChild);
     cvBox.appendChild(el('div', 'cv-name', '➜ ' + rec.label));
     cvBox.appendChild(el('div', 'cv-why', rec.grund + ' · Stand ' + rec.stand));
+    // NEU 2026-09-27: Handy-Weg. file://-Links gehen am iPhone nicht, iCloud schon.
+    const setJ = setFuer(j);
+    cvBox.appendChild(el('div', 'cv-why', setJ && setJ.icloud_ordner
+      ? '📱 Handy: zugeschnittener CV liegt in iCloud Drive › Jobsuche › Bewerbungs-Sets › ' + setJ.icloud_ordner
+      : '📱 Handy: Basis-CV V9 in iCloud Drive › Jobsuche › Lebenslauf. Für die Stelle zugeschnitten baut ihn die Werkstatt (Kopfzeile + Profil).'));
     const openA = document.createElement('a');
     openA.href = 'file://' + encodeURI(pfad);
     openA.target = '_blank'; openA.rel = 'noopener';
@@ -1268,7 +1320,7 @@ function toggleWishCompany(co){
 }
 // Effektiver Score = Crawler-Score + 10 wenn User-Wunschfirma
 function effectiveScore(j){
-  return (j.score || 0) + (isWishCompany(firmaVon(j)) ? 10 : 0);
+  return andyFit(j) + (isWishCompany(firmaVon(j)) ? 10 : 0);
 }
 function jobsForTab(tab){
   if(!DATA || !DATA.jobs) return [];
@@ -1351,10 +1403,118 @@ function renderStaticTab(tab){
   }
   return true;
 }
+// ===== NEU 2026-09-27: Werkstatt (Andy: "Das muss in dem Dashboard flutschen") =====
+// Quellen: crawler/bewerbungen_status.json (_sets_bereit, von der Werkstatt gepflegt) und
+// maschine_status.json (Herzschlag der Mac-Jobmaschine). Beide liegen neben data.js auf Pages.
+let SETS = [];
+let MASCHINE = null;
+function normUrl(u){ return (u || '').split('#')[0].split('?')[0].replace(/\/$/, '').toLowerCase(); }
+function setFuer(j){
+  if(!SETS.length) return null;
+  const a = normUrl(j.url), b = normUrl(j.portal_url);
+  return SETS.find(x => { const u = normUrl(x.url); return u && (u === a || u === b); }) || null;
+}
+function gremiumText(set){
+  const g = set.gremium || {};
+  const f = v => (typeof v === 'number') ? v.toFixed(1).replace('.', ',') : '–';
+  return 'Gremium MS: Personal ' + f(g.hr) + ' · Fachbereich ' + f(g.fach) + ' · CEO ' + f(g.ceo) +
+         ' · Forensik ' + (g.forensik || '–') + (g.cv_hr != null ? ' | CV: ' + f(g.cv_hr) + ' / ' + f(g.cv_fach) + ' / ' + f(g.cv_ceo) : '');
+}
+function ladeWerkstattDaten(){
+  const t = Date.now();
+  const holen = (pfad) => fetch(pfad + '?t=' + t, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null);
+  Promise.all([holen('crawler/bewerbungen_status.json'), holen('maschine_status.json')]).then(([bs, ms]) => {
+    SETS = (bs && Array.isArray(bs._sets_bereit)) ? bs._sets_bereit : [];
+    MASCHINE = ms;
+    updateStats();
+    if(CURRENT_TAB) renderTab(CURRENT_TAB);
+  });
+}
+function werkstattTop(){
+  if(!DATA || !DATA.jobs) return [];
+  const blocked = getBlockedCompanies().map(c => c.toLowerCase());
+  return DATA.jobs.filter(j => {
+    if(typeof j.fit !== 'number' || j.fit < 65) return false;
+    // Dieselbe Stelle schon beworben oder abgesagt -> raus. Andere Stellen derselben Firma bleiben (§27).
+    if(j.bewerbung && ['gesendet','offen','absage'].includes(j.bewerbung.status) && (j.bewerbung.stelle || '').toLowerCase().slice(0, 18) === (j.title || '').toLowerCase().slice(0, 18)) return false;
+    const co = firmaVon(j).toLowerCase();
+    if(blocked.some(b => b && co.includes(b))) return false;
+    return true;
+  }).sort((a, b) => effectiveScore(b) - effectiveScore(a)).slice(0, 30);
+}
+function werkstattAuftrag(j){
+  const zeile = '- ' + (j.url || '') + ' | ' + (j.title || '') + ' | ' + firmaVon(j);
+  const kurz = localStorage.getItem('jsa12_kurzbefehl') === '1';
+  const fertig = () => {
+    if(kurz && /iPhone|iPad/.test(navigator.userAgent)){
+      window.location.href = 'shortcuts://run-shortcut?name=' + encodeURIComponent('Jobmaschine Auftrag') + '&input=text&text=' + encodeURIComponent(zeile);
+    } else {
+      showToast('Auftrag kopiert. In Dateien › iCloud Drive › Jobsuche › AUFTRAEGE.md einfügen. Die Werkstatt baut das Set beim nächsten Lauf.', true);
+    }
+  };
+  navigator.clipboard.writeText(zeile).then(fertig, fertig);
+}
+function renderWerkstatt(){
+  const sec = document.getElementById('sec-ws');
+  if(!sec) return;
+  while(sec.firstChild) sec.removeChild(sec.firstChild);
+  // 1) Maschine
+  const mb = el('div', 'ws-box');
+  mb.appendChild(el('h3', null, '⚙️ Jobmaschine'));
+  const row = (k, v, cls) => { const r = el('div', 'ws-row'); r.appendChild(el('span', null, k)); r.appendChild(el('span', cls || null, v)); mb.appendChild(r); };
+  const alter = iso => { if(!iso) return null; const m = Math.round((Date.now() - new Date(iso).getTime()) / 60000); return isNaN(m) ? null : Math.max(0, m); };
+  const fmt = m => m == null ? '–' : (m < 90 ? 'vor ' + m + ' Min.' : 'vor ' + Math.round(m / 60) + ' Std.');
+  if(DATA && DATA.generated_at){ const m = alter(DATA.generated_at); row('Letzter Crawl (Cloud oder Mac)', fmt(m), m < 300 ? 'ws-ok' : 'ws-warn'); }
+  if(MASCHINE){
+    const hb = alter(MASCHINE.herzschlag);
+    row('Mac-Jobmaschine', hb != null && hb < 30 ? 'läuft (' + fmt(hb) + ')' : 'Mac aus oder schläft (' + fmt(hb) + ')', hb != null && hb < 30 ? 'ws-ok' : 'ws-warn');
+    if(MASCHINE.letzter_crawl) row('Letzter Mac-Crawl', fmt(alter(MASCHINE.letzter_crawl)) + (MASCHINE.letzter_crawl_ok === false ? ' · FEHLER' : ''), MASCHINE.letzter_crawl_ok === false ? 'ws-bad' : null);
+    if(MASCHINE.auftraege_offen != null) row('Aufträge in der Warteschlange', String(MASCHINE.auftraege_offen), MASCHINE.auftraege_offen ? 'ws-warn' : null);
+  } else {
+    row('Mac-Jobmaschine', 'noch kein Lebenszeichen', 'ws-warn');
+  }
+  const tot = (DATA && DATA.stats && DATA.stats.dead_sources) || [];
+  row('Quellen ohne Treffer', tot.length ? tot.length + ' (' + tot.slice(0, 4).join(', ') + (tot.length > 4 ? ' …' : '') + ')' : 'keine', tot.length > 8 ? 'ws-warn' : null);
+  sec.appendChild(mb);
+  // 2) Sets bereit
+  const sb = el('div', 'ws-box');
+  sb.appendChild(el('h3', null, '📦 Sets bereit zum Absenden (' + SETS.filter(s => !s.versendet).length + ')'));
+  const offen = SETS.filter(s => !s.versendet);
+  if(!offen.length){
+    sb.appendChild(el('div', 'ws-note', 'Noch kein neues Set. Die Werkstatt läuft 3× täglich (07:30, 12:30, 17:30) und baut Sets für die besten neuen Treffer und für deine Aufträge.'));
+  }
+  offen.forEach(s => {
+    const c = el('div', 'jc');
+    const top = el('div', 'jc-top'); top.appendChild(el('div', 'jc-t', (s.firma || '') + ' · ' + (s.stelle || ''))); c.appendChild(top);
+    const b = el('div', 'set-badge', '📦 Gremium bestanden · ' + (s.datum || ''));
+    b.appendChild(el('span', 'bw-sub', gremiumText(s)));
+    if(s.icloud_ordner) b.appendChild(el('span', 'bw-sub', '📱 iCloud Drive › Jobsuche › Bewerbungs-Sets › ' + s.icloud_ordner));
+    if(s.hinweis) b.appendChild(el('span', 'bw-sub', 'ℹ️ ' + s.hinweis));
+    c.appendChild(b);
+    if(s.url){ const a = document.createElement('a'); a.className = 'cta cta-pm'; a.href = s.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = '📄 Zur Stelle / Bewerbungsformular →'; c.appendChild(a); }
+    sb.appendChild(c);
+  });
+  sec.appendChild(sb);
+  // 3) Beste offene Treffer
+  const tb = el('div', 'ws-box');
+  tb.appendChild(el('h3', null, '🎯 Beste offene Treffer nach Andy-Fit (ab 65)'));
+  const kb = el('label', 'ws-note');
+  const cbx = document.createElement('input'); cbx.type = 'checkbox';
+  try{ cbx.checked = localStorage.getItem('jsa12_kurzbefehl') === '1'; }catch{}
+  cbx.addEventListener('change', () => { try{ localStorage.setItem('jsa12_kurzbefehl', cbx.checked ? '1' : '0'); }catch{} });
+  kb.appendChild(cbx); kb.appendChild(document.createTextNode(' iPhone-Kurzbefehl „Jobmaschine Auftrag“ ist eingerichtet (Werkstatt-Button schickt dann direkt)'));
+  tb.appendChild(kb);
+  sec.appendChild(tb);
+  const liste = werkstattTop();
+  if(!liste.length) sec.appendChild(el('div', 'empty', 'Keine offenen Treffer ab Fit 65.'));
+  liste.forEach(j => sec.appendChild(buildCard(j, j.category || 'pm')));
+}
+
 function renderTab(tab){
   const sec = document.getElementById('sec-' + tab);
   if(!sec) return;
   if(tab === 'init' || tab === 'hh'){ renderStaticTab(tab); return; }
+  if(tab === 'ws'){ renderWerkstatt(); return; }
   // Clear sec
   while(sec.firstChild) sec.removeChild(sec.firstChild);
   if(!DATA){
@@ -1411,6 +1571,7 @@ function renderTab(tab){
 
 function updateStats(){
   if(!DATA) return;
+  const wsc = document.getElementById('tc-ws'); if(wsc) wsc.textContent = werkstattTop().length;
   ['ki','pm','auto','pharma'].forEach(c => {
     const list = jobsForTab(c);
     const e1 = document.getElementById('ct-' + c); if(e1) e1.textContent = list.length;
@@ -1420,7 +1581,7 @@ function updateStats(){
   if(stand && DATA.generated_at){
     const d = new Date(DATA.generated_at);
     stand.textContent = 'Stand: ' + d.toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}) +
-                         ' · ' + DATA.stats.verified + ' verifizierte Treffer (Andy-profil-geprüft) · sortiert nach Fit-Score · auto-Crawl 4× tägl.';
+                         ' · ' + DATA.stats.verified + ' verifizierte Treffer · sortiert nach Andy-Fit · Cloud 4× tägl. + Mac-Jobmaschine alle 2 h';
   }
   const bc = document.getElementById('banner-count');
   if(bc) bc.textContent = (DATA.stats.verified || 0) + ' verifizierte Direkt-Stellen';
@@ -1717,9 +1878,10 @@ function renderArchiv(){
     const bc = document.getElementById('banner-count');
     if(bc) bc.textContent = 'data.js fehlt — bitte Crawler starten';
   }
-  let saved = 'ki';
-  try{ const t = localStorage.getItem('jsa12_tab'); if(t) saved = t; }catch{}
+  let saved = 'ws';
+  try{ const t = localStorage.getItem('jsa12_tab'); if(t && document.getElementById('sec-' + t)) saved = t; }catch{}
   go(saved);
+  ladeWerkstattDaten();
 })();
 </script>
 </body>

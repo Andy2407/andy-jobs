@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Jobmaschine (Andy, 27.09.2026). Muster: com.ki-trading.autostart.
+  Laeuft, solange der Mac an ist (RunAtLoad + KeepAlive), und startet nach Absturz,
+  Neustart oder Selbst-Update automatisch wieder.
+  Code liegt im eigenen Klon ~/Jobsuche-Maschine/repo, NICHT auf dem Desktop:
+  macOS verbietet Hintergrundjobs den Desktop-Zugriff (TCC, belegt 27.09.2026).
+  Installation/Entfernen: maschine/install.sh bzw. maschine/install.sh --entfernen
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.andy.jobmaschine</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/andreasschengel/Jobsuche-Maschine/repo/maschine/maschine.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/andreasschengel/Jobsuche-Maschine</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>ThrottleInterval</key>
+    <integer>60</integer>
+    <key>ProcessType</key>
+    <string>Background</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>LANG</key>
+        <string>de_DE.UTF-8</string>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/andreasschengel/Jobsuche-Maschine/logs/launchd_stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/andreasschengel/Jobsuche-Maschine/logs/launchd_stderr.log</string>
+</dict>
+</plist>

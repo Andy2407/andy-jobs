@@ -29,6 +29,11 @@ from bs4 import BeautifulSoup
 from profile import score_job, categorize, clean_title, MIN_SCORE_TO_INCLUDE, OTHER_MIN_SCORE, USER_BLOCKED_URLS
 # NEU 2026-09-23 (Andy: "Xing-Stellen fehlen", "immer den allerletzten Link"): siehe Moduldoku
 import quellen_offensive as qo
+# NEU 2026-09-27: Andy-Fit (Volltext gegen Profil). Fehler dort duerfen den Crawl nie stoppen.
+try:
+    import fit_engine as fe
+except Exception as _e:  # pragma: no cover
+    fe = None
 
 BASE = Path(__file__).resolve().parent.parent
 DATA_PATH = BASE / "data.json"
@@ -1578,6 +1583,13 @@ def parallel_verify(jobs, session, max_workers: int = 10) -> list:
                         if det.get("clean_company"): j["clean_company"] = det["clean_company"]
                     except Exception as e:
                         log.debug(f"parse_job_details Fehler für {j.get('url', '')[:80]}: {e}")
+                    # NEU 2026-09-27: Stellentext fuer den Andy-Fit behalten (kein Zusatzabruf).
+                    # Wird vor dem Schreiben von data.json wieder entfernt (siehe main).
+                    if fe is not None:
+                        try:
+                            j["jd_text"] = fe.extract_jd_text(html)
+                        except Exception:
+                            pass
                 out.append(j)
     parsed = sum(1 for j in out if j.get("recruiter") or j.get("kennziffer") or j.get("address_city"))
     log.info(f"  → {len(out)}/{len(jobs)} live · {parsed} mit Empfänger-Details")
@@ -3097,8 +3109,19 @@ def main():
         verified.sort(key=lambda x: (x.get("first_seen") or "", x.get("score") or 0), reverse=True)
         log.info(f"  → {len(added)}/{len(manual)} manuelle Stellen gemergt")
 
+    # NEU 2026-09-27: Andy-Fit als zweite Bewertungsstufe (siehe crawler/fit_engine.py).
+    if fe is not None:
+        try:
+            n_fit = fe.bewerte_alle(verified)
+            n_voll = sum(1 for j in verified if j.get("fit_basis") == "volltext")
+            log.info(f"[andy-fit] {n_fit} Jobs bewertet, {n_voll} mit Volltext")
+        except Exception as e:
+            log.error(f"[andy-fit] Fehler: {e}")
+
     payload = {
-        "generated_at": started.isoformat(),
+        # FIX 2026-09-27: mit Zeitzone. Vorher naiv -> Cloud-UTC wurde im Dashboard als Ortszeit
+        # gelesen (Stand 2 Std. falsch) und Mac-/Cloud-Stempel waren nicht vergleichbar.
+        "generated_at": started.astimezone().isoformat(),
         "duration_s": (datetime.now() - started).total_seconds(),
         "stats": {
             "raw": len(all_jobs),
@@ -3114,7 +3137,8 @@ def main():
         # NEU 2026-08-06: Headhunter- und Initiativ-Eintraege kommen nicht mehr als
         # statisches HTML ins Dashboard, sondern hier — bei jedem Lauf live geprueft.
         "tabs": load_static_tabs(s),
-        "jobs": [{k: v for k, v in j.items() if k != "raw_text"} for j in verified],
+        # jd_text (Volltext) bleibt intern: data.json ist oeffentlich und soll schlank bleiben.
+        "jobs": [{k: v for k, v in j.items() if k not in ("raw_text", "jd_text")} for j in verified],
     }
     for j in verified:
         c = j.get("category", "other")

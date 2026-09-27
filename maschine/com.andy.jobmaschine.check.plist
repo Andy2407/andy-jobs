@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Jobmaschine-Systemcheck (Andy, 27.09.2026). Muster: com.ki-trading.systemcheck.
+  KEIN zweiter Waechter mit KeepAlive: laeuft beim Login und danach alle 15 Minuten,
+  prueft von aussen, heilt (--heilen) und beendet sich wieder.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.andy.jobmaschine.check</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/andreasschengel/Jobsuche-Maschine/repo/maschine/systemcheck.py</string>
+        <string>--heilen</string>
+        <string>--still</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/andreasschengel/Jobsuche-Maschine</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StartInterval</key>
+    <integer>900</integer>
+    <key>KeepAlive</key>
+    <false/>
+    <key>StandardOutPath</key>
+    <string>/Users/andreasschengel/Jobsuche-Maschine/logs/systemcheck.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/andreasschengel/Jobsuche-Maschine/logs/systemcheck_error.log</string>
+</dict>
+</plist>
