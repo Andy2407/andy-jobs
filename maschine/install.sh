@@ -58,8 +58,12 @@ fi
 for L in com.andy.jobmaschine com.andy.jobmaschine.check; do
   plutil -lint "$QUELLE/$L.plist" >/dev/null
   launchctl bootout "gui/$UIDN/$L" 2>/dev/null || true
+  # launchd braucht nach bootout einen Moment ("Bootstrap failed: 5", 27.09.) -> warten + 1x wiederholen
+  for _i in 1 2 3 4 5 6 7 8 9 10; do launchctl print "gui/$UIDN/$L" >/dev/null 2>&1 || break; sleep 1; done
   cp "$QUELLE/$L.plist" "$LA/$L.plist"
-  launchctl bootstrap "gui/$UIDN" "$LA/$L.plist"
+  if ! launchctl bootstrap "gui/$UIDN" "$LA/$L.plist" 2>/dev/null; then
+    sleep 3; launchctl bootstrap "gui/$UIDN" "$LA/$L.plist"
+  fi
   echo "geladen: $L"
 done
 
