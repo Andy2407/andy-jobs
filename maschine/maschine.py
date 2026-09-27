@@ -314,11 +314,42 @@ def icloud_einrichten():
         return False
 
 
+def icloud_schreiben(name, text):
+    """iCloud-Regel (am 27.09. per Probe-LaunchAgent belegt): Ein Hintergrundprozess darf in
+    iCloud NUR Dateien anfassen, die er selbst angelegt hat, und selbst die eigenen lassen sich
+    nach einem iCloud-Abgleich nicht mehr LESEN (Errno 11), wohl aber schreiben. Deshalb: nie
+    aus iCloud lesen, Vergleich ueber eine lokale Kopie, Schreiben direkt, sonst tmp + replace."""
+    cache = BASIS / "icloud_cache" / name
+    cache.parent.mkdir(exist_ok=True)
+    try:
+        if cache.exists() and cache.read_text(encoding="utf-8") == text:
+            return True
+    except Exception:
+        pass
+    ziel = ICLOUD / name
+    try:
+        with open(ziel, "w", encoding="utf-8") as h:
+            h.write(text)
+    except Exception as e1:
+        try:
+            fd, tmp = tempfile.mkstemp(dir=str(ICLOUD), prefix=".tmp_")
+            with os.fdopen(fd, "w", encoding="utf-8") as h:
+                h.write(text)
+            os.replace(tmp, ziel)
+        except Exception as e2:
+            log(f"iCloud {name} nicht geschrieben: {e1} / {e2}")
+            return False
+    cache.write_text(text, encoding="utf-8")
+    return True
+
+
 def offene_auftraege():
+    """None = fuer den Hintergrunddienst nicht lesbar (nach iPhone-Bearbeitung normal).
+    Die Werkstatt in der Claude-App liest die Datei trotzdem."""
     try:
         txt = (ICLOUD / "AUFTRAEGE.md").read_text(encoding="utf-8")
     except Exception:
-        return []
+        return None
     out = []
     for z in txt.splitlines():
         z = z.strip()
@@ -339,6 +370,8 @@ def handy_uebersicht(neu):
     sets = [s for s in bs.get("_sets_bereit", []) if not s.get("versendet")]
     st = lade_json(STATUS, {})
     auftr = offene_auftraege()
+    auftr_lesbar = auftr is not None
+    auftr = auftr or []
 
     def firma(j):
         return (j.get("clean_company") or j.get("company") or "?").strip()
@@ -373,19 +406,18 @@ def handy_uebersicht(neu):
         ko = f" ⚠️ {'; '.join(j.get('fit_ko') or [])}" if j.get("fit_ko") else ""
         z.append(f"- **{_fit(j)}** · {j.get('title')} · {firma(j)} · {j.get('location', '')}{ko}  \n  {j.get('url')}")
     z.append("")
-    z.append(f"## 📥 Aufträge an die Werkstatt ({len(auftr)} offen)")
-    for a in auftr[:10]:
-        z.append(f"- {a}")
+    if auftr_lesbar:
+        z.append(f"## 📥 Aufträge an die Werkstatt ({len(auftr)} offen)")
+        for a in auftr[:10]:
+            z.append(f"- {a}")
+    else:
+        z.append("## 📥 Aufträge an die Werkstatt")
+        z.append("Die Liste liest die Werkstatt direkt (07:30, 12:30, 17:30). Der Hintergrunddienst darf sie nach einer iPhone-Bearbeitung nicht öffnen.")
     z.append("")
     z.append("_Automatisch erzeugt von der Jobmaschine auf dem Mac. Nicht bearbeiten, wird überschrieben._")
     txt = "\n".join(z) + "\n"
-    ziel = ICLOUD / "HEUTE.md"
-    try:
-        if not ziel.exists() or ziel.read_text(encoding="utf-8") != txt:
-            ziel.write_text(txt, encoding="utf-8")
-    except Exception as e:
-        log(f"HEUTE.md nicht geschrieben: {e}")
-    return len(auftr)
+    icloud_schreiben("HEUTE.md", txt)
+    return len(auftr) if auftr_lesbar else None
 
 
 def neue_treffer():
@@ -449,6 +481,16 @@ def zyklus():
         status_update(letzter_crawl=jetzt().isoformat(timespec="seconds"), letzter_crawl_ok=ok,
                       letzter_crawl_dauer_s=dauer, letzter_crawl_jobs=n, letzter_crawl_log=str(logf))
         log(f"Vollcrawl {'OK' if ok else 'FEHLER'} in {dauer}s, {n} Stellen")
+        if ok:
+            # Offline-Dashboard fuers iPhone (Klartext, nur in Andys privatem iCloud). Eigener Dateiname,
+            # weil jobsuche_standalone.html in iCloud von der Claude-App angelegt wurde und fuer den
+            # Hintergrunddienst gesperrt ist.
+            try:
+                html = (REPO / "jobsuche_standalone.html").read_text(encoding="utf-8")
+                if "JOBSUCHE_DATA" in html and len(html) > 100_000:
+                    icloud_schreiben("Dashboard_offline.html", html)
+            except Exception as e:
+                log(f"Offline-Dashboard nicht kopiert: {e}")
         if ok and n > 50:
             gepusht = veroeffentlichen(eigene, {"quelle": "mac"})
             status_update(letzter_push_ok=gepusht, letzter_push=jetzt().isoformat(timespec="seconds"))

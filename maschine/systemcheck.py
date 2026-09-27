@@ -147,7 +147,8 @@ def main():
         zeilen += [f"- {s}: {t}" for s, t in befunde] or ["- alles in Ordnung"]
         if aktion:
             zeilen += ["", f"Selbstheilung: {aktion}"]
-        (ICLOUD / "SYSTEMCHECK.md").write_text("\n".join(zeilen) + "\n", encoding="utf-8")
+        with open(ICLOUD / "SYSTEMCHECK.md", "w", encoding="utf-8") as h:   # nie aus iCloud lesen
+            h.write("\n".join(zeilen) + "\n")
     except Exception:
         pass
     if "--still" in sys.argv:
