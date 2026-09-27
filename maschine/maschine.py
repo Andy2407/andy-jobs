@@ -182,14 +182,28 @@ def crawl():
     logf = LOGS / f"crawl-{jetzt():%Y-%m-%d_%H%M}.log"
     t0 = time.time()
     env = dict(os.environ, PYTHONUNBUFFERED="1")
+    # FIX 27.09. (erster Echttest): Waehrend des Crawls (bis 55 Min.) lief kein Herzschlag, der
+    # Systemcheck haelt die Maschine dann fuer tot. Jetzt: Popen + Herzschlag jede Minute, und ein
+    # Stoppsignal beendet auch den Crawler sauber (kein verwaister Prozess im Klon).
     with logf.open("w", encoding="utf-8") as h:
-        try:
-            r = subprocess.run([str(PY), "crawler_v2.py"], cwd=str(REPO / "crawler"), stdout=h,
-                               stderr=subprocess.STDOUT, timeout=CRAWL_TIMEOUT_S, env=env)
-            ok = r.returncode == 0
-        except subprocess.TimeoutExpired:
-            ok = False
-            h.write("\nTIMEOUT\n")
+        proc = subprocess.Popen([str(PY), "crawler_v2.py"], cwd=str(REPO / "crawler"), stdout=h,
+                                stderr=subprocess.STDOUT, env=env)
+        ok = False
+        while True:
+            try:
+                rc = proc.wait(timeout=60)
+                ok = rc == 0
+                break
+            except subprocess.TimeoutExpired:
+                status_update(zustand="crawl", crawl_laeuft_s=int(time.time() - t0))
+                if not LAUFEND or time.time() - t0 > CRAWL_TIMEOUT_S:
+                    proc.terminate()
+                    try:
+                        proc.wait(timeout=20)
+                    except subprocess.TimeoutExpired:
+                        proc.kill()
+                    h.write("\nABGEBROCHEN (Stoppsignal oder Timeout)\n")
+                    break
     dauer = int(time.time() - t0)
     # alte Crawl-Logs begrenzen (nur die letzten 40 behalten, Rest bleibt als .gz nicht noetig)
     alte = sorted(LOGS.glob("crawl-*.log"))[:-40]
@@ -422,10 +436,14 @@ def zyklus():
         st = status_update(letzter_sync_fehler=str(e)[:200])
 
     faellig, grund = crawl_faellig(st)
-    if faellig:
+    if faellig and LAUFEND:
         log("Vollcrawl startet")
         status_update(zustand="crawl", letzter_crawl_versuch=jetzt().isoformat(timespec="seconds"))
         ok, dauer, logf = crawl()
+        if not LAUFEND:
+            log("Crawl wegen Stoppsignal abgebrochen, nichts veröffentlicht")
+            repo_sync()
+            return
         eigene = lade_json(REPO / "data.json", {}).get("generated_at", "")
         n = len(lade_json(REPO / "data.json", {}).get("jobs", []))
         status_update(letzter_crawl=jetzt().isoformat(timespec="seconds"), letzter_crawl_ok=ok,

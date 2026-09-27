@@ -71,14 +71,17 @@ def pruefen():
     try:
         st = json.loads(STATUS.read_text(encoding="utf-8"))
     except Exception:
-        befunde.append((ROT, "status.json fehlt oder unlesbar"))
+        # Erststart: Maschine schreibt ihren ersten Herzschlag gerade. Nicht "heilen"!
+        # (27.09.: der Check hat die Maschine beim Erststart sonst sofort abgeschossen)
+        befunde.append((GELB, "Noch kein Status, Maschine startet gerade"))
+        return GELB, befunde, {"pid": agent_laeuft()[1], "herzschlag_min": None}
     geladen, pid = agent_laeuft()
     if not geladen:
         befunde.append((ROT, "LaunchAgent com.andy.jobmaschine nicht geladen"))
     elif not pid:
         befunde.append((GELB, "LaunchAgent geladen, aber kein laufender Prozess"))
     hb = alter_min(st.get("herzschlag"))
-    if hb is None or hb > 40:
+    if hb is not None and hb > 40:
         befunde.append((ROT, f"Kein Herzschlag seit {int(hb) if hb else '?'} Min."))
     stunde = datetime.now().hour
     if 8 <= stunde <= 22:
@@ -114,7 +117,9 @@ def heilen(stufe, befunde):
     if not geladen and PLIST.exists():
         subprocess.run(["launchctl", "bootstrap", f"gui/{uid}", str(PLIST)], capture_output=True)
         return "LaunchAgent neu eingehängt"
-    if any("Herzschlag" in b[1] for b in befunde):
+    # Nur anstossen, wenn der Herzschlag wirklich steht (> 40 Min.). Die Maschine schlaegt auch
+    # waehrend eines Crawls jede Minute, ein langer Crawl ist also kein Grund.
+    if any("Kein Herzschlag" in b[1] for b in befunde):
         subprocess.run(["launchctl", "kickstart", "-k", f"gui/{uid}/{LABEL}"], capture_output=True)
         return "Maschine neu angestoßen"
     return None
