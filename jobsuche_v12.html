@@ -1467,7 +1467,9 @@ function renderWerkstatt(){
   if(DATA && DATA.generated_at){ const m = alter(DATA.generated_at); row('Letzter Crawl (Cloud oder Mac)', fmt(m), m < 300 ? 'ws-ok' : 'ws-warn'); }
   if(MASCHINE){
     const hb = alter(MASCHINE.herzschlag);
-    row('Mac-Jobmaschine', hb != null && hb < 30 ? 'läuft (' + fmt(hb) + ')' : 'Mac aus oder schläft (' + fmt(hb) + ')', hb != null && hb < 30 ? 'ws-ok' : 'ws-warn');
+    // Oeffentlicher Herzschlag kommt mit jedem Crawl bzw. spaetestens alle 2 Std. (06-23 Uhr)
+    const lebt = hb != null && hb < 150;
+    row('Mac-Jobmaschine', lebt ? 'läuft (Lebenszeichen ' + fmt(hb) + ')' : 'Mac aus oder schläft (letztes Lebenszeichen ' + fmt(hb) + ')', lebt ? 'ws-ok' : 'ws-warn');
     if(MASCHINE.letzter_crawl) row('Letzter Mac-Crawl', fmt(alter(MASCHINE.letzter_crawl)) + (MASCHINE.letzter_crawl_ok === false ? ' · FEHLER' : ''), MASCHINE.letzter_crawl_ok === false ? 'ws-bad' : null);
     if(MASCHINE.auftraege_offen != null) row('Aufträge in der Warteschlange', String(MASCHINE.auftraege_offen), MASCHINE.auftraege_offen ? 'ws-warn' : null);
   } else {
