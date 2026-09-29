@@ -1,7 +1,7 @@
 {
   "_kommentar": "Bewerbungs-Status je Firma. Wird von crawler_v2.py gelesen und auf jeden Job gestempelt, dessen Firma hier auftaucht. Das Dashboard zeigt daraus ein Abzeichen, damit Andy nie wieder eine Stelle bearbeitet, auf die er sich schon beworben hat.",
   "_regel": "Nur eintragen, was belegt ist. Eine Mappe auf der Platte ist KEINE Bewerbung (Regel aus VERSAND_REGISTER.md). Drei Stufen: 'gesendet' = nachweislich raus, 'offen' = laeuft, Antwort steht aus, 'absage' = abgelehnt, 'mappe' = Unterlagen liegen bereit, Versand unbestaetigt.",
-  "_stand": "2026-09-26",
+  "_stand": "2026-09-29",
   "eintraege": [
     {
       "firma": "EDS Automotive",
@@ -192,18 +192,39 @@
     {
       "firma": "Bertrandt",
       "stelle": "Projektmanager Gesamtfahrzeugerprobung & Validierungssteuerung (m/w/d)",
-      "status": "mappe",
+      "status": "offen",
       "datum": "2026-09-29",
-      "quelle": "Unterlagen finalisiert (Anschreiben V6 + CV V5 in Bewerbungen/Bertrandt_PM_Gesamtfahrzeugerprobung_Validierung)",
+      "quelle": "Eingangsbestaetigung 2026-09-29 17:18 (\"noreply.sf @ Bertrandt\" <noreply.sf@bertrandt.com): 'Aufnahme in Bewerbermanagementsystem von Bertrandt'. .eml in Bewerbungen/Bertrandt_PM_Gesamtfahrzeugerprobung_Validierung/Aufnahme in Bewerbermanagementsystem von Bertrandt.eml (automatisch erkannt, versand_erkennung.py)",
       "notiz": "Bereit zum Versand über bertrandt.com/karriere (Kennziffer 4174, Kontakt Alina Vaha)"
     },
     {
       "firma": "Brainlab",
       "stelle": "(Senior) Project Engineer - Surgical Navigation Platforms",
-      "status": "mappe",
+      "status": "offen",
       "datum": "2026-09-29",
-      "quelle": "Unterlagen finalisiert (Anschreiben V3 + CV V9 in Bewerbungen/Brainlab_Senior_Project_Engineer_Surgical_Navigation)",
+      "quelle": "Eingangsbestaetigung 2026-09-29 17:16 (Brainlab <notification@smartrecruiters.com>): 'Your application at Brainlab'. .eml in Bewerbungen/Brainlab_Senior_Project_Engineer_Surgical_Navigation/Your application at Brainlab.eml (automatisch erkannt, versand_erkennung.py)",
       "notiz": "Bereit zum Versand über SmartRecruiters (https://jobs.smartrecruiters.com/Brainlab/744000129775149/apply)"
+    },
+    {
+      "firma": "Holzer",
+      "stelle": "Holzer",
+      "status": "offen",
+      "datum": "2026-05-26",
+      "quelle": "Eingangsbestaetigung 2026-05-26 14:05 (Bewerbungen Holzer HR <bewerbungen@holzer-hr.com>): 'Eingangsbestätigung Ihrer Bewerbung vom 25.05.2026'. .eml in Bewerbungen/Holzer/Eingangsbestätigung Ihrer Bewerbung vom 25.05.2026.eml (automatisch erkannt, versand_erkennung.py)"
+    },
+    {
+      "firma": "MTU",
+      "stelle": "Projektmanager (all genders)",
+      "status": "absage",
+      "datum": "2026-02-17",
+      "quelle": "Absage 2026-02-17 11:21 (Recruiting MTU <candidate-rq9m24m7@mtuaero.dvinci-): 'Wir bedanken uns!'. .eml in Bewerbungen/99_Absagen/MTU/Wir bedanken uns!.eml (automatisch erkannt, versand_erkennung.py)"
+    },
+    {
+      "firma": "Sonnenernte",
+      "stelle": "Sonnenernte_KI-Integrator",
+      "status": "absage",
+      "datum": "2026-09-28",
+      "quelle": "Absage 2026-09-28 12:02 (André Brosowski <sonnenernte-gmbh-jobs@m.personio.): 'Ihre Bewerbung als KI-Integrator (m/w/d)'. .eml in Bewerbungen/99_Absagen/Sonnenernte_KI-Integrator/Ihre Bewerbung als KI-Integrator (m_w_d).eml (automatisch erkannt, versand_erkennung.py)"
     }
   ],
   "_sets_bereit": [
@@ -256,8 +277,6 @@
     "Atlantik Networxx",
     "AutoScout24",
     "BKW Engineering",
-    "Bertrandt",
-    "Brainlab",
     "Cognizant",
     "DiNC",
     "Dorsch-Engineers",
@@ -267,13 +286,11 @@
     "FUTRUE",
     "Haas",
     "Hoffmann SE",
-    "Holzer",
     "KEWAZO",
     "Knorr-Bremse",
     "LOGSOL",
     "MCA",
     "MEDIFOX DAN",
-    "MTU",
     "Medi-Globe",
     "Mobileye",
     "Munich Electrification",
