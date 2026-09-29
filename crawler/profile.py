@@ -397,9 +397,13 @@ DEFENSE_FIRMS = ["hensoldt", "knds", "krauss-maffei wegmann", "rheinmetall", "di
 
 # ===== EXCLUDED COMPANIES =====
 COMPANY_BLOCK = [
-    # Andy 23.09.2026: KEINE Firma mehr blocken, Absagen sind nie ein Sperrgrund.
-    # Einzige Dauersperre: Aconext (Ex-Arbeitgeber). Everlast/Evolast am 23.09. entsperrt.
+    # Andy 23.09.2026: Keine regulären Firmen blocken, ABER:
+    # 1. Aconext (Ex-Arbeitgeber)
     "aconext",
+    # 2. Agile Robots & Idealworks (Dauerschleife / Ghost-Jobs / Talent-Harvesting / DLR-Filter)
+    "agile robots",
+    "agilerobots",
+    "idealworks",
     # IAV: nur für Initiativ verboten — reguläre Stellen OK
 ]
 
