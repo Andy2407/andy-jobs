@@ -303,8 +303,6 @@ wird kopiert. Dann hier einfügen (Dateien-App › iCloud Drive › Jobsuche ›
 def icloud_einrichten():
     try:
         ICLOUD.mkdir(exist_ok=True)
-        (ICLOUD / "Bewerbungs-Sets").mkdir(exist_ok=True)
-        (ICLOUD / "Lebenslauf").mkdir(exist_ok=True)
         a = ICLOUD / "AUFTRAEGE.md"
         if not a.exists():
             a.write_text(AUFTRAG_VORLAGE, encoding="utf-8")
@@ -393,7 +391,7 @@ def handy_uebersicht(neu):
         g = s.get("gremium", {})
         z.append(f"- **{s.get('firma')} · {s.get('stelle')}** ({s.get('datum')})  ")
         z.append(f"  Gremium MS {g.get('hr')}/{g.get('fach')}/{g.get('ceo')} · Forensik {g.get('forensik')}  ")
-        z.append(f"  Unterlagen: Bewerbungs-Sets › {s.get('icloud_ordner')} · Link: {s.get('url')}")
+        z.append(f"  Unterlagen lokal: Bewerbungen/{s.get('ordner') or s.get('firma')} · Link: {s.get('url')}")
     z.append("")
     if neu:
         z.append(f"## 🔥 Neu seit der letzten Meldung ({len(neu)})")

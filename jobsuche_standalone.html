@@ -565,7 +565,7 @@ function buildCard(j, cat){
   if(set){
     const sb = el('div', 'set-badge', '📦 SET BEREIT · ' + (set.datum || ''));
     sb.appendChild(el('span', 'bw-sub', gremiumText(set)));
-    if(set.icloud_ordner) sb.appendChild(el('span', 'bw-sub', '📱 iCloud Drive › Jobsuche › Bewerbungs-Sets › ' + set.icloud_ordner));
+    if(set.icloud_ordner || set.ordner) sb.appendChild(el('span', 'bw-sub', '📁 Bewerbungen/' + (set.ordner || set.icloud_ordner)));
     card.appendChild(sb);
   }
   // Meta
@@ -694,8 +694,8 @@ function buildCard(j, cat){
     // NEU 2026-09-27: Handy-Weg. file://-Links gehen am iPhone nicht, iCloud schon.
     const setJ = setFuer(j);
     cvBox.appendChild(el('div', 'cv-why', setJ && setJ.icloud_ordner
-      ? '📱 Handy: zugeschnittener CV liegt in iCloud Drive › Jobsuche › Bewerbungs-Sets › ' + setJ.icloud_ordner
-      : '📱 Handy: Basis-CV V9 in iCloud Drive › Jobsuche › Lebenslauf. Für die Stelle zugeschnitten baut ihn die Werkstatt (Kopfzeile + Profil).'));
+      ? '📁 Zugeschnittener CV liegt in Bewerbungen/' + (setJ.ordner || setJ.icloud_ordner)
+      : '📁 Basis-CV V9 in 00_Unterlagen/Lebenslauf.'));
     const openA = document.createElement('a');
     openA.href = 'file://' + encodeURI(pfad);
     openA.target = '_blank'; openA.rel = 'noopener';
@@ -1491,7 +1491,7 @@ function renderWerkstatt(){
     const top = el('div', 'jc-top'); top.appendChild(el('div', 'jc-t', (s.firma || '') + ' · ' + (s.stelle || ''))); c.appendChild(top);
     const b = el('div', 'set-badge', '📦 Gremium bestanden · ' + (s.datum || ''));
     b.appendChild(el('span', 'bw-sub', gremiumText(s)));
-    if(s.icloud_ordner) b.appendChild(el('span', 'bw-sub', '📱 iCloud Drive › Jobsuche › Bewerbungs-Sets › ' + s.icloud_ordner));
+    if(s.icloud_ordner || s.ordner) b.appendChild(el('span', 'bw-sub', '📁 Bewerbungen/' + (s.ordner || s.icloud_ordner)));
     if(s.hinweis) b.appendChild(el('span', 'bw-sub', 'ℹ️ ' + s.hinweis));
     c.appendChild(b);
     if(s.url){ const a = document.createElement('a'); a.className = 'cta cta-pm'; a.href = s.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = '📄 Zur Stelle / Bewerbungsformular →'; c.appendChild(a); }
