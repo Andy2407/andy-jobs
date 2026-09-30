@@ -18,8 +18,8 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT = Path("/Users/andreasschengel/Desktop/ordner/Bewerbungen 2026")
-ICLOUD_BASE = Path.home() / "Library/Mobile Documents/com~apple~CloudDocs/Jobsuche"
-ICLOUD_QUEUE = ICLOUD_BASE / "AUFTRAG_QUEUE.json"
+JOBSUCHE_DIR = ROOT / "Jobsuche"
+JOBSUCHE_QUEUE = JOBSUCHE_DIR / "AUFTRAG_QUEUE.json"
 LOCAL_QUEUE = ROOT / "AUFTRAG_QUEUE.json"
 STATUS_FILE = ROOT / "supervisor_status.json"
 LOCK_FILE = ROOT / "supervisor.lock"
@@ -45,14 +45,14 @@ def write_status(state, details=None):
     }
     try:
         STATUS_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-        if ICLOUD_BASE.exists():
-            (ICLOUD_BASE / "supervisor_status.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+        if JOBSUCHE_DIR.exists():
+            (JOBSUCHE_DIR / "supervisor_status.json").write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     except Exception as e:
         log(f"Status-Schreibfehler: {e}")
 
 def get_queue():
     """Liest die Queue vorrangig lokal."""
-    for qpath in [LOCAL_QUEUE, ICLOUD_QUEUE]:
+    for qpath in [LOCAL_QUEUE, JOBSUCHE_QUEUE]:
         if qpath.exists():
             try:
                 data = json.loads(qpath.read_text(encoding="utf-8"))
@@ -63,15 +63,15 @@ def get_queue():
     return []
 
 def save_queue(queue_data):
-    """Speichert die Queue lokal und in iCloud."""
+    """Speichert die Queue lokal und im Jobsuche-Ordner."""
     txt = json.dumps(queue_data, ensure_ascii=False, indent=2)
     try:
         LOCAL_QUEUE.write_text(txt, encoding="utf-8")
     except:
         pass
     try:
-        if ICLOUD_BASE.exists():
-            ICLOUD_QUEUE.write_text(txt, encoding="utf-8")
+        if JOBSUCHE_DIR.exists():
+            JOBSUCHE_QUEUE.write_text(txt, encoding="utf-8")
     except:
         pass
 
@@ -104,17 +104,17 @@ def process_queue_item(item):
         item["error"] = proc.stderr[:300]
         return False
 
-def sync_dashboard_to_icloud():
-    """Spiegelt das Standalone-HTML-Dashboard in iCloud Drive für das iPhone."""
+def sync_dashboard_to_jobsuche():
+    """Spiegelt das Standalone-HTML-Dashboard in den Jobsuche-Ordner."""
     src = ROOT / "jobsuche_standalone.html"
-    if src.exists() and ICLOUD_BASE.exists():
+    if src.exists() and JOBSUCHE_DIR.exists():
         try:
-            dest = ICLOUD_BASE / "jobsuche_standalone.html"
+            dest = JOBSUCHE_DIR / "jobsuche_standalone.html"
             import shutil
             shutil.copy2(src, dest)
-            log("📱 Standalone-Dashboard in iCloud Drive synchronisiert.")
+            log("📱 Standalone-Dashboard in Jobsuche synchronisiert.")
         except Exception as e:
-            log(f"iCloud Dashboard Sync Fehler: {e}")
+            log(f"Jobsuche Dashboard Sync Fehler: {e}")
 
 def run_loop():
     """Hauptüberwachungsschleife des Daemons."""
@@ -141,7 +141,7 @@ def run_loop():
                     save_queue(queue)
                     
             # 2. Regelmäßiger Dashboard Sync
-            sync_dashboard_to_icloud()
+            sync_dashboard_to_jobsuche()
             
             # 3. Zyklischer Crawler (falls gewünscht)
             if now - last_crawl > crawl_interval:
@@ -184,7 +184,7 @@ def main():
             save_queue(queue)
             process_queue_item(it)
             save_queue(queue)
-        sync_dashboard_to_icloud()
+        sync_dashboard_to_jobsuche()
         log("Einzel-Durchlauf abgeschlossen.")
         
     elif args.action == "start":

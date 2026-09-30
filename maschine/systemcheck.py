@@ -27,7 +27,8 @@ HOME = Path.home()
 BASIS = HOME / "Jobsuche-Maschine"
 STATUS = BASIS / "status.json"
 ERGEBNIS = BASIS / "systemcheck_status.json"
-ICLOUD = HOME / "Library/Mobile Documents/com~apple~CloudDocs/Jobsuche"
+# Zentraler Jobsuche-Ordner in Bewerbungen 2026 (KEIN iCloud)
+JOBSUCHE = Path("/Users/andreasschengel/Desktop/ordner/Bewerbungen 2026/Jobsuche")
 LABEL = "com.andy.jobmaschine"
 PLIST = HOME / "Library/LaunchAgents" / f"{LABEL}.plist"
 LIVE = "https://andy2407.github.io/andy-jobs/data.js"
@@ -98,8 +99,8 @@ def pruefen():
             befunde.append((GELB, f"Mac hat seit {int(lc / 60)} Std. nicht gecrawlt"))
         if st.get("letzter_push_ok") is False:
             befunde.append((GELB, "Letzter Push zu GitHub fehlgeschlagen"))
-    if not os.access(ICLOUD, os.W_OK):
-        befunde.append((GELB, "iCloud-Ordner Jobsuche nicht beschreibbar"))
+    if not os.access(JOBSUCHE, os.W_OK):
+        befunde.append((GELB, "Ordner Bewerbungen 2026/Jobsuche nicht beschreibbar"))
     try:
         frei = os.statvfs(str(HOME))
         gb = frei.f_bavail * frei.f_frsize / 1e9
@@ -147,8 +148,9 @@ def main():
         zeilen += [f"- {s}: {t}" for s, t in befunde] or ["- alles in Ordnung"]
         if aktion:
             zeilen += ["", f"Selbstheilung: {aktion}"]
-        with open(ICLOUD / "SYSTEMCHECK.md", "w", encoding="utf-8") as h:   # nie aus iCloud lesen
-            h.write("\n".join(zeilen) + "\n")
+        tmp = JOBSUCHE / "SYSTEMCHECK.md.tmp"
+        tmp.write_text("\n".join(zeilen) + "\n", encoding="utf-8")
+        tmp.replace(JOBSUCHE / "SYSTEMCHECK.md")
     except Exception:
         pass
     if "--still" in sys.argv:

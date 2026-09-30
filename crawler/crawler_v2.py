@@ -3156,14 +3156,13 @@ def main():
         html_inline = html.replace('<script src="data.js"></script>', inline)
         (BASE / "jobsuche_standalone.html").write_text(html_inline, encoding="utf-8")
         (BASE / "index.html").write_text(html, encoding="utf-8")
-        ICLOUD = (Path.home() / "Library/Mobile Documents/com~apple~CloudDocs/Jobsuche")
         try:
-            if ICLOUD.parent.exists():
-                ICLOUD.mkdir(exist_ok=True)
-                (ICLOUD / "jobsuche_standalone.html").write_text(html_inline, encoding="utf-8")
-                log.info(f"iCloud: {ICLOUD}/jobsuche_standalone.html")
+            ziel_js = BASE / "Jobsuche"
+            if ziel_js.exists():
+                (ziel_js / "jobsuche_standalone.html").write_text(html_inline, encoding="utf-8")
+                log.info(f"Jobsuche Kopie: {ziel_js}/jobsuche_standalone.html")
         except Exception as e:
-            log.warning(f"iCloud-Kopie übersprungen ({e})")
+            log.warning(f"Kopie nach Jobsuche übersprungen ({e})")
 
     log.info(f"=== Crawl v4 fertig: {len(verified)} Jobs ===")
     log.info(f"Dauer: {payload['duration_s']:.1f}s · Kategorien: {payload['stats']['by_category']}")

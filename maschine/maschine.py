@@ -60,7 +60,8 @@ LOGS = BASIS / "logs"
 STATUS = BASIS / "status.json"
 GESEHEN = BASIS / "gesehen.json"
 LOCK = BASIS / "maschine.lock"
-ICLOUD = HOME / "Library/Mobile Documents/com~apple~CloudDocs/Jobsuche"
+# Zentraler Jobsuche-Ordner in Bewerbungen 2026 (KEIN iCloud)
+JOBSUCHE = Path("/Users/andreasschengel/Desktop/ordner/Bewerbungen 2026/Jobsuche")
 LIVE_DATA_JS = "https://andy2407.github.io/andy-jobs/data.js"
 
 TAKT_PFLEGE_S = 15 * 60
@@ -284,7 +285,7 @@ def live_stand():
         return None
 
 
-# ------------------------------------------------------------------ Handy: iCloud
+# ------------------------------------------------------------------ Jobsuche Ablage & Aufträge
 
 AUFTRAG_VORLAGE = """# Aufträge für die Bewerbungs-Werkstatt
 
@@ -292,60 +293,42 @@ Eine Zeile pro Stelle, beginnend mit `- ` und dem Link. Die Werkstatt (Claude, 3
 baut dafür das komplette Set: Anforderungs-Matrix, Motivationsschreiben, zugeschnittener
 Lebenslauf (Basis V9), Gremium-Prüfung, Portal-Texte. Erledigte Zeilen bekommen ein ✅.
 
-Vom iPhone: im Dashboard auf „🛠 Set in der Werkstatt bauen lassen“ tippen, die Zeile
-wird kopiert. Dann hier einfügen (Dateien-App › iCloud Drive › Jobsuche › AUFTRAEGE.md).
+Hier einfügen: `Bewerbungen 2026/Jobsuche/AUFTRAEGE.md`.
 
 ## Offen
 
 """
 
 
-def icloud_einrichten():
+def jobsuche_einrichten():
     try:
-        ICLOUD.mkdir(exist_ok=True)
-        a = ICLOUD / "AUFTRAEGE.md"
+        JOBSUCHE.mkdir(parents=True, exist_ok=True)
+        a = JOBSUCHE / "AUFTRAEGE.md"
         if not a.exists():
             a.write_text(AUFTRAG_VORLAGE, encoding="utf-8")
         return True
     except Exception as e:
-        log(f"iCloud nicht beschreibbar: {e}")
+        log(f"Jobsuche-Ordner nicht beschreibbar: {e}")
         return False
 
 
-def icloud_schreiben(name, text):
-    """iCloud-Regel (am 27.09. per Probe-LaunchAgent belegt): Ein Hintergrundprozess darf in
-    iCloud NUR Dateien anfassen, die er selbst angelegt hat, und selbst die eigenen lassen sich
-    nach einem iCloud-Abgleich nicht mehr LESEN (Errno 11), wohl aber schreiben. Deshalb: nie
-    aus iCloud lesen, Vergleich ueber eine lokale Kopie, Schreiben direkt, sonst tmp + replace."""
-    cache = BASIS / "icloud_cache" / name
-    cache.parent.mkdir(exist_ok=True)
+def jobsuche_schreiben(name, text):
+    """Schreibt Dateien direkt und atomar in Bewerbungen 2026/Jobsuche."""
     try:
-        if cache.exists() and cache.read_text(encoding="utf-8") == text:
-            return True
-    except Exception:
-        pass
-    ziel = ICLOUD / name
-    try:
-        with open(ziel, "w", encoding="utf-8") as h:
-            h.write(text)
-    except Exception as e1:
-        try:
-            fd, tmp = tempfile.mkstemp(dir=str(ICLOUD), prefix=".tmp_")
-            with os.fdopen(fd, "w", encoding="utf-8") as h:
-                h.write(text)
-            os.replace(tmp, ziel)
-        except Exception as e2:
-            log(f"iCloud {name} nicht geschrieben: {e1} / {e2}")
-            return False
-    cache.write_text(text, encoding="utf-8")
-    return True
+        JOBSUCHE.mkdir(parents=True, exist_ok=True)
+        ziel = JOBSUCHE / name
+        tmp = ziel.with_suffix(ziel.suffix + ".tmp")
+        tmp.write_text(text, encoding="utf-8")
+        tmp.replace(ziel)
+        return True
+    except Exception as e:
+        log(f"Fehler beim Schreiben von {name} in {JOBSUCHE}: {e}")
+        return False
 
 
 def offene_auftraege():
-    """None = fuer den Hintergrunddienst nicht lesbar (nach iPhone-Bearbeitung normal).
-    Die Werkstatt in der Claude-App liest die Datei trotzdem."""
     try:
-        txt = (ICLOUD / "AUFTRAEGE.md").read_text(encoding="utf-8")
+        txt = (JOBSUCHE / "AUFTRAEGE.md").read_text(encoding="utf-8")
     except Exception:
         return None
     out = []
@@ -414,7 +397,7 @@ def handy_uebersicht(neu):
     z.append("")
     z.append("_Automatisch erzeugt von der Jobmaschine auf dem Mac. Nicht bearbeiten, wird überschrieben._")
     txt = "\n".join(z) + "\n"
-    icloud_schreiben("HEUTE.md", txt)
+    jobsuche_schreiben("HEUTE.md", txt)
     return len(auftr) if auftr_lesbar else None
 
 
@@ -480,13 +463,11 @@ def zyklus():
                       letzter_crawl_dauer_s=dauer, letzter_crawl_jobs=n, letzter_crawl_log=str(logf))
         log(f"Vollcrawl {'OK' if ok else 'FEHLER'} in {dauer}s, {n} Stellen")
         if ok:
-            # Offline-Dashboard fuers iPhone (Klartext, nur in Andys privatem iCloud). Eigener Dateiname,
-            # weil jobsuche_standalone.html in iCloud von der Claude-App angelegt wurde und fuer den
-            # Hintergrunddienst gesperrt ist.
+            # Offline-Dashboard in Bewerbungen 2026/Jobsuche
             try:
                 html = (REPO / "jobsuche_standalone.html").read_text(encoding="utf-8")
                 if "JOBSUCHE_DATA" in html and len(html) > 100_000:
-                    icloud_schreiben("Dashboard_offline.html", html)
+                    jobsuche_schreiben("Dashboard_offline.html", html)
             except Exception as e:
                 log(f"Offline-Dashboard nicht kopiert: {e}")
         if ok and n > 50:
@@ -519,7 +500,7 @@ def zyklus():
             except Exception:
                 pass
 
-    icloud_einrichten()
+    jobsuche_einrichten()
     neu = neue_treffer()
     n_auftr = handy_uebersicht(neu)
     status_update(zustand="wartet", auftraege_offen=n_auftr, letzte_pflege=jetzt().isoformat(timespec="seconds"))
