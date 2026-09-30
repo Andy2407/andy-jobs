@@ -390,7 +390,14 @@ def resolve_final_links(jobs, session, max_workers=10):
                 ok_n += 1
     # gleiche Endstelle ueber mehrere Portale -> eine Karte, Rest als alt_sources
     by_url, out = {}, []
+    dropped_portal = 0
     for j in jobs:
+        # GOAT FIX 2026-09-30 (Andy: "Da kann ich mich nicht mal bewerben auf diese Position"):
+        # Portal-Seiten ohne Endlink / ohne Bewerbungsmoeglichkeit (z.B. Kimeta Teaser)
+        # duerfen NIEMALS als Bewerbungs-Karten erscheinen!
+        if _is_portal(j.get("url", "")) and not j.get("final_link", True):
+            dropped_portal += 1
+            continue
         u = j.get("url")
         if u in by_url:
             p = by_url[u]
@@ -406,7 +413,8 @@ def resolve_final_links(jobs, session, max_workers=10):
         by_url[u] = j
         out.append(j)
     log.info(f"[Endlink] {ok_n}/{len(todo)} Portal-Links auf Arbeitgeber aufgeloest, "
-             f"{len(jobs) - len(out)} Mehrfachfunde zusammengelegt")
+             f"{dropped_portal} tote Portal-Links ohne Endlink verworfen, "
+             f"{len(jobs) - len(out) - dropped_portal} Mehrfachfunde zusammengelegt")
     return out
 
 

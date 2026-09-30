@@ -824,8 +824,18 @@ function buildCard(j, cat){
     b.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); setStatus(id, st); });
     bar.appendChild(b);
   }
-  if(isGesendet) card.classList.add('st-app');
-  if(isAbsage) card.classList.add('st-rej');
+  if(isGesendet){
+    card.classList.add('st-app');
+    card.dataset.status = 'app';
+  }
+  if(isAbsage){
+    card.classList.add('st-rej');
+    card.dataset.status = 'rej';
+  }
+  const hide = document.getElementById('hide-marked');
+  if(hide && hide.checked && (card.dataset.status || isGesendet || isAbsage)){
+    card.classList.add('hide-marked');
+  }
   card.appendChild(bar);
   return card;
 }
@@ -1417,6 +1427,9 @@ function jobsForTab(tab){
   const blocked = getBlockedCompanies().map(c => c.toLowerCase());
   let list = DATA.jobs.filter(j => {
     if(!want.includes(j.category)) return false;
+    // GOAT FILTER 2026-09-30 (Andy: "Da kann ich mich nicht mal bewerben"):
+    // Unaufgelöste Portal-Seiten (ohne Arbeitgeber-Endlink) niemals anzeigen!
+    if(j.final_link === false) return false;
     const co = firmaVon(j).toLowerCase();
     if(blocked.some(b => b && co.includes(b))) return false;
     return true;
@@ -1563,8 +1576,11 @@ function werkstattTop(){
   const blocked = getBlockedCompanies().map(c => c.toLowerCase());
   return DATA.jobs.filter(j => {
     if(typeof j.fit !== 'number' || j.fit < 65) return false;
-    // Dieselbe Stelle schon beworben oder abgesagt -> raus. Andere Stellen derselben Firma bleiben (§27).
-    if(j.bewerbung && ['gesendet','offen','absage'].includes(j.bewerbung.status) && (j.bewerbung.stelle || '').toLowerCase().slice(0, 18) === (j.title || '').toLowerCase().slice(0, 18)) return false;
+    // GOAT FILTER 2026-09-30 (Andy: "Da kann ich mich nicht mal bewerben"):
+    // Unaufgelöste Portal-Seiten (ohne Arbeitgeber-Endlink) niemals in die Werkstatt!
+    if(j.final_link === false) return false;
+    // Bereits beworben, laufend oder Absage erhalten -> Niemals in die Werkstatt-Top-Empfehlungen!
+    if(j.bewerbung && ['gesendet','offen','absage'].includes(j.bewerbung.status)) return false;
     const co = firmaVon(j).toLowerCase();
     if(blocked.some(b => b && co.includes(b))) return false;
     return true;

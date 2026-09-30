@@ -1409,9 +1409,14 @@ def verify_url(url: str, session) -> tuple:
         if r.status_code != 200:
             return (False, f"HTTP {r.status_code}", None)
         host = urlparse(url).hostname or ""
+        body = r.text.lower()
+        # GOAT FIX 2026-09-30 (Andy): Tote Portal-Seiten mit noindex oder reinem Arbeitgeber-Login erkennen
+        if "noindex" in body and any(p in host for p in ("kimeta.de", "stellenanzeigen.de", "adzuna.de", "arbeitnow.com", "yourfirm.de", "remotely.de")):
+            return (False, "expired: portal-noindex", None)
+        if "arbeitgeber-login" in body and not any(k in body for k in ("jetzt bewerben", "online-bewerbung", "bewerben sie sich", "bewerbung einreichen", "apply now", "apply for this job")):
+            return (False, "expired: arbeitgeber-login-only", None)
         if any(d in host for d in SPA_DOMAINS):
             return (True, "ok-spa", r.text)
-        body = r.text.lower()
         for ind in EXPIRED_INDICATORS:
             if ind in body:
                 return (False, f"expired: {ind}", None)
@@ -3059,6 +3064,14 @@ def main():
     # ob der Endlink erreicht wurde.
     filtered = qo.resolve_final_links(filtered, s, max_workers=10)
     verified = parallel_verify(filtered, s, max_workers=10)
+    # GOAT FILTER 2026-09-30 (Andy: "Da kann ich mich nicht mal bewerben auf diese Position"):
+    # Jobs ohne echten Arbeitgeber-Endlink oder auf toten Portal-Seiten strikt verwerfen!
+    before_portal_filter = len(verified)
+    verified = [j for j in verified
+                if j.get("final_link", True) and
+                (not qo._is_portal(j.get("url", "")) or j.get("final_link_note") == "xing-direktbewerbung")]
+    if before_portal_filter != len(verified):
+        log.info(f"  → Portal-Endlink-Filter: {before_portal_filter - len(verified)} unaufgelöste Portal-Jobs verworfen")
     # NEU 2026-06-01: Nach JSON-LD-Verifikation steht die Firma oft erst sauber in clean_company
     # (beim Filter war company leer, z.B. StepStone). Blacklist erneut gegen clean_company prüfen,
     # damit Deutsche Bahn / Drees & Sommer / Strabag etc. auch dann rausfliegen, wenn ihr Name
