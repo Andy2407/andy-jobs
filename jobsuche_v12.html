@@ -1372,10 +1372,9 @@ function _generateMSWith(job, btn, recipientInfo){
         children: childrenList
       }]
     });
-    D.Packer.toBlob(doc).then(blob => {
-      const safeFirma = firma.replace(/[^a-zA-Z0-9äöüÄÖÜß_-]+/g, '_').slice(0, 30);
-      const safeTitel = stellentitel.replace(/[^a-zA-Z0-9äöüÄÖÜß_-]+/g, '_').slice(0, 40);
-      saveAs(blob, 'Motivationsschreiben_' + safeFirma + '_' + safeTitel + '.docx');
+      // ANDY-DOKTRIN 2026-09-30: Nach meinem Namen kommt die Position rein und sonst nix!
+      const safePosition = cleanStellentitel(stellentitel).replace(/[\(\[\{].*?[\)\]\}]/g, '').replace(/[^a-zA-Z0-9äöüÄÖÜß]+/g, '_').replace(/^_+|_+$/g, '');
+      saveAs(blob, 'Anschreiben_Andreas_Schengel_' + safePosition + '.docx');
       btn.disabled = false;
       btn.textContent = '✓ DOCX erstellt — neu erstellen?';
       showToast('DOCX heruntergeladen → in iCloud "Bewerbungen 2026" speichern');
