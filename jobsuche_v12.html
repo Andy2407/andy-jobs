@@ -596,7 +596,8 @@ function buildCard(j, cat){
   }
   // NEU 2026-09-27: Werkstatt-Set bereit (crawler/bewerbungen_status.json -> _sets_bereit)
   const set = setFuer(j);
-  if(set){
+  const istSchonBeworben = j.bewerbung && (j.bewerbung.status === 'gesendet' || j.bewerbung.status === 'offen');
+  if(set && !set.versendet && !istSchonBeworben){
     const sb = el('div', 'set-badge', '📦 SET BEREIT · ' + (set.datum || ''));
     sb.appendChild(el('span', 'bw-sub', gremiumText(set)));
     if(set.icloud_ordner || set.ordner) sb.appendChild(el('span', 'bw-sub', '📁 Bewerbungen/' + (set.ordner || set.icloud_ordner)));
@@ -767,20 +768,24 @@ function buildCard(j, cat){
     ev.preventDefault(); ev.stopPropagation();
     if(cvBox.style.display === 'block'){ cvBox.style.display = 'none'; return; }
     const rec = recommendCV(j);
-    const pfad = CV_BASE + rec.datei;
-    while(cvBox.firstChild) cvBox.removeChild(cvBox.firstChild);
-    cvBox.appendChild(el('div', 'cv-name', '➜ ' + rec.label));
-    cvBox.appendChild(el('div', 'cv-why', rec.grund + ' · Stand ' + rec.stand));
-    // NEU 2026-09-27: Handy-Weg. file://-Links gehen am iPhone nicht, iCloud schon.
     const setJ = setFuer(j);
-    cvBox.appendChild(el('div', 'cv-why', setJ && (setJ.ordner || setJ.icloud_ordner)
-      ? '📁 Zugeschnittener CV liegt in Bewerbungen/' + (setJ.ordner || setJ.icloud_ordner)
-      : '📁 Basis-CV V9 in 00_Unterlagen/Lebenslauf.'));
+    let pfad = CV_BASE + rec.datei;
+    let cvLabel = '➜ ' + rec.label;
+    let cvSub = rec.grund + ' · Stand ' + rec.stand;
+    if(setJ && (setJ.ordner || setJ.icloud_ordner)){
+      const ord = setJ.ordner || setJ.icloud_ordner;
+      pfad = '/Users/andreasschengel/Desktop/ordner/Bewerbungen 2026/Bewerbungen/' + ord;
+      cvLabel = '⭐ Perfekt zugeschnittener CV vorhanden (Basis V9)';
+      cvSub = 'Bereits fertig abgelegt in Bewerbungen/' + ord;
+    }
+    while(cvBox.firstChild) cvBox.removeChild(cvBox.firstChild);
+    cvBox.appendChild(el('div', 'cv-name', cvLabel));
+    cvBox.appendChild(el('div', 'cv-why', cvSub));
     const openA = document.createElement('a');
     openA.href = 'file://' + encodeURI(pfad);
     openA.target = '_blank'; openA.rel = 'noopener';
     openA.className = 'cv-open';
-    openA.textContent = '📂 Lebenslauf öffnen';
+    openA.textContent = '📂 Lebenslauf / Ordner öffnen';
     cvBox.appendChild(openA);
     const copyB = el('span', 'cv-copy', '📄 Pfad kopieren');
     copyB.addEventListener('click', (e2) => {
@@ -809,11 +814,18 @@ function buildCard(j, cat){
     ['rej',  '🚫 absage'],
     ['irr',  '🔇 n.relev.'],
   ];
+  const isGesendet = j.bewerbung && (j.bewerbung.status === 'gesendet' || j.bewerbung.status === 'offen');
+  const isAbsage = j.bewerbung && j.bewerbung.status === 'absage';
   for(const [st, label] of states){
     const b = el('span', 'sb', label);
+    if((st === 'app' && isGesendet) || (st === 'rej' && isAbsage)){
+      b.classList.add('on-' + st);
+    }
     b.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); setStatus(id, st); });
     bar.appendChild(b);
   }
+  if(isGesendet) card.classList.add('st-app');
+  if(isAbsage) card.classList.add('st-rej');
   card.appendChild(bar);
   return card;
 }

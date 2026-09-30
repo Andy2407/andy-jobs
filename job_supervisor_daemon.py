@@ -140,7 +140,15 @@ def run_loop():
                     process_queue_item(item)
                     save_queue(queue)
                     
-            # 2. Regelmäßiger Dashboard Sync
+            # 2. Downloads überwachen & neue Motivationsschreiben einsortieren
+            try:
+                sortierer = ROOT / "_helper/auto_bewerbungs_sortierer.py"
+                if sortierer.exists():
+                    subprocess.run([sys.executable, str(sortierer)], capture_output=True, timeout=30)
+            except Exception as e:
+                log(f"Sortierer-Fehler: {e}")
+
+            # 3. Regelmäßiger Dashboard Sync
             sync_dashboard_to_jobsuche()
             
             # 3. Zyklischer Crawler (falls gewünscht)

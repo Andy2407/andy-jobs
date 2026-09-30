@@ -3109,6 +3109,10 @@ def main():
         verified.sort(key=lambda x: (x.get("first_seen") or "", x.get("score") or 0), reverse=True)
         log.info(f"  → {len(added)}/{len(manual)} manuelle Stellen gemergt")
 
+    # FIX 2026-09-30: stamp_bewerbungs_status erneut aufrufen, damit manuelle/Lead-Stellen
+    # (wie Brainlab) ebenfalls zuverlässig ihren Bewerbungsstatus gestempelt bekommen!
+    stamp_bewerbungs_status(verified)
+
     # NEU 2026-09-27: Andy-Fit als zweite Bewertungsstufe (siehe crawler/fit_engine.py).
     if fe is not None:
         try:
