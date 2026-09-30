@@ -155,7 +155,7 @@ def run_loop():
             if now - last_crawl > crawl_interval:
                 log("🔄 Starte zyklischen Crawler-Durchlauf...")
                 try:
-                    crawl_script = ROOT / "crawler/crawler.py"
+                    crawl_script = ROOT / "crawler/crawler_v2.py"
                     if crawl_script.exists():
                         subprocess.run([sys.executable, str(crawl_script)], capture_output=True, timeout=600)
                         last_crawl = now

@@ -1051,15 +1051,16 @@ function computeGehalt(job, stellentitel){
   const CONSULTING = /(unternehmensberat|strategieberat|mhp |porsche consulting|capgemini invent|accenture|deloitte|kpmg|pwc|mckinsey|bcg )/;
   const DIENSTLEISTER = /(ferchau|akkodis|alten |alten-|bertrandt|brunel|hays|expleo|edag|arrk|tecosim|segula|solcom|gulp|osb ag|in-tech|invenio|etteplan|cognizant mobility|engineering-dienstleist|personaldienstleist|arbeitnehmerüberlass|zeitarbeit)/;
   let cluster, deckel, basis;
-  if(CONSULTING.test(t)){           cluster = 'Consulting';                    basis = 88000; deckel = 88000; }
-  else if(DIENSTLEISTER.test(t)){   cluster = 'Engineering-Dienstleister';     basis = 78000; deckel = 82000; }
-  else if(cat2 === 'auto' && !rem){ cluster = 'Industrie/OEM München';         basis = 82000; deckel = 82000; }
-  else if(rem){                     cluster = 'Mittelstand/Remote';            basis = 80000; deckel = 80000; }
-  else if(cat2 === 'ki'){           cluster = 'KI-Manager (BA-Median ~80k)';   basis = 80000; deckel = 82000; }
-  else {                            cluster = 'Industrie München';             basis = 82000; deckel = 82000; }
+  if(CONSULTING.test(t)){           cluster = 'Consulting';                    basis = 86000; deckel = 92000; }
+  else if(DIENSTLEISTER.test(t)){   cluster = 'Engineering-Dienstleister';     basis = 76000; deckel = 80000; }
+  else if(cat2 === 'auto' && !rem){ cluster = 'Industrie/OEM München';         basis = 82000; deckel = 88000; }
+  else if(rem){                     cluster = 'Mittelstand/Remote';            basis = 78000; deckel = 82000; }
+  else if(cat2 === 'ki'){           cluster = 'KI-Manager / Automation';       basis = 80000; deckel = 86000; }
+  else {                            cluster = 'Industrie München';             basis = 80000; deckel = 86000; }
   let anker = basis;
-  if(/(program[m]?\s*manager|programmleit|head of|abteilungsleit|gesamtprojektleit)/.test(t)) anker += 3000;
-  else if(/(senior|lead\b)/.test(t)) anker += 2000;
+  if(/(program[m]?\s*manager|programmleit|head of|abteilungsleit|gesamtprojektleit|director)/.test(t)) anker += 4000;
+  else if(/(senior|lead\b|principal)/.test(t)) anker += 3000;
+  else if(/(validier|erprobung|test)/.test(t) && !DIENSTLEISTER.test(t)) anker += 1000;
   if(/(junior\b|koordinator\b|assistenz|sachbearbeit)/.test(t)) anker = 72000;
   anker = Math.min(anker, deckel);
   anker = Math.max(anker, 72000);
@@ -1077,7 +1078,7 @@ function buildMSBody(job, stellentitel){
   const sigKaro = has('karosserie','gesamtfahrzeug','exterieur','interieur','rohbau','zonenverantwort','package');
   const sigPMO  = has('pmo','reporting','kpi','statusbericht','lenkungskreis','steuerkreis','terminplan','management-report');
   const sigLief = has('lieferant','supplier','zulieferer','sourcing','vergabe');
-  const sigKI   = has(' ki ','ki-',' ai ','genai','llm','künstliche intelligenz','automatisierung','automation','n8n','prompt','machine learning','digitalisierung');
+  const sigKI   = has(' ki ','ki-',' ai ','genai','llm','künstliche intelligenz','automatisierung','automation','n8n','prompt','machine learning');
   const sigAgil = has('scrum','agil','sprint','kanban');
   const sigSerie= has('serienbetreuung','validierung','absicherung','freigabe','änderungsmanagement','sop','anlauf');
   const opener = 'Ihre Ausschreibung als ' + stellentitel + ' ' + pick([
@@ -1090,7 +1091,7 @@ function buildMSBody(job, stellentitel){
   // 2026-08-06 gekuerzt: dieser Hook trieb A1 als einziger ueber 65 Woerter (§19.3).
   const hookKaro = 'Zuletzt habe ich bei Magna Engineering & Infotainment den EE-Package Lead für den VW Scout im Gesamtfahrzeug verantwortet. Die Zonenverantwortung für die BMW-Derivate G21 und G28 habe ich bei RLE begonnen und bei Pininfarina fortgeführt, mit Gremienleitung und Anforderungsmanagement.';
   const hookPMO  = 'Als PMO im BMW-Programm AdCam bei Magna Electronics habe ich KPIs aufbereitet, Managementberichte erstellt und Change Requests koordiniert. Zuletzt habe ich bei Magna Engineering & Infotainment den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI-Erfüllung in den verantworteten Bauphasen.';
-  const hookPM   = 'Bei Magna Engineering & Infotainment habe ich zuletzt den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI-Erfüllung in den verantworteten Bauphasen. Parallel habe ich mir eine produktive n8n-Praxis aufgebaut, mit Workflows für Reporting und Anforderungs-Aufbereitung.';
+  const hookPM   = 'Bei Magna Engineering & Infotainment habe ich zuletzt den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI-Erfüllung in den verantworteten Bauphasen. Parallel habe ich mir eine produktive Automatisierungs-Praxis aufgebaut, mit Workflows für Reporting und Anforderungs-Aufbereitung.';
   const hookMed  = 'Bei Magna Engineering & Infotainment habe ich zuletzt den EE-Package Lead für den VW Scout verantwortet, mit 100 Prozent KPI-Erfüllung in den verantworteten Bauphasen. Validierung, Änderungsmanagement und dokumentierte Freigaben gehören dabei zu meinem Tagesgeschäft, also genau die regulierte Arbeitsweise Ihrer Branche.';
   let hook;
   if(cat === 'ki') hook = hookKI;
@@ -1102,10 +1103,7 @@ function buildMSBody(job, stellentitel){
   else if(sigKaro) hook = hookKaro;
   else if(sigEE) hook = hookEE;
   else hook = hookPM;
-  // FIX 2026-08-06: Der abschliessende JD-Satz stand frueher hier und trieb A1 auf
-  // 64-75 Woerter (in 271 von 445 getesteten Faellen ueber dem 65-Woerter-Limit aus §19.3).
-  // Er wandert an den ANFANG von A3, wo er den von §0d geforderten JD-Bezug traegt,
-  // ohne den Opener zu ueberladen.
+
   const A1 = opener + ' ' + hook;
   const jdBruecke = pick([
     'Die Aufgaben Ihrer Ausschreibung decke ich aus genau dieser Praxis ab.',
@@ -1126,13 +1124,16 @@ function buildMSBody(job, stellentitel){
     else A3 += ' Termin- und Änderungsverfolgung in den Bauphasen kenne ich aus den BMW- und VW-Projekten.';
     A3 += ' Genau diese Mischung aus Reporting-Disziplin und Schnittstellen-Steuerung bringe ich in Ihre Projekte mit.';
   }
+  // A4: STRIKT INDIVIDUELL & STELLENBEZOGEN (KEIN EINHEITSBREI / KEIN PAUSCHALER KI-MANAGER AUF HARDWARE-STELLEN)
   let A4;
-  if(hook === hookKI){
-    A4 = 'Ergänzend bringe ich den EU AI Act aus der TÜV-Schulung praxisnah mit, dazu Prompt Engineering und API-Integrationen. Prototypen teste ich mit den Beteiligten und überführe sie in belastbare, dokumentierte Workflows. Genau dieser Dreiklang passt zu den Automatisierungs-Themen Ihrer Ausschreibung.';
-  } else if(sigKI){
-    A4 = 'Ergänzend habe ich 2025 den KI-Manager TÜV Rheinland mit 400 Stunden abgeschlossen, inklusive EU AI Act und Prompt Engineering. Workflow-Automation mit n8n und API-Integrationen setze ich pragmatisch ein. Genau dieser Effizienz-Hebel passt zu den in Ihrer Ausschreibung genannten Automatisierungs-Themen.';
+  if(cat === 'ki' || (sigKI && has('ki manager','ki-manager','ai manager','automatisierung','n8n'))){
+    A4 = 'Ergänzend bringe ich den EU AI Act aus dem TÜV-Zertifikat mit 400 Stunden praxisnah mit, dazu Prompt Engineering und API-Integrationen. Workflows mit n8n und Modellen teste ich iterativ mit den Fachbereichen und überführe sie in belastbare, dokumentierte Abläufe. Genau dieser Dreiklang passt zu Ihren Automatisierungs-Themen.';
+  } else if(sigEE || has('steuergerät','bordnetz','ecu','sensor','kabelbaum','e/e')){
+    A4 = 'Ergänzend bringe ich fundierte Erfahrung in der Absicherung, Fehlerabstellung und Serienbetreuung nach automobilen Standards mit. DVP&R, FMEA und SPICE-konforme Dokumentation sind mir aus den BMW- und Magna-Projekten vertraut. Genau diese methodische Sorgfalt gewährleistet reibungslose Freigaben in Ihren Entwicklungsprojekten.';
+  } else if(sigSerie || has('validier','erprobung','test','versuch','gesamtfahrzeug')){
+    A4 = 'Ergänzend verbinde ich strukturierte Erprobungssteuerung mit systematischer Ursachenanalyse und Reifegrad-Tracking. Aus der Gesamtfahrzeug- und Systemintegration kenne ich die enge Taktung an den Prüfständen und im Feld. Genau diese Hands-on-Validierungskompetenz sichert die termingerechte Erreichung Ihrer Meilensteine.';
   } else {
-    A4 = 'Ergänzend habe ich 2025 den KI-Manager TÜV Rheinland mit 400 Stunden abgeschlossen, inklusive EU AI Act und Prompt Engineering. Workflow-Automation mit n8n und API-Integrationen setze ich pragmatisch im PM-Alltag ein, etwa für Reporting, Status-Logik und Lieferanten-Kommunikation. Genau dieser Effizienz-Hebel passt zu Ihrer Position.';
+    A4 = 'Ergänzend verbinde ich klassische Projektsteuerung nach IPMA mit agilen Methoden (Scrum Master / PO). Jira und Confluence nutze ich versiert für transparente Status-Dashboards, Kennzahlen-Tracking und Lieferantensteuerung. Genau diese strukturierte Steuerung entlastet Ihre Projektteams vom ersten Tag an.';
   }
   const G = computeGehalt(job, stellentitel);   // v16.1: berechneter Anker je Position (Cluster + Senioritaet)
   const A5 = 'Als Orientierung für meine Gehaltsvorstellung nenne ich ' + G.fmt + ' Euro brutto jährlich – je nach konkretem Aufgabenzuschnitt und Verantwortungsbereich bin ich selbstverständlich verhandlungsbereit. Die Position kann ich ab sofort antreten.';
