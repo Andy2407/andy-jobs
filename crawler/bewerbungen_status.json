@@ -1,7 +1,7 @@
 {
   "_kommentar": "Bewerbungs-Status je Firma. Wird von crawler_v2.py gelesen und auf jeden Job gestempelt, dessen Firma hier auftaucht. Das Dashboard zeigt daraus ein Abzeichen, damit Andy nie wieder eine Stelle bearbeitet, auf die er sich schon beworben hat.",
   "_regel": "Nur eintragen, was belegt ist. Eine Mappe auf der Platte ist KEINE Bewerbung (Regel aus VERSAND_REGISTER.md). Drei Stufen: 'gesendet' = nachweislich raus, 'offen' = laeuft, Antwort steht aus, 'absage' = abgelehnt, 'mappe' = Unterlagen liegen bereit, Versand unbestaetigt.",
-  "_stand": "2026-09-29",
+  "_stand": "2026-09-30",
   "eintraege": [
     {
       "firma": "EDS Automotive",
@@ -97,10 +97,10 @@
     },
     {
       "firma": "Silver Atena",
-      "stelle": "—",
+      "stelle": "Technischer Projektleiter Elektronikentwicklung e-Mobility",
       "status": "absage",
       "datum": "2026-07",
-      "quelle": "blocked_companies + Historie"
+      "quelle": "blocked_companies + Historie | Stelle ergänzt 30.09. aus Absage-Mail 13.07.2026 'Ihre Bewerbung: Technischer Projektleiter Elektronikentwicklung e-Mobility' (Bewerbungen/99_Absagen/SilverAtena_TechPL_Elektronik_eMobility)"
     },
     {
       "firma": "Haas Zeitarbeit",
@@ -170,9 +170,9 @@
     {
       "firma": "Omegga",
       "stelle": "(Senior) Technical Project Manager",
-      "status": "gesendet",
-      "datum": "2026-09-15",
-      "quelle": "Eingangsbestaetigung 15.09. 16:56 (Ashby, Thanks for applying to Omegga!.eml in Bewerbungen/Mails)"
+      "status": "absage",
+      "datum": "2026-09-16",
+      "quelle": "Absage 2026-09-16 10:10 (Jennifer Radwanski <jennifer@omegga.de>): 'Omegga Application Update'. .eml in Bewerbungen/99_Absagen/Omegga_Technical_Project_Manager/Omegga Application Update.eml (automatisch erkannt, versand_erkennung.py)"
     },
     {
       "firma": "MAN",
@@ -379,6 +379,23 @@
         "forensik": "10/10"
       },
       "hinweis": "Automatisch aus Dashboard generiert & eingeordnet"
+    },
+    {
+      "firma": "Silver Atena GmbH",
+      "stelle": "Serienmanager (m/w/d)",
+      "url": "https://karriere.silver-atena.de/stellenangebote/berufserfahrene/serienmanager-5ab8c146-c21f-40f0-91ae-84d8b432c444",
+      "apply_url": "https://karriere.silver-atena.de/stellenangebote/berufserfahrene/serienmanager-5ab8c146-c21f-40f0-91ae-84d8b432c444",
+      "ordner": "SilverAtena_Serienmanager_Muenchen",
+      "datum": "2026-09-30",
+      "versendet": false,
+      "gremium": {
+        "1. Personalchef Zielfirma": 10,
+        "2. Abteilungsleiter Fachbereich": 10,
+        "3. CEO Geschäftsführer": 10,
+        "4. Webasto-TA Benchmark": 8,
+        "5. Anti-KI Faktenwächter": 10
+      },
+      "hinweis": "Anschreiben (1 S.) + CV (2 S.) bereit zum Upload"
     }
   ],
   "_mappen_ohne_versandnachweis": [

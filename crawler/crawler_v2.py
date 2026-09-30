@@ -1908,6 +1908,33 @@ def stamp_bewerbungs_status(jobs) -> int:
                 return True
         return False
 
+    FUELL = {"m", "w", "d", "x", "all", "genders", "gender", "senior", "junior", "mwd", "fmd", "mfd", "human"}
+    # Allgemeine Rollenwoerter unterscheiden keine Stellen ("Electrical Engineer" vs "Mechanical Engineer")
+    GENERISCH = ("engineer", "ingenieu", "manager", "managem", "projekt", "project", "product", "produkt",
+                 "owner", "technis", "technic", "leiter", "leitung", "lead", "entwick", "developm",
+                 "speziali", "speciali", "experte", "expert", "koordina", "coordina", "muenche", "munich")
+
+    def gleiche_stelle(titel, stelle):
+        """FIX 2026-09-30 (Andy: "egal ob wir eine Absage bekommen haben oder nicht"):
+        Der Stempel galt bisher fuer JEDE Stelle der Firma. Eine Absage auf "Technischer
+        Projektleiter e-Mobility" (Silver Atena, 07/2026) graute deshalb den neuen
+        "Serienmanager" aus und warf ihn aus den Werkstatt-Empfehlungen (§27-Verstoss).
+        Jetzt: gleiche Stelle nur bei deutlicher Wortueberschneidung der Titel."""
+        a = [w for w in norm(titel).split() if len(w) >= 4 and w not in FUELL]
+        b = [w for w in norm(stelle).split() if len(w) >= 4 and w not in FUELL]
+        if not a or not b:
+            return False
+
+        def quote(x, y):
+            kurz, lang = (x, y) if len(x) <= len(y) else (y, x)
+            return sum(1 for w in kurz if any(w[:7] == v[:7] for v in lang)) / len(kurz)
+
+        da = [w for w in a if not w.startswith(GENERISCH)]
+        db = [w for w in b if not w.startswith(GENERISCH)]
+        if da and db:
+            return quote(da, db) >= 0.6
+        return quote(a, b) >= 0.9     # nur Allerweltswoerter: fast identisch muss es sein
+
     eintraege = [(norm(e["firma"]), e) for e in cfg.get("eintraege", [])]
     mappen = [(norm(m), m) for m in cfg.get("_mappen_ohne_versandnachweis", [])]
     RANG = {"gesendet": 3, "offen": 3, "absage": 2, "mappe": 1}
@@ -1919,15 +1946,20 @@ def stamp_bewerbungs_status(jobs) -> int:
         best = None
         for key, e in eintraege:
             if passt(key, co):
-                cand = {"status": e["status"], "stelle": e.get("stelle", ""), "datum": e.get("datum", "")}
-                if best is None or RANG.get(cand["status"], 0) > RANG.get(best["status"], 0):
-                    best = cand
+                gleich = gleiche_stelle(j.get("title", ""), e.get("stelle", ""))
+                cand = {"status": e["status"], "stelle": e.get("stelle", ""), "datum": e.get("datum", ""),
+                        "gleiche_stelle": gleich}
+                # dieselbe Stelle schlaegt immer einen Firmen-Hinweis zu einer anderen Stelle
+                rang = RANG.get(cand["status"], 0) + (10 if gleich else 0)
+                if best is None or rang > best["_rang"]:
+                    best = dict(cand, _rang=rang)
         if best is None:
             for key, orig in mappen:
                 if passt(key, co):
                     best = {"status": "mappe", "stelle": "", "datum": ""}
                     break
         if best:
+            best.pop("_rang", None)
             j["bewerbung"] = best
             treffer += 1
     if treffer:

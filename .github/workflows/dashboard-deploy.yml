@@ -1,0 +1,86 @@
+name: Dashboard Deploy (bei Code-Push)
+
+# NEU 2026-09-30: Die Live-Seite (verschluesselte index.html) wurde bisher NUR vom Cloud-Crawl
+# (crawl.yml, 4x taeglich) neu gebaut. Aenderungen an jobsuche_v12.html (z. B. Direktlink-Button,
+# Gehaltslogik 30.09. 15:19) waren deshalb stundenlang nicht live, waehrend lokal alles neu war.
+# Dieser Workflow baut index.html + jobsuche_standalone.html bei jedem Push der Dashboard-Quelle
+# oder des Crawlers sofort neu, verschluesselt sie und prueft die Auslieferung auf GitHub Pages.
+# Kein Crawl: Daten kommen aus dem data.js im Repo (Cloud- und Mac-Crawl pushen es laufend).
+# Sicherheit: keine Event-Felder (Titel, Commit-Messages) in run-Schritten, nur das Secret per env.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - jobsuche_v12.html
+      - "crawler/**"
+      - .github/workflows/dashboard-deploy.yml
+  workflow_dispatch: {}
+
+concurrency:
+  group: crawl-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Dashboard aus jobsuche_v12.html + data.js bauen (identisch zu crawler_v2.py)
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          html = Path("jobsuche_v12.html").read_text(encoding="utf-8")
+          data_js = Path("data.js").read_text(encoding="utf-8")
+          Path("index.html").write_text(html, encoding="utf-8")
+          Path("jobsuche_standalone.html").write_text(
+              html.replace('<script src="data.js"></script>', '<script>' + data_js + '</script>'),
+              encoding="utf-8")
+          print("gebaut aus jobsuche_v12.html", len(html), "Zeichen")
+          PY
+
+      - name: Encrypt dashboards (StaticCrypt)
+        run: npx --yes staticrypt@3.5.4 index.html jobsuche_standalone.html -p "$STATICRYPT_PASSWORD" --short -d .
+        env:
+          STATICRYPT_PASSWORD: ${{ secrets.STATICRYPT_PASSWORD }}
+
+      - name: Commit und Push (konfliktfrei, mit Retry)
+        run: |
+          set -euo pipefail
+          git config user.name "Dashboard Deploy Bot"
+          git config user.email "bot@users.noreply.github.com"
+          mkdir -p /tmp/deploy
+          cp index.html jobsuche_standalone.html /tmp/deploy/
+          sha256sum index.html | cut -d' ' -f1 > /tmp/deploy/index.sha
+          PUSHED=0
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/deploy/index.html /tmp/deploy/jobsuche_standalone.html .
+            git add index.html jobsuche_standalone.html
+            if git diff --cached --quiet; then PUSHED=1; break; fi
+            git commit -m "deploy: dashboard aus jobsuche_v12.html $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            if git push origin main; then PUSHED=1; break; fi
+            sleep $((i * 5))
+          done
+          [ "$PUSHED" -eq 1 ] || { echo "::error::Dashboard NICHT gepusht"; exit 1; }
+
+      - name: Live-Auslieferung verifizieren (Pages liefert genau diese index.html)
+        run: |
+          set -uo pipefail
+          SOLL="$(cat /tmp/deploy/index.sha)"
+          for i in $(seq 1 30); do
+            IST="$(curl -fsSL --max-time 25 "https://andy2407.github.io/andy-jobs/index.html?nocache=$i$RANDOM" | sha256sum | cut -d' ' -f1)"
+            if [ "$IST" = "$SOLL" ]; then echo "LIVE VERIFIZIERT nach $((i*20))s"; exit 0; fi
+            echo "  Versuch $i/30: Pages liefert noch die alte index.html"
+            sleep 20
+          done
+          echo "::error::Pages liefert nach 10 Minuten nicht die neue index.html"
+          exit 1

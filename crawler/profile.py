@@ -339,6 +339,10 @@ TITLE_BOOST = {
     "konstruktionsleit": 18,
     "r&d projektleiter": 14, "r&d-projektleiter": 14, "f&e-projektleiter": 14,
     "serienentwicklung": 10, "industrialisierung": 8, "serienreife": 8,
+    # NEU 2026-09-30: Serienmanagement/-betreuung = Andys SE-Teamleiter-Praxis (LIN/ENS in der
+    # Serienbetreuung). Silver Atena "Serienmanager" hatte vorher 0 Rollenpunkte (Score 25).
+    "serienmanager": 18, "serienmanagement": 18, "serienbetreu": 18, "serienverantwort": 18,
+    "anlaufmanag": 14, "launch manager": 14,
     # -ung-Varianten (deutsche Stellen nutzen sowohl -leiter als auch -leitung)
     "projektleitung": 16, "se-teamleitung": 25, "se teamleitung": 25,
     "teamleitung": 10, "entwicklungsleitung": 14, "modulleitung": 16,
@@ -534,6 +538,13 @@ def location_passes(location_text: str, extra_text: str = "") -> bool:
     if not location_text:
         return True  # ohne Standort drin lassen
     loc = location_text.lower()
+
+    # FIX 2026-09-30: Steht München im Standort ("München/Augsburg", "Hamburg, München"),
+    # ist die Stelle IMMER ok, Andy wählt München. Vorher blockte "augsburg" ohne Remote-Anker
+    # die ganze Stelle (Silver Atena "Gesamtprojektleiter elektronische Steuergeräte",
+    # Standort "München/Augsburg", fehlte deshalb komplett im Dashboard).
+    if any(k in loc for k in ("münchen", "muenchen", "munich", "munchen")):
+        return True
 
     # Andere DE-Stadt im Standort → raus. Ausnahme: Stuttgart/Augsburg + Remote-Anker.
     hits = [c for c in OTHER_CITIES if c in loc]

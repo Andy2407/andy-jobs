@@ -106,6 +106,9 @@ ROLLE_KERN = [  # (regex, punkte, label)
     (r"konstruktionsleit|leiter konstruktion|head of mechanical design", 24, "Konstruktionsleitung"),
     (r"process excellence|prozessoptimierung entwicklung|pmo\b|project management office", 22, "PMO/Process Excellence"),
     (r"se-?teamleit|systems? engineering", 20, "Systems Engineering"),
+    # NEU 2026-09-30: Serienmanagement/-betreuung (Andy: SE-Teamleiter in der Serienbetreuung
+    # LIN-Stromverteiler/ENS, CFK-Serienfertigung BMW i3/i8). Silver Atena "Serienmanager" lag bei Fit 56.
+    (r"serien ?(manag|betreu|verantw|koordin)|series manag|anlauf ?manag|launch manag", 26, "Serienmanagement"),
 ]
 ROLLE_MITTEL = [
     (r"projekt ?manager|projektmanag|project manag", 18, "Projektmanagement"),
@@ -141,7 +144,7 @@ DOMAENE = [
     (r"medizintechnik|medical device|medtech|chirurg|surgical|instrument|mdr\b|iso 13485", 5, "MedTech-Geraete"),
     (r"konstruktion|catia|\bcad\b|siemens nx|\bnx\b|creo|solidworks|3d-modell", 6, "Konstruktion/CAD"),
     (r"prototyp|prototype|musterbau|versuchsfahrzeug|erprobungsträger", 5, "Prototypen"),
-    (r"serienanlauf|serienreife|serienentwicklung|\bsop\b|industrialisierung|serienfertigung", 5, "Serie/Industrialisierung"),
+    (r"serienanlauf|serienreife|serienentwicklung|\bsop\b|industrialisierung|serienfertigung|serienproduktion|serienbetreuung|lieferfähigkeit|lieferfaehigkeit", 5, "Serie/Industrialisierung"),
     (r"gesamtfahrzeug|baukasten|package|bauraum|geometrie", 5, "Gesamtfahrzeug/Package"),
     (r"änderungsmanagement|aenderungsmanagement|change request|change management prozess|freigabe", 4, "Aenderungs-/Freigabemanagement"),
     (r"lastenheft|pflichtenheft|anforderungsmanagement|requirements? (engineering|management)", 4, "Anforderungen"),

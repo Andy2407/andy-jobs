@@ -585,18 +585,28 @@ function buildCard(j, cat){
       absage:   ['🚫 ABSAGE ERHALTEN',  'bw-rej'],
       mappe:    ['📁 Mappe liegt bereit (Versand unbestätigt)', 'bw-map']
     };
-    const [txt, cls] = BW[j.bewerbung.status] || ['', ''];
+    // FIX 2026-09-30 (§27): Status einer ANDEREN Stelle derselben Firma ist nur ein Hinweis.
+    // Kein Ausgrauen, kein "ABSAGE ERHALTEN" auf einer neuen Position.
+    const andere = j.bewerbung.gleiche_stelle === false;
+    const BW_ANDERE = {
+      gesendet: ['ℹ️ Andere Bewerbung bei dieser Firma', 'bw-map'],
+      offen:    ['ℹ️ Andere Bewerbung bei dieser Firma läuft', 'bw-map'],
+      absage:   ['ℹ️ Frühere Absage (andere Stelle), diese Stelle ist neu', 'bw-map'],
+      mappe:    ['📁 Mappe liegt bereit (Versand unbestätigt)', 'bw-map']
+    };
+    const [txt, cls] = (andere ? BW_ANDERE : BW)[j.bewerbung.status] || ['', ''];
     if(txt){
       const bw = el('div', 'bw-badge ' + cls, txt);
       if(j.bewerbung.stelle) bw.appendChild(el('span', 'bw-sub', ' · ' + j.bewerbung.stelle));
       if(j.bewerbung.datum)  bw.appendChild(el('span', 'bw-sub', ' · ' + j.bewerbung.datum));
       card.appendChild(bw);
-      card.classList.add('has-bw', 'has-' + j.bewerbung.status);
+      card.classList.add('has-bw');
+      if(!andere) card.classList.add('has-' + j.bewerbung.status);
     }
   }
   // NEU 2026-09-27: Werkstatt-Set bereit (crawler/bewerbungen_status.json -> _sets_bereit)
   const set = setFuer(j);
-  const istSchonBeworben = j.bewerbung && (j.bewerbung.status === 'gesendet' || j.bewerbung.status === 'offen');
+  const istSchonBeworben = j.bewerbung && j.bewerbung.gleiche_stelle !== false && (j.bewerbung.status === 'gesendet' || j.bewerbung.status === 'offen');
   if(set && !set.versendet && !istSchonBeworben){
     const sb = el('div', 'set-badge', '📦 SET BEREIT · ' + (set.datum || ''));
     sb.appendChild(el('span', 'bw-sub', gremiumText(set)));
@@ -814,8 +824,8 @@ function buildCard(j, cat){
     ['rej',  '🚫 absage'],
     ['irr',  '🔇 n.relev.'],
   ];
-  const isGesendet = j.bewerbung && (j.bewerbung.status === 'gesendet' || j.bewerbung.status === 'offen');
-  const isAbsage = j.bewerbung && j.bewerbung.status === 'absage';
+  const isGesendet = j.bewerbung && j.bewerbung.gleiche_stelle !== false && (j.bewerbung.status === 'gesendet' || j.bewerbung.status === 'offen');
+  const isAbsage = j.bewerbung && j.bewerbung.gleiche_stelle !== false && j.bewerbung.status === 'absage';
   for(const [st, label] of states){
     const b = el('span', 'sb', label);
     if((st === 'app' && isGesendet) || (st === 'rej' && isAbsage)){
@@ -1581,7 +1591,8 @@ function werkstattTop(){
     // Unaufgelöste Portal-Seiten (ohne Arbeitgeber-Endlink) niemals in die Werkstatt!
     if(j.final_link === false) return false;
     // Bereits beworben, laufend oder Absage erhalten -> Niemals in die Werkstatt-Top-Empfehlungen!
-    if(j.bewerbung && ['gesendet','offen','absage'].includes(j.bewerbung.status)) return false;
+    // FIX 2026-09-30 (§27, Silver-Atena-Fall): nur DIESELBE Stelle ausschliessen, nie die ganze Firma.
+    if(j.bewerbung && j.bewerbung.gleiche_stelle !== false && ['gesendet','offen','absage'].includes(j.bewerbung.status)) return false;
     const co = firmaVon(j).toLowerCase();
     if(blocked.some(b => b && co.includes(b))) return false;
     return true;
@@ -1785,7 +1796,7 @@ function openCockpit(job, set, queueItem){
     <div style="margin-top:16px;font-size:13px;color:#38bdf8">⚡ Weiterleitung läuft automatisch in 1 Sekunde …</div>
     <div class="url">${escapeHtml(directLink)}</div>
   </div>
-  <script>setTimeout(() => { window.location.href = "${escapeHtml(directLink)}"; }, 800);</script>
+  <script>setTimeout(() => { window.location.href = "${escapeHtml(directLink)}"; }, 800);<\/script>
 </body>
 </html>`;
       const blob = new Blob([linkHtml], { type: 'text/html;charset=utf-8' });
