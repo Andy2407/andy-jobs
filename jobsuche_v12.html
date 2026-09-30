@@ -1694,6 +1694,7 @@ function openCockpit(job, set, queueItem){
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
       ${directLink ? `<a class="cta cta-pm" href="${escapeHtml(directLink)}" target="_blank" rel="noopener" style="margin:0;flex:1;min-width:200px;text-align:center;padding:10px">📄 Direkt zum Bewerbungsformular →</a>` : ''}
       <button class="btn-download-ms" id="cp-dl-docx" style="margin:0;flex:1;min-width:180px;padding:10px">📥 Anschreiben herunterladen (DOCX)</button>
+      ${directLink ? `<button class="btn-cockpit" id="cp-dl-link-html" style="margin:0;flex:1;min-width:180px;padding:10px;background:#0284c7">🔗 Direktlink (HTML) sichern</button>` : ''}
     </div>
 
     <!-- iPhone / iMac Speicher-Ort Box -->
@@ -1753,6 +1754,44 @@ function openCockpit(job, set, queueItem){
   `;
 
   document.getElementById('cp-dl-docx').onclick = () => generateMS(job || { title: stellentitel, company: firma }, document.getElementById('cp-dl-docx'));
+  const dlLinkBtn = document.getElementById('cp-dl-link-html');
+  if(dlLinkBtn && directLink){
+    dlLinkBtn.onclick = () => {
+      const linkHtml = `<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="1; url=${escapeHtml(directLink)}">
+  <title>Bewerben: ${escapeHtml(stellentitel)} · ${escapeHtml(firma)}</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #090d16; color: #f1f5f9; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px 16px; }
+    .card { background: #131c2e; border: 1px solid rgba(59,130,246,0.3); border-radius: 20px; padding: 36px 28px; max-width: 560px; width: 100%; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
+    .badge { display: inline-flex; background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.35); padding: 6px 14px; border-radius: 9999px; font-size: 13px; font-weight: 700; margin-bottom: 20px; }
+    h1 { font-size: 21px; line-height: 1.35; color: #fff; margin-bottom: 8px; }
+    .company { font-size: 17px; color: #94a3b8; margin-bottom: 28px; }
+    .btn { display: block; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; text-decoration: none; font-size: 18px; font-weight: 700; padding: 18px 24px; border-radius: 14px; box-shadow: 0 8px 20px rgba(37,99,235,0.35); }
+    .url { margin-top: 24px; font-size: 12px; color: #64748b; word-break: break-all; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">🎯 Direkter Bewerbungs-Link</div>
+    <h1>${escapeHtml(stellentitel)}</h1>
+    <div class="company">${escapeHtml(firma)}</div>
+    <a href="${escapeHtml(directLink)}" class="btn">👉 Jetzt bei ${escapeHtml(firma)} bewerben</a>
+    <div style="margin-top:16px;font-size:13px;color:#38bdf8">⚡ Weiterleitung läuft automatisch in 1 Sekunde …</div>
+    <div class="url">${escapeHtml(directLink)}</div>
+  </div>
+  <script>setTimeout(() => { window.location.href = "${escapeHtml(directLink)}"; }, 800);</script>
+</body>
+</html>`;
+      const blob = new Blob([linkHtml], { type: 'text/html;charset=utf-8' });
+      saveAs(blob, '00_DIREKTLINK_BEWERBUNG.html');
+      showToast('00_DIREKTLINK_BEWERBUNG.html heruntergeladen!', true);
+    };
+  }
   document.getElementById('cp-copy-pfad').onclick = () => {
     navigator.clipboard.writeText(fullPfad).then(() => showToast('Pfad kopiert: ' + fullPfad, true));
   };
