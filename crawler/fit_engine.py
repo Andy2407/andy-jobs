@@ -123,7 +123,7 @@ ROLLE_MITTEL = [
 ROLLE_KO = [
     (r"\b(vertrieb|sales|account (manager|executive)|key account|business development|pre-?sales|sdr)\b", "Vertrieb/Sales"),
     (r"customer success|implementation (manager|consultant|specialist)|onboarding manag", "Kunden-Rollout (Implementation-Falle)"),
-    (r"\b(werkstudent|praktikant|praktikum|internship|intern\b|trainee|auszubildend|ausbildung|junior)", "Einstiegsrolle"),
+    (r"\b(werkstudent|praktikant|praktikum|internship|intern\b|trainee|auszubildend|ausbildung|azubi|junior)", "Einstiegsrolle"),
     (r"software[- ]?(entwickler|developer|engineer|architekt)|\bdevops\b|full-?stack|backend|frontend|data scientist|data engineer", "Softwareentwicklung"),
     (r"\b(coach|trainer|dozent|lehrkraft|enablement)\b", "Coach/Trainer"),
     (r"bauleit|bauingenieur|\btga\b|elektroinstallat|haustechnik|gebaeudetechnik|gebäudetechnik|versorgungstechnik"

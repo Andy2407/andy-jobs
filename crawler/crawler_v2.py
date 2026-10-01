@@ -1967,6 +1967,43 @@ def stamp_bewerbungs_status(jobs) -> int:
     return treffer
 
 
+def stamp_top20(jobs) -> int:
+    """NEU 2026-10-01 (Andy: "die Top 20, auf die ich mich heute bewerben kann"):
+    crawler/top20_heute.json enthaelt die handverlesene Liste (jede Anzeige live gelesen, harte Filter
+    angewandt). Hier wird job["top20"] = {rang, stufe, warum, haken} gestempelt; das Dashboard zeigt
+    ein Abzeichen und sortiert diese Stellen nach oben. Nach gueltig_bis passiert nichts mehr."""
+    path = Path(__file__).resolve().parent / "top20_heute.json"
+    if not path.exists():
+        return 0
+    try:
+        cfg = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return 0
+    if str(cfg.get("gueltig_bis", "")) < datetime.now().strftime("%Y-%m-%d"):
+        return 0
+
+    def n(s):
+        s = (s or "").lower()
+        for a, b in [("ü", "ue"), ("ö", "oe"), ("ä", "ae"), ("ß", "ss")]:
+            s = s.replace(a, b)
+        return re.sub(r"[^a-z0-9]+", "", s)
+
+    treffer = 0
+    for e in cfg.get("eintraege", []):
+        eu, ef, et = (e.get("url") or "").split("?")[0].rstrip("/"), n(e.get("firma", ""))[:6], n(e.get("titel", ""))[:22]
+        kandidaten = [j for j in jobs if (j.get("url") or "").split("?")[0].rstrip("/") == eu]
+        if not kandidaten:
+            kandidaten = [j for j in jobs if ef and ef in n(j.get("clean_company") or j.get("company") or "")
+                          and et and et in n(j.get("title", ""))]
+        for j in kandidaten:
+            j["top20"] = {"rang": e.get("rang"), "stufe": e.get("stufe"), "warum": e.get("warum", ""),
+                          "haken": e.get("haken", ""), "datum": cfg.get("datum", "")}
+            treffer += 1
+    if treffer:
+        log.info(f"[top20] {treffer} Jobs als Top-20 markiert")
+    return treffer
+
+
 def load_manual_jobs() -> list:
     """Manuelle Stellen aus user_overrides.json -> Job-Schema (NEU 2026-06-03).
 
@@ -3157,6 +3194,8 @@ def main():
     # FIX 2026-09-30: stamp_bewerbungs_status erneut aufrufen, damit manuelle/Lead-Stellen
     # (wie Brainlab) ebenfalls zuverlässig ihren Bewerbungsstatus gestempelt bekommen!
     stamp_bewerbungs_status(verified)
+
+    stamp_top20(verified)   # NEU 2026-10-01: handverlesene Top 20 (crawler/top20_heute.json)
 
     # NEU 2026-09-27: Andy-Fit als zweite Bewertungsstufe (siehe crawler/fit_engine.py).
     if fe is not None:

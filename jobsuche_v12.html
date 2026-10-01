@@ -604,6 +604,13 @@ function buildCard(j, cat){
       if(!andere) card.classList.add('has-' + j.bewerbung.status);
     }
   }
+  // NEU 2026-10-01: Top-20-Abzeichen (handverlesen, Anzeige live gelesen)
+  if(j.top20 && j.top20.rang){
+    const stufen = {A: 'ohne harten Haken', B: 'ein Papier-Gate', C: 'Reserve'};
+    const t20 = el('div', 'bw-badge bw-app', '🎯 TOP 20 HEUTE · Platz ' + j.top20.rang + ' · Stufe ' + j.top20.stufe + ' (' + (stufen[j.top20.stufe] || '') + ')');
+    if(j.top20.haken) t20.appendChild(el('span', 'bw-sub', ' · Haken: ' + j.top20.haken));
+    card.appendChild(t20);
+  }
   // NEU 2026-09-27: Werkstatt-Set bereit (crawler/bewerbungen_status.json -> _sets_bereit)
   const set = setFuer(j);
   const istSchonBeworben = j.bewerbung && j.bewerbung.gleiche_stelle !== false && (j.bewerbung.status === 'gesendet' || j.bewerbung.status === 'offen');
@@ -1431,6 +1438,8 @@ function toggleWishCompany(co){
 }
 // Effektiver Score = Crawler-Score + 10 wenn User-Wunschfirma
 function effectiveScore(j){
+  // NEU 2026-10-01: handverlesene Top 20 (crawler/top20_heute.json) stehen in Rangfolge ganz oben
+  if(j.top20 && typeof j.top20.rang === 'number') return 1000 - j.top20.rang;
   return andyFit(j) + (isWishCompany(firmaVon(j)) ? 10 : 0);
 }
 function jobsForTab(tab){
@@ -1588,7 +1597,7 @@ function werkstattTop(){
   if(!DATA || !DATA.jobs) return [];
   const blocked = getBlockedCompanies().map(c => c.toLowerCase());
   return DATA.jobs.filter(j => {
-    if(typeof j.fit !== 'number' || j.fit < 65) return false;
+    if(!j.top20 && (typeof j.fit !== 'number' || j.fit < 65)) return false;
     // GOAT FILTER 2026-09-30 (Andy: "Da kann ich mich nicht mal bewerben"):
     // Unaufgelöste Portal-Seiten (ohne Arbeitgeber-Endlink) niemals in die Werkstatt!
     if(j.final_link === false) return false;
