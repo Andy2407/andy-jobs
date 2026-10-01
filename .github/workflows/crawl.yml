@@ -37,7 +37,20 @@ jobs:
       - name: Run crawler v2 (25 Quellen inkl. SII/Rodenstock/CARIAD/MTU)
         working-directory: crawler
         run: python crawler_v2.py
+      # NEU 2026-10-01: Syntax-Sperre. Ist jobsuche_v12.html kaputt, bleibt die zuletzt funktionierende
+      # verschluesselte Seite im Repo und live; die frischen Daten (data.js/data.json) gehen trotzdem raus.
+      - name: Dashboard-Syntax-Sperre (node --check)
+        id: gate
+        run: |
+          if python3 crawler/dashboard_syntax_gate.py; then
+            echo "ok=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::Dashboard-Skript hat einen Syntaxfehler. Alte index.html bleibt live."
+            git checkout -- index.html jobsuche_standalone.html
+            echo "ok=0" >> "$GITHUB_OUTPUT"
+          fi
       - name: Encrypt dashboards (StaticCrypt)
+        if: steps.gate.outputs.ok == '1'
         run: npx --yes staticrypt@3.5.4 index.html jobsuche_standalone.html -p "$STATICRYPT_PASSWORD" --short -d .
         env:
           STATICRYPT_PASSWORD: ${{ secrets.STATICRYPT_PASSWORD }}

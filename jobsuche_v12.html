@@ -1372,6 +1372,9 @@ function _generateMSWith(job, btn, recipientInfo){
         children: childrenList
       }]
     });
+    // FIX 2026-10-01: Diese Zeile fehlte seit Commit 294ddf4 (30.09. 19:25). Ohne sie brach das GESAMTE
+    // Dashboard-Skript mit "Missing catch or finally after try" ab, die Seite blieb bei "Stand: lädt…".
+    D.Packer.toBlob(doc).then(blob => {
       // ANDY-DOKTRIN 2026-09-30: Nach meinem Namen kommt die Position rein und sonst nix!
       const safePosition = cleanStellentitel(stellentitel).replace(/[\(\[\{].*?[\)\]\}]/g, '').replace(/[^a-zA-Z0-9äöüÄÖÜß]+/g, '_').replace(/^_+|_+$/g, '');
       saveAs(blob, 'Anschreiben_Andreas_Schengel_' + safePosition + '.docx');

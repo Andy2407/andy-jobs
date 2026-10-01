@@ -33,6 +33,11 @@ jobs:
         with:
           fetch-depth: 1
 
+      # NEU 2026-10-01: Syntax-Sperre. Am 30.09. 19:25 ging ein Syntaxfehler live (Commit 294ddf4),
+      # das Dashboard blieb bei "Stand: laedt…". Bei Fehler bricht der Lauf ab, die alte Seite bleibt live.
+      - name: Dashboard-Syntax-Sperre (node --check)
+        run: python3 crawler/dashboard_syntax_gate.py
+
       - name: Dashboard aus jobsuche_v12.html + data.js bauen (identisch zu crawler_v2.py)
         run: |
           python3 - <<'PY'
