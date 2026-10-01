@@ -1,7 +1,7 @@
 {
   "_kommentar": "Bewerbungs-Status je Firma. Wird von crawler_v2.py gelesen und auf jeden Job gestempelt, dessen Firma hier auftaucht. Das Dashboard zeigt daraus ein Abzeichen, damit Andy nie wieder eine Stelle bearbeitet, auf die er sich schon beworben hat.",
   "_regel": "Nur eintragen, was belegt ist. Eine Mappe auf der Platte ist KEINE Bewerbung (Regel aus VERSAND_REGISTER.md). Drei Stufen: 'gesendet' = nachweislich raus, 'offen' = laeuft, Antwort steht aus, 'absage' = abgelehnt, 'mappe' = Unterlagen liegen bereit, Versand unbestaetigt.",
-  "_stand": "2026-09-30",
+  "_stand": "2026-10-01",
   "eintraege": [
     {
       "firma": "EDS Automotive",
@@ -401,7 +401,7 @@
       "apply_url": "https://karriere.silver-atena.de/stellenangebote/berufserfahrene/serienmanager-5ab8c146-c21f-40f0-91ae-84d8b432c444",
       "ordner": "SilverAtena_Serienmanager_Muenchen",
       "datum": "2026-09-30",
-      "versendet": false,
+      "versendet": true,
       "gremium": {
         "1. Personalchef Zielfirma": 10,
         "2. Abteilungsleiter Fachbereich": 10,
@@ -409,7 +409,46 @@
         "4. Webasto-TA Benchmark": 8,
         "5. Anti-KI Faktenwächter": 10
       },
-      "hinweis": "Anschreiben (1 S.) + CV (2 S.) bereit zum Upload"
+      "hinweis": "Anschreiben (1 S.) + CV (2 S.) bereit zum Upload",
+      "versendet_am": "30.09.2026"
+    },
+    {
+      "firma": "Incap Electronics Germany",
+      "stelle": "Technischer Projektleiter EMS (m/w/d)",
+      "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-EMS-m-w-d-Karlsfeld-Incap-Electronics-Germany--14528570-inline.html",
+      "apply_url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-EMS-m-w-d-Karlsfeld-Incap-Electronics-Germany--14528570-inline.html",
+      "ordner": "Incap_Technischer_Projektleiter_EMS",
+      "datum": "2026-10-01",
+      "versendet": false,
+      "gremium": {
+        "hr": 9.0,
+        "fach": 8.5,
+        "ceo": 8.5,
+        "cv_hr": 9.0,
+        "cv_fach": 9.0,
+        "cv_ceo": 9.0,
+        "forensik": "frei"
+      },
+      "hinweis": "Gremium + gremium_check bestanden. Hochladen NUR aus dem Unterordner VERSAND/ (Anschreiben 1 S. + Lebenslauf 2 S.)"
+    },
+    {
+      "firma": "Truma Gerätetechnik",
+      "stelle": "Projektleiter Produktentwicklung (m/w/d)",
+      "url": "https://career.truma.com/Projektleiter-Produktentwicklung-mwd-de-j435.html",
+      "apply_url": "https://career.truma.com/Projektleiter-Produktentwicklung-mwd-de-j435.html",
+      "ordner": "Truma_Projektleiter_Produktentwicklung",
+      "datum": "2026-10-01",
+      "versendet": false,
+      "gremium": {
+        "hr": 8.5,
+        "fach": 8.5,
+        "ceo": 8.5,
+        "cv_hr": 8.5,
+        "cv_fach": 9.0,
+        "cv_ceo": 9.0,
+        "forensik": "frei"
+      },
+      "hinweis": "Gremium + gremium_check bestanden. Hochladen NUR aus dem Unterordner VERSAND/ (Anschreiben 1 S. + Lebenslauf 2 S.)"
     }
   ],
   "_mappen_ohne_versandnachweis": [
