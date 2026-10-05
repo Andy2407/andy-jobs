@@ -195,10 +195,31 @@ STUDIUM_OFFEN = (r"techniker|meister(ausbildung|prüfung| oder)|vergleichbare (q
                  r"|alternativ.{0,40}(ausbildung|berufserfahrung)|technische ausbildung mit")
 PHD = r"promotion|\bphd\b|doktor(and|arbeit|titel)"
 # Nur Englisch zaehlt: "Deutschkenntnisse (mind. C2)" darf nicht triggern (BG-Phoenics-Fehlalarm 27.09.)
-ENGLISCH_C1 = (r"verhandlungssicher\w* (englisch|english)|(englisch|english)\w*[^.;]{0,40}verhandlungssicher"
-               r"|(englisch|english)\w*[^.;]{0,45}\b(c1|c2)\b|\b(c1|c2)\b[^.;]{0,20}(englisch|english)"
-               r"|fluent (in )?english|english[^.;]{0,20}fluent|business fluent|fließend\w* (englisch|english)"
-               r"|(englisch|english)[^.;]{0,25}fließend|native (english|speaker)|muttersprach\w* englisch")
+# FIX 05.10.2026 (Luxoft "English: B2 Upper Intermediate,German: C1 Advanced" bekam faelschlich das K.o.,
+# Vision-Dynamics "Englischkenntnisse ... (mind. C1-level)" bekam es NICHT): Das Niveau muss zur
+# englischen Sprache gehoeren. Zwischen Sprachname und Niveau darf weder ein Komma noch eine andere
+# Sprache stehen. Abkuerzungspunkte ("mind.") werden vor der Pruefung entfernt (_en_norm).
+_KEINE_ANDERE_SPRACHE = r"(?:(?!deutsch|german|franz|french|spanisch|spanish|italien)[^.;,]){0,45}"
+_OHNE_ABSCHWAECHUNG = r"(?:(?!gute|good|grundkennt|basic|basis)[^.;,]){0,30}"
+ENGLISCH_C1 = (r"verhandlungssicher\w*" + _OHNE_ABSCHWAECHUNG + r"(englisch|english)|(englisch|english)\w*[^.;,]{0,40}verhandlungssicher"
+               r"|fließend\w*" + _OHNE_ABSCHWAECHUNG + r"(englisch|english)|fluent(?: in)?" + _OHNE_ABSCHWAECHUNG + r"english"
+               r"|(englisch|english)\w*" + _KEINE_ANDERE_SPRACHE + r"\b(c1|c2)\b"
+               r"|\b(c1|c2)\b[^.;,]{0,20}(englisch|english)"
+               r"|fluent (in )?english|english[^.;,]{0,20}fluent|business fluent|fließend\w* (englisch|english)"
+               r"|(englisch|english)[^.;,]{0,25}fließend|native (english|speaker)|muttersprach\w* englisch")
+# Ausdruecklich B2 fuer Englisch verlangt = genau Andys Niveau, also kein K.o.
+ENGLISCH_B2 = r"(englisch|english)\w*[^.;,]{0,25}\bb2\b"
+
+
+def _en_norm(text):
+    return re.sub(r"\b(mind|min|bzw|inkl|ca)\.", r"\1", text)
+
+
+# NEU 05.10.2026: "oder vergleichbare Qualifikation" ist noch keine Oeffnung fuer Techniker. Nur wenn
+# Techniker/Meister/Ausbildung als Alternative genannt werden, zaehlt die Stelle als ausdruecklich offen.
+TECHNIKER_EXPLIZIT = (r"(?<![a-zäöü])techniker(?! krankenkasse)|maschinenbautechniker|mechatroniktechniker|staatlich geprüfte"
+                      r"|bachelor professional|(?<![a-zäöü])meister(?![a-zäöü])|technische ausbildung mit"
+                      r"|(oder|alternativ|bzw)[^.;]{0,70}(berufs)?ausbildung|(berufs)?ausbildung[^.;]{0,40}oder[^.;]{0,30}studium")
 DISZIPLINARISCH = r"disziplinarisch|personalverantwortung für|führung von (\d+|mehreren) mitarbeit|leitung eines teams von \d+|people management|line management"
 
 
@@ -210,7 +231,14 @@ def bewerte(job):
     """Setzt fit, fit_reasons, fit_ko, fit_basis auf dem Job-Dict und gibt es zurueck."""
     titel = _low(job.get("title"))
     firma = _low(job.get("clean_company") or job.get("company"))
-    ort = _low(" ".join(str(job.get(k) or "") for k in ("location", "address_city", "remote", "homeoffice")))
+    # FIX 05.10.2026: StepStone stempelt den SUCH-Ort ("muenchen") als Standort, auch wenn die Stelle in
+    # Frankfurt, Berlin, Penzberg oder "bundesweit" liegt (37 Faelle im Lauf vom 05.10.). Liegt eine echte
+    # Adresse vor, zaehlt nur sie. Dazu Umlaut-Reparatur ("Oberhaching bei MÃ¼nchen").
+    _loc = _fix_mojibake(str(job.get("location") or ""))
+    _city = _fix_mojibake(str(job.get("address_city") or ""))
+    if job.get("source") == "stepstone" and _loc.strip().lower() in ("muenchen", "münchen") and _city.strip():
+        _loc = ""
+    ort = _low(" ".join([_loc, _city] + [str(job.get(k) or "") for k in ("remote", "homeoffice")]))
     voll = job.get("jd_text") or job.get("raw_text") or ""
     desc = job.get("description") or ""
     seite_passt = True
@@ -303,16 +331,21 @@ def bewerte(job):
     # --- Zugang ---
     zug = 0
     offen = bool(re.search(STUDIUM_OFFEN, text))
-    if offen:
+    explizit = bool(re.search(TECHNIKER_EXPLIZIT, text))
+    if explizit:
         zug += 10
-        reasons.append("🚪 Techniker/vergleichbare Qualifikation zugelassen (+10)")
+        reasons.append("🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)")
+    elif offen:
+        zug += 4
+        reasons.append("🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)")
     elif basis != "titel" and re.search(STUDIUM_PFLICHT, text):
         zug -= 8
         ko.append("Studium gefordert, nicht geöffnet")
     if basis != "titel" and re.search(PHD, text) and not offen:
         zug -= 10
         ko.append("Promotion gefordert")
-    if basis != "titel" and re.search(ENGLISCH_C1, text):
+    _en = _en_norm(text)
+    if basis != "titel" and re.search(ENGLISCH_C1, _en) and not re.search(ENGLISCH_B2, _en):
         zug -= 6
         ko.append("Englisch C1/verhandlungssicher gefordert (Andy B2)")
     if basis != "titel" and re.search(DISZIPLINARISCH, text):

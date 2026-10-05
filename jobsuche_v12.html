@@ -243,6 +243,33 @@ padding-bottom:env(safe-area-inset-bottom)}
 .stat.s-g .n{color:var(--g)}.stat.s-c .n{color:var(--c)}.stat.s-y .n{color:var(--o)}.stat.s-b .n{color:var(--b)}
 .load{padding:14px;text-align:center;color:var(--m);font-size:11px;background:var(--s1);border:1px dashed var(--bd);border-radius:var(--r)}
 .load b{color:var(--o)}
+.bestellt-hint{font-size:9.5px;color:var(--o);margin-top:5px;line-height:1.4}
+.more-btn{display:block;width:100%;margin:10px 0 18px;padding:11px 12px;background:var(--s2);border:1px solid var(--bd);border-radius:8px;color:var(--t);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer}
+.more-btn:hover{border-color:var(--b);color:var(--b)}
+.fit-divider{margin:14px 0 10px;padding:7px 10px;border-radius:7px;background:rgba(232,160,50,.08);border:1px dashed rgba(232,160,50,.4);color:var(--o);font-size:10px;font-weight:700;line-height:1.4}
+/* Sub-Tabs / Archiv-Reiter in jeder Kategorie (Andy 2026-10-01) */
+.cat-subnav{display:flex;gap:6px;background:var(--s1);padding:4px;border-radius:9px;border:1px solid var(--bd);margin-bottom:11px;position:sticky;top:52px;z-index:9;}
+.cat-sub-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 10px;background:transparent;border:1.5px solid transparent;border-radius:7px;color:var(--m);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;transition:all .15s ease}
+.cat-sub-btn:hover{color:var(--t);background:rgba(255,255,255,.02)}
+.cat-sub-btn.on{background:var(--s2);color:var(--t);border-color:var(--b);box-shadow:0 2px 10px rgba(45,122,237,.15)}
+.cat-sub-btn.sub-arch-btn.on{border-color:var(--o);box-shadow:0 2px 10px rgba(232,160,50,.15)}
+.cat-sub-cnt{font-size:9px;font-weight:800;padding:2px 7px;border-radius:99px;background:rgba(255,255,255,.06);color:var(--m);line-height:1}
+.cat-sub-btn.on .cat-sub-cnt{background:rgba(45,122,237,.2);color:var(--b)}
+.cat-sub-btn.sub-arch-btn.on .cat-sub-cnt{background:rgba(232,160,50,.2);color:var(--o)}
+.arch-sub-toolbar{display:flex;gap:4px;margin-bottom:10px;overflow-x:auto;padding-bottom:4px}
+.arch-sub-pill{background:var(--s2);border:1px solid var(--bd);color:var(--m);padding:4px 8px;font-size:9.5px;font-weight:600;border-radius:5px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.15s}
+.arch-sub-pill:hover{color:var(--t)}
+.arch-sub-pill.on{color:var(--t);border-color:var(--o);background:rgba(232,160,50,.12)}
+.arch-badge-bar{display:flex;align-items:center;justify-content:space-between;padding:5px 8px;border-radius:6px;margin-bottom:8px;font-size:10px;font-weight:700}
+.arch-badge-app{background:rgba(22,201,141,.12);border:1px solid rgba(22,201,141,.3);color:var(--g)}
+.arch-badge-rej{background:rgba(220,80,80,.12);border:1px solid rgba(220,80,80,.3);color:#ee7777}
+.arch-badge-uns{background:rgba(232,160,50,.12);border:1px solid rgba(232,160,50,.3);color:var(--o)}
+.arch-badge-irr{background:rgba(157,168,189,.12);border:1px solid rgba(157,168,189,.3);color:#9da8bd}
+.btn-unarchive{display:inline-flex;align-items:center;gap:4px;background:var(--s2);border:1px solid var(--bd);color:var(--t);font-size:9.5px;font-weight:700;padding:5px 9px;border-radius:5px;cursor:pointer;transition:.15s;font-family:inherit}
+.btn-unarchive:hover{border-color:var(--b);color:var(--b);background:rgba(45,122,237,.08)}
+.jc.is-archived{opacity:.85;border-color:rgba(232,160,50,.3)}
+/* FIX 2026-10-05: im Archiv-Reiter darf "Markierte ausblenden" die Karten nicht verstecken, sonst bleibt das Archiv leer */
+.jc.is-archived.hide-marked{display:block}
 </style>
 </head>
 <body>
@@ -531,6 +558,26 @@ padding-bottom:env(safe-area-inset-bottom)}
 const CAT_LABELS = { ki: 'KI-Mgr', pm: 'PM', auto: 'Auto/Robotics', pharma: 'MedTech' };
 const CAT_CTA = { ki: 'cta-ki', pm: 'cta-pm', auto: 'cta-auto', pharma: 'cta-pharma' };
 
+// PERF 2026-10-05 (Andy: "langsam, wie verwaschen"): localStorage-JSON wird je Schlüssel nur noch einmal
+// geparst und bis zum nächsten Schreiben gemerkt. Vorher: bis zu drei JSON.parse je Karte und zusätzlich
+// zwei je Vergleich beim Sortieren (Wunschfirmen), also zehntausende je Tab-Wechsel.
+const _lsCache = {};
+function lsJSON(key, def){
+  if(Object.prototype.hasOwnProperty.call(_lsCache, key)) return _lsCache[key];
+  let v;
+  try{ v = JSON.parse(localStorage.getItem(key) || def); }catch(e){ v = JSON.parse(def); }
+  _lsCache[key] = v;
+  return v;
+}
+(function(){
+  try{
+    const _set = Storage.prototype.setItem, _rem = Storage.prototype.removeItem, _clr = Storage.prototype.clear;
+    Storage.prototype.setItem = function(k, v){ delete _lsCache[k]; return _set.call(this, k, v); };
+    Storage.prototype.removeItem = function(k){ delete _lsCache[k]; return _rem.call(this, k); };
+    Storage.prototype.clear = function(){ Object.keys(_lsCache).forEach(k => delete _lsCache[k]); return _clr.call(this); };
+  }catch(e){}
+})();
+
 function urlShort(url){
   try{ const u = new URL(url); return (u.hostname + u.pathname).replace(/\/$/,''); }
   catch(e){ return url || ''; }
@@ -714,10 +761,17 @@ function buildCard(j, cat){
     : '📄 Direkt zur Stelle beim Arbeitgeber →';
   card.appendChild(a);
   // NEU 2026-09-29 (Andy: Masterclass-Buttons: Rolle definieren, Gremium befragen, Sofort-Download & iPhone-Ablage):
-  if(set){
+  // FIX 2026-10-05 (Andy: "Es steht dran, wo es sein sollte. Es landet aber nicht bei den Dateien."):
+  // Die Box erscheint NUR noch für Sets, die die Werkstatt wirklich gebaut und in
+  // crawler/bewerbungen_status.json (_sets_bereit) eingetragen hat. Die Noten kommen aus dieser Datei,
+  // nichts ist mehr fest einprogrammiert. Ein Klick im Browser erzeugt KEINEN Ordner auf dem iMac.
+  if(set && set._echt){
     const mcBox = el('div', 'mc-ready-box');
     const mcH = el('div', 'mc-ready-header');
-    mcH.innerHTML = '<span>🏆 MASTERCLASS-SET BEREIT</span><span style="font-size:9px;color:var(--m)">GREMIUM 10/10</span>';
+    mcH.appendChild(el('span', null, '🏆 SET LIEGT BEREIT'));
+    const mcG = el('span', null, gremiumText(set));
+    mcG.style.cssText = 'font-size:9px;color:var(--m)';
+    mcH.appendChild(mcG);
     mcBox.appendChild(mcH);
 
     const bGrid = el('div', 'btn-grid-actions');
@@ -746,8 +800,8 @@ function buildCard(j, cat){
     const pfadBox = el('div', 'imac-pfad-box');
     const relPfad = 'Bewerbungen/' + (set.ordner || set.icloud_ordner);
     pfadBox.innerHTML = `
-      <div class="pfad-title">📱 <b>Auf deinem iPhone in der Dateien-App:</b></div>
-      <div class="pfad-desc">Auf meinem iPhone / In Dateien sichern › Schreibtisch Andy's iMac › ordner › Bewerbungen 2026 › ${escapeHtml(relPfad)}</div>
+      <div class="pfad-title">📱 <b>Auf dem iPhone in der Dateien-App:</b></div>
+      <div class="pfad-desc">iCloud Drive › Schreibtisch › ordner › Bewerbungen 2026 › ${escapeHtml(relPfad)}</div>
       <div class="pfad-actions">
         <span class="pfad-copy-btn">📋 Pfad kopieren</span>
         <span class="pfad-badge">1S MS-PDF + 2S CV-PDF</span>
@@ -764,15 +818,33 @@ function buildCard(j, cat){
     mcBox.appendChild(pfadBox);
     card.appendChild(mcBox);
   } else {
+    // Zwei ehrliche Wege statt eines Knopfs, der ein fertiges Set vortäuscht:
+    // 1) Schnellentwurf: Vorlagen-Anschreiben direkt im Browser (ungeprüft, landet im Download-Ordner des Geräts).
+    // 2) Vollständiges Set: Auftrag kopieren und in den Claude-Chat einfügen. Erst die Werkstatt baut Matrix,
+    //    Anschreiben, Lebenslauf und Gremium und legt den Ordner unter Bewerbungen/ an.
     const wsBtn = document.createElement('button');
     wsBtn.className = 'ws-btn';
-    wsBtn.innerHTML = '🦅 Masterclass-Set generieren (Download + Queue)';
-    wsBtn.title = 'Rolle definieren, Gremium simulieren, DOCX sofort herunterladen & Auftrag einreihen';
+    wsBtn.textContent = '🛠 Vollständiges Set bestellen (Auftrag kopieren)';
+    wsBtn.title = 'Kopiert den Auftrag mit Firma, Stelle und Link. In den Claude-Chat einfügen: dort entsteht das geprüfte Set im Ordner Bewerbungen/.';
     wsBtn.addEventListener('click', (ev) => {
       ev.preventDefault(); ev.stopPropagation();
-      triggerMasterclassPipeline(j, wsBtn);
+      bestelleSet(j, wsBtn);
     });
     card.appendChild(wsBtn);
+    const best = bestelltAm(j);
+    if(best){
+      const bz = el('div', 'bestellt-hint', '⏳ Auftrag kopiert am ' + best + '. Das Set entsteht erst, wenn der Auftrag im Claude-Chat liegt.');
+      card.appendChild(bz);
+    }
+    const qBtn = document.createElement('button');
+    qBtn.className = 'cv-btn';
+    qBtn.textContent = '📝 Schnellentwurf Anschreiben (DOCX, ungeprüft)';
+    qBtn.title = 'Vorlagen-Entwurf aus dem Browser, ohne Anforderungs-Matrix und ohne Gremium. Die Datei landet im Download-Ordner dieses Geräts, nicht im Bewerbungsordner.';
+    qBtn.addEventListener('click', (ev) => {
+      ev.preventDefault(); ev.stopPropagation();
+      generateMS(j, qBtn);
+    });
+    card.appendChild(qBtn);
   }
   // NEU 2026-08-06 (Andy): CV-Empfehlung mit Direktlink zur passenden Lebenslauf-Datei.
   // Bewusst ohne innerHTML aufgebaut — alle Werte stammen aus Crawler-Daten (Fremdtext).
@@ -861,32 +933,134 @@ function buildCard(j, cat){
 // Migration: alter 'done'-Status wird als 'uns' (unpassend) gelesen
 const STATUS_IDX = { app: 0, uns: 1, rej: 2, irr: 3 };
 const STATUS_LABELS = { app: 'beworben', uns: 'unpassend', rej: 'absage', irr: 'nicht relevant' };
+
+// NEU 2026-10-01 (Andy: "Separater Archiv-Reiter pro Kategorie damit ich beim Scrollen nicht die Sachen sehe"):
+let SUB_VIEWS = { ws: 'open', ki: 'open', pm: 'open', auto: 'open', pharma: 'open', init: 'open', hh: 'open' };
+let ARCHIV_SUB_FILTERS = { ws: 'all', ki: 'all', pm: 'all', auto: 'all', pharma: 'all', init: 'all', hh: 'all' };
+
+function isJobArchived(j){
+  if(!j) return false;
+  const id = 'j-' + msHash(j.portal_url || j.url || '');
+  // Wurde manuell aus dem Archiv zurückgeholt?
+  try{
+    const unarch = lsJSON('jsa12_unarchived', '{}');
+    if(unarch[id]) return false;
+  }catch{}
+  // 1. Crawler / bewerbungen_status.json Stempel (gleiche Stelle + gesendet/absage)
+  if(j.bewerbung && j.bewerbung.gleiche_stelle !== false && ['gesendet', 'absage'].includes(j.bewerbung.status)){
+    return true;
+  }
+  // 2. Interaktiver Status im LocalStorage (app, uns, rej, irr, done)
+  try{
+    const map = lsJSON('jsa12_status', '{}');
+    if(map[id] && ['app', 'uns', 'rej', 'irr', 'done'].includes(map[id])) return true;
+    const oldDone = lsJSON('jsa12_done', '{}');
+    if(oldDone[id]) return true;
+  }catch{}
+  return false;
+}
+
+function getJobArchiveInfo(j){
+  const id = 'j-' + msHash(j.portal_url || j.url || '');
+  try{
+    const map = lsJSON('jsa12_status', '{}');
+    if(map[id]){
+      const s = map[id] === 'done' ? 'uns' : map[id];
+      const names = { app: '✅ Beworben', uns: '❌ Unpassend', rej: '🚫 Absage', irr: '🔇 Nicht relevant' };
+      return { status: s, label: names[s] || s, date: '' };
+    }
+    const oldDone = lsJSON('jsa12_done', '{}');
+    if(oldDone[id]) return { status: 'uns', label: '✓ Erledigt', date: '' };
+  }catch{}
+  if(j.bewerbung && j.bewerbung.gleiche_stelle !== false){
+    if(j.bewerbung.status === 'gesendet') return { status: 'app', label: '✅ Beworben am ' + (j.bewerbung.datum || ''), date: j.bewerbung.datum || '' };
+    if(j.bewerbung.status === 'absage') return { status: 'rej', label: '🚫 Absage erhalten' + (j.bewerbung.datum ? ' (' + j.bewerbung.datum + ')' : ''), date: j.bewerbung.datum || '' };
+  }
+  return { status: 'irr', label: '🔇 Im Archiv', date: '' };
+}
+
+function unarchiveJob(j){
+  const id = 'j-' + msHash(j.portal_url || j.url || '');
+  try{
+    const map = JSON.parse(localStorage.getItem('jsa12_status') || '{}');
+    delete map[id];
+    localStorage.setItem('jsa12_status', JSON.stringify(map));
+    const oldDone = JSON.parse(localStorage.getItem('jsa12_done') || '{}');
+    delete oldDone[id];
+    localStorage.setItem('jsa12_done', JSON.stringify(oldDone));
+    const unarch = JSON.parse(localStorage.getItem('jsa12_unarchived') || '{}');
+    unarch[id] = true;
+    localStorage.setItem('jsa12_unarchived', JSON.stringify(unarch));
+  }catch{}
+  showToast('✓ Aus Archiv zurückgeholt in offene Stellen!');
+  updateStats();
+  updateMarkStats();
+  if(CURRENT_TAB) renderTab(CURRENT_TAB);
+}
+
+function switchSubTab(cat, view){
+  SUB_VIEWS[cat] = view;
+  try{ localStorage.setItem('jsa12_subview_' + cat, view); }catch{}
+  renderTab(cat);
+}
+
+function buildArchivedCard(j, cat){
+  const card = buildCard(j, cat);
+  card.classList.add('is-archived');
+  const info = getJobArchiveInfo(j);
+  const archBar = el('div', 'arch-badge-bar arch-badge-' + info.status);
+  const left = el('span', null, info.label);
+  const unBtn = el('button', 'btn-unarchive', '↩️ Wiederherstellen');
+  unBtn.title = 'Zurück in die aktiven offenen Stellen holen';
+  unBtn.onclick = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    unarchiveJob(j);
+  };
+  archBar.appendChild(left);
+  archBar.appendChild(unBtn);
+  card.insertBefore(archBar, card.firstChild);
+  return card;
+}
+
 function setStatus(id, newStatus){
   const card = document.querySelector('[data-id="' + CSS.escape(id) + '"]');
-  if(!card) return;
-  const cur = card.dataset.status || '';
+  const cur = (card && card.dataset.status) ? card.dataset.status : (JSON.parse(localStorage.getItem('jsa12_status') || '{}')[id] || '');
   const finalStatus = (cur === newStatus) ? '' : newStatus;
-  card.classList.remove('st-done','st-app','st-uns','st-rej','st-irr','hide-marked');
-  card.querySelectorAll('.sb').forEach(b => b.classList.remove('on-done','on-app','on-uns','on-rej','on-irr'));
-  card.dataset.status = finalStatus;
-  if(finalStatus){
-    card.classList.add('st-' + finalStatus);
-    const btns = card.querySelectorAll('.sb');
-    const idx = STATUS_IDX[finalStatus];
-    if(idx !== undefined && btns[idx]) btns[idx].classList.add('on-' + finalStatus);
-    // Hide-Marked-Toggle anwenden
-    const hide = document.getElementById('hide-marked');
-    if(hide && hide.checked) card.classList.add('hide-marked');
-    showToast('Markiert: ' + (STATUS_LABELS[finalStatus] || finalStatus));
-  }else{
-    showToast('Markierung entfernt');
+  if(card){
+    card.classList.remove('st-done','st-app','st-uns','st-rej','st-irr','hide-marked');
+    card.querySelectorAll('.sb').forEach(b => b.classList.remove('on-done','on-app','on-uns','on-rej','on-irr'));
+    card.dataset.status = finalStatus;
+    if(finalStatus){
+      card.classList.add('st-' + finalStatus);
+      const btns = card.querySelectorAll('.sb');
+      const idx = STATUS_IDX[finalStatus];
+      if(idx !== undefined && btns[idx]) btns[idx].classList.add('on-' + finalStatus);
+    }
   }
   try{
     const map = JSON.parse(localStorage.getItem('jsa12_status') || '{}');
     if(finalStatus) map[id] = finalStatus; else delete map[id];
     localStorage.setItem('jsa12_status', JSON.stringify(map));
+    if(finalStatus){
+      const unarch = JSON.parse(localStorage.getItem('jsa12_unarchived') || '{}');
+      delete unarch[id];
+      localStorage.setItem('jsa12_unarchived', JSON.stringify(unarch));
+    }
   }catch{}
   updateMarkStats();
+  updateStats();
+  if(finalStatus){
+    showToast('Markiert: ' + (STATUS_LABELS[finalStatus] || finalStatus) + ' · Ins Archiv verschoben');
+    if((SUB_VIEWS[CURRENT_TAB] || 'open') === 'open'){
+      setTimeout(() => {
+        renderTab(CURRENT_TAB);
+      }, 180);
+    }
+  }else{
+    showToast('Markierung entfernt');
+    renderTab(CURRENT_TAB);
+  }
 }
 
 function updateMarkStats(){
@@ -1405,11 +1579,11 @@ let CURRENT_TAB = 'ki';
 let FILTER = '';
 
 function getBlockedCompanies(){
-  try{ return JSON.parse(localStorage.getItem('jsa12_blocked_co') || '[]'); }
+  try{ return lsJSON('jsa12_blocked_co', '[]'); }
   catch{ return []; }
 }
 function getWishCompanies(){
-  try{ return JSON.parse(localStorage.getItem('jsa12_wish_co') || '[]'); }
+  try{ return lsJSON('jsa12_wish_co', '[]'); }
   catch{ return []; }
 }
 function isWishCompany(co){
@@ -1452,6 +1626,10 @@ function jobsForTab(tab){
     // GOAT FILTER 2026-09-30 (Andy: "Da kann ich mich nicht mal bewerben"):
     // Unaufgelöste Portal-Seiten (ohne Arbeitgeber-Endlink) niemals anzeigen!
     if(j.final_link === false) return false;
+    // NEU 2026-10-05 (Andy: "kein Wirrwarr"): Stellen, die Andys harte Filter laut Fit-Engine reißen
+    // (Azubi/Praktikum, Vertrieb, Software, Bau, SAP, Coach, Einkauf, Standort weder München noch Remote),
+    // erscheinen nicht mehr in den Reitern. "Leitungsrolle" und "Defense" bleiben sichtbar, weil sie zu prüfen sind.
+    if(Array.isArray(j.fit_ko) && j.fit_ko.some(k => /^(Rolle: (?!Leitungsrolle)|Standort:|Branche passt nicht)/.test(k)) && !j.top20 && !j.manual) return false;
     const co = firmaVon(j).toLowerCase();
     if(blocked.some(b => b && co.includes(b))) return false;
     return true;
@@ -1486,6 +1664,27 @@ function renderStaticTab(tab){
   const liste = (DATA && DATA.tabs && DATA.tabs[key]) || null;
   if(!sec || !liste || !liste.length) return false;   // -> altes HTML bleibt stehen
   while(sec.firstChild) sec.removeChild(sec.firstChild);
+
+  let doneMap = {};
+  try{ doneMap = JSON.parse(localStorage.getItem('jsa12_done') || '{}'); }catch{}
+  const openList = liste.filter(e => !doneMap[e.id || e.url]);
+  const archList = liste.filter(e => !!doneMap[e.id || e.url]);
+
+  const curView = SUB_VIEWS[tab] || 'open';
+  const subnav = el('div', 'cat-subnav');
+
+  const btnOpen = el('button', 'cat-sub-btn' + (curView === 'open' ? ' on' : ''));
+  btnOpen.innerHTML = '<span class="sub-icon">⚡</span> Offene Kontakte <span class="cat-sub-cnt">' + openList.length + '</span>';
+  btnOpen.onclick = () => switchSubTab(tab, 'open');
+
+  const btnArch = el('button', 'cat-sub-btn sub-arch-btn' + (curView === 'archive' ? ' on' : ''));
+  btnArch.innerHTML = '<span class="sub-icon">🗄️</span> Erledigt / Archiv <span class="cat-sub-cnt">' + archList.length + '</span>';
+  btnArch.onclick = () => switchSubTab(tab, 'archive');
+
+  subnav.appendChild(btnOpen);
+  subnav.appendChild(btnArch);
+  sec.appendChild(subnav);
+
   const ban = el('div', 'banner');
   ban.style.cssText = (tab === 'hh')
     ? 'border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05)'
@@ -1500,10 +1699,26 @@ function renderStaticTab(tab){
     'Alle Links beim letzten Crawl geprüft' + (geprueft ? ' (' + geprueft + ')' : '') + '. '
     + (tot ? tot + ' Link(e) antworten nicht — unten markiert.' : 'Alle erreichbar.')));
   sec.appendChild(ban);
-  for(const e of liste){
-    const card = el('div', 'jc');
+
+  const displayList = (curView === 'open') ? openList : archList;
+  if(!displayList.length){
+    const e = el('div', 'empty');
+    e.appendChild(el('b', null, curView === 'open' ? 'Alle Kontakte als erledigt markiert!' : 'Noch keine Kontakte als erledigt markiert.'));
+    sec.appendChild(e);
+    return true;
+  }
+
+  for(const e of displayList){
+    const eId = e.id || e.url;
+    const isDone = !!doneMap[eId];
+    const card = el('div', 'jc' + (isDone ? ' is-done' : ''));
+    card.dataset.id = eId;
     const top = el('div', 'jc-top');
-    top.appendChild(el('div', 'jc-t', e.titel || '—'));
+    const tWrap = el('div', 'jc-t', e.titel || '—');
+    const dnBtn = el('span', 'dn' + (isDone ? ' dn-on' : ''), isDone ? '✓ erledigt' : 'erledigt?');
+    dnBtn.onclick = () => td(dnBtn, eId);
+    tWrap.appendChild(dnBtn);
+    top.appendChild(tWrap);
     if(e.match) top.appendChild(el('div', 'jc-m m-h', e.match));
     card.appendChild(top);
     const meta = el('div', 'jc-meta');
@@ -1569,45 +1784,60 @@ function ladeWerkstattDaten(){
   const t = Date.now();
   const holen = (pfad) => fetch(pfad + '?t=' + t, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null);
   Promise.all([holen('crawler/bewerbungen_status.json'), holen('maschine_status.json')]).then(([bs, ms]) => {
+    // FIX 2026-10-05: Nur Sets aus der Statusdatei zählen (von der Werkstatt gebaut und geprüft).
+    // Vorher wurden Browser-Klicks als fertige Sets mit fest einprogrammiertem "Gremium 10/10" eingeblendet.
     SETS = (bs && Array.isArray(bs._sets_bereit)) ? bs._sets_bereit : [];
-    try {
-      const q = JSON.parse(localStorage.getItem('jsa12_auftrag_queue') || '[]');
-      q.forEach(it => {
-        if(!SETS.some(s => s.ordner === it.company_slug)){
-          SETS.push({
-            firma: it.company_name,
-            stelle: it.job_title,
-            url: it.direct_apply_url,
-            apply_url: it.direct_apply_url,
-            ordner: it.company_slug,
-            datum: it.datum_tag || 'heute',
-            versendet: false,
-            gremium: { hr: 10.0, fach: 10.0, ceo: 10.0, forensik: '10/10' },
-            hinweis: 'Anschreiben generiert · 10/10 Gremium · Bereit für Ablage'
-          });
-        }
-      });
-    } catch(e){}
+    SETS.forEach(s => { s._echt = true; });
     MASCHINE = ms;
     updateStats();
     if(CURRENT_TAB) renderTab(CURRENT_TAB);
   });
 }
-function werkstattTop(){
+function werkstattTopAll(){
   if(!DATA || !DATA.jobs) return [];
   const blocked = getBlockedCompanies().map(c => c.toLowerCase());
   return DATA.jobs.filter(j => {
     if(!j.top20 && (typeof j.fit !== 'number' || j.fit < 65)) return false;
-    // GOAT FILTER 2026-09-30 (Andy: "Da kann ich mich nicht mal bewerben"):
-    // Unaufgelöste Portal-Seiten (ohne Arbeitgeber-Endlink) niemals in die Werkstatt!
     if(j.final_link === false) return false;
-    // Bereits beworben, laufend oder Absage erhalten -> Niemals in die Werkstatt-Top-Empfehlungen!
-    // FIX 2026-09-30 (§27, Silver-Atena-Fall): nur DIESELBE Stelle ausschliessen, nie die ganze Firma.
-    if(j.bewerbung && j.bewerbung.gleiche_stelle !== false && ['gesendet','offen','absage'].includes(j.bewerbung.status)) return false;
     const co = firmaVon(j).toLowerCase();
     if(blocked.some(b => b && co.includes(b))) return false;
     return true;
-  }).sort((a, b) => effectiveScore(b) - effectiveScore(a)).slice(0, 30);
+  }).sort((a, b) => effectiveScore(b) - effectiveScore(a)).slice(0, 45);
+}
+function werkstattTop(){
+  return werkstattTopAll().filter(j => !isJobArchived(j)).slice(0, 30);
+}
+
+// NEU 2026-10-05: Set ehrlich bestellen. Der Browser kann auf dem iMac keinen Ordner anlegen.
+// Der Knopf kopiert deshalb den Auftrag (Firma, Stelle, Endlink) in die Zwischenablage. Eingefügt im
+// Claude-Chat startet er die Werkstatt: Matrix, Anschreiben, Lebenslauf, Gremium, Ordner unter Bewerbungen/.
+function bestellKey(job){ return 'j-' + msHash((job && (job.portal_url || job.url)) || ''); }
+function bestelltAm(job){
+  const m = lsJSON('jsa12_bestellt', '{}');
+  return m[bestellKey(job)] || '';
+}
+function bestelleSet(job, btn){
+  const stellentitel = cleanStellentitel((job && job.title) || 'Stelle');
+  const firma = firmaVon(job) || 'Unternehmen';
+  const zeilen = ['Erstelle Mappe für: ' + firma + ' – ' + stellentitel, (job && job.url) || ''];
+  if(job && job.portal_url && job.portal_url !== job.url) zeilen.push('Fundort: ' + job.portal_url);
+  const text = zeilen.filter(Boolean).join('\n');
+  const fertig = (ok) => {
+    if(ok){
+      try{
+        const m = lsJSON('jsa12_bestellt', '{}');
+        m[bestellKey(job)] = new Date().toLocaleDateString('de-DE');
+        localStorage.setItem('jsa12_bestellt', JSON.stringify(m));
+      }catch(e){}
+    }
+    showToast(ok ? 'Auftrag kopiert. Jetzt in den Claude-Chat einfügen, dort entsteht das Set.' : 'Kopieren nicht möglich. Bitte Link von Hand in den Claude-Chat einfügen.', ok);
+    if(btn) btn.textContent = ok ? '✓ Auftrag kopiert (in Claude einfügen)' : '🛠 Vollständiges Set bestellen (Auftrag kopieren)';
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(() => fertig(true), () => fertig(false));
+  } else {
+    fertig(false);
+  }
 }
 
 // Masterclass-Pipeline Trigger (Andy 2026-09-29: Rolle definieren, Kontext erstellen, Sofort-Download & iPhone-Ablage)
@@ -1622,10 +1852,10 @@ function triggerMasterclassPipeline(job, btn){
   const B = buildMSBody(job, stellentitel);
   const slug = (firma + '_' + stellentitel).replace(/[^a-zA-Z0-9äöüÄÖÜß]+/g, '_').slice(0, 50);
 
-  // 1. Sofortiger Download des maßgeschneiderten Anschreibens
+  // STILLGELEGT 2026-10-05: Diese Funktion hat ein fertiges Set mit "Gremium 10/10" vorgetäuscht,
+  // obwohl nur eine Vorlagen-DOCX heruntergeladen und ein Eintrag im Browser-Speicher abgelegt wurde.
+  // Sie wird nicht mehr aufgerufen (siehe bestelleSet). Der Code bleibt als Historie stehen.
   generateMS(job, btn);
-
-  // 2. Auftrag in Queue registrieren
   const queueItem = {
     company_slug: slug,
     company_name: firma,
@@ -1705,8 +1935,48 @@ function openCockpit(job, set, queueItem){
     'Andreas Schengel'
   ].join('\n');
 
+  // FIX 2026-10-05: Speicherort und Gremium-Noten nur zeigen, wenn die Werkstatt das Set wirklich gebaut hat.
+  // Vorher standen hier für JEDE Firma fünf fest einprogrammierte "10 / 10" (inklusive "Webasto-TA")
+  // und "Gesichert in iPhone Dateien-App", obwohl kein Ordner existierte.
+  // Alle eingesetzten Werte laufen durch escapeHtml bzw. sind Zahlen.
+  const echt = !!(set && set._echt);
+  const gNoten = (set && set.gremium) || {};
+  const note = v => (typeof v === 'number') ? v.toFixed(1).replace('.', ',') + ' / 10' : '–';
+  const kopfBadge = echt ? '📦 BEWERBUNGS-COCKPIT · geprüftes Set' : '📝 BEWERBUNGS-COCKPIT · Schnellentwurf (ungeprüft)';
+  const ablageBox = echt ? `
+    <div class="imac-pfad-box" style="padding:10px 12px;margin-bottom:14px;background:rgba(37,99,235,.07);border:1px solid rgba(59,130,246,.35)">
+      <div style="color:#60a5fa;font-weight:800;font-size:11px;margin-bottom:5px">📁 Das Set liegt auf dem iMac:</div>
+      <div style="color:var(--t);font-size:10px;line-height:1.5">
+        <code style="display:block;background:var(--s1);padding:4px 8px;border-radius:4px;margin-top:3px;word-break:break-all">${escapeHtml(fullPfad)}</code>
+      </div>
+      <div style="color:var(--m);font-size:9.5px;margin-top:6px;line-height:1.45">
+        👉 <b>Am iPhone öffnen:</b> Dateien-App › <i>iCloud Drive</i> › <i>Schreibtisch</i> › <i>ordner</i> › <i>Bewerbungen 2026</i> › <b>${escapeHtml(relPfad)}</b>
+      </div>
+      <div style="margin-top:8px">
+        <button class="pfad-copy-btn" id="cp-copy-pfad" style="padding:5px 11px;font-size:10px">📋 iMac-Pfad kopieren</button>
+      </div>
+    </div>` : `
+    <div class="imac-pfad-box" style="padding:10px 12px;margin-bottom:14px;background:rgba(232,160,50,.08);border:1px solid rgba(232,160,50,.4)">
+      <div style="color:var(--o);font-weight:800;font-size:11px;margin-bottom:5px">⚠️ Für diese Stelle gibt es noch kein Set</div>
+      <div style="color:var(--t);font-size:10px;line-height:1.5">
+        Die Texte unten sind ein <b>Vorlagen-Entwurf aus dem Browser</b>: ohne Anforderungs-Matrix, ohne Gremium, ohne Belegprüfung.
+        Ein Download landet im <b>Download-Ordner dieses Geräts</b>, nicht im Ordner Bewerbungen.
+        Das geprüfte Set entsteht erst über „Vollständiges Set bestellen“ auf der Stellenkarte.
+      </div>
+    </div>`;
+  const gremiumBox = echt ? `
+    <div class="cockpit-section">
+      <h3>🏛️ Gremium-Prüfung der Werkstatt (Noten aus der Statusdatei)</h3>
+      <div class="gremium-grid">
+        <div class="gremium-chip"><span>Personal</span><b>${note(gNoten.hr)}</b></div>
+        <div class="gremium-chip"><span>Fachbereich</span><b>${note(gNoten.fach)}</b></div>
+        <div class="gremium-chip"><span>Geschäftsführung</span><b>${note(gNoten.ceo)}</b></div>
+        <div class="gremium-chip"><span>Forensik</span><b>${escapeHtml(String(gNoten.forensik || '–'))}</b></div>
+      </div>
+    </div>` : '';
+
   cnt.innerHTML = `
-    <div class="cockpit-header-badge">🦅 MASTERCLASS BEWERBUNGS-COCKPIT · GOAT MODE</div>
+    <div class="cockpit-header-badge">${kopfBadge}</div>
     <h2 style="font-size:17px;margin:2px 0 4px;color:var(--t)">${escapeHtml(firma)}</h2>
     <div style="font-size:13px;font-weight:700;color:var(--t);margin-bottom:6px">${escapeHtml(stellentitel)}</div>
     <div style="font-size:11px;color:var(--m);margin-bottom:14px;line-height:1.5">
@@ -1720,33 +1990,11 @@ function openCockpit(job, set, queueItem){
       ${directLink ? `<button class="btn-cockpit" id="cp-dl-link-html" style="margin:0;flex:1;min-width:180px;padding:10px;background:#0284c7">🔗 Direktlink (HTML) sichern</button>` : ''}
     </div>
 
-    <!-- iPhone / iMac Speicher-Ort Box -->
-    <div class="imac-pfad-box" style="padding:10px 12px;margin-bottom:14px;background:rgba(37,99,235,.07);border:1px solid rgba(59,130,246,.35)">
-      <div style="color:#60a5fa;font-weight:800;font-size:11px;margin-bottom:5px">📱 Gesichert in iPhone Dateien-App:</div>
-      <div style="color:var(--t);font-size:10px;line-height:1.5">
-        <b>Speicherort auf Andy's iMac:</b><br>
-        <code style="display:block;background:var(--s1);padding:4px 8px;border-radius:4px;margin-top:3px;word-break:break-all">${escapeHtml(fullPfad)}</code>
-      </div>
-      <div style="color:var(--m);font-size:9.5px;margin-top:6px;line-height:1.45">
-        👉 <b>Am iPhone öffnen:</b> Dateien-App › <i>Auf meinem iPhone / In Dateien sichern</i> › <i>Schreibtisch Andy's iMac</i> › <i>ordner</i> › <i>Bewerbungen 2026</i> › <b>${escapeHtml(relPfad)}</b>
-      </div>
-      <div style="margin-top:8px">
-        <button class="pfad-copy-btn" id="cp-copy-pfad" style="padding:5px 11px;font-size:10px">📋 iMac-Pfad kopieren</button>
-      </div>
-    </div>
+    <!-- Speicherort (nur bei echtem Set) bzw. ehrlicher Hinweis -->
+    ${ablageBox}
 
-    <!-- 5-Perspektiven Gremium -->
-    <div class="cockpit-section">
-      <h3>🏛️ 5-Perspektiven-Prüfsimulations-Gremium (Audit 10.0 / 10 Freigabe)</h3>
-      <div class="gremium-grid">
-        <div class="gremium-chip"><span>1. Personalchef</span><b>10 / 10</b></div>
-        <div class="gremium-chip"><span>2. Fachbereich</span><b>10 / 10</b></div>
-        <div class="gremium-chip"><span>3. CEO / GL</span><b>10 / 10</b></div>
-        <div class="gremium-chip"><span>4. Webasto-TA</span><b>10 / 10</b></div>
-        <div class="gremium-chip"><span>5. Anti-KI Wächter</span><b>10 / 10</b></div>
-      </div>
-      <div style="font-size:9px;color:var(--m);margin-top:4px">✓ Zero Hallucination · ✓ Fakten belegt · ✓ Verhandlungsbereite Gehaltsklausel · ✓ Korridor 220–260 Wörter</div>
-    </div>
+    <!-- Gremium (nur bei echtem Set, Noten aus crawler/bewerbungen_status.json) -->
+    ${gremiumBox}
 
     <!-- Kurzbegründung / Portal-Text -->
     <div class="cockpit-section">
@@ -1815,7 +2063,8 @@ function openCockpit(job, set, queueItem){
       showToast('00_DIREKTLINK_BEWERBUNG.html heruntergeladen!', true);
     };
   }
-  document.getElementById('cp-copy-pfad').onclick = () => {
+  const cpPfad = document.getElementById('cp-copy-pfad');
+  if(cpPfad) cpPfad.onclick = () => {
     navigator.clipboard.writeText(fullPfad).then(() => showToast('Pfad kopiert: ' + fullPfad, true));
   };
   document.getElementById('cp-copy-portal').onclick = () => {
@@ -1906,17 +2155,48 @@ function renderWerkstatt(){
   sec.appendChild(sb);
   // 3) Beste offene Treffer
   const tb = el('div', 'ws-box');
-  tb.appendChild(el('h3', null, '🎯 Beste offene Treffer nach Andy-Fit (ab 65)'));
+  tb.appendChild(el('h3', null, '🎯 Werkstatt Top-Empfehlungen (ab Fit 65 / Top 20)'));
   const kb = el('label', 'ws-note');
   const cbx = document.createElement('input'); cbx.type = 'checkbox';
   try{ cbx.checked = localStorage.getItem('jsa12_kurzbefehl') === '1'; }catch{}
   cbx.addEventListener('change', () => { try{ localStorage.setItem('jsa12_kurzbefehl', cbx.checked ? '1' : '0'); }catch{} });
   kb.appendChild(cbx); kb.appendChild(document.createTextNode(' iPhone-Kurzbefehl „Jobmaschine Auftrag“ ist eingerichtet (Werkstatt-Button schickt dann direkt)'));
   tb.appendChild(kb);
+
+  // Sub-Navigation für Werkstatt
+  const allTop = werkstattTopAll();
+  const openTop = allTop.filter(j => !isJobArchived(j));
+  const archTop = allTop.filter(j => isJobArchived(j));
+
+  const curView = SUB_VIEWS['ws'] || 'open';
+  const subnav = el('div', 'cat-subnav');
+
+  const btnOpen = el('button', 'cat-sub-btn' + (curView === 'open' ? ' on' : ''));
+  btnOpen.innerHTML = '<span class="sub-icon">⚡</span> Offene Empfehlungen <span class="cat-sub-cnt">' + openTop.length + '</span>';
+  btnOpen.onclick = () => switchSubTab('ws', 'open');
+
+  const btnArch = el('button', 'cat-sub-btn sub-arch-btn' + (curView === 'archive' ? ' on' : ''));
+  btnArch.innerHTML = '<span class="sub-icon">🗄️</span> Werkstatt-Archiv <span class="cat-sub-cnt">' + archTop.length + '</span>';
+  btnArch.onclick = () => switchSubTab('ws', 'archive');
+
+  subnav.appendChild(btnOpen);
+  subnav.appendChild(btnArch);
+  tb.appendChild(subnav);
+
+  if(curView === 'archive'){
+    if(!archTop.length){
+      tb.appendChild(el('div', 'empty', 'Noch keine archivierten Top-Treffer in der Werkstatt.'));
+    } else {
+      archTop.forEach(j => tb.appendChild(buildArchivedCard(j, j.category || 'pm')));
+    }
+  } else {
+    if(!openTop.length){
+      tb.appendChild(el('div', 'empty', 'Keine weiteren offenen Treffer ab Fit 65. (' + archTop.length + ' im Archiv)'));
+    } else {
+      openTop.forEach(j => tb.appendChild(buildCard(j, j.category || 'pm')));
+    }
+  }
   sec.appendChild(tb);
-  const liste = werkstattTop();
-  if(!liste.length) sec.appendChild(el('div', 'empty', 'Keine offenen Treffer ab Fit 65.'));
-  liste.forEach(j => sec.appendChild(buildCard(j, j.category || 'pm')));
 }
 
 function renderTab(tab){
@@ -1937,25 +2217,97 @@ function renderTab(tab){
     ld.appendChild(code);
     sec.appendChild(ld); return;
   }
-  const list = jobsForTab(tab);
-  if(list.length === 0){
-    const e = el('div', 'empty');
-    e.appendChild(el('b', null, '0 Treffer in ' + CAT_LABELS[tab]));
-    if(FILTER) e.appendChild(document.createTextNode('für Filter: "' + FILTER + '"'));
-    sec.appendChild(e);
+  const allList = jobsForTab(tab);
+  const openList = allList.filter(j => !isJobArchived(j));
+  const archList = allList.filter(j => isJobArchived(j));
+
+  // Sub-Navigation für diese Kategorie
+  const curView = SUB_VIEWS[tab] || 'open';
+  const subnav = el('div', 'cat-subnav');
+
+  const btnOpen = el('button', 'cat-sub-btn' + (curView === 'open' ? ' on' : ''));
+  btnOpen.setAttribute('data-view', 'open');
+  btnOpen.innerHTML = '<span class="sub-icon">⚡</span> Offene Stellen <span class="cat-sub-cnt">' + openList.length + '</span>';
+  btnOpen.onclick = () => switchSubTab(tab, 'open');
+
+  const btnArch = el('button', 'cat-sub-btn sub-arch-btn' + (curView === 'archive' ? ' on' : ''));
+  btnArch.setAttribute('data-view', 'archive');
+  btnArch.innerHTML = '<span class="sub-icon">🗄️</span> Archiv <span class="cat-sub-cnt">' + archList.length + '</span>';
+  btnArch.onclick = () => switchSubTab(tab, 'archive');
+
+  subnav.appendChild(btnOpen);
+  subnav.appendChild(btnArch);
+  sec.appendChild(subnav);
+
+  if(curView === 'open'){
+    if(openList.length === 0){
+      const e = el('div', 'empty');
+      e.appendChild(el('b', null, '0 offene Treffer in ' + CAT_LABELS[tab]));
+      if(FILTER) e.appendChild(document.createTextNode(' für Filter: "' + FILTER + '"'));
+      if(archList.length){
+        const p = el('p', null, archList.length + ' Stellen sind im Archiv dokumentiert.');
+        p.style.marginTop = '6px';
+        const a = el('a', null, '👉 Zum Archiv-Reiter (' + archList.length + ')');
+        a.style.cssText = 'color:var(--o);font-weight:700;cursor:pointer;display:inline-block;margin-top:4px';
+        a.onclick = () => switchSubTab(tab, 'archive');
+        p.appendChild(document.createElement('br'));
+        p.appendChild(a);
+        e.appendChild(p);
+      }
+      sec.appendChild(e);
+      return;
+    }
+    // PERF 2026-10-05: nicht mehr alle Karten auf einmal (PM hatte über 350), sondern in Portionen.
+    renderInPortionen(sec, openList, j => buildCard(j, tab), true);
+    return;
+  } else {
+    // Archiv-Ansicht mit Filter-Pills
+    const curFilter = ARCHIV_SUB_FILTERS[tab] || 'all';
+    const tb = el('div', 'arch-sub-toolbar');
+    const filters = [
+      { id: 'all', label: 'Alle (' + archList.length + ')' },
+      { id: 'app', label: '✅ Beworben' },
+      { id: 'rej', label: '🚫 Absage' },
+      { id: 'uns', label: '❌ Unpassend' },
+      { id: 'irr', label: '🔇 Nicht relevant' }
+    ];
+    filters.forEach(f => {
+      const b = el('button', 'arch-sub-pill' + (curFilter === f.id ? ' on' : ''), f.label);
+      b.onclick = () => {
+        ARCHIV_SUB_FILTERS[tab] = f.id;
+        renderTab(tab);
+      };
+      tb.appendChild(b);
+    });
+    sec.appendChild(tb);
+
+    let filteredArch = archList;
+    if(curFilter !== 'all'){
+      filteredArch = archList.filter(j => getJobArchiveInfo(j).status === curFilter);
+    }
+    if(filteredArch.length === 0){
+      const e = el('div', 'empty');
+      e.appendChild(el('b', null, 'Keine archivierten Stellen in dieser Filterauswahl.'));
+      sec.appendChild(e);
+      return;
+    }
+    renderInPortionen(sec, filteredArch, j => buildArchivedCard(j, tab), false);
     return;
   }
-  list.forEach(j => sec.appendChild(buildCard(j, tab)));
-  // Status restore (v13: 4-Status app/uns/rej/irr, Migration done→uns)
+
+  applyStoredStatus(sec);
+}
+
+// PERF 2026-10-05: gespeicherte Markierungen in EINEM Durchlauf über die gerade gebauten Karten anwenden.
+// Vorher lief je gespeichertem Status eine eigene Suche über alle Karten des Tabs.
+function applyStoredStatus(root){
   try{
-    const map = JSON.parse(localStorage.getItem('jsa12_status') || '{}');
+    const map = lsJSON('jsa12_status', '{}');
     const hide = document.getElementById('hide-marked');
-    Object.entries(map).forEach(([id, status]) => {
+    root.querySelectorAll('[data-id]').forEach(card => {
+      const status = map[card.dataset.id];
       if(!status) return;
-      // Migration: alter 'done'-Status → 'uns' (unpassend)
-      let st = status === 'done' ? 'uns' : status;
-      const card = sec.querySelector('[data-id="' + CSS.escape(id) + '"]');
-      if(!card) return;
+      const st = status === 'done' ? 'uns' : status;
       card.classList.add('st-' + st);
       card.dataset.status = st;
       const btns = card.querySelectorAll('.sb');
@@ -1963,19 +2315,43 @@ function renderTab(tab){
       if(idx !== undefined && btns[idx]) btns[idx].classList.add('on-' + st);
       if(hide && hide.checked) card.classList.add('hide-marked');
     });
-    // Migration vom alten "jsa12_done" Format: bool → 'uns'
-    const oldDone = JSON.parse(localStorage.getItem('jsa12_done') || '{}');
-    Object.entries(oldDone).forEach(([id, v]) => {
-      if(!v) return;
-      const card = sec.querySelector('[data-id="' + CSS.escape(id) + '"]');
-      if(!card || card.dataset.status) return;
-      card.classList.add('st-uns');
-      card.dataset.status = 'uns';
-      const btns = card.querySelectorAll('.sb');
-      if(btns[STATUS_IDX.uns]) btns[STATUS_IDX.uns].classList.add('on-uns');
-      if(hide && hide.checked) card.classList.add('hide-marked');
-    });
-  }catch{}
+  }catch(e){}
+}
+
+// Karten in Portionen aufbauen: die ersten 30 sofort, der Rest beim Herunterscrollen oder per Knopf.
+// mitTrenner: vor der ersten Stelle mit Andy-Fit unter 40 steht ein ehrlicher Hinweis.
+const PORTION = 30;
+function renderInPortionen(sec, list, make, mitTrenner){
+  let i = 0, trennerGesetzt = false, obs = null;
+  const more = el('button', 'more-btn');
+  const schritt = () => {
+    const frag = document.createDocumentFragment();
+    const end = Math.min(i + PORTION, list.length);
+    for(; i < end; i++){
+      const j = list[i];
+      if(mitTrenner && !trennerGesetzt && !j.top20 && andyFit(j) < 40){
+        trennerGesetzt = true;
+        frag.appendChild(el('div', 'fit-divider', 'Ab hier schwacher Fit (unter 40): ' + (list.length - i) + ' Stellen, die nur am Rand zu deinem Profil passen.'));
+      }
+      frag.appendChild(make(j));
+    }
+    applyStoredStatus(frag);
+    if(more.parentNode === sec) sec.insertBefore(frag, more); else sec.appendChild(frag);
+    const rest = list.length - i;
+    if(rest > 0){
+      more.textContent = 'Weitere ' + Math.min(PORTION, rest) + ' von ' + rest + ' Stellen anzeigen';
+      if(more.parentNode !== sec) sec.appendChild(more);
+    } else {
+      if(obs) obs.disconnect();
+      if(more.parentNode === sec) sec.removeChild(more);
+    }
+  };
+  more.onclick = schritt;
+  schritt();
+  if(list.length > PORTION && 'IntersectionObserver' in window){
+    obs = new IntersectionObserver(es => { if(es.some(e => e.isIntersecting) && more.parentNode === sec) schritt(); }, { rootMargin: '500px' });
+    obs.observe(more);
+  }
 }
 
 function updateStats(){
@@ -1983,9 +2359,15 @@ function updateStats(){
   const wsc = document.getElementById('tc-ws'); if(wsc) wsc.textContent = werkstattTop().length;
   ['ki','pm','auto','pharma'].forEach(c => {
     const list = jobsForTab(c);
-    const e1 = document.getElementById('ct-' + c); if(e1) e1.textContent = list.length;
-    const e2 = document.getElementById('tc-' + c); if(e2) e2.textContent = list.length;
+    const openCount = list.filter(j => !isJobArchived(j)).length;
+    const e1 = document.getElementById('ct-' + c); if(e1) e1.textContent = openCount;
+    const e2 = document.getElementById('tc-' + c); if(e2) e2.textContent = openCount;
   });
+  // NEU 2026-10-05: Zähler der Reiter Initiativ und Headhunter aus den Daten statt fest "8" und "15".
+  if(DATA.tabs){
+    const zi = document.querySelector('.tb[data-c="init"] .c'); if(zi && Array.isArray(DATA.tabs.initiativ)) zi.textContent = DATA.tabs.initiativ.length;
+    const zh = document.querySelector('.tb[data-c="hh"] .c'); if(zh && Array.isArray(DATA.tabs.headhunter)) zh.textContent = DATA.tabs.headhunter.length;
+  }
   const stand = document.getElementById('hd-stand');
   if(stand && DATA.generated_at){
     const d = new Date(DATA.generated_at);
@@ -2002,9 +2384,6 @@ function go(c){
   document.querySelector('.tb[data-c="' + c + '"]').classList.add('on');
   document.getElementById('sec-' + c).classList.add('on');
   CURRENT_TAB = c;
-  // 2026-08-06: hh + init sind nicht mehr hardcoded, sondern kommen aus DATA.tabs.
-  // renderTab() leitet sie an renderStaticTab() weiter; faellt DATA.tabs weg, bleibt
-  // das alte HTML unangetastet stehen (Rueckfallebene).
   renderTab(c);
   try{ localStorage.setItem('jsa12_tab', c); }catch{}
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2012,15 +2391,22 @@ function go(c){
 
 function td(btn, id){
   const card = document.querySelector('[data-id="' + CSS.escape(id) + '"]');
-  if(!card) return;
-  const isDone = card.classList.toggle('is-done');
-  btn.classList.toggle('dn-on', isDone);
-  btn.textContent = isDone ? '✓ erledigt' : 'erledigt?';
+  let isDone = false;
   try{
     const done = JSON.parse(localStorage.getItem('jsa12_done') || '{}');
-    done[id] = isDone;
+    isDone = !done[id];
+    if(isDone) done[id] = true; else delete done[id];
     localStorage.setItem('jsa12_done', JSON.stringify(done));
   }catch{}
+  if(card){
+    card.classList.toggle('is-done', isDone);
+    btn.classList.toggle('dn-on', isDone);
+    btn.textContent = isDone ? '✓ erledigt' : 'erledigt?';
+  }
+  showToast(isDone ? 'Als erledigt markiert · Ins Archiv verschoben' : 'Wieder als offen markiert');
+  if(CURRENT_TAB === 'init' || CURRENT_TAB === 'hh'){
+    renderTab(CURRENT_TAB);
+  }
 }
 
 // ===== NEU 2026-05-28: Firma-Blacklist + Archiv-Modal =====
@@ -2199,6 +2585,12 @@ function renderArchiv(){
       localStorage.setItem('jsa12_status_idv2', '1');
     }
   }catch(e){}
+  ['ws','ki','pm','auto','pharma','init','hh'].forEach(k => {
+    try {
+      const sv = localStorage.getItem('jsa12_subview_' + k);
+      if(sv === 'open' || sv === 'archive') SUB_VIEWS[k] = sv;
+    } catch(e){}
+  });
   const ta = document.getElementById('ft');
   try{ const s = localStorage.getItem('jsa12_ft'); if(s) ta.value = s; }catch{}
   ta.addEventListener('input', () => { try{ localStorage.setItem('jsa12_ft', ta.value); }catch{} });

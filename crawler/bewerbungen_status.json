@@ -1,8 +1,36 @@
 {
   "_kommentar": "Bewerbungs-Status je Firma. Wird von crawler_v2.py gelesen und auf jeden Job gestempelt, dessen Firma hier auftaucht. Das Dashboard zeigt daraus ein Abzeichen, damit Andy nie wieder eine Stelle bearbeitet, auf die er sich schon beworben hat.",
   "_regel": "Nur eintragen, was belegt ist. Eine Mappe auf der Platte ist KEINE Bewerbung (Regel aus VERSAND_REGISTER.md). Drei Stufen: 'gesendet' = nachweislich raus, 'offen' = laeuft, Antwort steht aus, 'absage' = abgelehnt, 'mappe' = Unterlagen liegen bereit, Versand unbestaetigt.",
-  "_stand": "2026-10-01",
+  "_stand": "2026-10-05",
   "eintraege": [
+    {
+      "firma": "Truma Gerätetechnik",
+      "stelle": "Projektleiter Produktentwicklung",
+      "status": "gesendet",
+      "datum": "2026-10-01",
+      "quelle": "Rexx Systems Portalbewerbung 01.10.2026 (Andy Vollzugsmeldung). Mappe in Bewerbungen/Truma_Projektleiter_Produktentwicklung/VERSAND/"
+    },
+    {
+      "firma": "Incap Electronics Germany",
+      "stelle": "Technischer Projektleiter EMS",
+      "status": "gesendet",
+      "datum": "2026-10-01",
+      "quelle": "StepStone-Portalbewerbung 01.10.2026 (Andy Vollzugsmeldung). Mappe in Bewerbungen/Incap_Technischer_Projektleiter_EMS/VERSAND/"
+    },
+    {
+      "firma": "Akkodis Germany Tech Experts",
+      "stelle": "Senior Program Manager - Aerospace",
+      "status": "gesendet",
+      "datum": "2026-10-01",
+      "quelle": "Xing/Akkodis Portalbewerbung 01.10.2026 (Andy Vollzugsmeldung). Mappe in Bewerbungen/Akkodis_Senior_Program_Manager_Aerospace/VERSAND/"
+    },
+    {
+      "firma": "Akkodis",
+      "stelle": "Senior Program Manager - Aerospace",
+      "status": "gesendet",
+      "datum": "2026-10-01",
+      "quelle": "Xing/Akkodis Portalbewerbung 01.10.2026 (Andy Vollzugsmeldung). Mappe in Bewerbungen/Akkodis_Senior_Program_Manager_Aerospace/VERSAND/"
+    },
     {
       "firma": "EDS Automotive",
       "stelle": "Projektleiter:in Entwicklung",
@@ -163,9 +191,9 @@
     {
       "firma": "Webasto",
       "stelle": "Process Excellence Expert R&D (w/m/x), Kennung 36593",
-      "status": "offen",
-      "datum": "2026-09-23",
-      "quelle": "Eingangsbestaetigung 23.09.2026 16:53 (Webasto Recruiting, SuccessFactors): 'Deine Bewerbung ist bei uns angekommen'. .eml im Firmenordner Bewerbungen/Webasto_Process_Excellence_Expert_RnD",
+      "status": "absage",
+      "datum": "2026-10-03",
+      "quelle": "Absage 2026-10-03 17:00 (Webasto Recruiting <system@successfactors.eu>): 'Webasto – Deine Bewerbung als Process Excellence Expert R&D (w/m/x) '. .eml in Bewerbungen/99_Absagen/Webasto_Process_Excellence_Expert_RnD/Webasto – Deine Bewerbung als Process Excellence Expert R&D (w_m_x) .eml (automatisch erkannt, versand_erkennung.py)",
       "notiz": "Ansprechpartner Martin Czembor, Talent Acquisition Germany, recruiting.germany@webasto.com. Gesendet: Anschreiben V3 + von Andy ueberarbeiteter CV (neue CV-Basis V9). Nachfass Tag 4-6 (27.-29.09.)."
     },
     {
@@ -185,17 +213,17 @@
     {
       "firma": "pmX Group",
       "stelle": "Fahrzeugfunktionsverantwortung Gesamtfahrzeug (m/w/d)",
-      "status": "offen",
-      "datum": "2026-09-27",
-      "quelle": "Eingangsbestätigung 27.09.2026 (.eml im Ordner Bewerbungen/01_Antwort_austehend/pmX_Group_Fahrzeugfunktionsverantwortung_Gesamtfahrzeug)",
+      "status": "absage",
+      "datum": "2026-10-05",
+      "quelle": "Absage 2026-10-05 09:03 (Melhem Melhem <pmx-jobs@m.personio.de>): 'Ihre Bewerbung als Fahrzeugfunktionsverantwortung Gesamtfahrzeug  (m/w/d)'. .eml in Bewerbungen/99_Absagen/pmX_Group_Fahrzeugfunktionsverantwortung_Gesamtfahrzeug/Ihre Bewerbung als Fahrzeugfunktionsverantwortung Gesamtfahrzeug (m_w_d).eml (automatisch erkannt, versand_erkennung.py)",
       "notiz": "Versendet am 27.09.2026. Liegt im Ordner 01_Antwort_austehend."
     },
     {
       "firma": "Bertrandt",
       "stelle": "Projektmanager Gesamtfahrzeugerprobung & Validierungssteuerung (m/w/d)",
-      "status": "gesendet",
-      "datum": "2026-09-29",
-      "quelle": "Eingangsbestaetigung 2026-09-29 17:18 (\"noreply.sf @ Bertrandt\" <noreply.sf@bertrandt.com): 'Aufnahme in Bewerbermanagementsystem von Bertrandt'. .eml in Bewerbungen/01_Antwort_austehend/Bertrandt_PM_Gesamtfahrzeugerprobung_Validierung/Aufnahme in Bewerbermanagementsystem von Bertrandt.eml (automatisch erkannt, versand_erkennung.py)",
+      "status": "absage",
+      "datum": "2026-10-05",
+      "quelle": "Absage 2026-10-05 09:00 (Alina Vaha\n  <correspondencebertrandta@productsdc1): 'Ihre Bewerbung bei Bertrandt'. .eml in Bewerbungen/99_Absagen/Bertrandt_PM_Gesamtfahrzeugerprobung_Validierung/Ihre Bewerbung bei Bertrandt.eml (automatisch erkannt, versand_erkennung.py)",
       "notiz": "Erfolgreich versendet am 29.09.2026 über bertrandt.com/karriere (Kennziffer 4174, Kontakt Alina Vaha). Mappe in 01_Antwort_austehend."
     },
     {
@@ -240,29 +268,23 @@
       "status": "absage",
       "datum": "2025-12-10",
       "quelle": "Absage 2025-12-10 11:20 (Laura Stellwag <careers@vaeridion.com>): '✈️ VÆRIDION: Your Application'. .eml in Bewerbungen/99_Absagen/VÆRIDION/✈️ VÆRIDION_ Your Application.eml (automatisch erkannt, versand_erkennung.py)"
+    },
+    {
+      "firma": "bakedwith",
+      "stelle": "bakedwith",
+      "status": "offen",
+      "datum": "2026-05-27",
+      "quelle": "Eingangsbestaetigung 2026-05-27 19:18 (\"Indeed-Bewerben-Funktion\" <indeedapply@indeed.com): 'Bewerbung über Indeed: Automation & AI Spezialist*in (m/w/d)'. .eml in Bewerbungen/01_Antwort_austehend/bakedwith/Bewerbung über Indeed_ Automation & AI Spezialist*in (m_w_d).eml (automatisch erkannt, versand_erkennung.py)"
+    },
+    {
+      "firma": "Medi-Globe",
+      "stelle": "Medi-Globe",
+      "status": "offen",
+      "datum": "2026-04-28",
+      "quelle": "Eingangsbestaetigung 2026-04-28 17:19 (Medi-Globe Group <karriereportal@medi-globe.de>): 'Ihre Bewerbung Medi-Globe Group - Eingangsbestätigung'. .eml in Bewerbungen/01_Antwort_austehend/Medi-Globe/Ihre Bewerbung Medi-Globe Group - Eingangsbestätigung.eml (automatisch erkannt, versand_erkennung.py)"
     }
   ],
   "_sets_bereit": [
-    {
-      "firma": "Bertrandt",
-      "stelle": "Projektmanager Gesamtfahrzeugerprobung & Validierungssteuerung",
-      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-Projektmanager-Gesamtfahrzeugerprobung-&-Validierungssteuerung-(mwd)-80313/1430756533/",
-      "portal_url": "https://bertrandt-ag.contactrh.com/jobs/13610/44432772",
-      "apply_url": "https://www.bertrandt.com/karriere",
-      "ordner": "01_Antwort_austehend/Bertrandt_PM_Gesamtfahrzeugerprobung_Validierung",
-      "datum": "2026-09-29",
-      "versendet": true,
-      "gremium": {
-        "hr": 10.0,
-        "fach": 10.0,
-        "ceo": 10.0,
-        "forensik": "10/10",
-        "cv_hr": 10.0,
-        "cv_fach": 10.0,
-        "cv_ceo": 10.0
-      },
-      "hinweis": "Versendet am 29.09.2026. Mappe liegt in 01_Antwort_austehend (Anschreiben V6 + CV V5)."
-    },
     {
       "firma": "Brainlab",
       "stelle": "(Senior) Project Engineer – Surgical Navigation Platforms",
@@ -272,155 +294,31 @@
       "ordner": "01_Antwort_austehend/Brainlab_Senior_Project_Engineer_Surgical_Navigation",
       "datum": "2026-09-29",
       "versendet": true,
-      "gremium": {
-        "hr": 10.0,
-        "fach": 10.0,
-        "ceo": 10.0,
-        "forensik": "10/10",
-        "cv_hr": 10.0,
-        "cv_fach": 10.0,
-        "cv_ceo": 10.0
-      },
-      "hinweis": "Versendet am 29.09.2026. Mappe liegt in 01_Antwort_austehend (Anschreiben V3 + CV V9)."
-    },
-    {
-      "firma": "Aras",
-      "stelle": "Corporation Senior Project Manager based in Germany",
-      "ordner": "Aras_Corporation_Senior_Project_Manager_based_in_Germany",
-      "datum": "2026-09-30",
-      "versendet": false,
-      "gremium": {
-        "hr": 10.0,
-        "fach": 10.0,
-        "ceo": 10.0,
-        "forensik": "10/10"
-      },
-      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet"
-    },
-    {
-      "firma": "Personalabteilung",
-      "stelle": "Entwicklungsingenieur Baugruppenverantwo",
-      "ordner": "99_Absagen/R&S",
-      "datum": "2026-09-30",
-      "versendet": false,
-      "gremium": {
-        "hr": 10.0,
-        "fach": 10.0,
-        "ceo": 10.0,
-        "forensik": "10/10"
-      },
-      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet"
-    },
-    {
-      "firma": "BNP",
-      "stelle": "Paribas S A Senior Project Manager - Schwerpunkt Reg",
-      "ordner": "BNP_Paribas_S_A_Senior_Project_Manager_-_Schwerpunkt_Reg",
-      "datum": "2026-09-30",
-      "versendet": false,
-      "gremium": {
-        "hr": 10.0,
-        "fach": 10.0,
-        "ceo": 10.0,
-        "forensik": "10/10"
-      },
-      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet"
-    },
-    {
-      "firma": "Baugruppenverantwortlicher",
-      "stelle": "Chassis Front",
-      "ordner": "Akkodis_Chassis-Baugruppenverantwortlicher",
-      "datum": "2026-09-30",
-      "versendet": false,
-      "gremium": {
-        "hr": 10.0,
-        "fach": 10.0,
-        "ceo": 10.0,
-        "forensik": "10/10"
-      },
-      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet"
-    },
-    {
-      "firma": "Silver",
-      "stelle": "Atena GmbH Technischer Projektleiter Elektronikentw",
-      "ordner": "99_Absagen/SilverAtena_TechPL_Elektronik_eMobility",
-      "datum": "2026-09-30",
-      "versendet": false,
-      "gremium": {
-        "hr": 10.0,
-        "fach": 10.0,
-        "ceo": 10.0,
-        "forensik": "10/10"
-      },
-      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet"
-    },
-    {
-      "firma": "Blickling",
-      "stelle": "CMC Management Biopharmazeutische Protei",
-      "ordner": "Blickling_CMC_Management_Biopharmazeutische_Protei",
-      "datum": "2026-09-30",
-      "versendet": false,
-      "gremium": {
-        "hr": 10.0,
-        "fach": 10.0,
-        "ceo": 10.0,
-        "forensik": "10/10"
-      },
-      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet"
-    },
-    {
-      "firma": "Entwicklungsingenieur",
-      "stelle": "Baugruppenverantwo",
-      "ordner": "99_Absagen/EDAG_Entwicklungsingenieur_HW_Systems_Engineering",
-      "datum": "2026-09-30",
-      "versendet": false,
-      "gremium": {
-        "hr": 10.0,
-        "fach": 10.0,
-        "ceo": 10.0,
-        "forensik": "10/10"
-      },
-      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet"
-    },
-    {
-      "firma": "MY",
-      "stelle": "Humancapital GmbH Technischer Projektmanager",
-      "ordner": "MY_Humancapital_GmbH_Technischer_Projektmanager",
-      "datum": "2026-09-30",
-      "versendet": false,
-      "gremium": {
-        "hr": 10.0,
-        "fach": 10.0,
-        "ceo": 10.0,
-        "forensik": "10/10"
-      },
-      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet"
+      "gremium": {},
+      "hinweis": "Versendet am 29.09.2026. Mappe liegt in 01_Antwort_austehend (Anschreiben V3 + CV V9).",
+      "_gremium_hinweis": "Noten entfernt 05.10.2026: im Ordner liegt kein gremium.json, die 10/10 waren nicht belegt"
     },
     {
       "firma": "Silver Atena GmbH",
       "stelle": "Serienmanager (m/w/d)",
       "url": "https://karriere.silver-atena.de/stellenangebote/berufserfahrene/serienmanager-5ab8c146-c21f-40f0-91ae-84d8b432c444",
       "apply_url": "https://karriere.silver-atena.de/stellenangebote/berufserfahrene/serienmanager-5ab8c146-c21f-40f0-91ae-84d8b432c444",
-      "ordner": "SilverAtena_Serienmanager_Muenchen",
+      "ordner": "01_Antwort_austehend/SilverAtena_Serienmanager_Muenchen",
       "datum": "2026-09-30",
       "versendet": true,
-      "gremium": {
-        "1. Personalchef Zielfirma": 10,
-        "2. Abteilungsleiter Fachbereich": 10,
-        "3. CEO Geschäftsführer": 10,
-        "4. Webasto-TA Benchmark": 8,
-        "5. Anti-KI Faktenwächter": 10
-      },
+      "gremium": {},
       "hinweis": "Anschreiben (1 S.) + CV (2 S.) bereit zum Upload",
-      "versendet_am": "30.09.2026"
+      "versendet_am": "30.09.2026",
+      "_gremium_hinweis": "Noten entfernt 05.10.2026: im Ordner liegt kein gremium.json, die 10/10 waren nicht belegt"
     },
     {
       "firma": "Incap Electronics Germany",
       "stelle": "Technischer Projektleiter EMS (m/w/d)",
       "url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-EMS-m-w-d-Karlsfeld-Incap-Electronics-Germany--14528570-inline.html",
       "apply_url": "https://www.stepstone.de/stellenangebote--Technischer-Projektleiter-EMS-m-w-d-Karlsfeld-Incap-Electronics-Germany--14528570-inline.html",
-      "ordner": "Incap_Technischer_Projektleiter_EMS",
+      "ordner": "01_Antwort_austehend/Incap_Technischer_Projektleiter_EMS",
       "datum": "2026-10-01",
-      "versendet": false,
+      "versendet": true,
       "gremium": {
         "hr": 9.0,
         "fach": 8.5,
@@ -430,16 +328,17 @@
         "cv_ceo": 9.0,
         "forensik": "frei"
       },
-      "hinweis": "Gremium + gremium_check bestanden. Hochladen NUR aus dem Unterordner VERSAND/ (Anschreiben 1 S. + Lebenslauf 2 S.)"
+      "hinweis": "Gremium + gremium_check bestanden. Hochladen NUR aus dem Unterordner VERSAND/ (Anschreiben 1 S. + Lebenslauf 2 S.)",
+      "_versendet_quelle": "Register: gesendet 2026-10-01"
     },
     {
       "firma": "Truma Gerätetechnik",
       "stelle": "Projektleiter Produktentwicklung (m/w/d)",
       "url": "https://career.truma.com/Projektleiter-Produktentwicklung-mwd-de-j435.html",
       "apply_url": "https://career.truma.com/Projektleiter-Produktentwicklung-mwd-de-j435.html",
-      "ordner": "Truma_Projektleiter_Produktentwicklung",
+      "ordner": "01_Antwort_austehend/Truma_Projektleiter_Produktentwicklung",
       "datum": "2026-10-01",
-      "versendet": false,
+      "versendet": true,
       "gremium": {
         "hr": 8.5,
         "fach": 8.5,
@@ -449,13 +348,26 @@
         "cv_ceo": 9.0,
         "forensik": "frei"
       },
-      "hinweis": "Gremium + gremium_check bestanden. Hochladen NUR aus dem Unterordner VERSAND/ (Anschreiben 1 S. + Lebenslauf 2 S.)"
+      "hinweis": "Gremium + gremium_check bestanden. Hochladen NUR aus dem Unterordner VERSAND/ (Anschreiben 1 S. + Lebenslauf 2 S.)",
+      "_versendet_quelle": "Register: gesendet 2026-10-01"
+    },
+    {
+      "firma": "Akkodis Germany Tech Experts GmbH",
+      "stelle": "Senior Program Manager - Aerospace (m/f/d)",
+      "url": "https://www.xing.com/jobs/muenchen-senior-program-manager-aerospace-157746379",
+      "apply_url": "https://www.xing.com/jobs/muenchen-senior-program-manager-aerospace-157746379",
+      "ordner": "01_Antwort_austehend/Akkodis_Senior_Program_Manager_Aerospace",
+      "datum": "2026-10-01",
+      "versendet": true,
+      "versand_datum": "2026-10-01",
+      "gremium": {},
+      "hinweis": "Bewerbung am 01.10.2026 erfolgreich versendet (Andy Vollzugsmeldung)",
+      "_gremium_hinweis": "Noten entfernt 05.10.2026: im Ordner liegt kein gremium.json, die 10/10 waren nicht belegt"
     }
   ],
   "_mappen_ohne_versandnachweis": [
     "ARRK",
     "Actana",
-    "Akkodis",
     "Apriori",
     "Atlantik Networxx",
     "AutoScout24",
@@ -474,7 +386,6 @@
     "LOGSOL",
     "MCA",
     "MEDIFOX DAN",
-    "Medi-Globe",
     "Mobileye",
     "Munich Electrification",
     "Primazon",
@@ -484,5 +395,148 @@
     "SII Deutschland",
     "WeMatch"
   ],
-  "_hinweis_mappen": "Diese Ordner enthalten fertige Unterlagen, ein Versand ist NICHT bestaetigt. Sie werden im Dashboard als 'Mappe liegt bereit' markiert, nicht als 'beworben'."
+  "_hinweis_mappen": "Diese Ordner enthalten fertige Unterlagen, ein Versand ist NICHT bestaetigt. Sie werden im Dashboard als 'Mappe liegt bereit' markiert, nicht als 'beworben'.",
+  "_sets_bereit_aussortiert_2026-10-05": [
+    {
+      "firma": "Bertrandt",
+      "stelle": "Projektmanager Gesamtfahrzeugerprobung & Validierungssteuerung",
+      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-Projektmanager-Gesamtfahrzeugerprobung-&-Validierungssteuerung-(mwd)-80313/1430756533/",
+      "portal_url": "https://bertrandt-ag.contactrh.com/jobs/13610/44432772",
+      "apply_url": "https://www.bertrandt.com/karriere",
+      "ordner": "01_Antwort_austehend/Bertrandt_PM_Gesamtfahrzeugerprobung_Validierung",
+      "datum": "2026-09-29",
+      "versendet": true,
+      "gremium": {
+        "hr": 10.0,
+        "fach": 10.0,
+        "ceo": 10.0,
+        "forensik": "10/10",
+        "cv_hr": 10.0,
+        "cv_fach": 10.0,
+        "cv_ceo": 10.0
+      },
+      "hinweis": "Versendet am 29.09.2026. Mappe liegt in 01_Antwort_austehend (Anschreiben V6 + CV V5).",
+      "_aussortiert_grund": "Absage, Ordner liegt in 99_Absagen"
+    },
+    {
+      "firma": "Aras",
+      "stelle": "Corporation Senior Project Manager based in Germany",
+      "ordner": "Aras_Corporation_Senior_Project_Manager_based_in_Germany",
+      "datum": "2026-09-30",
+      "versendet": false,
+      "gremium": {
+        "hr": 10.0,
+        "fach": 10.0,
+        "ceo": 10.0,
+        "forensik": "10/10"
+      },
+      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet",
+      "_aussortiert_grund": "kein bestandenes gremium.json im Ordner; Eintrag stammt vom Sortier-Skript 30.09. mit fest eingetragenem 10/10, kein geprüftes Set"
+    },
+    {
+      "firma": "Personalabteilung",
+      "stelle": "Entwicklungsingenieur Baugruppenverantwo",
+      "ordner": "99_Absagen/R&S",
+      "datum": "2026-09-30",
+      "versendet": false,
+      "gremium": {
+        "hr": 10.0,
+        "fach": 10.0,
+        "ceo": 10.0,
+        "forensik": "10/10"
+      },
+      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet",
+      "_aussortiert_grund": "Absage, Ordner liegt in 99_Absagen"
+    },
+    {
+      "firma": "BNP",
+      "stelle": "Paribas S A Senior Project Manager - Schwerpunkt Reg",
+      "ordner": "BNP_Paribas_S_A_Senior_Project_Manager_-_Schwerpunkt_Reg",
+      "datum": "2026-09-30",
+      "versendet": false,
+      "gremium": {
+        "hr": 10.0,
+        "fach": 10.0,
+        "ceo": 10.0,
+        "forensik": "10/10"
+      },
+      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet",
+      "_aussortiert_grund": "kein bestandenes gremium.json im Ordner; Eintrag stammt vom Sortier-Skript 30.09. mit fest eingetragenem 10/10, kein geprüftes Set"
+    },
+    {
+      "firma": "Baugruppenverantwortlicher",
+      "stelle": "Chassis Front",
+      "ordner": "Akkodis_Chassis-Baugruppenverantwortlicher",
+      "datum": "2026-09-30",
+      "versendet": false,
+      "gremium": {
+        "hr": 10.0,
+        "fach": 10.0,
+        "ceo": 10.0,
+        "forensik": "10/10"
+      },
+      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet",
+      "_aussortiert_grund": "kein bestandenes gremium.json im Ordner; Eintrag stammt vom Sortier-Skript 30.09. mit fest eingetragenem 10/10, kein geprüftes Set"
+    },
+    {
+      "firma": "Silver",
+      "stelle": "Atena GmbH Technischer Projektleiter Elektronikentw",
+      "ordner": "99_Absagen/SilverAtena_TechPL_Elektronik_eMobility",
+      "datum": "2026-09-30",
+      "versendet": false,
+      "gremium": {
+        "hr": 10.0,
+        "fach": 10.0,
+        "ceo": 10.0,
+        "forensik": "10/10"
+      },
+      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet",
+      "_aussortiert_grund": "Absage, Ordner liegt in 99_Absagen"
+    },
+    {
+      "firma": "Blickling",
+      "stelle": "CMC Management Biopharmazeutische Protei",
+      "ordner": "Blickling_CMC_Management_Biopharmazeutische_Protei",
+      "datum": "2026-09-30",
+      "versendet": false,
+      "gremium": {
+        "hr": 10.0,
+        "fach": 10.0,
+        "ceo": 10.0,
+        "forensik": "10/10"
+      },
+      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet",
+      "_aussortiert_grund": "kein bestandenes gremium.json im Ordner; Eintrag stammt vom Sortier-Skript 30.09. mit fest eingetragenem 10/10, kein geprüftes Set"
+    },
+    {
+      "firma": "Entwicklungsingenieur",
+      "stelle": "Baugruppenverantwo",
+      "ordner": "99_Absagen/EDAG_Entwicklungsingenieur_HW_Systems_Engineering",
+      "datum": "2026-09-30",
+      "versendet": false,
+      "gremium": {
+        "hr": 10.0,
+        "fach": 10.0,
+        "ceo": 10.0,
+        "forensik": "10/10"
+      },
+      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet",
+      "_aussortiert_grund": "Absage, Ordner liegt in 99_Absagen"
+    },
+    {
+      "firma": "MY",
+      "stelle": "Humancapital GmbH Technischer Projektmanager",
+      "ordner": "MY_Humancapital_GmbH_Technischer_Projektmanager",
+      "datum": "2026-09-30",
+      "versendet": false,
+      "gremium": {
+        "hr": 10.0,
+        "fach": 10.0,
+        "ceo": 10.0,
+        "forensik": "10/10"
+      },
+      "hinweis": "Automatisch aus Dashboard generiert & eingeordnet",
+      "_aussortiert_grund": "kein bestandenes gremium.json im Ordner; Eintrag stammt vom Sortier-Skript 30.09. mit fest eingetragenem 10/10, kein geprüftes Set"
+    }
+  ]
 }

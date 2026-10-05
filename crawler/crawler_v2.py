@@ -95,8 +95,27 @@ def crawl_akkodis(session, limit_per_run: int = 100) -> list:
             title_el = soup.find("h1") or soup.find("h2")
             title = title_el.get_text(strip=True) if title_el else ""
             body = soup.get_text(" ", strip=True)[:3000]
-            found = [c for c in CITIES if c in body]
-            loc = " · ".join(found[:3]) if found else ""
+            # ECHTE STANDORT-ERKENNUNG (Bugfix 01.10.2026: Verhindert, dass Footer-Städtelisten als München gematcht werden)
+            loc = ""
+            for script in soup.find_all("script", type="application/ld+json"):
+                try:
+                    data = json.loads(script.string)
+                    if isinstance(data, dict) and data.get("@type") == "JobPosting":
+                        locs = data.get("jobLocation", [])
+                        if isinstance(locs, list) and locs:
+                            cities = [l.get("address", {}).get("addressLocality") for l in locs if isinstance(l, dict)]
+                            cities = [c.strip() for c in cities if c and c.strip()]
+                            if cities:
+                                loc = " · ".join(cities)
+                                break
+                except Exception:
+                    pass
+
+            if not loc:
+                loc_el = soup.select_one(".icon-text__text p") or soup.select_one(".offer-location") or soup.select_one(".c-offer-header__location")
+                if loc_el:
+                    loc = loc_el.get_text(strip=True)
+
             for kw in ["hybrides Arbeiten", "Remote & Präsenz", "Homeoffice", "remote"]:
                 if kw.lower() in body.lower():
                     loc = (loc + " · Hybrid Remote").strip(" ·")
@@ -1990,8 +2009,11 @@ def stamp_top20(jobs) -> int:
 
     treffer = 0
     for e in cfg.get("eintraege", []):
-        eu, ef, et = (e.get("url") or "").split("?")[0].rstrip("/"), n(e.get("firma", ""))[:6], n(e.get("titel", ""))[:22]
-        kandidaten = [j for j in jobs if (j.get("url") or "").split("?")[0].rstrip("/") == eu]
+        full_u = (e.get("url") or "").rstrip("/")
+        eu, ef, et = full_u.split("?")[0], n(e.get("firma", ""))[:6], n(e.get("titel", ""))[:22]
+        kandidaten = [j for j in jobs if (j.get("url") or "").rstrip("/") == full_u]
+        if not kandidaten:
+            kandidaten = [j for j in jobs if (j.get("url") or "").split("?")[0].rstrip("/") == eu]
         if not kandidaten:
             kandidaten = [j for j in jobs if ef and ef in n(j.get("clean_company") or j.get("company") or "")
                           and et and et in n(j.get("title", ""))]
@@ -3195,6 +3217,7 @@ def main():
     # (wie Brainlab) ebenfalls zuverlässig ihren Bewerbungsstatus gestempelt bekommen!
     stamp_bewerbungs_status(verified)
 
+    qo.repair_jobs(verified)  # NEU 2026-10-05: Umlaute in Adressfeldern, die erst die Detailpruefung setzt
     stamp_top20(verified)   # NEU 2026-10-01: handverlesene Top 20 (crawler/top20_heute.json)
 
     # NEU 2026-09-27: Andy-Fit als zweite Bewertungsstufe (siehe crawler/fit_engine.py).

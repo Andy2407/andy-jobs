@@ -50,7 +50,9 @@ def fix_mojibake(s):
 def repair_jobs(jobs):
     n = 0
     for j in jobs:
-        for k in ("title", "company", "location", "description", "raw_text"):
+        # NEU 05.10.2026: Adress-/Firmenfelder aus der Detailpruefung mitreparieren ("Oberhaching bei MÃ¼nchen")
+        for k in ("title", "company", "location", "description", "raw_text",
+                  "address_city", "address_street", "clean_company", "recruiter"):
             v = j.get(k)
             f = fix_mojibake(v)
             if f is not v and f != v:

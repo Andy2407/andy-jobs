@@ -88,8 +88,27 @@ def crawl_akkodis(session, limit_per_run: int = 100) -> list:
             title_el = soup.find("h1") or soup.find("h2")
             title = title_el.get_text(strip=True) if title_el else ""
             body = soup.get_text(" ", strip=True)[:3000]
-            found = [c for c in CITIES if c in body]
-            loc = " · ".join(found[:3]) if found else ""
+            # ECHTE STANDORT-ERKENNUNG (Bugfix 01.10.2026: Verhindert, dass Footer-Städtelisten als München gematcht werden)
+            loc = ""
+            for script in soup.find_all("script", type="application/ld+json"):
+                try:
+                    data = json.loads(script.string)
+                    if isinstance(data, dict) and data.get("@type") == "JobPosting":
+                        locs = data.get("jobLocation", [])
+                        if isinstance(locs, list) and locs:
+                            cities = [l.get("address", {}).get("addressLocality") for l in locs if isinstance(l, dict)]
+                            cities = [c.strip() for c in cities if c and c.strip()]
+                            if cities:
+                                loc = " · ".join(cities)
+                                break
+                except Exception:
+                    pass
+
+            if not loc:
+                loc_el = soup.select_one(".icon-text__text p") or soup.select_one(".offer-location") or soup.select_one(".c-offer-header__location")
+                if loc_el:
+                    loc = loc_el.get_text(strip=True)
+
             for kw in ["hybrides Arbeiten", "Remote & Präsenz", "Homeoffice", "remote"]:
                 if kw.lower() in body.lower():
                     loc = (loc + " · Hybrid Remote").strip(" ·")
