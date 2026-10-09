@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>KI-Trading Live</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="KI-Trading">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/fluency/180/bullish.png">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #090a0f;
+            color: #f3f4f6;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            overflow: hidden;
+            background-image: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.15), transparent 50%),
+                              radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1), transparent 50%);
+        }
+        .card {
+            background: rgba(18, 22, 34, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            padding: 36px 28px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(16, 185, 129, 0.1);
+            animation: fadeIn 0.4s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.4));
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: #9ca3af;
+            margin-bottom: 24px;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 28px;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+        .progress-bar-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .progress-bar {
+            width: 30%;
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            border-radius: 2px;
+            animation: progress 1.2s infinite ease-in-out;
+        }
+        @keyframes progress {
+            0% { transform: translateX(-100%); width: 20%; }
+            50% { width: 60%; }
+            100% { transform: translateX(300%); width: 20%; }
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 18px;
+            border: none;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+        .info-box {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon-box">📈</div>
+        <h1>KI-Trading Live</h1>
+        <div class="subtitle">Echtgeld Alpaca · Live-Leitstand</div>
+
+        <div class="status-badge" id="status-badge">
+            <span class="dot"></span>
+            <span id="status-text">Verbinde mit Cockpit...</span>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+        </div>
+
+        <a id="connect-btn" class="btn" href="https://august-decision-nelson-redeem.trycloudflare.com">🚀 Cockpit öffnen</a>
+
+        <div class="info-box" id="info-box">
+            Feste permanente Gateway-Adresse<br>
+            Autonome 24/7 Verbindung
+        </div>
+    </div>
+
+    <script>
+        async function init() {
+            var btn = document.getElementById("connect-btn");
+            var statusText = document.getElementById("status-text");
+            var infoBox = document.getElementById("info-box");
+            var targetUrl = "https://august-decision-nelson-redeem.trycloudflare.com";
+
+            try {
+                var res = await fetch("trading_tunnel.json?v=" + Date.now(), { cache: "no-store" });
+                if (res.ok) {
+                    var data = await res.json();
+                    if (data && data.url) targetUrl = data.url;
+                }
+            } catch (e) {}
+
+            btn.href = targetUrl;
+            statusText.innerText = "Tunnel Online · Weiterleitung...";
+            infoBox.innerHTML = "Aktiv: " + targetUrl.replace("https://", "") + "<br>24/7 Live geschaltet";
+
+            setTimeout(function() {
+                window.location.replace(targetUrl);
+            }, 250);
+        }
+        init();
+    </script>
+</body>
+</html>
