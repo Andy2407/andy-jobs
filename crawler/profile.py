@@ -526,6 +526,24 @@ OTHER_CITIES = ["karlsruhe", "stuttgart", "berlin", "hamburg", "köln", "koeln",
                 "salzgitter", "paderborn", "siegen", "trier", "koblenz", "mainz",
                 "offenbach", "fulda", "passau", "lindau", "rosenheim"]
 
+# NEU 2026-10-15 (Andy, CLAUDE.md §33): Robotik-Spur Modell B. Robotik-Stellen in der
+# Stuttgart-Region (OEPNV ab Stuttgart Hbf) sind auch mit voller Praesenz zulaessig,
+# Montag bis Donnerstag vor Ort, Wohnsitz bleibt Muenchen. Kernspur unveraendert.
+# Gleich halten mit STUTTGART_ROBOTIK_REGION in fit_engine.py.
+STUTTGART_ROBOTIK_REGION = ("stuttgart", "esslingen", "plochingen", "ludwigsburg", "kornwestheim",
+                            "böblingen", "boeblingen", "sindelfingen", "herrenberg", "leonberg",
+                            "ditzingen", "gerlingen", "renningen", "fellbach", "waiblingen",
+                            "filderstadt", "leinfelden", "echterdingen", "nürtingen", "nuertingen",
+                            "metzingen", "riederich", "reutlingen", "tübingen", "tuebingen")
+ROBOTIK_SIGNAL = re.compile(r"robot|humanoid|\bcobots?\b|physical[\s-]?ai|embodied[\s-]?ai|"
+                            r"autonome[rn]?\s+mobile[rn]?\s+roboter|\bamrs?\b")
+
+
+def ist_robotik_stelle(text: str) -> bool:
+    """Roboter, Humanoide, Cobots, Physical AI. Robotic Process Automation (Software-Bots) zaehlt nicht."""
+    t = re.sub(r"robotic\s+process\s+automation|\brpa\b", " ", (text or "").lower())
+    return bool(ROBOTIK_SIGNAL.search(t))
+
 
 def location_passes(location_text: str, extra_text: str = "") -> bool:
     """München + 25 km ODER 100 % Remote ortsunabhängig.
@@ -545,6 +563,13 @@ def location_passes(location_text: str, extra_text: str = "") -> bool:
     # Standort "München/Augsburg", fehlte deshalb komplett im Dashboard).
     if any(k in loc for k in ("münchen", "muenchen", "munich", "munchen")):
         return True
+
+    # NEU 2026-10-15 (CLAUDE.md §33): Robotik-Stelle in der Stuttgart-Region → ohne
+    # Homeoffice-Anker durchlassen, solange keine Stadt ausserhalb der Region im Standort steht.
+    if any(r in loc for r in STUTTGART_ROBOTIK_REGION):
+        fremd = [c for c in OTHER_CITIES if c in loc and c not in STUTTGART_ROBOTIK_REGION]
+        if not fremd and ist_robotik_stelle(location_text + " " + (extra_text or "")):
+            return True
 
     # Andere DE-Stadt im Standort → raus. Ausnahme: Stuttgart/Augsburg + Remote-Anker.
     hits = [c for c in OTHER_CITIES if c in loc]
@@ -749,7 +774,8 @@ def score_job(title: str, description: str, location: str, company: str) -> tupl
 
     # Standort-Filter (Andy 2026-07-15: Titel+Beschreibung mitgeben, damit Stuttgart/Augsburg
     # mit >=80%-Remote-Signal durchkommen — s. location_passes)
-    if not location_passes(location, (title or "") + " " + (description or "")):
+    # 2026-10-15: Firmenname mitgeben, damit z. B. "NEURA Robotics" als Robotik-Stelle zaehlt (§33)
+    if not location_passes(location, (title or "") + " " + (description or "") + " " + (company or "")):
         return (-1, [f"🚫 BLOCK_LOC:{location[:60]}"])
 
     # NEU 2026-05-28 (Andy): Consultant/Berater nur OK wenn KI/AI-Bezug im Titel

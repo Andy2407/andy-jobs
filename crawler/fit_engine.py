@@ -186,6 +186,19 @@ MUC = ("münchen", "muenchen", "munich", "garching", "unterschleißheim", "unter
        "vaterstetten", "feldmoching", "schwabing", "riem", "moosach", "freimann", "stockdorf", "gauting",
        "krailling", "augsburg")
 REMOTE = r"(100\s?%|vollständig|vollstaendig|komplett|full(y)?)[ -]?remote|remote[- ]first|deutschlandweit remote|remote \(deutschland\)|homeoffice möglich zu 100|mobiles arbeiten zu 100"
+# NEU 2026-10-15 (Andy, CLAUDE.md §33): Robotik-Spur Modell B, Stuttgart-Region mit Praesenz
+# Mo-Do zulaessig. Gleich halten mit STUTTGART_ROBOTIK_REGION/ROBOTIK_SIGNAL in profile.py.
+STUTTGART_ROBOTIK_REGION = ("stuttgart", "esslingen", "plochingen", "ludwigsburg", "kornwestheim",
+                            "böblingen", "boeblingen", "sindelfingen", "herrenberg", "leonberg",
+                            "ditzingen", "gerlingen", "renningen", "fellbach", "waiblingen",
+                            "filderstadt", "leinfelden", "echterdingen", "nürtingen", "nuertingen",
+                            "metzingen", "riederich", "reutlingen", "tübingen", "tuebingen")
+ROBOTIK_SIGNAL = r"robot|humanoid|\bcobots?\b|physical[\s-]?ai|embodied[\s-]?ai|autonome[rn]?\s+mobile[rn]?\s+roboter|\bamrs?\b"
+
+
+def _ist_robotik(text):
+    t = re.sub(r"robotic\s+process\s+automation|\brpa\b", " ", text or "")
+    return bool(re.search(ROBOTIK_SIGNAL, t))
 
 STUDIUM_PFLICHT = (r"(abgeschlossene[sn]? |erfolgreich abgeschlossene[sn]? )(hochschul|universitäts|fachhochschul|ingenieur|technische[sn]? |wirtschafts\S* )?studium"
                    r"|abgeschlossene[sn]? ingenieurstudium|master(abschluss| degree)|bachelor('?s)?( degree)?|university degree"
@@ -324,6 +337,9 @@ def bewerte(job):
     elif re.search(REMOTE, text) or re.search(REMOTE, ort) or "remote" in ort:
         st = 12
         reasons.append("📍 Remote (+12, Anteil prüfen)")
+    elif any(r in ort for r in STUTTGART_ROBOTIK_REGION) and _ist_robotik(titel + " " + firma + " " + text):
+        st = 10
+        reasons.append("📍 Stuttgart-Region, Robotik-Spur Modell B (+10, Mo–Do vor Ort, CLAUDE.md §33)")
     else:
         st = 0
         ko.append("Standort: weder München noch ≥80 % Remote belegt")
