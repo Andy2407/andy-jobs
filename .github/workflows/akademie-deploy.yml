@@ -1,59 +1,56 @@
-name: Akademie Deploy & Encrypt (StaticCrypt AES-256)
+name: Encrypt Andys Master-Akademie V4
 
 on:
   push:
-    branches: [main]
     paths:
-      - akademie/index.html
-      - .github/workflows/akademie-deploy.yml
-  workflow_dispatch: {}
-
-concurrency:
-  group: akademie-deploy
-  cancel-in-progress: false
+      - 'akademie/index.html'
+      - '.github/workflows/akademie-deploy.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  encrypt_and_deploy:
+  encrypt-akademie:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Encrypt akademie/index.html if not already encrypted
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Encrypt akademie/index.html with StaticCrypt AES-256 (Isolated Salt & Key)
+        env:
+          STATICRYPT_PASSWORD: ${{ secrets.STATICRYPT_PASSWORD }}
         run: |
-          if grep -q "staticrypt" akademie/index.html; then
-            echo "akademie/index.html is already encrypted with StaticCrypt."
+          if grep -q "staticrypt-html" akademie/index.html; then
+            echo "Already encrypted, skipping."
             exit 0
           fi
           npx --yes staticrypt@3.5.4 akademie/index.html \
             -p "$STATICRYPT_PASSWORD" \
-            --short \
-            -c .staticrypt.json \
             -d akademie \
+            -c false \
+            -s d4f91a2e7b8c305691e2a4b8c7d6e5f1 \
+            --short \
+            --remember 7 \
             --template-title "Andys Master-Akademie V4" \
-            --template-instructions "Geschützter 24/7-Zugang (gleiches Passwort wie dein Job-Dashboard)." \
-            --template-placeholder "Passwort eingeben" \
-            --template-button "Akademie entschlüsseln" \
-            --template-remember "Auf diesem Gerät angemeldet bleiben" \
+            --template-instructions "Geschützter Zugang (AES-256). Bitte Passwort eingeben, um Python, SPS, ROS 2, Robotik, Aussprache-Labor & Gute-Nacht-Hörbuch freizuschalten." \
+            --template-placeholder "Passwort eingeben..." \
+            --template-button "AKADEMIE ENTSERREN" \
+            --template-remember "Auf diesem Gerät 7 Tage merken" \
             --template-error "Falsches Passwort!" \
-            --template-color-primary "#0284c7" \
-            --template-color-secondary "#0b111e"
-        env:
-          STATICRYPT_PASSWORD: ${{ secrets.STATICRYPT_PASSWORD }}
+            --template-color-primary "#38bdf8" \
+            --template-color-secondary "#0b1120"
+          sed -i 's/"staticrypt_passphrase"/"staticrypt_akademie_passphrase"/g; s/"staticrypt_expiration"/"staticrypt_akademie_expiration"/g' akademie/index.html
 
-      - name: Commit encrypted akademie/index.html
+      - name: Commit encrypted Akademie
         run: |
-          git config user.name "Akademie Deploy Bot"
-          git config user.email "bot@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add akademie/index.html
-          if git diff --cached --quiet; then
-            echo "Nothing to commit."
-            exit 0
-          fi
-          git commit -m "sec: encrypt akademie/index.html with StaticCrypt AES-256"
-          git push origin main
+          git diff --staged --quiet || git commit -m "chore(akademie): AES-256 encrypt Andys Master-Akademie V4 (isolated salt & storage key)"
+          git push
