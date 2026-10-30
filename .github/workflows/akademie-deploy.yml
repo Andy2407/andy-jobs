@@ -1,0 +1,59 @@
+name: Akademie Deploy & Encrypt (StaticCrypt AES-256)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - akademie/index.html
+      - .github/workflows/akademie-deploy.yml
+  workflow_dispatch: {}
+
+concurrency:
+  group: akademie-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  encrypt_and_deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Encrypt akademie/index.html if not already encrypted
+        run: |
+          if grep -q "staticrypt" akademie/index.html; then
+            echo "akademie/index.html is already encrypted with StaticCrypt."
+            exit 0
+          fi
+          npx --yes staticrypt@3.5.4 akademie/index.html \
+            -p "$STATICRYPT_PASSWORD" \
+            --short \
+            -c .staticrypt.json \
+            -d akademie \
+            --template-title "Andys Master-Akademie V4" \
+            --template-instructions "Geschützter 24/7-Zugang (gleiches Passwort wie dein Job-Dashboard)." \
+            --template-placeholder "Passwort eingeben" \
+            --template-button "Akademie entschlüsseln" \
+            --template-remember "Auf diesem Gerät angemeldet bleiben" \
+            --template-error "Falsches Passwort!" \
+            --template-color-primary "#0284c7" \
+            --template-color-secondary "#0b111e"
+        env:
+          STATICRYPT_PASSWORD: ${{ secrets.STATICRYPT_PASSWORD }}
+
+      - name: Commit encrypted akademie/index.html
+        run: |
+          git config user.name "Akademie Deploy Bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add akademie/index.html
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git commit -m "sec: encrypt akademie/index.html with StaticCrypt AES-256"
+          git push origin main
