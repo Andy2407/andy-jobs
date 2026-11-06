@@ -19,7 +19,7 @@ import time
 import logging
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlparse, urljoin, unquote
 
@@ -27,6 +27,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from profile import score_job, categorize, clean_title, MIN_SCORE_TO_INCLUDE, OTHER_MIN_SCORE, USER_BLOCKED_URLS
+from profile import location_passes
 # NEU 2026-09-23 (Andy: "Xing-Stellen fehlen", "immer den allerletzten Link"): siehe Moduldoku
 import quellen_offensive as qo
 # NEU 2026-09-27: Andy-Fit (Volltext gegen Profil). Fehler dort duerfen den Crawl nie stoppen.
@@ -34,6 +35,11 @@ try:
     import fit_engine as fe
 except Exception as _e:  # pragma: no cover
     fe = None
+# NEU 2026-11-02: reiner Anzeigentext aus den ATS-Schnittstellen + lokaler Volltext-Cache.
+try:
+    import volltext as vt
+except Exception as _e:  # pragma: no cover
+    vt = None
 
 BASE = Path(__file__).resolve().parent.parent
 DATA_PATH = BASE / "data.json"
@@ -222,6 +228,10 @@ PERSONIO_COMPANIES = [
     ("gridx", "gridX", None),               # Energie-Plattform, Remote DE + Aachen (echtes Board;
                                             # der Recruitee-Eintrag "gridx" liefert nichts mehr)
     ("xolife", "XO Life", None),            # MedTech/Digital Health, Remote
+    # NEU 2026-11-02 (§32.2, Firmen aus Bewerbungen/ ohne Portalquelle; Inhalt geprueft, XML nennt
+    # die Firma selbst als <subcompany>, also kein Fremd-Board wie unten):
+    ("logsol", "LOGSOL", None),             # 10 Stellen, u. a. Standort München
+    ("pmx", "pmX", None),                   # 97 Stellen bundesweit (pmX GmbH)
     # GEPRUEFT UND BEWUSST NICHT AUFGENOMMEN 2026-08-06:
     # XPENG -> Greenhouse-Board "xpengmotors" ist das US/China-Board (21 Stellen, 0 München,
     # alles Santa Clara/Shenzhen). Das Muenchner F&E-Zentrum laeuft nicht darueber.
@@ -307,6 +317,9 @@ GREENHOUSE_COMPANIES = [
     "parloa",         # 11 München (KI-Sprachagenten, heute keine PM-Rolle)
     "lucidmotors",    # 3 München (E-Auto, Sales/Service-Rollen)
     "isaraerospace",  # 90 Stellen, Sitz Ottobrunn bei München (Personio-Slug "isarvalley" bleibt drin)
+    # NEU 2026-11-02 (§32.2): 36 Stellen, u. a. München. Helsing (Greenhouse "helsing", 158) bewusst
+    # nicht: Ruestung, nur bei belegtem Gehalt ab 100k (Defense-Gehalts-Regel), dann einzeln pruefen.
+    "autoscout24",
 ]
 
 
@@ -380,7 +393,12 @@ ASHBY_COMPANIES = ["robco", "orbem", "lio",
                    "luminovo",                # echtes Board (Personio-Slug liefert nichts)
                    "sereact",                 # 45 Stellen Robotik-KI, Stuttgart — 0 München,
                                               # bleibt als Fruehwarnung fuer kuenftige DE-Rollen
+                   # NEU 2026-11-02 (§32.2, live geprueft): Proxima Fusion stand laut Notiz vom
+                   # 15.10. als "eigene Ashby-Quelle" drin, fehlte aber im Code (53 Stellen, München).
+                   "proxima-fusion", "futrue", "omegga",
                    ]  # lio: NEU 2026-07-02, Radar 01.07. (a16z Series A, 15 München-Stellen, u.a. AI Implementation Manager)
+ASHBY_NAMEN = {"proxima-fusion": "Proxima Fusion", "futrue": "FUTRUE", "omegga": "Omegga",
+               "munich-electrification": "Munich Electrification", "robco": "RobCo"}
 
 
 def crawl_ashby(session) -> list:
@@ -395,7 +413,7 @@ def crawl_ashby(session) -> list:
                 jobs.append({
                     "source": f"ashby:{co}",
                     "url": j.get("jobUrl") or j.get("applyUrl"),
-                    "title": j.get("title", ""), "company": co.capitalize(),
+                    "title": j.get("title", ""), "company": ASHBY_NAMEN.get(co, co.capitalize()),
                     "location": j.get("locationName", "") or j.get("location", ""),
                     "description": "", "raw_text": j.get("title", ""),
                 })
@@ -406,30 +424,39 @@ def crawl_ashby(session) -> list:
     return jobs
 
 
-WORKABLE_COMPANIES = ["fluxysmunich", "tractive", "konux"]
+WORKABLE_COMPANIES = ["fluxysmunich", "tractive", "konux",
+                      "animore",  # NEU 2026-11-02 (§32.2): 16 Stellen
+                      ]
 
 
 def crawl_workable(session) -> list:
+    """FIX 2026-11-02: der v3-Endpunkt lief seit Wochen auf 0. Workable antwortet bei schnellen
+    Folgeabrufen mit HTTP 429 (Rate-Limit). Jetzt: v1-Widget-Endpunkt (eine Antwort je Konto mit allen
+    Stellen), 3 s Pause, bei 429 einmal 30 s warten."""
     jobs, ok = [], 0
     for co in WORKABLE_COMPANIES:
         try:
-            r = session.get(f"https://apply.workable.com/api/v3/accounts/{co}/jobs",
-                            params={"limit": 100}, timeout=12)
+            for versuch in range(2):
+                r = session.get(f"https://apply.workable.com/api/v1/widget/accounts/{co}", timeout=15)
+                if r.status_code != 429:
+                    break
+                time.sleep(30)
             if r.status_code != 200:
+                log.info(f"[workable:{co}] HTTP {r.status_code}")
                 continue
             ok += 1
-            for j in r.json().get("results", []):
-                loc = j.get("location") or {}
+            for j in r.json().get("jobs", []):
+                ort = ", ".join(x for x in (j.get("city"), j.get("state"), j.get("country")) if x)
                 jobs.append({
                     "source": f"workable:{co}",
-                    "url": j.get("url") or j.get("shortlink"),
+                    "url": j.get("url") or j.get("shortlink") or j.get("application_url"),
                     "title": j.get("title", ""), "company": co.capitalize(),
-                    "location": loc.get("city", "") or loc.get("country", ""),
+                    "location": ort, "remote": bool(j.get("telecommuting")),
                     "description": "", "raw_text": j.get("title", ""),
                 })
         except Exception as e:
             log.debug(f"[workable:{co}] {e}")
-        time.sleep(0.08)
+        time.sleep(3)
     log.info(f"[Workable] {len(jobs)} ({ok}/{len(WORKABLE_COMPANIES)})")
     return jobs
 
@@ -667,6 +694,15 @@ STEPSTONE_QUERIES = [
     ("expleo", "muenchen"),
     ("yer", "muenchen"),
     ("apriori", "muenchen"),
+    # NEU 2026-11-02: mehr Begriffe statt Paginierung. StepStones robots.txt erlaubt /jobs/<q>/in-<ort>,
+    # sperrt aber /jobs/*?* und damit ?page=2. Begriffe nach den Kernrollen in fit_engine.ROLLE_KERN.
+    ("projektingenieur", "muenchen"), ("technischer-projektmanager", "muenchen"),
+    ("engineering-project-manager", "muenchen"), ("projektmanager-entwicklung", "muenchen"),
+    ("projektleiter-mechatronik", "muenchen"), ("projektleiter-elektronik", "muenchen"),
+    ("projektleiter-maschinenbau", "muenchen"), ("technical-program-manager", "muenchen"),
+    ("projektleiter-produktentwicklung", "augsburg"), ("projektleiter-robotik", "muenchen"),
+    # §33 Robotik-Spur: Stuttgart-Region zulaessig
+    ("projektleiter-robotik", "stuttgart"), ("project-manager-robotics", "stuttgart"),
 ]
 
 
@@ -687,44 +723,115 @@ def crawl_stepstone(session) -> list:
     Deshalb bleibt die Statuscode-Zaehlung unten drin: Wenn es wiederkommt,
     steht im Log, ob 403 (Sperre) oder 429 (Rate-Limit) die Ursache ist,
     statt dass wieder 14 Tage lang gar nichts auffaellt.
+
+    UMBAU 2026-11-02 (Andy: "StepStone ein für alle Mal sauber lesen"): Am 02.11. lief StepStone
+    um 10:10 und 14:27 vollstaendig (1.037/1.039 Roh-Treffer, 108/109 Stellen mit Volltext, Firma,
+    Adresse aus JSON-LD). Um 12:13 drosselte StepStone (46 von 49 Suchen 502/503), das Dashboard fiel
+    fuer zwei Stunden von 509 auf 424 Stellen (StepStone 108 -> 19). curl/Python bekamen 503, der
+    Browser auf derselben Leitung nicht: die Sperre gilt automatischen Abrufen, nicht der IP.
+    Deshalb jetzt: seriell mit Pause, Warten bei 429/5xx, Notbremse, und main() uebernimmt bei
+    Drosselung die StepStone-Stellen des letzten Laufs (stepstone_uebernehmen). Keine Browser-Tarnung.
     """
-    jobs = []
-    bad_status = {}
+    global STEPSTONE_GEDROSSELT
+    STEPSTONE_GEDROSSELT = False
+    jobs, stat, fehler_in_folge, seen = [], {}, 0, set()
     for q, loc in STEPSTONE_QUERIES:
         url = (f"https://www.stepstone.de/jobs/{q}/in-{loc}" if loc
                else f"https://www.stepstone.de/jobs/{q}")
-        try:
-            r = session.get(url, timeout=15)
-            if r.status_code != 200:
-                bad_status[r.status_code] = bad_status.get(r.status_code, 0) + 1
+        r = _stepstone_get(session, url, stat)
+        if r is None:
+            fehler_in_folge += 1
+            if fehler_in_folge >= STEPSTONE_NOTBREMSE:
+                STEPSTONE_GEDROSSELT = True
+                log.warning(f"[StepStone] Notbremse nach {fehler_in_folge} Fehlschlaegen in Folge: {stat}")
+                break
+            continue
+        fehler_in_folge = 0
+        soup = BeautifulSoup(r.text, "lxml")
+        for a in soup.select('a[href*="/stellenangebote--"]'):
+            href = a.get("href", "")
+            if "-inline.html" not in href:
                 continue
-            soup = BeautifulSoup(r.text, "lxml")
-            seen = set()
-            for a in soup.select('a[href*="/stellenangebote--"]'):
-                href = a.get("href", "")
-                if "-inline.html" not in href:
-                    continue
-                full = (href if href.startswith("http") else
-                        "https://www.stepstone.de" + href).split("?")[0]
-                if full in seen:
-                    continue
-                seen.add(full)
-                title = a.get_text(" ", strip=True)
-                if not title or len(title) < 5:
-                    continue
-                m = re.search(r"--(.+?)--(\d+)-inline\.html$", full)
-                meta = m.group(1) if m else ""
-                jobs.append({"source": "stepstone", "url": full, "title": title[:200],
-                             "company": "", "location": loc or "",
-                             "description": "", "raw_text": title + " " + meta})
-        except Exception as e:
-            log.warning(f"[StepStone] {q}: {e}")
-        time.sleep(0.4)
+            full = (href if href.startswith("http") else
+                    "https://www.stepstone.de" + href).split("?")[0]
+            if full in seen:
+                continue
+            seen.add(full)
+            title = a.get_text(" ", strip=True)
+            if not title or len(title) < 5:
+                continue
+            m = re.search(r"--(.+?)--(\d+)-inline\.html$", full)
+            meta = m.group(1) if m else ""
+            # location = Such-Ort nur fuer den Vorfilter; parallel_verify ersetzt ihn durch die
+            # echten Arbeitsorte aus dem JSON-LD der Anzeige (vorher blieb "muenchen" stehen).
+            jobs.append({"source": "stepstone", "url": full, "title": title[:200],
+                         "company": "", "location": loc or "", "such_ort": loc or "",
+                         "description": "", "raw_text": title + " " + meta})
+        time.sleep(STEPSTONE_PAUSE)
+    if not seen and stat:
+        STEPSTONE_GEDROSSELT = True
     log.info(f"[StepStone] {len(jobs)} ({len(STEPSTONE_QUERIES)} Suchen)")
-    if bad_status:
-        log.warning(f"[StepStone] NICHT-200-Antworten: {bad_status} "
-                    f"-> bei 403 = IP-Sperre gegen Cloud-Runner, bei 429 = Rate-Limit")
+    if stat:
+        log.warning(f"[StepStone] NICHT-200-Antworten/Fehler: {stat} "
+                    f"-> 403 = Sperre, 429/502/503 = Drosselung")
     return jobs
+
+
+STEPSTONE_PAUSE = 2.0          # Sekunden zwischen zwei Suchseiten
+STEPSTONE_DETAIL_PAUSE = 1.5   # Sekunden zwischen zwei Detailseiten (parallel_verify)
+STEPSTONE_NOTBREMSE = 6        # Fehlschlaege in Folge -> aufhoeren statt weiter anzuklopfen
+STEPSTONE_GEDROSSELT = False   # von crawl_stepstone gesetzt, von stepstone_uebernehmen gelesen
+
+
+def _stepstone_get(session, url, stat, versuche=3):
+    """Ein Abruf mit Ruecksicht: bei 429/5xx warten (Retry-After oder 20/40/60 s), dann aufgeben."""
+    for i in range(versuche):
+        try:
+            r = session.get(url, timeout=25)
+        except Exception as e:
+            stat[type(e).__name__] = stat.get(type(e).__name__, 0) + 1
+            time.sleep(10 * (i + 1))
+            continue
+        if r.status_code == 200 and "An error occured" not in r.text[:3000]:
+            return r
+        stat[r.status_code] = stat.get(r.status_code, 0) + 1
+        if r.status_code in (429, 500, 502, 503, 504) or r.status_code == 200:
+            try:
+                warte = int(r.headers.get("Retry-After") or 0)
+            except ValueError:
+                warte = 0
+            time.sleep(min(warte or 20 * (i + 1), 90))
+            continue
+        return None
+    return None
+
+
+def stepstone_uebernehmen(all_jobs, yield_jetzt) -> int:
+    """Bei Drosselung die StepStone-Stellen des letzten Laufs (max. 21 Tage alt) behalten, statt sie
+    aus dem Dashboard fallen zu lassen. Sie sind mit "uebernommen" markiert und werden nicht neu geprueft."""
+    try:
+        alt = json.loads(DATA_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return 0
+    yield_alt = (alt.get("stats", {}).get("source_yield") or {}).get("StepStone", 0)
+    if not (STEPSTONE_GEDROSSELT or (yield_alt and yield_jetzt < 0.4 * yield_alt)):
+        return 0
+    grenze = (datetime.now() - timedelta(days=21)).strftime("%Y-%m-%d")
+    vorhanden = {j.get("url") for j in all_jobs}
+    n = 0
+    for j in alt.get("jobs", []):
+        if (j.get("source") == "stepstone" and j.get("url") not in vorhanden
+                and not j.get("uebernommen_seit", "9999") < grenze
+                and (j.get("first_seen") or "") >= grenze):
+            j = dict(j)
+            j["uebernommen"] = True
+            j.setdefault("uebernommen_seit", datetime.now().strftime("%Y-%m-%d"))
+            j["verify_status"] = "übernommen (StepStone gedrosselt, Stand letzter Lauf)"
+            all_jobs.append(j)
+            n += 1
+    log.warning(f"[StepStone] gedrosselt: {n} Stellen aus dem letzten Lauf übernommen "
+                f"(Roh-Treffer {yield_jetzt} statt {yield_alt})")
+    return n
 
 
 # ============================================================
@@ -1110,10 +1217,8 @@ def crawl_indeed_playwright() -> list:
     ]
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True, args=[
-                "--disable-blink-features=AutomationControlled",
-                "--no-sandbox",
-            ])
+            # 2026-11-02: Bot-Tarnungs-Flag entfernt; die Funktion laeuft ohnehin nicht mehr (siehe main)
+            browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
             context = browser.new_context(
                 user_agent=UA,
                 locale="de-DE",
@@ -1220,10 +1325,8 @@ def crawl_pw_companies() -> list:
     seen = set()
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True, args=[
-                "--disable-blink-features=AutomationControlled",
-                "--no-sandbox",
-            ])
+            # 2026-11-02: "--disable-blink-features=AutomationControlled" entfernt (Bot-Tarnung).
+            browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
             context = browser.new_context(user_agent=UA, locale="de-DE",
                                           viewport={"width": 1366, "height": 950})
 
@@ -1452,7 +1555,8 @@ def parse_job_details(html: str, url: str = "") -> dict:
       1) JSON-LD Schema.org JobPosting (LinkedIn/StepStone/Greenhouse/Workday — Goldgrube!)
       2) Regex-Fallback für ältere Seiten
     """
-    out = {"recruiter": "", "address_street": "", "address_city": "", "kennziffer": "", "clean_company": ""}
+    out = {"recruiter": "", "address_street": "", "address_city": "", "kennziffer": "", "clean_company": "",
+           "orte": [], "direct_apply": None}
     if not html or len(html) < 50:
         return out
 
@@ -1476,6 +1580,15 @@ def parse_job_details(html: str, url: str = "") -> dict:
                     co = (hiring.get("name") or "").strip()
                     if co and 2 <= len(co) <= 80:
                         out["clean_company"] = co
+                # NEU 2026-11-02: ALLE Arbeitsorte (bisher nur jobLocation[0]; Meiko stand so als
+                # "Offenburg" drin, obwohl die Anzeige Augsburg + München nennt) + Bewerbungsweg
+                alle = item.get("jobLocation") or []
+                for l in (alle if isinstance(alle, list) else [alle]):
+                    a = l.get("address") if isinstance(l, dict) else None
+                    if isinstance(a, dict) and str(a.get("addressLocality") or "").strip():
+                        out["orte"].append(str(a["addressLocality"]).strip())
+                if "directApply" in item:
+                    out["direct_apply"] = bool(item.get("directApply"))
                 # Adresse
                 loc = item.get("jobLocation", {})
                 if isinstance(loc, list): loc = loc[0] if loc else {}
@@ -1584,37 +1697,92 @@ def parse_job_details(html: str, url: str = "") -> dict:
     return out
 
 
+def _uebernimm_details(j, det):
+    """Detail-Parse-Ergebnis auf den Job schreiben (NEU 2026-05-28 fuer den DOCX-Generator,
+    clean_company aus JSON-LD = bessere Firmen-Erkennung als company-Feld)."""
+    if det.get("recruiter"): j["recruiter"] = det["recruiter"]
+    if det.get("address_street"): j["address_street"] = det["address_street"]
+    if det.get("address_city"): j["address_city"] = det["address_city"]
+    if det.get("kennziffer"): j["kennziffer"] = det["kennziffer"]
+    if det.get("clean_company"): j["clean_company"] = det["clean_company"]
+    if j.get("source") == "stepstone":
+        # NEU 2026-11-02: echter Arbeitsort statt Such-Ort "muenchen"
+        if det.get("orte"):
+            j["location"] = ", ".join(dict.fromkeys(det["orte"]))
+        # §28.1: StepStone ohne Arbeitgeber-Link offen als Portal-Direktbewerbung benennen
+        if det.get("direct_apply") is True:
+            j["final_link_note"] = "stepstone-direktbewerbung"
+        elif det.get("direct_apply") is False:
+            j["final_link_note"] = "stepstone-arbeitgeberlink (Button auf StepStone, Ziel nur im Browser sichtbar)"
+
+
+def _verify_eins(j, session) -> bool:
+    if j.get("uebernommen"):
+        j["verified"] = True
+        return True
+    ok, status, html = verify_url(j["url"], session)
+    j["verified"], j["verify_status"] = ok, status
+    if ok and html:
+        try:
+            _uebernimm_details(j, parse_job_details(html, j.get("url", "")))
+        except Exception as e:
+            log.debug(f"parse_job_details Fehler für {j.get('url', '')[:80]}: {e}")
+        # NEU 2026-09-27: Stellentext fuer den Andy-Fit behalten (kein Zusatzabruf).
+        # Wird vor dem Schreiben von data.json wieder entfernt (siehe main).
+        if fe is not None:
+            try:
+                j["jd_text"] = fe.extract_jd_text(html)
+            except Exception:
+                pass
+    return ok
+
+
 def parallel_verify(jobs, session, max_workers: int = 10) -> list:
     log.info(f"Verifiziere {len(jobs)} URLs (mit Detail-Parse)…")
+    st_jobs = [j for j in jobs if "stepstone.de" in (j.get("url") or "")]
+    rest = [j for j in jobs if "stepstone.de" not in (j.get("url") or "")]
     out = []
     with ThreadPoolExecutor(max_workers=max_workers) as ex:
-        futs = {ex.submit(verify_url, j["url"], session): j for j in jobs}
+        futs = {ex.submit(_verify_eins, j, session): j for j in rest}
         for f in as_completed(futs):
-            j = futs[f]
-            ok, status, html = f.result()
-            j["verified"] = ok
-            j["verify_status"] = status
-            if ok:
-                # NEU 2026-05-28: Detail-Parse für DOCX-Generator (v15 + clean_company aus JSON-LD)
-                if html:
-                    try:
-                        det = parse_job_details(html, j.get("url", ""))
-                        if det.get("recruiter"): j["recruiter"] = det["recruiter"]
-                        if det.get("address_street"): j["address_street"] = det["address_street"]
-                        if det.get("address_city"): j["address_city"] = det["address_city"]
-                        if det.get("kennziffer"): j["kennziffer"] = det["kennziffer"]
-                        # clean_company aus JSON-LD: bessere Firmen-Erkennung als company-Feld
-                        if det.get("clean_company"): j["clean_company"] = det["clean_company"]
-                    except Exception as e:
-                        log.debug(f"parse_job_details Fehler für {j.get('url', '')[:80]}: {e}")
-                    # NEU 2026-09-27: Stellentext fuer den Andy-Fit behalten (kein Zusatzabruf).
-                    # Wird vor dem Schreiben von data.json wieder entfernt (siehe main).
-                    if fe is not None:
-                        try:
-                            j["jd_text"] = fe.extract_jd_text(html)
-                        except Exception:
-                            pass
-                out.append(j)
+            if f.result():
+                out.append(futs[f])
+    # NEU 2026-11-02: StepStone seriell (bisher 10 parallele Detailabrufe -> Drosselung).
+    # Stellen, die heute in der StepStone-Suche standen und deren Details <7 Tage alt im Cache liegen,
+    # werden nicht erneut abgerufen: die Suche belegt bereits, dass die Anzeige online ist.
+    cache = vt.lade_cache() if vt is not None else {}
+    fehler_in_folge, abgerufen, aus_cache = 0, 0, 0
+    for j in st_jobs:
+        c = cache.get(j["url"])
+        if (not j.get("uebernommen") and vt is not None and vt.frisch(c, 7)
+                and (c.get("details") or {}).get("clean_company")):
+            j["verified"], j["verify_status"] = True, "ok-suche+cache"
+            j["jd_text"] = c.get("text", "")
+            _uebernimm_details(j, c["details"])
+            out.append(j)
+            aus_cache += 1
+            continue
+        if fehler_in_folge >= STEPSTONE_NOTBREMSE:
+            # Notbremse: die Stelle stand heute in der Suche, also behalten, aber ehrlich markieren
+            j["verified"], j["verify_status"] = True, "ungeprüft (StepStone gedrosselt)"
+            out.append(j)
+            continue
+        ok = _verify_eins(j, session)
+        abgerufen += 1
+        detail_da = bool(j.get("clean_company") or j.get("uebernommen"))
+        fehler_in_folge = 0 if (ok and detail_da) else fehler_in_folge + 1
+        if ok:
+            out.append(j)
+        elif str(j.get("verify_status", "")).startswith(("err", "HTTP 5", "HTTP 429")):
+            # Drosselung/Zeitueberschreitung ist kein Beleg fuer "offline": die Stelle stand heute in
+            # der Suche. Behalten und markieren; 404/410 fliegen weiterhin raus.
+            j["verified"] = True
+            j["verify_status"] = f"ungeprüft (StepStone: {j.get('verify_status')})"
+            out.append(j)
+        time.sleep(STEPSTONE_DETAIL_PAUSE)
+    if st_jobs:
+        log.info(f"  → StepStone-Details: {abgerufen} abgerufen, {aus_cache} aus Cache, "
+                 f"{len(st_jobs) - abgerufen - aus_cache} übernommen/ungeprüft")
     parsed = sum(1 for j in out if j.get("recruiter") or j.get("kennziffer") or j.get("address_city"))
     log.info(f"  → {len(out)}/{len(jobs)} live · {parsed} mit Empfänger-Details")
     return out
@@ -2379,8 +2547,11 @@ def crawl_workday(session, tenant, wd, site, company, search="München") -> list
                 path = p.get("externalPath", "")
                 if not title or not path:
                     continue
+                # FIX 2026-11-02: externalPath ist "/job/..." OHNE Site -> der Link lieferte 404
+                # (beide Zeiss-Stellen im Dashboard). Korrekt ist /<site>/job/...
                 jobs.append({"source": f"workday:{company}",
-                             "url": f"https://{tenant}.wd{wd}.myworkdayjobs.com{path}",
+                             "url": f"https://{tenant}.wd{wd}.myworkdayjobs.com/{site}{path}",
+                             "workday_site": site,
                              "title": title[:200], "company": company,
                              "location": p.get("locationsText", "") or "", "description": "",
                              "raw_text": title})
@@ -2570,19 +2741,22 @@ def crawl_neura(session) -> list:
             full = m.group(1).decode("utf-8", "replace").strip()
             # "Concept Engineer (Mensch) (Muenchen) > NEURA Robotics"
             title = re.sub(r"\s*[›>|].*$", "", full).strip()
-            cm = re.findall(r"\(([^()]+)\)", title)
-            city = cm[-1].strip() if cm else ""
-            if not re.search(r"m(ü|u|ue)nchen|munich", city, re.I):
+            # letzte Klammer am Titelende, auch verschachtelt: "... (Freising (Oberbayern))"
+            cm = re.search(r"\(((?:[^()]|\([^()]*\))+)\)\s*$", title)
+            city = cm.group(1).strip() if cm else ""
+            # FIX 2026-11-02: bisher nur München -> seit Wochen 0, weil NEURA in Riederich/Metzingen
+            # ausschreibt. Das ist Stuttgart-Region und fuer die Robotik-Spur zulaessig (CLAUDE.md §33).
+            if not city or not location_passes(city, title + " NEURA Robotics"):
                 continue
             clean_title = re.sub(r"\s*\(" + re.escape(city) + r"\)\s*$", "", title).strip()
             clean_title = clean_title.replace("&amp;", "&").replace("&#39;", "'")
             muc += 1
             jobs.append({"source": "neura", "url": url, "title": clean_title[:200],
-                         "company": "NEURA Robotics", "location": "München",
+                         "company": "NEURA Robotics", "location": city,
                          "description": "", "raw_text": clean_title})
         except Exception:
             continue
-    log.info(f"[NEURA] {muc} München-Jobs (von {len(urls)} gesamt)")
+    log.info(f"[NEURA] {muc} Jobs München/Stuttgart-Region (von {len(urls)} gesamt)")
     return jobs
 
 
@@ -2784,12 +2958,16 @@ def crawl_valeo(session) -> list:
 
 def crawl_arrk(session) -> list:
     """ARRK Engineering — Jobbase AJAX-Liste (HTML-Fragment, kein JSON). Nur München-Treffer."""
-    log.info("[ARRK] Jobbase…")
+    log.info("[ARRK] Jobbase/onlyfy…")
     jobs, seen = [], set()
+    # FIX 2026-11-02: jobbase.io leitet auf arrkeurope.onlyfy.jobs um (30 Stellen, München dabei).
+    # Der Ort steht in einer Nachbarzelle der Zeile; find_parent("div") griff nur das Titel-Div,
+    # deshalb seit Wochen 0 Treffer.
+    basis = "https://arrkeurope.onlyfy.jobs"
     try:
         hdrs = {**HEADERS, "X-Requested-With": "XMLHttpRequest"}
         for page in range(1, 4):
-            url = ("https://arrkeurope.jobbase.io/candidate/job/ajax_list?"
+            url = (f"{basis}/candidate/job/ajax_list?"
                    f"display_length=100&page={page}&sort=date&sort_dir=DESC&search=")
             r = session.get(url, headers=hdrs, timeout=15)
             if r.status_code != 200:
@@ -2801,14 +2979,15 @@ def crawl_arrk(session) -> list:
             added = 0
             for a in links:
                 href = a.get("href", "")
-                full = href if href.startswith("http") else "https://arrkeurope.jobbase.io" + href
+                full = href if href.startswith("http") else basis + href
                 if full in seen:
                     continue
                 seen.add(full)
                 title = a.get_text(" ", strip=True)
                 if not title or len(title) < 5:
                     continue
-                parent = a.find_parent("tr") or a.find_parent("div") or a
+                parent = (a.find_parent(class_=re.compile(r"\brow\b")) or a.find_parent("tr")
+                          or a.find_parent("div") or a)
                 ptext = parent.get_text(" ", strip=True).lower()
                 if "münchen" not in ptext and "munich" not in ptext:
                     continue
@@ -3029,6 +3208,20 @@ def crawl_jobninja(session) -> list:
 # ============================================================
 # Main
 # ============================================================
+# NEU 2026-11-02: live geprueft am 02.11.2026. Steht eine Quelle hier und liefert 0, ist die
+# Ursache bekannt; alles andere erscheint in data.json als "unbekannt, pruefen".
+QUELLEN_URSACHE = {
+    "MTU Aero Engines": "Workday-Tenant mtu antwortet 422, Portal umgezogen, neue Adresse offen",
+    "CARIAD": "SmartRecruiters-Konto CariadSE leer, neues Portal offen",
+    "Rodenstock": "Karriereseite 404, kein Greenhouse/SmartRecruiters, neues Portal offen",
+    "SII Group": "SII-Website liefert 526 (Zertifikatsfehler beim Anbieter), SmartRecruiters leer",
+    "Cognizant-Mobility": "/job-list 404, neue Nuxt-App ohne erkennbare Schnittstelle",
+    "PW-Firmen (Apple/Siemens/Brose/IAV/ALTEN…)": "Playwright-Seiten liefern 0; je Firma ATS-Schnittstelle offen",
+    "Workable": "HTTP 429 Rate-Limit moeglich, v1-Widget mit Pause seit 02.11.",
+    "NEURA Robotics": "nur Stellen ausserhalb München/Stuttgart-Region (Robotik-Spur §33)",
+}
+
+
 def main():
     started = datetime.now()
     log.info(f"=== Crawl v4 gestartet {started.isoformat()} ===")
@@ -3048,7 +3241,7 @@ def main():
         (crawl_stepstone, "StepStone"),
         (crawl_szjobs, "sz-jobs.de"),
         (crawl_kimeta, "kimeta.de"),
-        (crawl_jobvector, "jobvector"),
+        # 2026-11-02 raus: jobvector zeigt nur noch die Cloudflare-Abwehrseite "Just a moment" (403)
         (crawl_linkedin, "LinkedIn (anonymous)"),
         (crawl_remoteok, "RemoteOK"),
         (crawl_remotive, "Remotive"),
@@ -3083,8 +3276,8 @@ def main():
         # crawl_xing_breit (24 Begriffe, MUC 50 km + bundesweit Vollremote, UTF-8)
         (qo.crawl_xing_breit, "Xing"),
         (crawl_talent, "talent.com"),
-        (crawl_jobrapido, "jobrapido"),
-        (crawl_whatjobs, "whatjobs"),
+        # 2026-11-02 raus: jobrapido-robots.txt sperrt ?w=/?l= (genau unsere Suche);
+        # whatjobs zeigt nur noch die Cloudflare-Abwehrseite (403). Keine Umgehung.
         (crawl_germantechjobs, "germantechjobs"),
         # NEU 2026-06-01 Phase 3 (Automotive OEM/Tier1 München, ATS-verifiziert; BMW = 482 MUC!)
         (crawl_bmw, "BMW Group"),
@@ -3093,15 +3286,16 @@ def main():
         (crawl_schaeffler, "Schaeffler"),
         (crawl_zf, "ZF"),
         (crawl_avl, "AVL"),
-        (crawl_vitesco, "Vitesco"),
+        # 2026-11-02 raus: Vitesco ist in Schaeffler aufgegangen; Sitemap 182 Stellen, 0 in München
+        # (Schaeffler ist eigene Quelle).
         (crawl_valeo, "Valeo"),
         (crawl_arrk, "ARRK Engineering"),
         # NEU 2026-06-02 (Andy Voll-Ausbau): KMU-Mittelstand-Portal München
         (crawl_yourfirm, "Yourfirm"),
         # NEU 2026-06-02: deutsche Remote-Jobbörse (eigener Bestand, Sitemap-basiert)
         (crawl_remotely, "remotely.de"),
-        # NEU 2026-06-02: jobninja.com (server-rendered, München/Remote-gefiltert)
-        (crawl_jobninja, "jobninja.com"),
+        # 2026-11-02 raus: jobninja.com liefert unabhaengig von query/location nur die neuesten
+        # Anzeigen bundesweit (Ruedenhausen, Oetigheim ...), seit 14:27 null Treffer.
         (crawl_stellenanzeigen, "stellenanzeigen.de"),  # NEU 2026-08-06
         # NEU 2026-09-23 Quellen-Offensive (deutschlandweite Boersen, live auf Lesbarkeit geprueft)
         (qo.crawl_jobware, "jobware.de"),
@@ -3109,7 +3303,9 @@ def main():
         (qo.crawl_adzuna, "adzuna.de"),
     ]
     sources_no_session = [
-        (crawl_indeed_playwright, "Indeed (Playwright)"),
+        # 2026-11-02 raus: Indeed (Playwright). de.indeed.com/robots.txt sperrt /viewjob und /rss fuer
+        # alle Bots, der RSS-Feed ist abgeschaltet (404), und der Weg brauchte Bot-Tarnung. Legaler Weg:
+        # offizielle Indeed-Anbindung in Claude (search_jobs/get_job_details), Treffer als manual_jobs.
         (crawl_pw_companies, "PW-Firmen (Apple/Siemens/Brose/IAV/ALTEN…)"),
     ]
     source_names = []
@@ -3136,11 +3332,16 @@ def main():
         source_names.append(name)
         source_yield[name] = len(all_jobs) - n_before
 
+    # NEU 2026-11-02: bei Drosselung die StepStone-Stellen des letzten Laufs behalten
+    n_ueb = stepstone_uebernehmen(all_jobs, source_yield.get("StepStone", 0))
+
     tote_quellen = sorted(n for n, v in source_yield.items() if v == 0)
+    # NEU 2026-11-02: bekannte Ursachen mitschreiben, damit jede tote Quelle begruendet ist
+    tote_grund = {n: QUELLEN_URSACHE.get(n, "unbekannt, pruefen") for n in tote_quellen}
     if tote_quellen:
         log.warning("=" * 70)
         log.warning(f"⚠️  QUELLEN OHNE JEDEN TREFFER ({len(tote_quellen)}): "
-                    + ", ".join(tote_quellen))
+                    + ", ".join(f"{n} ({tote_grund[n]})" for n in tote_quellen))
         log.warning("    Nicht ignorieren — genau so sind BA-API und StepStone "
                     "14 Tage lang stumm ausgefallen.")
         log.warning("=" * 70)
@@ -3218,6 +3419,16 @@ def main():
     stamp_bewerbungs_status(verified)
 
     qo.repair_jobs(verified)  # NEU 2026-10-05: Umlaute in Adressfeldern, die erst die Detailpruefung setzt
+    # NEU 2026-11-02: reiner Anzeigentext aus den ATS-Schnittstellen (BA, Workday, Greenhouse, Personio,
+    # Ashby, SmartRecruiters, Lever) statt Seitentext; Volltext-Cache in volltext/ (gitignored),
+    # lesbar mit `python3 crawler/volltext.py zeige <Suchwort>`. Vor stamp_top20, weil Workday-Links
+    # dabei korrigiert werden.
+    volltext_stat = {}
+    if vt is not None:
+        try:
+            volltext_stat = vt.anreichern(verified, s, log)
+        except Exception as e:
+            log.error(f"[volltext] Fehler: {e}")
     stamp_top20(verified)   # NEU 2026-10-01: handverlesene Top 20 (crawler/top20_heute.json)
 
     # NEU 2026-09-27: Andy-Fit als zweite Bewertungsstufe (siehe crawler/fit_engine.py).
@@ -3244,6 +3455,10 @@ def main():
             # data.json, damit ein Quellen-Ausfall auch ohne Cloud-Log sichtbar ist.
             "source_yield": source_yield,
             "dead_sources": tote_quellen,
+            # NEU 2026-11-02: Ursache je toter Quelle, Volltext-Herkunft je Quelle, StepStone-Uebernahme
+            "dead_sources_grund": tote_grund,
+            "volltext": volltext_stat,
+            "stepstone_uebernommen": n_ueb,
         },
         # NEU 2026-08-06: Headhunter- und Initiativ-Eintraege kommen nicht mehr als
         # statisches HTML ins Dashboard, sondern hier — bei jedem Lauf live geprueft.
