@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-11-24T14:11:31.663371+01:00",
-  "duration_s": 1000.948076,
+  "generated_at": "2026-11-24T16:16:10.794438+01:00",
+  "duration_s": 1082.522316,
   "stats": {
-    "raw": 13755,
-    "filtered": 566,
-    "verified": 383,
+    "raw": 13749,
+    "filtered": 578,
+    "verified": 389,
     "by_category": {
       "auto": 129,
-      "pm": 213,
+      "pm": 219,
       "ki": 20,
       "other": 8,
       "pharma": 13
@@ -73,19 +73,19 @@
     ],
     "source_yield": {
       "Akkodis": 98,
-      "arbeitnow": 3527,
+      "arbeitnow": 3477,
       "Personio": 409,
-      "Greenhouse": 2292,
+      "Greenhouse": 2279,
       "Lever": 31,
-      "Ashby": 261,
+      "Ashby": 260,
       "Workable": 10,
       "Recruitee": 14,
-      "SmartRecruiters": 1541,
-      "Bundesagentur (API)": 1414,
-      "StepStone": 835,
+      "SmartRecruiters": 1543,
+      "Bundesagentur (API)": 1416,
+      "StepStone": 834,
       "sz-jobs.de": 0,
-      "kimeta.de": 101,
-      "LinkedIn (anonymous)": 145,
+      "kimeta.de": 99,
+      "LinkedIn (anonymous)": 176,
       "RemoteOK": 100,
       "Remotive": 15,
       "WeWorkRemotely": 303,
@@ -104,17 +104,17 @@
       "Carl Zeiss Meditec": 29,
       "KUKA": 29,
       "W. L. Gore": 13,
-      "Giesecke+Devrient": 47,
+      "Giesecke+Devrient": 48,
       "KraussMaffei": 16,
       "ams OSRAM": 4,
       "Infineon": 10,
-      "Allianz": 56,
+      "Allianz": 57,
       "Avature (Rohde & Schwarz)": 0,
       "NEURA Robotics": 181,
       "Xing": 971,
       "talent.com": 100,
       "germantechjobs": 21,
-      "BMW Group": 251,
+      "BMW Group": 250,
       "Bertrandt": 66,
       "Capgemini Engineering": 50,
       "Schaeffler": 1,
@@ -122,12 +122,12 @@
       "AVL": 3,
       "Valeo": 1,
       "ARRK Engineering": 4,
-      "Yourfirm": 74,
+      "Yourfirm": 75,
       "remotely.de": 150,
       "stellenanzeigen.de": 7,
       "jobware.de": 174,
       "ingenieur.de (VDI)": 3,
-      "adzuna.de": 19,
+      "adzuna.de": 43,
       "PW-Firmen (Apple/Siemens/Brose/IAV/ALTEN…)": 0
     },
     "dead_sources": [
@@ -151,18 +151,6 @@
       "sz-jobs.de": "unbekannt, pruefen"
     },
     "volltext": {
-      "xing": {
-        "n": 70,
-        "api": 0,
-        "seite": 58,
-        "ohne": 12
-      },
-      "linkedin": {
-        "n": 8,
-        "api": 0,
-        "seite": 8,
-        "ohne": 0
-      },
       "jobware": {
         "n": 26,
         "api": 0,
@@ -170,27 +158,51 @@
         "ohne": 0
       },
       "arbeitnow": {
-        "n": 16,
+        "n": 17,
         "api": 0,
-        "seite": 15,
+        "seite": 16,
         "ohne": 1
       },
-      "stepstone": {
-        "n": 54,
+      "linkedin": {
+        "n": 10,
         "api": 0,
-        "seite": 54,
+        "seite": 10,
         "ohne": 0
       },
+      "xing": {
+        "n": 68,
+        "api": 0,
+        "seite": 56,
+        "ohne": 12
+      },
       "bundesagentur": {
-        "n": 91,
-        "api": 89,
-        "seite": 2,
+        "n": 94,
+        "api": 91,
+        "seite": 3,
         "ohne": 0
+      },
+      "stepstone": {
+        "n": 55,
+        "api": 0,
+        "seite": 55,
+        "ohne": 0
+      },
+      "workable": {
+        "n": 3,
+        "api": 0,
+        "seite": 0,
+        "ohne": 3
       },
       "neura": {
         "n": 10,
         "api": 0,
         "seite": 10,
+        "ohne": 0
+      },
+      "yourfirm": {
+        "n": 2,
+        "api": 0,
+        "seite": 2,
         "ohne": 0
       },
       "personio": {
@@ -211,12 +223,6 @@
         "seite": 4,
         "ohne": 0
       },
-      "yourfirm": {
-        "n": 1,
-        "api": 0,
-        "seite": 1,
-        "ohne": 0
-      },
       "workday": {
         "n": 4,
         "api": 4,
@@ -229,17 +235,17 @@
         "seite": 0,
         "ohne": 0
       },
-      "ashby": {
-        "n": 19,
-        "api": 19,
-        "seite": 0,
-        "ohne": 0
-      },
       "germantechjobs": {
         "n": 1,
         "api": 0,
         "seite": 0,
         "ohne": 1
+      },
+      "ashby": {
+        "n": 18,
+        "api": 18,
+        "seite": 0,
+        "ohne": 0
       },
       "ingenieur.de": {
         "n": 1,
@@ -258,12 +264,6 @@
         "api": 0,
         "seite": 6,
         "ohne": 0
-      },
-      "workable": {
-        "n": 2,
-        "api": 0,
-        "seite": 0,
-        "ohne": 2
       },
       "lead-top1014": {
         "n": 2,
@@ -966,18 +966,18 @@
         "live": true
       }
     ],
-    "geprueft_am": "2026-11-24T14:28:38"
+    "geprueft_am": "2026-11-24T16:34:35"
   },
   "jobs": [
     {
-      "source": "xing",
-      "url": "https://www.xing.com/jobs/muenchen-validierungssteuerung-fuhrparkmanagement-gesamtfahrzeugerprobung-157525760",
+      "source": "jobware",
+      "url": "https://www.jobware.de/job/validierungssteuerung-und-fuhrparkmanagement-gesamtfahrzeugerprobung-m-w-d-063889655",
       "title": "Validierungssteuerung und Fuhrparkmanagement Gesamtfahrzeugerprobung (m/w/d)",
       "company": "Guldberg GmbH",
-      "location": "München",
-      "description": "Für den Standort München suchen wir: Validierungssteuerung und Fuhrparkmanagement Gesamtfahrzeugerprobung (m/w/d) Ihre Aufgaben: Unterstützung des Projektmanagements bei der Validierungsplanung sowie Organisation und Moderation von Problemlösungsrunden Erstellung von Gremienunterlagen, Präsentationen und Protokollen Planung und Koordination von Versuchsfahrzeugen sowie deren Einsätzen und Verwendungen Pflege und kontinuierliche Aktualisierung von Validierungs- und Terminplänen Steuerung und Nachverfolgung von Fahrzeugumbauten über den gesamten Entwicklungsprozess hinweg Unterstützung bei Fahrz",
+      "location": "München (DE)",
+      "description": "",
       "remote": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 84,
       "score_reasons": [
@@ -990,21 +990,14 @@
       "category": "auto",
       "alt_sources": [
         {
-          "source": "jobware",
-          "url": "https://www.jobware.de/job/validierungssteuerung-und-fuhrparkmanagement-gesamtfahrzeugerprobung-m-w-d-063889655"
+          "source": "xing",
+          "url": "https://www.xing.com/jobs/muenchen-validierungssteuerung-fuhrparkmanagement-gesamtfahrzeugerprobung-157525760"
         }
       ],
-      "portal_url": "https://www.xing.com/jobs/muenchen-validierungssteuerung-fuhrparkmanagement-gesamtfahrzeugerprobung-157525760",
-      "link_chain": [
-        "https://www.xing.com/jobs/muenchen-validierungssteuerung-fuhrparkmanagement-gesamtfahrzeugerprobung-157525760"
-      ],
       "final_link": true,
-      "final_link_note": "xing-direktbewerbung",
       "verified": true,
       "verify_status": "ok",
-      "address_street": "Gröbenzeller Straße 40",
-      "address_city": "80995 München",
-      "clean_company": "Guldberg GmbH",
+      "kennziffer": "13410-k13572.15849-S",
       "bewerbung": {
         "status": "gesendet",
         "stelle": "Fahrzeugfunktionsverantwortung Gesamtfahrzeug",
@@ -1012,65 +1005,27 @@
         "gleiche_stelle": false
       },
       "jd_quelle": "seite",
-      "jd_len": 3000,
-      "fit": 78,
+      "jd_len": 6996,
+      "fit": 92,
       "fit_reasons": [
         "🎯 Rolle: Gesamtfahrzeug (+30)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Prototypen, Gesamtfahrzeug/Package, Maschinenbau (+31)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Prototypen, Gesamtfahrzeug/Package, Maschinenbau, KI/Automatisierung (+33)",
         "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)",
         "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
       ],
-      "fit_ko": [
-        "Studium gefordert, nicht geöffnet"
-      ],
+      "fit_ko": [],
       "fit_basis": "volltext"
     },
     {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/senior-project-manager-corporate-project-management-m-w-d-at-rohde-schwarz-4492806604",
-      "title": "Senior Project Manager Corporate Project Management (m/w/d)",
-      "company": "Senior Project Manager Corporate Project Management (m/w/d)",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 79,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)",
-        "🎯 project management (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "Rohde &amp; Schwarz",
-      "jd_quelle": "seite",
-      "jd_len": 3300,
-      "fit": 33,
-      "fit_reasons": [
-        "🎯 Rolle: Projektmanagement, Inhalt PMO/Process Excellence (+24)",
-        "🔧 Fachgebiet: MedTech-Geraete, Lieferantensteuerung (+8)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [
-        "Studium gefordert, nicht geöffnet",
-        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "xing",
-      "url": "https://www.xing.com/jobs/muenchen-technischer-projektmanager-sonderanfertigungen-produktentwicklung-158766515",
+      "source": "jobware",
+      "url": "https://www.jobware.de/job/technischer-projektmanager-m-w-d-sonderanfertigungen-and-produktentwicklung-064774535",
       "title": "Technischer Projektmanager (m/w/d) Sonderanfertigungen & Produktentwicklung",
       "company": "Triebenbacher Betriebsgesellschaft mbH",
-      "location": "München",
-      "description": "Werde Teil der SOMMER Group! Technischer Projektmanager (m/w/d) Sonderanfertigungen & Produktentwicklung in Kirchheim bei München Als Vollsortimenter bietet Triebenbacher eine umfangreiche Produktvielfalt. Unser Serviceangebot reicht von der Bereitstellung einzelner Systemkomponenten bis hin zu individuell projektierten Sonderanfertigungen. Mit 7 Außendienstberatern in Deutschland, Österreich, Schweiz und Südtirol sowie internationalen Partnern, steht Triebenbacher global als Marke für Fachkompetenz - zu einem ausgezeichneten Preis-/ Leistungsverhältnis. 2020 wurde Triebenbacher Teil der SOMME",
+      "location": "Kirchheim bei München (DE)",
+      "description": "",
       "remote": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 75,
       "score_reasons": [
@@ -1082,78 +1037,82 @@
       "category": "pm",
       "alt_sources": [
         {
-          "source": "jobware",
-          "url": "https://www.jobware.de/job/technischer-projektmanager-m-w-d-sonderanfertigungen-and-produktentwicklung-064774535"
+          "source": "xing",
+          "url": "https://www.xing.com/jobs/muenchen-technischer-projektmanager-sonderanfertigungen-produktentwicklung-158766515"
         }
       ],
-      "portal_url": "https://www.xing.com/jobs/muenchen-technischer-projektmanager-sonderanfertigungen-produktentwicklung-158766515",
-      "link_chain": [
-        "https://www.xing.com/jobs/muenchen-technischer-projektmanager-sonderanfertigungen-produktentwicklung-158766515"
-      ],
       "final_link": true,
-      "final_link_note": "xing-direktbewerbung",
       "verified": true,
       "verify_status": "ok",
-      "address_street": "Am Werbering 3",
-      "address_city": "85551 München",
-      "clean_company": "Triebenbacher Betriebsgesellschaft mbH",
+      "kennziffer": "18305-k60395.1383-S",
       "jd_quelle": "seite",
-      "jd_len": 3656,
-      "fit": 61,
+      "jd_len": 8038,
+      "fit": 73,
       "fit_reasons": [
         "🎯 Rolle: Technisches PM (+30)",
-        "🔧 Fachgebiet: Robotik/Mechatronik, Konstruktion/CAD, Aenderungs-/Freigabemanagement (+16)",
-        "📍 München/Umland (+15)"
+        "🔧 Fachgebiet: Robotik/Mechatronik, Konstruktion/CAD, Aenderungs-/Freigabemanagement, KI/Automatisierung (+18)",
+        "📍 München/Umland (+15)",
+        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
       ],
       "fit_ko": [],
       "fit_basis": "volltext"
     },
     {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/ai-project-manager-in-m-w-d-at-holtzbrinck-4493622714",
-      "title": "AI Project Manager*in (m/w/d)",
-      "company": "AI Project Manager*in (m/w/d)",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "source": "arbeitnow",
+      "url": "https://jobs.ashbyhq.com/rhoda-ai/89542b81-b5b5-4706-be61-bc5d4ac79d33/application",
+      "title": "Robotics Application Engineer",
+      "company": "Rhoda Ai",
+      "location": "Munich, Germany",
+      "description": "<p style=\"min-height:1.5em\">At Rhoda AI, we’re building the next generation of generalist intelligent robots. We own the full robotics stack from high-performance hardware and robot systems to the infrastructure and state-of-the-art foundation world models that control our robots. Our robots are designed to be generalists capable of operating in complex, real-world environments and handling long-tail edge cases, made possible by our cutting edge research and end-to-end system design. We've raised over $450M and are investing aggressively in model research, infrastructure, hardware development,",
+      "remote": false,
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
-      "score": 66,
+      "score": 71,
       "score_reasons": [
-        "🤖 ai project manager (+25)",
-        "🎯 project manager (+16)",
-        "📍 münchen (+25)"
+        "🎯 prototyp (+12)",
+        "🎯 robotics (+16)",
+        "🎯 technical program manager (+18)",
+        "📍 munich (+25)"
       ],
-      "category": "ki",
+      "category": "auto",
       "alt_sources": [],
+      "portal_url": "https://www.arbeitnow.com/jobs/companies/rhoda-ai/robotics-application-engineer-munich-germany-4414",
+      "link_chain": [
+        "https://www.arbeitnow.com/jobs/companies/rhoda-ai/robotics-application-engineer-munich-germany-4414",
+        "https://jobs.ashbyhq.com/rhoda-ai/89542b81-b5b5-4706-be61-bc5d4ac79d33/application?utm_source=arbeitnow.com&ref=arbeitnow.com"
+      ],
       "final_link": true,
+      "final_link_note": "arbeitnow/apply",
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "Holtzbrinck",
+      "clean_company": "Rhoda AI",
       "jd_quelle": "seite",
-      "jd_len": 3148,
-      "fit": 43,
+      "jd_len": 6142,
+      "fit": 48,
       "fit_reasons": [
-        "🎯 Rolle: Projektmanagement, Inhalt Produktentwicklung (+24)",
-        "🔧 Fachgebiet: KI/Automatisierung (+4)",
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Steuergeraete/Sensorik, Robotik/Mechatronik, Konstruktion/CAD, Prototypen (+35)",
         "📍 München/Umland (+15)"
       ],
-      "fit_ko": [],
+      "fit_ko": [
+        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
+      ],
       "fit_basis": "volltext"
     },
     {
       "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/senior-project-manager-tools-framework-m-w-d-at-rohde-schwarz-4492810528",
-      "title": "Senior Project Manager Tools & Framework (m/w/d)",
-      "company": "Senior Project Manager Tools & Framework (m/w/d)",
-      "location": "München",
+      "url": "https://de.linkedin.com/jobs/view/senior-projektleiter-energiesysteme-m-w-d-at-revolt-4494331518",
+      "title": "Senior Projektleiter Energiesysteme (m/w/d)",
+      "company": "Senior Projektleiter Energiesysteme (m/w/d)",
+      "location": "Metropolregion München",
       "description": "",
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
-      "score": 63,
+      "score": 67,
       "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)",
+        "🎯 senior projektleiter (+22)",
+        "🎯 projektleiter (+16)",
+        "🎯 energie (+4)",
         "📍 münchen (+25)"
       ],
       "category": "pm",
@@ -1161,67 +1120,62 @@
       "final_link": true,
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "Rohde &amp; Schwarz",
+      "address_city": "Metropolregion München",
+      "clean_company": "REVOLT",
       "jd_quelle": "seite",
-      "jd_len": 3769,
-      "fit": 12,
+      "jd_len": 5163,
+      "fit": 30,
+      "fit_reasons": [
+        "🎯 Rolle: Projektleitung (+18)",
+        "🔧 Fachgebiet: E-Mobilitaet, Lieferantensteuerung (+7)",
+        "⛔ Fremdgebiet: Energiewirtschaft/Netze (−10)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/senior-projektmanager-onboarding-m-w-d-at-planerio-gmbh-4492945580",
+      "title": "Senior Projektmanager Onboarding (m/w/d)",
+      "company": "Senior Projektmanager Onboarding (m/w/d)",
+      "location": "Metropolregion München",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 63,
+      "score_reasons": [
+        "🎯 senior projektmanager (+22)",
+        "🎯 projektmanager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Metropolregion München",
+      "clean_company": "Planerio GmbH",
+      "jd_quelle": "seite",
+      "jd_len": 4031,
+      "fit": 39,
       "fit_reasons": [
         "🎯 Rolle: Projektmanagement (+18)",
-        "🔧 Fachgebiet: Lieferantensteuerung (+3)",
-        "⛔ Fremdgebiet: IT-Infrastruktur (−10)",
-        "📍 München/Umland (+15)"
+        "🔧 Fachgebiet: KI/Automatisierung (+2)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
       ],
-      "fit_ko": [
-        "Studium gefordert, nicht geöffnet",
-        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
-      ],
+      "fit_ko": [],
       "fit_basis": "volltext"
     },
     {
       "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/senior-project-manager-at-blp-4494009630",
-      "title": "Senior Project Manager",
-      "company": "Senior Project Manager",
+      "url": "https://de.linkedin.com/jobs/view/senior-projektleiter-it-infrastruktur-m-w-d-at-bwi-gmbh-4493202946",
+      "title": "Senior Projektleiter - IT Infrastruktur (m/w/d)",
+      "company": "Senior Projektleiter - IT Infrastruktur (m/w/d)",
       "location": "München",
       "description": "",
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 63,
-      "score_reasons": [
-        "🎯 senior project manager (+22)",
-        "🎯 project manager (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "München",
-      "clean_company": "BLP",
-      "jd_quelle": "seite",
-      "jd_len": 7574,
-      "fit": 19,
-      "fit_reasons": [
-        "🎯 Rolle: Projektmanagement, Inhalt Technisches PM (+24)",
-        "🔧 Fachgebiet: Aenderungs-/Freigabemanagement, KI/Automatisierung (+6)",
-        "⛔ Fremdgebiet: ERP/SAP/CRM, Softwarebranche (−20)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [
-        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/senior-projektleiter-signal-und-spectrum-analyzer-m-w-d-at-rohde-schwarz-4489259907",
-      "title": "Senior Projektleiter Signal und Spectrum Analyzer (m/w/d)",
-      "company": "Senior Projektleiter Signal und Spectrum Analyzer (m/w/d)",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 63,
       "score_reasons": [
@@ -1235,27 +1189,29 @@
       "verified": true,
       "verify_status": "ok-spa",
       "address_city": "München",
-      "clean_company": "Rohde &amp; Schwarz",
+      "clean_company": "BWI GmbH",
       "jd_quelle": "seite",
-      "jd_len": 2979,
-      "fit": 56,
+      "jd_len": 2737,
+      "fit": 30,
       "fit_reasons": [
-        "🎯 Rolle: Projektleitung, Inhalt Produktentwicklung (+24)",
-        "🔧 Fachgebiet: Hardware, Präzisions-/Messtechnik (+7)",
+        "🎯 Rolle: Projektleitung (+18)",
+        "🔧 Fachgebiet: Lieferantensteuerung (+3)",
         "📍 München/Umland (+15)",
-        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
       ],
-      "fit_ko": [],
+      "fit_ko": [
+        "Defense: nur ab 100.000 € (Regel 28.07.)"
+      ],
       "fit_basis": "volltext"
     },
     {
       "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/senior-project-manager-semiconductors-d-m-f-at-ams-osram-4492915391",
-      "title": "Senior Project Manager Semiconductors (d/m/f)",
-      "company": "Senior Project Manager Semiconductors (d/m/f)",
-      "location": "Garching bei München",
+      "url": "https://de.linkedin.com/jobs/view/senior-project-manager-utilities-platforms-all-genders-at-adesso-se-4316997361",
+      "title": "Senior Project Manager Utilities Platforms (all genders)",
+      "company": "Senior Project Manager Utilities Platforms (all genders)",
+      "location": "München",
       "description": "",
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 63,
       "score_reasons": [
@@ -1268,20 +1224,19 @@
       "final_link": true,
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "Garching bei München",
-      "clean_company": "ams OSRAM",
+      "address_city": "München",
+      "clean_company": "adesso SE",
       "jd_quelle": "seite",
-      "jd_len": 1862,
-      "fit": 32,
+      "jd_len": 3923,
+      "fit": 38,
       "fit_reasons": [
-        "🎯 Rolle: Projektmanagement (+18)",
-        "🔧 Fachgebiet: Steuergeraete/Sensorik, Präzisions-/Messtechnik (+13)",
-        "📍 München/Umland (+15)"
+        "🎯 Rolle: Projektmanagement, Inhalt Teilprojektleitung (+24)",
+        "🔧 Fachgebiet: Lieferantensteuerung, KI/Automatisierung (+5)",
+        "⛔ Fremdgebiet: Energiewirtschaft/Netze (−10)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
       ],
-      "fit_ko": [
-        "Studium gefordert, nicht geöffnet",
-        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
-      ],
+      "fit_ko": [],
       "fit_basis": "volltext"
     },
     {
@@ -1289,10 +1244,11 @@
       "url": "https://recrumedia.com/HOoJ5R/",
       "title": "Senior Projektmanager (m/w/d)* auf Eigentümerseite",
       "company": "Cobalt Deutschland",
-      "location": "München",
+      "location": "Pullach im Isartal",
       "description": "null null Unser Mandant ist ein deutschlandweit tätiger Projektentwickler und Bestandshalter im Bereich Wohn- und Gewerbeimmobilien mit langfristiger Ausrichtung. Das Unternehmen konzentriert sich auf die Entwicklung, Realisierung und Bewirtschaftung hochwertiger Immobilien in urbanen Lagen. Im Fokus stehen wirtschaftlich nachhaltige Nutzungskonzepte, architektonische Qualität und eine professionelle Objekt- und Mieterbetreuung. Die Unternehmenskultur ist von Verantwortung, Verlässlichkeit und partnerschaftlicher Zusammenarbeit mit Mietern, Dienstleistern und weiteren Marktteilnehmern geprägt.",
-      "remote": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 63,
       "score_reasons": [
@@ -1303,23 +1259,18 @@
       "category": "pm",
       "alt_sources": [
         {
-          "source": "bundesagentur",
-          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12288-4998162159-S"
+          "source": "xing",
+          "url": "https://recrumedia.com/HOoJ5R/"
         }
       ],
-      "portal_url": "https://www.xing.com/jobs/muenchen-senior-projektmanager-eigentuemerseite-159097426",
-      "link_chain": [
-        "https://www.xing.com/jobs/muenchen-senior-projektmanager-eigentuemerseite-159097426",
-        "https://recrumedia.com/HOoJ5R/?utm_source=xing.com"
-      ],
       "final_link": true,
-      "final_link_note": "xing/applyUrl",
       "verified": true,
       "verify_status": "ok",
-      "address_city": "26902 Unser",
-      "kennziffer": "PSo/26902",
+      "address_city": "82049 Pullach im Isartal",
+      "kennziffer": "12288-4998162159-S",
+      "clean_company": "Cobalt Deutschland",
       "jd_quelle": "seite",
-      "jd_len": 3731,
+      "jd_len": 3299,
       "fit": 15,
       "fit_reasons": [
         "🎯 Rolle: Projektmanagement (+18)",
@@ -1333,14 +1284,15 @@
       "fit_basis": "volltext"
     },
     {
-      "source": "jobware",
-      "url": "https://www.jobware.de/job/fahrzeugfunktionsverantwortung-gesamtfahrzeug-m-w-d-065134790",
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13410-k13572.15826-S",
       "title": "Fahrzeugfunktionsverantwortung Gesamtfahrzeug (m/w/d)",
       "company": "Guldberg GmbH",
-      "location": "München (DE)",
+      "location": "München",
       "description": "",
-      "remote": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 60,
       "score_reasons": [
@@ -1351,22 +1303,24 @@
       "category": "auto",
       "alt_sources": [
         {
-          "source": "bundesagentur",
-          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13410-k13572.15826-S"
+          "source": "jobware",
+          "url": "https://www.jobware.de/job/fahrzeugfunktionsverantwortung-gesamtfahrzeug-m-w-d-065134790"
         }
       ],
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
+      "address_city": "80333 München",
       "kennziffer": "13410-k13572.15826-S",
+      "clean_company": "Guldberg GmbH",
       "bewerbung": {
         "status": "gesendet",
         "stelle": "Fahrzeugfunktionsverantwortung Gesamtfahrzeug",
         "datum": "2026-08-13",
         "gleiche_stelle": true
       },
-      "jd_quelle": "seite",
-      "jd_len": 6376,
+      "jd_quelle": "api:arbeitsagentur",
+      "jd_len": 2511,
       "fit": 94,
       "fit_reasons": [
         "🎯 Rolle: Gesamtfahrzeug (+30)",
@@ -1379,14 +1333,14 @@
       "fit_basis": "volltext"
     },
     {
-      "source": "jobware",
-      "url": "https://www.jobware.de/job/technischer-projektleiter-projektkoordinator-m-w-d-auftrags-und-projektabwicklung-064725833",
+      "source": "xing",
+      "url": "https://www.jobware.de/job/technischer-projektleiter-projektkoordinator-m-w-d-auftrags-und-projektabwicklung.2070513125.html",
       "title": "Technischer Projektleiter/ Projektkoordinator (m/w/d) Auftrags- und Projektabwicklung",
       "company": "Meiko Deutschland GmbH",
-      "location": "Augsburg, München",
-      "description": "",
+      "location": "München",
+      "description": "null null MEIKO erfüllt das elementare Bedürfnis des Menschen nach Sauberkeit und Hygiene. Unsere Premiumtechnik zum Spülen, Reinigen und Desinfizieren arbeitet mit der Kraft der Idee und der Reinheit des Wassers. Unseren Beschäftigten bieten wir die Möglichkeit ihre individuellen Fähigkeiten in einem modernen und sicheren Umfeld anwenden und erweitern zu können. Eingebettet in unser wertegeleitetes Unternehmen haben sie damit beste Voraussetzungen für eigenverantwortliches Handeln und persönliche Weiterentwicklung. Willkommen bei MEIKO - die Quelle der Sauberkeit und Nachhaltigkeit, mit Raum ",
       "remote": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 59,
       "score_reasons": [
@@ -1397,11 +1351,17 @@
       "category": "pm",
       "alt_sources": [
         {
-          "source": "xing",
-          "url": "https://www.jobware.de/job/technischer-projektleiter-projektkoordinator-m-w-d-auftrags-und-projektabwicklung.2070513125.html"
+          "source": "jobware",
+          "url": "https://www.jobware.de/job/technischer-projektleiter-projektkoordinator-m-w-d-auftrags-und-projektabwicklung-064725833"
         }
       ],
+      "portal_url": "https://www.xing.com/jobs/muenchen-technischer-projektleiter-projektkoordinator-auftrags-projektabwicklung-159211546",
+      "link_chain": [
+        "https://www.xing.com/jobs/muenchen-technischer-projektleiter-projektkoordinator-auftrags-projektabwicklung-159211546",
+        "https://www.jobware.de/job/technischer-projektleiter-projektkoordinator-m-w-d-auftrags-und-projektabwicklung.2070513125.html?jw_chl_seg=kt_nwse&utm_source=nwse&utm_medium=feed&utm_campaign=all"
+      ],
       "final_link": true,
+      "final_link_note": "xing/applyUrl",
       "verified": true,
       "verify_status": "ok",
       "address_street": "Holzweg 15",
@@ -1420,14 +1380,92 @@
       "fit_basis": "volltext"
     },
     {
-      "source": "jobware",
-      "url": "https://www.jobware.de/job/project-management-officer-pmo-m-w-d-064752506",
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/technical-project-manager-market-expansion-m-f-d-at-egym-4470988864",
+      "title": "Technical Project Manager - Market Expansion  (m/f/d)",
+      "company": "Technical Project Manager - Market Expansion  (m/f/d)",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 59,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "🎯 technical project manager (+18)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "EGYM",
+      "jd_quelle": "seite",
+      "jd_len": 5828,
+      "fit": 43,
+      "fit_reasons": [
+        "🎯 Rolle: Technisches PM (+30)",
+        "🔧 Fachgebiet: Hardware, Engineering (EN), Lieferantensteuerung, KI/Automatisierung (+12)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [
+        "Studium gefordert, nicht geöffnet",
+        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "arbeitnow",
+      "url": "https://jobs.ashbyhq.com/lilt-production/425d28d3-2748-4f08-b79d-53cdc2a9d4b7/application",
+      "title": "Project Manager EMEA, Production",
+      "company": "LILT (Production)",
+      "location": "Remote",
+      "description": "<p style=\"min-height:1.5em\"><strong>RESPONSIBILITIES</strong>:</p><ul style=\"min-height:1.5em\"><li><p style=\"min-height:1.5em\">Orchestrate complex workflows including translation, QA, DTP, multimedia, and linguistic sign-off for LILT’s largest enterprise customers.</p></li><li><p style=\"min-height:1.5em\">Engage directly with customers to clarify project requirements, ensure all assets are received, and provide accurate status updates and confirm delivery in line with pre-defined SLAs</p></li><li><p style=\"min-height:1.5em\">Coordinate seamlessly with internal engineering and linguistic teams to",
+      "remote": true,
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 54,
+      "score_reasons": [
+        "🎯 project manager (+16)",
+        "🎯 project management (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "portal_url": "https://www.arbeitnow.com/jobs/companies/lilt-production/remote-project-manager-emea-production-366622",
+      "link_chain": [
+        "https://www.arbeitnow.com/jobs/companies/lilt-production/remote-project-manager-emea-production-366622",
+        "https://jobs.ashbyhq.com/lilt-production/425d28d3-2748-4f08-b79d-53cdc2a9d4b7/application?utm_source=arbeitnow.com&ref=arbeitnow.com"
+      ],
+      "final_link": true,
+      "final_link_note": "arbeitnow/apply",
+      "verified": true,
+      "verify_status": "ok-spa",
+      "clean_company": "LILT (Production)",
+      "jd_quelle": "seite",
+      "jd_len": 5360,
+      "fit": 24,
+      "fit_reasons": [
+        "🎯 Rolle: Projektmanagement (+18)",
+        "🔧 Fachgebiet: KI/Automatisierung (+2)",
+        "📍 Remote (+12, Anteil prüfen)"
+      ],
+      "fit_ko": [
+        "Studium gefordert, nicht geöffnet"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13319-898371/1_3983CS-S",
       "title": "Project Management Officer (PMO) (m/w/d)",
       "company": "Hays Professional Solutions GmbH",
-      "location": "München (DE)",
+      "location": "München",
       "description": "",
-      "remote": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 53,
       "score_reasons": [
@@ -1438,78 +1476,37 @@
       "category": "pm",
       "alt_sources": [
         {
-          "source": "bundesagentur",
-          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/13319-898371/1_3983CS-S"
+          "source": "jobware",
+          "url": "https://www.jobware.de/job/project-management-officer-pmo-m-w-d-064752506"
         }
       ],
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "13319-898371/1",
       "jd_quelle": "seite",
-      "jd_len": 6895,
-      "fit": 55,
+      "jd_len": 1231,
+      "fit": 37,
       "fit_reasons": [
         "🎯 Rolle: PMO/Process Excellence (+22)",
-        "🔧 Fachgebiet: MedTech-Geraete, Aenderungs-/Freigabemanagement, Lieferantensteuerung, KI/Automatisierung (+14)",
+        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
         "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
-      ],
-      "fit_ko": [],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://tawo-gmbh.jobs.personio.de/job/2877140",
-      "title": "(Senior) Projektleiter – Data Center (m/w/d)",
-      "company": "Tawo Gmbh",
-      "location": "Deutschlandweit",
-      "description": "<br><strong>Unser Fundament für deine Arbeit. (Benefits)</strong><p><ul><li><strong>Wachstum, das du mitgestaltest //</strong> TAWO wächst, und du wächst mit. Wir setzen uns große Ziele und erreichen sie gemeinsam. Veränderung ist für uns kein Störfaktor, sondern Alltag. Im Team arbeiten wir direkt, respektvoll und ohne Egos und machen uns gegenseitig besser.</li><li><strong>Bau, digital gedacht //</strong> Als AI-first Construction Company denken wir Bau neu: technologiegestützt und skalierbar. Wir entscheiden auf Basis von Daten und Fakten, nicht nach Bauchgefühl. Du gestaltest mit, wie eine",
-      "remote": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 50,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "🎯 projektleitung (+16)",
-        "📍 deutschlandweit (+18)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "portal_url": "https://www.arbeitnow.com/jobs/companies/tawo-gmbh/senior-projektleiter-data-center-deutschlandweit-271798",
-      "link_chain": [
-        "https://www.arbeitnow.com/jobs/companies/tawo-gmbh/senior-projektleiter-data-center-deutschlandweit-271798",
-        "https://tawo-gmbh.jobs.personio.de/job/2877140#apply?utm_source=arbeitnow.com&_pc=arbeitnow.com"
-      ],
-      "final_link": true,
-      "final_link_note": "arbeitnow/apply",
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_street": "Anzengruberstraße 1",
-      "address_city": "12043 Berlin",
-      "jd_quelle": "seite",
-      "jd_len": 3655,
-      "fit": 26,
-      "fit_reasons": [
-        "🎯 Rolle: Projektleitung (+18)",
-        "🔧 Fachgebiet: Robotik/Mechatronik, KI/Automatisierung (+8)",
-        "⛔ Fremdgebiet: IT-Infrastruktur (−10)",
-        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
+        "ℹ️ Nur Titel lesbar, Volltext fehlt (max. 55)"
       ],
       "fit_ko": [
-        "Standort: weder München noch ≥80 % Remote belegt"
+        "Anzeigenseite zeigt andere Inhalte (evtl. offline, vor Bewerbung öffnen)"
       ],
-      "fit_basis": "volltext"
+      "fit_basis": "titel"
     },
     {
-      "source": "jobware",
-      "url": "https://www.jobware.de/job/technical-project-manager-structures-and-stress-compliance-m-f-d-065230324",
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12634-BB-647428-7878-4401-S",
       "title": "Technical Project Manager - Structures & Stress Compliance (m/f/d)",
       "company": "Akkodis Germany Tech Experts GmbH",
-      "location": "München (DE)",
+      "location": "München",
       "description": "",
-      "remote": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 50,
       "score_reasons": [
@@ -1521,26 +1518,31 @@
       "category": "auto",
       "alt_sources": [
         {
-          "source": "bundesagentur",
-          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12634-BB-647428-7878-4401-S"
+          "source": "xing",
+          "url": "https://www.xing.com/jobs/muenchen-technical-project-manager-structures-stress-compliance-159309920"
+        },
+        {
+          "source": "jobware",
+          "url": "https://www.jobware.de/job/technical-project-manager-structures-and-stress-compliance-m-f-d-065230324"
         }
       ],
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
-      "address_city": "27753 Delmenhorst",
+      "address_city": "80807 München",
+      "clean_company": "Akkodis Germany Tech Experts GmbH",
       "bewerbung": {
         "status": "gesendet",
         "stelle": "Senior Program Manager - Aerospace",
         "datum": "2026-10-01",
         "gleiche_stelle": false
       },
-      "jd_quelle": "seite",
-      "jd_len": 6666,
-      "fit": 45,
+      "jd_quelle": "api:arbeitsagentur",
+      "jd_len": 2590,
+      "fit": 41,
       "fit_reasons": [
         "🎯 Rolle: Technisches PM (+30)",
-        "🔧 Fachgebiet: Aenderungs-/Freigabemanagement, Maschinenbau, Präzisions-/Messtechnik, KI/Automatisierung (+14)",
+        "🔧 Fachgebiet: Aenderungs-/Freigabemanagement, Maschinenbau, KI/Automatisierung (+10)",
         "📍 München/Umland (+15)"
       ],
       "fit_ko": [
@@ -1551,13 +1553,13 @@
     },
     {
       "source": "xing",
-      "url": "https://talentspring.perspectivefunnel.com/67b5d2e833c5b3003bc04c91/?stelle=Quereinsteiger+zum+KI-Manager+%28m%2Fw%2Fd%29&standort=Hanau",
+      "url": "https://talentspring.perspectivefunnel.com/67b5d2e833c5b3003bc04c91/?stelle=Quereinsteiger+zum+KI-Manager+%28m%2Fw%2Fd%29&standort=Iserlohn",
       "title": "Quereinsteiger zum KI-Manager (m/w/d)",
       "company": "Talentspring Academy",
-      "location": "Remote Deutschland (Hanau)",
+      "location": "Remote Deutschland (Iserlohn)",
       "description": "null Wer wir sind Die Talentspring Academy qualifiziert Quereinsteiger für den Einsatz von Künstlicher Intelligenz im Marketing und Management — ohne dass Vorkenntnisse nötig sind. Je nach gewähltem Kurs dauert die Weiterbildung zwischen wenigen Wochen und bis zu 36 Wochen. Du lernst, KI-Werkzeuge gezielt einzusetzen, Prozesse zu steuern und Inhalte datengestützt zu gestalten. Aufgaben Der Lehrplan führt dich Schritt für Schritt von den Grundlagen der Künstlichen Intelligenz bis zum eigenständigen Einsatz im Marketing-Alltag: KI-Grundlagen: Du verstehst, wie moderne KI-Systeme funktionieren, u",
       "remote": true,
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 47,
       "score_reasons": [
@@ -1568,7 +1570,11 @@
       "alt_sources": [
         {
           "source": "xing",
-          "url": "https://talentspring.perspectivefunnel.com/67b5d2e833c5b3003bc04c91/?stelle=Quereinsteiger+zum+KI-Manager+%28m%2Fw%2Fd%29&standort=Iserlohn"
+          "url": "https://www.xing.com/jobs/iserlohn-quereinsteiger-ki-manager-159294761"
+        },
+        {
+          "source": "xing",
+          "url": "https://talentspring.perspectivefunnel.com/67b5d2e833c5b3003bc04c91/?stelle=Quereinsteiger+zum+KI-Manager+%28m%2Fw%2Fd%29&standort=Celle"
         },
         {
           "source": "xing",
@@ -1576,13 +1582,13 @@
         },
         {
           "source": "xing",
-          "url": "https://talentspring.perspectivefunnel.com/67b5d2e833c5b3003bc04c91/?stelle=Quereinsteiger+zum+KI-Manager+%28m%2Fw%2Fd%29&standort=Celle"
+          "url": "https://talentspring.perspectivefunnel.com/67b5d2e833c5b3003bc04c91/?stelle=Quereinsteiger+zum+KI-Manager+%28m%2Fw%2Fd%29&standort=Hanau"
         }
       ],
-      "portal_url": "https://www.xing.com/jobs/hanau-quereinsteiger-ki-manager-159294727",
+      "portal_url": "https://www.xing.com/jobs/iserlohn-quereinsteiger-ki-manager-159294755",
       "link_chain": [
-        "https://www.xing.com/jobs/hanau-quereinsteiger-ki-manager-159294727",
-        "https://talentspring.perspectivefunnel.com/67b5d2e833c5b3003bc04c91/?utm_source=xing&utm_medium=stellenanzeige&utm_campaign=kim-a1-b9-g2&utm_content=b9&stelle=Quereinsteiger+zum+KI-Manager+(m/w/d)&standort=Hanau&utm_term=kim-a1"
+        "https://www.xing.com/jobs/iserlohn-quereinsteiger-ki-manager-159294755",
+        "https://talentspring.perspectivefunnel.com/67b5d2e833c5b3003bc04c91/?utm_source=xing&utm_medium=stellenanzeige&utm_campaign=kim-a1-b10-tz&utm_content=b10&stelle=Quereinsteiger+zum+KI-Manager+(m/w/d)&standort=Iserlohn&utm_term=kim-a1"
       ],
       "final_link": true,
       "final_link_note": "xing/applyUrl",
@@ -1607,7 +1613,7 @@
       "location": "Gräfelfing",
       "description": "",
       "remote": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 47,
       "score_reasons": [
@@ -1643,13 +1649,108 @@
       "fit_basis": "volltext"
     },
     {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/technical-program-manager-f-m-d-at-animore-4494101677",
+      "source": "workable:animore",
+      "url": "https://apply.workable.com/j/F4E792CF90",
       "title": "Technical Program Manager (F/M/D)",
-      "company": "Technical Program Manager (F/M/D)",
+      "company": "Animore",
+      "location": "Munich, Bavaria, Germany",
+      "remote": false,
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 43,
+      "score_reasons": [
+        "🎯 technical program manager (+18)",
+        "📍 munich (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "jd_len": 43,
+      "fit": 45,
+      "fit_reasons": [
+        "🎯 Rolle: Technisches PM (+30)",
+        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
+        "📍 München/Umland (+15)",
+        "ℹ️ Nur Titel lesbar, Volltext fehlt (max. 55)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "titel"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/senior-technical-program-manager-all-genders-at-avelios-medical-4476590949",
+      "title": "Senior Technical Program Manager (all genders)",
+      "company": "Senior Technical Program Manager (all genders)",
       "location": "München",
       "description": "",
-      "first_seen": "2026-11-24T14:22:40.098723",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 43,
+      "score_reasons": [
+        "🎯 technical program manager (+18)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "Avelios Medical",
+      "jd_quelle": "seite",
+      "jd_len": 3659,
+      "fit": 52,
+      "fit_reasons": [
+        "🎯 Rolle: Technisches PM (+30)",
+        "🔧 Fachgebiet: Gesamtfahrzeug/Package, KI/Automatisierung (+7)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/manager-cloud-ai-transformation-w-m-d-at-pwc-deutschland-4481669002",
+      "title": "Manager Cloud & AI Transformation (w/m/d)",
+      "company": "Manager Cloud & AI Transformation (w/m/d)",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 43,
+      "score_reasons": [
+        "🎯 ai transformation (+18)",
+        "📍 münchen (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "PwC Deutschland",
+      "jd_quelle": "seite",
+      "jd_len": 4372,
+      "fit": 23,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: KI/Automatisierung (+4)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/staff-technical-program-manager-f-m-d-at-orbem-4485368718",
+      "title": "Staff Technical Program Manager (f/m/d)",
+      "company": "Staff Technical Program Manager (f/m/d)",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
       "is_new": true,
       "score": 43,
       "score_reasons": [
@@ -1659,26 +1760,777 @@
       "category": "pm",
       "alt_sources": [
         {
-          "source": "workable:animore",
-          "url": "https://apply.workable.com/j/F4E792CF90"
+          "source": "ashby:orbem",
+          "url": "https://jobs.ashbyhq.com/orbem/4d8b273c-27f1-44d5-9072-0c003b7f2103"
         }
       ],
       "final_link": true,
       "verified": true,
       "verify_status": "ok-spa",
       "address_city": "München",
-      "clean_company": "Animore",
+      "clean_company": "Orbem",
       "jd_quelle": "seite",
-      "jd_len": 3340,
-      "fit": 47,
+      "jd_len": 6553,
+      "fit": 59,
       "fit_reasons": [
         "🎯 Rolle: Technisches PM (+30)",
-        "🔧 Fachgebiet: Robotik/Mechatronik, Gesamtfahrzeug/Package, Hardware, KI/Automatisierung (+16)",
+        "🔧 Fachgebiet: Steuergeraete/Sensorik, Hardware, Engineering (EN), KI/Automatisierung (+14)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1004048428-S",
+      "title": "Projektmanager (m/w/d)",
+      "company": "AVENDIS GmbH",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": true,
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "jobware",
+          "url": "https://www.jobware.de/job/projektmanager-m-w-d-065218259"
+        }
+      ],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Reuchlinstraße 10-11",
+      "address_city": "10553 Berlin",
+      "kennziffer": "10001-1004048428-S",
+      "clean_company": "AVENDIS GmbH",
+      "jd_quelle": "api:arbeitsagentur",
+      "jd_len": 2532,
+      "fit": 33,
+      "fit_reasons": [
+        "🎯 Rolle: Projektmanagement (+18)",
+        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "jobware",
+      "url": "https://www.jobware.de/job/planer-projektleiter-elektrotechnik-m-w-d-065104296",
+      "title": "Planer/ Projektleiter Elektrotechnik (m/w/d)",
+      "company": "serviceline Personal-Management Münch.GmbH &Co.KG",
+      "location": "München (DE)",
+      "description": "",
+      "remote": false,
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "jobware",
+          "url": "https://www.jobware.de/job/planer-projektleiter-elektrotechnik-m-w-d-064628005"
+        },
+        {
+          "source": "bundesagentur",
+          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/15924-F6HFVERIDSN2U9YJ-S"
+        }
+      ],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "38448 Wolfsburg",
+      "kennziffer": "M-ND-18032026",
+      "jd_quelle": "seite",
+      "jd_len": 7521,
+      "fit": 30,
+      "fit_reasons": [
+        "🎯 Rolle: Projektleitung, Inhalt Projektingenieur (+24)",
+        "🔧 Fachgebiet: KI/Automatisierung (+2)",
+        "⛔ Fremdgebiet: Bau/TGA/Immobilien (−10)",
+        "📍 München/Umland (+15)",
+        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
+      ],
+      "fit_ko": [
+        "Rolle: Bau/TGA",
+        "Defense: nur ab 100.000 € (Regel 28.07.)"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "jobware",
+      "url": "https://www.jobware.de/job/projektleiter-065073724",
+      "title": "Projektleiter",
+      "company": "rocket Engineering GmbH",
+      "location": "München (DE)",
+      "description": "",
+      "remote": false,
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "bundesagentur",
+          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/20225-ZQ1KNI8ELTHGY95D-S"
+        }
+      ],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "kennziffer": "20225-ZQ1KNI8ELTHGY95D-S",
+      "jd_quelle": "seite",
+      "jd_len": 7110,
+      "fit": 30,
+      "fit_reasons": [
+        "🎯 Rolle: Projektleitung, Inhalt Teilprojektleitung (+24)",
+        "🔧 Fachgebiet: Hardware, Entwicklungsprozesse, KI/Automatisierung (+9)",
+        "⛔ Fremdgebiet: Bau/TGA/Immobilien (−10)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+      ],
+      "fit_ko": [
+        "Defense: nur ab 100.000 € (Regel 28.07.)",
+        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "jobware",
+      "url": "https://www.jobware.de/job/projektleiter-m-w-d-design-transfer-qualitaetskontrolle-von-diagnostikprodukten-1644-065049205",
+      "title": "Projektleiter (m/w/d) Design Transfer Qualitätskontrolle von Diagnostikprodukten (1644)",
+      "company": "Brüggen Engineering GmbH",
+      "location": "München (DE)",
+      "description": "",
+      "remote": false,
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "bundesagentur",
+          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003988774-S"
+        }
+      ],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "kennziffer": "10001-1003988774-S",
+      "jd_quelle": "seite",
+      "jd_len": 7942,
+      "fit": 24,
+      "fit_reasons": [
+        "🎯 Rolle: Projektleitung (+18)",
+        "🔧 Fachgebiet: MedTech-Geraete, Aenderungs-/Freigabemanagement, KI/Automatisierung (+11)",
+        "⛔ Fremdgebiet: Pharma/Klinik (−10)",
         "📍 München/Umland (+15)"
       ],
       "fit_ko": [
+        "Promotion gefordert"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "xing",
+      "url": "https://pmx.jobs.personio.de/job/2871197?language=de",
+      "title": "Entwicklungsingenieur Interieur / Innenraumverkleidung (m/w/d)",
+      "company": "pmX Group",
+      "location": "München",
+      "description": "Deine Aufgaben Bearbeitung und Koordination der Seitenvollverkleidung Auslegung und Konstruktion von Metall- und Kunststoffkomponenten Packageabsicherung der Einbauten über Fahrzeugvarianz Abstimmung mit internen Schnittstellen Abstimmung und Koordination von externen Entwicklungspartnern Mitarbeit im SE-Team Datenmanagement in Windchill Dein Profil Ingenieur/in, Fahrzeug- oder Maschinenbaustudium oder ähnliches Mehrjährige Erfahrung bzgl. Serienentwicklung nach Produktentstehungsprozess Auslegungskompetenz sowohl auf der Kunststoffseite wie auch in Aludruckguss und Stahlschweißgruppen Fundier",
+      "remote": false,
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 39,
+      "score_reasons": [
+        "🎯 interieur (+14)",
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [
+        {
+          "source": "personio:pmx",
+          "url": "https://pmx.jobs.personio.de/job/2871197?language=de"
+        }
+      ],
+      "portal_url": "https://www.xing.com/jobs/muenchen-entwicklungsingenieur-interieur-innenraumverkleidung-159008279",
+      "link_chain": [
+        "https://www.xing.com/jobs/muenchen-entwicklungsingenieur-interieur-innenraumverkleidung-159008279",
+        "https://pmx.jobs.personio.de/job/2871197?language=de&utm_source=xing.com"
+      ],
+      "final_link": true,
+      "final_link_note": "xing/applyUrl",
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "70372 Stuttgart",
+      "bewerbung": {
+        "status": "absage",
+        "stelle": "Fahrzeugfunktionsverantwortung Gesamtfahrzeug (m/w/d)",
+        "datum": "2026-10-05",
+        "gleiche_stelle": false
+      },
+      "jd_quelle": "seite",
+      "jd_len": 1753,
+      "fit": 82,
+      "fit_reasons": [
+        "🎯 Rolle: Entwicklung/Konstruktion, Inhalt Validierung/Erprobung (+22)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Karosserie/Interieur, Konstruktion/CAD, Serie/Industrialisierung, Gesamtfahrzeug/Package (+35)",
+        "📍 München/Umland (+15)",
+        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "xing",
+      "url": "https://www.diakonie.at/jobplattform/offene-stellen/projektmanager-in-projektentwicklung-gesundheitsbereich",
+      "title": "Projektmanager:in / Projektentwicklung Gesundheitsbereich",
+      "company": "Diakoniewerk",
+      "location": "Remote Deutschland (Gallneukirchen)",
+      "description": "Ab Q1/2027 Vollzeit Diakoniewerk Verwaltung, 4210 Gallneukirchen 37 Wochenstunden, All-In Seit über 150 Jahren gestaltet das Diakoniewerk eine zukunftsorientierte, soziale und inklusive Gesellschaft. Starke Basis sind dabei rund 250 Standorte in 6 Bundesländern. Neben den Sozialen Dienstleistungen ist das Geschäftsfeld Gesundheit ein wichtiges und sich dynamisch entwickelndes Standbein des Diakoniewerks. Im Zuge des weiteren Ausbaus unseres Geschäftsfelds suchen wir genau Sie zur Verstärkung unseres Teams! Aufgaben Entwicklung und Planung von Projekten und Vorhaben im Gesundheitsbereich, z. B.",
+      "remote": true,
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 38,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 remote (+22)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "xing",
+          "url": "https://www.xing.com/jobs/gallneukirchen-projektmanager-projektentwicklung-gesundheitsbereich-diakoniewerk-verwaltung-4210-gallneukirchen-oberoesterreich-37-wochenstunden-all-158857555"
+        }
+      ],
+      "portal_url": "https://www.xing.com/jobs/gallneukirchen-projektmanager-projektentwicklung-gesundheitsbereich-158859108",
+      "link_chain": [
+        "https://www.xing.com/jobs/gallneukirchen-projektmanager-projektentwicklung-gesundheitsbereich-158859108",
+        "https://www.diakonie.at/jobplattform/offene-stellen/projektmanager-in-projektentwicklung-gesundheitsbereich?utm_source=xing.com"
+      ],
+      "final_link": true,
+      "final_link_note": "xing/applyUrl",
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "41212 Elisabeth",
+      "jd_quelle": "seite",
+      "jd_len": 6135,
+      "fit": 30,
+      "fit_reasons": [
+        "🎯 Rolle: Projektmanagement (+18)",
+        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
+        "📍 Remote (+12, Anteil prüfen)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/senior-pmo-specialist-projekt-und-programmsteuerung-m-w-d-in-m%C3%BCnchen-at-deloitte-4449965192",
+      "title": "Senior PMO Specialist - Projekt- und Programmsteuerung (m/w/d) in München",
+      "company": "Senior PMO Specialist - Projekt- und Programmsteuerung (m/w/d) in München",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 37,
+      "score_reasons": [
+        "🎯 pmo (+12)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "München",
+      "clean_company": "Deloitte",
+      "jd_quelle": "seite",
+      "jd_len": 5030,
+      "fit": 52,
+      "fit_reasons": [
+        "🎯 Rolle: PMO/Process Excellence (+22)",
+        "🔧 Fachgebiet: MedTech-Geraete (+5)",
+        "📍 München/Umland (+15)",
+        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "neura",
+      "url": "https://jobs.neura-robotics.com/offer/senior-concept-engineer-human/e58fffd5-42e7-429c-abf8-7d9a6cea13a1",
+      "title": "(Senior) Concept Engineer - (human)",
+      "company": "NEURA Robotics",
+      "location": "Freising (Oberbayern)",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 36,
+      "score_reasons": [
+        "🎯 robotics (+16)",
+        "🎯 concept engineer (+20)"
+      ],
+      "category": "auto",
+      "alt_sources": [
+        {
+          "source": "neura",
+          "url": "https://jobs.neura-robotics.com/offer/senior-concept-engineer-human/52f048d8-2776-4055-8bca-41a4a6f54591"
+        }
+      ],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "Freising (Oberbayern)",
+      "clean_company": "Neura Robotics",
+      "bewerbung": {
+        "status": "absage",
+        "stelle": "Concept Engineer (Growth Team, München)",
+        "datum": "2026-10-01",
+        "gleiche_stelle": true
+      },
+      "jd_quelle": "seite",
+      "jd_len": 2025,
+      "fit": 63,
+      "fit_reasons": [
+        "🎯 Rolle: Konzeptentwicklung (+26)",
+        "🔧 Fachgebiet: Robotik/Mechatronik, Anforderungen, Maschinenbau, Engineering (EN), KI/Automatisierung (+20)",
+        "📍 München/Umland (+15)",
+        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
+      ],
+      "fit_ko": [
+        "Studium gefordert, nicht geöffnet"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "neura",
+      "url": "https://jobs.neura-robotics.com/offer/concept-engineer-human/719071c3-61f2-42d8-944b-e8797b382c13",
+      "title": "Concept Engineer (human)",
+      "company": "NEURA Robotics",
+      "location": "Freising (Oberbayern)",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 36,
+      "score_reasons": [
+        "🎯 robotics (+16)",
+        "🎯 concept engineer (+20)"
+      ],
+      "category": "auto",
+      "alt_sources": [
+        {
+          "source": "neura",
+          "url": "https://jobs.neura-robotics.com/offer/concept-engineer-human/45c9f621-d148-427f-bd5b-4bf5fdd5e6b4"
+        }
+      ],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "Freising (Oberbayern)",
+      "clean_company": "Neura Robotics",
+      "bewerbung": {
+        "status": "absage",
+        "stelle": "Concept Engineer (Growth Team, München)",
+        "datum": "2026-10-01",
+        "gleiche_stelle": true
+      },
+      "jd_quelle": "seite",
+      "jd_len": 2037,
+      "fit": 63,
+      "fit_reasons": [
+        "🎯 Rolle: Konzeptentwicklung (+26)",
+        "🔧 Fachgebiet: Robotik/Mechatronik, Anforderungen, Maschinenbau, Engineering (EN), KI/Automatisierung (+20)",
+        "📍 München/Umland (+15)",
+        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
+      ],
+      "fit_ko": [
+        "Studium gefordert, nicht geöffnet"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "yourfirm",
+      "url": "https://career2.successfactors.eu/career?company=palfinger&career_job_req_id=9461&career_ns=job_application",
+      "title": "Werkstattmeister LKW- & Nutzfahrzeugaufbauten (w/m/d) in München",
+      "company": "Palfinger  Niederlassung Muenchen",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 35,
+      "score_reasons": [
+        "🚗 fahrzeug (+10)",
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "portal_url": "https://www.yourfirm.de/job/palfinger-gmbh-niederlassung-muenchen/werkstattmeister-lkw-und-nutzfahrzeugaufbauten-w-m-d-in-muenchen/yf-54674/",
+      "link_chain": [
+        "https://www.yourfirm.de/job/palfinger-gmbh-niederlassung-muenchen/werkstattmeister-lkw-und-nutzfahrzeugaufbauten-w-m-d-in-muenchen/yf-54674/",
+        "https://career2.successfactors.eu/career?company=palfinger&career_job_req_id=9461&career_ns=job_application"
+      ],
+      "final_link": true,
+      "final_link_note": "apply_now_button",
+      "verified": true,
+      "verify_status": "ok",
+      "jd_quelle": "seite",
+      "jd_len": 718,
+      "fit": 31,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug (+12)",
+        "📍 München/Umland (+15)",
+        "ℹ️ Nur Titel lesbar, Volltext fehlt (max. 55)"
+      ],
+      "fit_ko": [
+        "Anzeigenseite zeigt andere Inhalte (evtl. offline, vor Bewerbung öffnen)"
+      ],
+      "fit_basis": "titel"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1004064285-S",
+      "title": "(Senior) Projektleiter Integrated Product Support (IPS) (m/w/d)",
+      "company": "IABG Industrieanlagen Betriebs-GmbH",
+      "location": "Ottobrunn",
+      "description": "",
+      "salary": "",
+      "homeoffice": true,
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 32,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 ottobrunn (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "Koblenz am Rhein",
+      "kennziffer": "10001-1004064285-S",
+      "clean_company": "IABG Industrieanlagen Betriebs-GmbH",
+      "jd_quelle": "api:arbeitsagentur",
+      "jd_len": 2745,
+      "fit": 30,
+      "fit_reasons": [
+        "🎯 Rolle: Projektleitung, Inhalt Teilprojektleitung (+24)",
+        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+      ],
+      "fit_ko": [
+        "Defense: nur ab 100.000 € (Regel 28.07.)"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "linkedin",
+      "url": "https://de.linkedin.com/jobs/view/projektmanager-m-w-d-selfprotection-ground-at-guldberg-gmbh-4492893620",
+      "title": "Projektmanager (m/w/d) Selfprotection Ground",
+      "company": "Projektmanager (m/w/d) Selfprotection Ground",
+      "location": "Taufkirchen",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 32,
+      "score_reasons": [
+        "🎯 projektmanager (+16)",
+        "📍 taufkirchen (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Taufkirchen",
+      "clean_company": "Guldberg GmbH",
+      "bewerbung": {
+        "status": "gesendet",
+        "stelle": "Fahrzeugfunktionsverantwortung Gesamtfahrzeug",
+        "datum": "2026-08-13",
+        "gleiche_stelle": false
+      },
+      "jd_quelle": "seite",
+      "jd_len": 2616,
+      "fit": 30,
+      "fit_reasons": [
+        "🎯 Rolle: Projektmanagement (+18)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Serie/Industrialisierung, Maschinenbau (+15)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+      ],
+      "fit_ko": [
+        "Defense: nur ab 100.000 € (Regel 28.07.)"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Projektmanager-Operations-Messwesen-Zaehlerwechsel-m-w-d-Kirchheimbolanden-enwas-GmbH--14731378-inline.html",
+      "title": "Projektleiter / Projektmanager Operations – Messwesen & Zählerwechsel (m/w/d)",
+      "company": "",
+      "location": "Kirchheimbolanden",
+      "such_ort": "",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 32,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 projektmanager (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Morschheimer Straße 9",
+      "address_city": "67292 Kirchheimbolanden",
+      "clean_company": "enwas GmbH",
+      "final_link_note": "stepstone-direktbewerbung",
+      "jd_quelle": "seite",
+      "jd_len": 4951,
+      "fit": 25,
+      "fit_reasons": [
+        "🎯 Rolle: Projektmanagement (+18)",
+        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [
+        "Studium gefordert, nicht geöffnet"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "neura",
+      "url": "https://jobs.neura-robotics.com/offer/electrician-for-prototyping-human/d1a8fd10-83a7-434b-a204-86ebffce7faf",
+      "title": "Electrician for Prototyping (human)",
+      "company": "NEURA Robotics",
+      "location": "Freising (Oberbayern)",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 28,
+      "score_reasons": [
+        "🎯 prototyp (+12)",
+        "🎯 robotics (+16)"
+      ],
+      "category": "auto",
+      "alt_sources": [
+        {
+          "source": "neura",
+          "url": "https://jobs.neura-robotics.com/offer/electrician-for-prototyping-human/38f62915-b13c-4dcc-92b2-7eba69bb5e8e"
+        }
+      ],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "Freising (Oberbayern)",
+      "clean_company": "Neura Robotics",
+      "bewerbung": {
+        "status": "absage",
+        "stelle": "Concept Engineer (Growth Team, München)",
+        "datum": "2026-10-01",
+        "gleiche_stelle": false
+      },
+      "jd_quelle": "seite",
+      "jd_len": 1845,
+      "fit": 44,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: Steuergeraete/Sensorik, Robotik/Mechatronik, Prototypen, Engineering (EN) (+25)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003532902-S",
+      "title": "Software Product Owner (m/w/x)",
+      "company": "Reiser Simulation and Training GmbH",
+      "location": "Berg, Starnberger See",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 26,
+      "score_reasons": [
+        "🎯 product owner (+12)",
+        "📍 starnberg (+14)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Oberer Lüßbach 29-31",
+      "address_city": "82335 Berg",
+      "kennziffer": "10001-1003532902-S",
+      "clean_company": "Reiser Simulation and Training GmbH",
+      "jd_quelle": "api:arbeitsagentur",
+      "jd_len": 3152,
+      "fit": 33,
+      "fit_reasons": [
+        "🎯 Rolle: Product Owner, Inhalt Produktentwicklung (+18)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug (+6)",
+        "⛔ Fremdgebiet: Softwarebranche (−10)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "stepstone",
+      "url": "https://www.stepstone.de/stellenangebote--Lead-Auditor-Produktaktenpruefer-all-genders-bundesweit-DQS-GmbH-Deutsche-Gesellschaft-zur-Zertifizierung-von-Managementsystemen--14791487-inline.html",
+      "title": "Lead Auditor/Produktaktenprüfer (all genders)",
+      "company": "",
+      "location": "bundesweit",
+      "such_ort": "muenchen",
+      "description": "",
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 25,
+      "score_reasons": [
+        "📍 muenchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--Lead-Auditor-Produktaktenpruefer-all-genders-bundesweit-DQS-GmbH-Deutsche-Gesellschaft-zur-Zertifizierung-von-Managementsystemen--14791481-inline.html"
+        },
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--Lead-Auditor-Produktaktenpruefer-all-genders-bundesweit-DQS-GmbH-Deutsche-Gesellschaft-zur-Zertifizierung-von-Managementsystemen--14791466-inline.html"
+        },
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--Lead-Auditor-Produktaktenprueferall-genders-bundesweit-DQS-GmbH-Deutsche-Gesellschaft-zur-Zertifizierung-von-Managementsystemen--14791341-inline.html"
+        }
+      ],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "bundesweit",
+      "address_city": "bundesweit",
+      "clean_company": "DQS GmbH Deutsche Gesellschaft zur Zertifizierung von Managementsystemen",
+      "final_link_note": "stepstone-direktbewerbung",
+      "jd_quelle": "seite",
+      "jd_len": 2695,
+      "fit": 0,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: MedTech-Geraete (+5)"
+      ],
+      "fit_ko": [
+        "Standort: weder München noch ≥80 % Remote belegt",
         "Studium gefordert, nicht geöffnet",
         "Englisch C1/verhandlungssicher gefordert (Andy B2)"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "arbeitnow",
+      "url": "https://jobs.ashbyhq.com/higgsfieldai/b9720c4e-23a6-4a59-bb1e-745986cf4ac2/application",
+      "title": "Content Editor",
+      "company": "Higgsfield",
+      "location": "Remote",
+      "description": "<p style=\"min-height:1.5em\"><strong>Why work at Higgsfield AI?</strong></p><p style=\"min-height:1.5em\">Higgsfield AI is the fastest-scaling generative AI company in history, hitting $1B in annual revenue run rate, 30M+ users worldwide, 6M+ generations per day, and powering 390 of Fortune 500 brands.</p><p style=\"min-height:1.5em\">We write a lot, and it's read by millions of people around the world. Our content team is already strong, and now we want to make it stronger. You'll be the native voice of the brand: everything our users read will go through you.</p><p style=\"min-height:1.5em\"><stron",
+      "remote": true,
+      "first_seen": "2026-11-24T16:28:29.665957",
+      "is_new": true,
+      "score": 22,
+      "score_reasons": [
+        "📍 remote (+22)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "portal_url": "https://www.arbeitnow.com/jobs/companies/higgsfield/remote-content-editor-274931",
+      "link_chain": [
+        "https://www.arbeitnow.com/jobs/companies/higgsfield/remote-content-editor-274931",
+        "https://jobs.ashbyhq.com/higgsfieldai/b9720c4e-23a6-4a59-bb1e-745986cf4ac2/application?utm_source=arbeitnow.com&ref=arbeitnow.com"
+      ],
+      "final_link": true,
+      "final_link_note": "arbeitnow/apply",
+      "verified": true,
+      "verify_status": "ok-spa",
+      "clean_company": "Higgsfield",
+      "jd_quelle": "seite",
+      "jd_len": 2184,
+      "fit": 18,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: KI/Automatisierung (+2)",
+        "📍 Remote (+12, Anteil prüfen)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "arbeitnow",
+      "url": "https://tawo-gmbh.jobs.personio.de/job/2877140",
+      "title": "(Senior) Projektleiter – Data Center (m/w/d)",
+      "company": "Tawo Gmbh",
+      "location": "Deutschlandweit",
+      "description": "<br><strong>Unser Fundament für deine Arbeit. (Benefits)</strong><p><ul><li><strong>Wachstum, das du mitgestaltest //</strong> TAWO wächst, und du wächst mit. Wir setzen uns große Ziele und erreichen sie gemeinsam. Veränderung ist für uns kein Störfaktor, sondern Alltag. Im Team arbeiten wir direkt, respektvoll und ohne Egos und machen uns gegenseitig besser.</li><li><strong>Bau, digital gedacht //</strong> Als AI-first Construction Company denken wir Bau neu: technologiegestützt und skalierbar. Wir entscheiden auf Basis von Daten und Fakten, nicht nach Bauchgefühl. Du gestaltest mit, wie eine",
+      "remote": false,
+      "first_seen": "2026-11-24T14:22:40.098723",
+      "is_new": false,
+      "score": 50,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "🎯 projektleitung (+16)",
+        "📍 deutschlandweit (+18)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "portal_url": "https://www.arbeitnow.com/jobs/companies/tawo-gmbh/senior-projektleiter-data-center-deutschlandweit-271798",
+      "link_chain": [
+        "https://www.arbeitnow.com/jobs/companies/tawo-gmbh/senior-projektleiter-data-center-deutschlandweit-271798",
+        "https://tawo-gmbh.jobs.personio.de/job/2877140#apply?utm_source=arbeitnow.com&_pc=arbeitnow.com"
+      ],
+      "final_link": true,
+      "final_link_note": "arbeitnow/apply",
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_street": "Anzengruberstraße 1",
+      "address_city": "12043 Berlin",
+      "jd_quelle": "seite",
+      "jd_len": 3655,
+      "fit": 26,
+      "fit_reasons": [
+        "🎯 Rolle: Projektleitung (+18)",
+        "🔧 Fachgebiet: Robotik/Mechatronik, KI/Automatisierung (+8)",
+        "⛔ Fremdgebiet: IT-Infrastruktur (−10)",
+        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
+      ],
+      "fit_ko": [
+        "Standort: weder München noch ≥80 % Remote belegt"
       ],
       "fit_basis": "volltext"
     },
@@ -1691,7 +2543,7 @@
       "description": "<br><strong>Join our team! </strong><p>Do you not only provide creative inspiration but also think in terms of holistic brand experiences? Do you know how to develop strong guiding concepts from strategic insights and bring them to life across various channels and touchpoints? Do you love great storytelling, compelling presentations, and concepts that work beyond just on paper?<br>Then join our Brand Experience Design Team in Munich!</p><br><strong>Your Tasks</strong><p><ul><li>You’ll develop creative and strategically sound concepts for brand activations, retail experiences, events, and cross",
       "remote": false,
       "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
+      "is_new": false,
       "score": 41,
       "score_reasons": [
         "🎯 project management (+16)",
@@ -1724,176 +2576,6 @@
       "fit_basis": "volltext"
     },
     {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003988774-S",
-      "title": "Projektleiter (m/w/d) Design Transfer Qualitätskontrolle von Diagnostikprodukten (1644)",
-      "company": "Brüggen Engineering GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": true,
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [
-        {
-          "source": "jobware",
-          "url": "https://www.jobware.de/job/projektleiter-m-w-d-design-transfer-qualitaetskontrolle-von-diagnostikprodukten-1644-065049205"
-        }
-      ],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "München",
-      "kennziffer": "10001-1003988774-S",
-      "clean_company": "Brüggen Engineering GmbH",
-      "jd_quelle": "api:arbeitsagentur",
-      "jd_len": 3405,
-      "fit": 17,
-      "fit_reasons": [
-        "🎯 Rolle: Projektleitung (+18)",
-        "🔧 Fachgebiet: Aenderungs-/Freigabemanagement (+4)",
-        "⛔ Fremdgebiet: Pharma/Klinik (−10)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [
-        "Promotion gefordert"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/20225-ZQ1KNI8ELTHGY95D-S",
-      "title": "Projektleiter",
-      "company": "rocket Engineering GmbH",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [
-        {
-          "source": "jobware",
-          "url": "https://www.jobware.de/job/projektleiter-065073724"
-        }
-      ],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80997 München",
-      "kennziffer": "20225-ZQ1KNI8ELTHGY95D-S",
-      "clean_company": "rocket Engineering GmbH",
-      "jd_quelle": "api:arbeitsagentur",
-      "jd_len": 3132,
-      "fit": 30,
-      "fit_reasons": [
-        "🎯 Rolle: Projektleitung, Inhalt Teilprojektleitung (+24)",
-        "🔧 Fachgebiet: Hardware, Entwicklungsprozesse (+7)",
-        "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
-      ],
-      "fit_ko": [
-        "Defense: nur ab 100.000 € (Regel 28.07.)",
-        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/15924-F6HFVERIDSN2U9YJ-S",
-      "title": "Planer/ Projektleiter Elektrotechnik (m/w/d)",
-      "company": "serviceline Personal-Management Münch.GmbH &Co.KG",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [
-        {
-          "source": "jobware",
-          "url": "https://www.jobware.de/job/planer-projektleiter-elektrotechnik-m-w-d-065104296"
-        }
-      ],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80331 München",
-      "kennziffer": "M-ND-18032026",
-      "clean_company": "serviceline Personal-Management Münch.GmbH &Co.KG",
-      "jd_quelle": "api:arbeitsagentur",
-      "jd_len": 3359,
-      "fit": 30,
-      "fit_reasons": [
-        "🎯 Rolle: Projektleitung, Inhalt Projektingenieur (+24)",
-        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
-        "⛔ Fremdgebiet: Bau/TGA/Immobilien (−10)",
-        "📍 München/Umland (+15)",
-        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
-      ],
-      "fit_ko": [
-        "Rolle: Bau/TGA",
-        "Defense: nur ab 100.000 € (Regel 28.07.)"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "jobware",
-      "url": "https://www.jobware.de/job/projektmanager-m-w-d-065218259",
-      "title": "Projektmanager (m/w/d)",
-      "company": "AVENDIS GmbH",
-      "location": "München (DE), Greven, Westfalen (DE), Fulda (DE), Cottbus (DE), Düsseldorf (DE), Berlin (DE), Westerstede (DE), Mannheim (DE), Bremen (DE)",
-      "description": "",
-      "remote": false,
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [
-        {
-          "source": "bundesagentur",
-          "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1004048428-S"
-        }
-      ],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "kennziffer": "10001-1004048428-S",
-      "jd_quelle": "seite",
-      "jd_len": 6808,
-      "fit": 21,
-      "fit_reasons": [
-        "🎯 Rolle: Projektmanagement (+18)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, KI/Automatisierung (+8)",
-        "⛔ Fremdgebiet: IT-Infrastruktur, Bau/TGA/Immobilien (−20)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [],
-      "fit_basis": "volltext"
-    },
-    {
       "source": "jobware",
       "url": "https://www.jobware.de/job/projektleiter-in-elektrotechnik-m-w-d-063782563",
       "title": "Projektleiter:in Elektrotechnik (m/w/d)",
@@ -1902,7 +2584,7 @@
       "description": "",
       "remote": false,
       "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
+      "is_new": false,
       "score": 41,
       "score_reasons": [
         "🎯 projektleiter (+16)",
@@ -1913,6 +2595,7 @@
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
+      "address_city": "38448 Wolfsburg",
       "kennziffer": "10000-1207583081-S",
       "jd_quelle": "seite",
       "jd_len": 7758,
@@ -1928,49 +2611,6 @@
       "fit_basis": "volltext"
     },
     {
-      "source": "xing",
-      "url": "https://www.diakonie.at/jobplattform/offene-stellen/projektmanager-in-projektentwicklung-gesundheitsbereich",
-      "title": "Projektmanager:in / Projektentwicklung Gesundheitsbereich Diakoniewerk Verwaltung, 4210 Gallneukirchen, Oberösterreich 37 Wochenstunden, All-In",
-      "company": "Diakoniewerk",
-      "location": "Remote Deutschland (Gallneukirchen)",
-      "description": "Ab Q1/2027 Vollzeit Diakoniewerk Verwaltung, 4210 Gallneukirchen 37 Wochenstunden, All-In Seit über 150 Jahren gestaltet das Diakoniewerk eine zukunftsorientierte, soziale und inklusive Gesellschaft. Starke Basis sind dabei rund 250 Standorte in 6 Bundesländern. Neben den Sozialen Dienstleistungen ist das Geschäftsfeld Gesundheit ein wichtiges und sich dynamisch entwickelndes Standbein des Diakoniewerks. Im Zuge des weiteren Ausbaus unseres Geschäftsfelds suchen wir genau Sie zur Verstärkung unseres Teams! Aufgaben Entwicklung und Planung von Projekten und Vorhaben im Gesundheitsbereich, z. B.",
-      "remote": true,
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 38,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "📍 remote (+22)"
-      ],
-      "category": "pm",
-      "alt_sources": [
-        {
-          "source": "xing",
-          "url": "https://www.xing.com/jobs/gallneukirchen-projektmanager-projektentwicklung-gesundheitsbereich-158859108"
-        }
-      ],
-      "portal_url": "https://www.xing.com/jobs/gallneukirchen-projektmanager-projektentwicklung-gesundheitsbereich-diakoniewerk-verwaltung-4210-gallneukirchen-oberoesterreich-37-wochenstunden-all-158857555",
-      "link_chain": [
-        "https://www.xing.com/jobs/gallneukirchen-projektmanager-projektentwicklung-gesundheitsbereich-diakoniewerk-verwaltung-4210-gallneukirchen-oberoesterreich-37-wochenstunden-all-158857555",
-        "https://www.diakonie.at/jobplattform/offene-stellen/projektmanager-in-projektentwicklung-gesundheitsbereich?utm_source=xing.com"
-      ],
-      "final_link": true,
-      "final_link_note": "xing/applyUrl",
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "41212 Elisabeth",
-      "jd_quelle": "seite",
-      "jd_len": 6135,
-      "fit": 30,
-      "fit_reasons": [
-        "🎯 Rolle: Projektmanagement (+18)",
-        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
-        "📍 Remote (+12, Anteil prüfen)"
-      ],
-      "fit_ko": [],
-      "fit_basis": "volltext"
-    },
-    {
       "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/20225-RWE6AM0UOC7YY92C-S",
       "title": "PMO Manager",
@@ -1980,7 +2620,7 @@
       "salary": "",
       "homeoffice": false,
       "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
+      "is_new": false,
       "score": 37,
       "score_reasons": [
         "🎯 pmo (+12)",
@@ -2007,107 +2647,14 @@
       "fit_basis": "volltext"
     },
     {
-      "source": "neura",
-      "url": "https://jobs.neura-robotics.com/offer/concept-engineer-human/45c9f621-d148-427f-bd5b-4bf5fdd5e6b4",
-      "title": "Concept Engineer (human)",
-      "company": "NEURA Robotics",
-      "location": "Riederich",
-      "description": "",
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 36,
-      "score_reasons": [
-        "🎯 robotics (+16)",
-        "🎯 concept engineer (+20)"
-      ],
-      "category": "auto",
-      "alt_sources": [
-        {
-          "source": "neura",
-          "url": "https://jobs.neura-robotics.com/offer/concept-engineer-human/719071c3-61f2-42d8-944b-e8797b382c13"
-        }
-      ],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "Riederich",
-      "clean_company": "Neura Robotics",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "Concept Engineer (Growth Team, München)",
-        "datum": "2026-10-01",
-        "gleiche_stelle": true
-      },
-      "jd_quelle": "seite",
-      "jd_len": 2037,
-      "fit": 58,
-      "fit_reasons": [
-        "🎯 Rolle: Konzeptentwicklung (+26)",
-        "🔧 Fachgebiet: Robotik/Mechatronik, Anforderungen, Maschinenbau, Engineering (EN), KI/Automatisierung (+20)",
-        "📍 Stuttgart-Region, Robotik-Spur Modell B (+10, Mo–Do vor Ort, CLAUDE.md §33)",
-        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
-      ],
-      "fit_ko": [
-        "Studium gefordert, nicht geöffnet"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "neura",
-      "url": "https://jobs.neura-robotics.com/offer/senior-concept-engineer-human/52f048d8-2776-4055-8bca-41a4a6f54591",
-      "title": "(Senior) Concept Engineer - (human)",
-      "company": "NEURA Robotics",
-      "location": "Riederich",
-      "description": "",
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 36,
-      "score_reasons": [
-        "🎯 robotics (+16)",
-        "🎯 concept engineer (+20)"
-      ],
-      "category": "auto",
-      "alt_sources": [
-        {
-          "source": "neura",
-          "url": "https://jobs.neura-robotics.com/offer/senior-concept-engineer-human/e58fffd5-42e7-429c-abf8-7d9a6cea13a1"
-        }
-      ],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "Riederich",
-      "clean_company": "Neura Robotics",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "Concept Engineer (Growth Team, München)",
-        "datum": "2026-10-01",
-        "gleiche_stelle": true
-      },
-      "jd_quelle": "seite",
-      "jd_len": 2025,
-      "fit": 58,
-      "fit_reasons": [
-        "🎯 Rolle: Konzeptentwicklung (+26)",
-        "🔧 Fachgebiet: Robotik/Mechatronik, Anforderungen, Maschinenbau, Engineering (EN), KI/Automatisierung (+20)",
-        "📍 Stuttgart-Region, Robotik-Spur Modell B (+10, Mo–Do vor Ort, CLAUDE.md §33)",
-        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
-      ],
-      "fit_ko": [
-        "Studium gefordert, nicht geöffnet"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "xing",
+      "source": "personio:pmx",
       "url": "https://pmx.jobs.personio.de/job/2861034?language=de",
       "title": "Entwicklungsingenieur Fahrzeugkomponenten (m/w/d)",
-      "company": "pmX Group",
+      "company": "pmX",
       "location": "München",
-      "description": "Deine Aufgaben Steuerung konstruktiver Entwicklungsaufgaben in internen und externen Projekten sowie bei Entwicklungspartnern in Indien Durchführung von Konstruktionsüberarbeitungen, Detail- und Einbaukonstruktionen Erstellung von Konzepten, technischen Zeichnungen und Entwicklungsdokumentationen Entwicklung und Weiterentwicklung von Komponenten für Speichersysteme, Anbauteile und Aufbau-/Unterfahrschutzsysteme Durchführung von Packageuntersuchungen Verwaltung und Ablage technischer Daten in Windchill Koordination und Betreuung externer Dienstleister und Lieferanten Dein Profil Abgeschlossenes",
-      "remote": false,
+      "description": "",
       "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
+      "is_new": false,
       "score": 35,
       "score_reasons": [
         "🚗 fahrzeug (+10)",
@@ -2116,32 +2663,20 @@
       "category": "auto",
       "alt_sources": [
         {
-          "source": "personio:pmx",
-          "url": "https://pmx.jobs.personio.de/job/2861034?language=de"
+          "source": "xing",
+          "url": "https://www.xing.com/jobs/muenchen-entwicklungsingenieur-fahrzeugkomponenten-158814912"
         }
       ],
-      "portal_url": "https://www.xing.com/jobs/muenchen-entwicklungsingenieur-fahrzeugkomponenten-158814912",
-      "link_chain": [
-        "https://www.xing.com/jobs/muenchen-entwicklungsingenieur-fahrzeugkomponenten-158814912",
-        "https://pmx.jobs.personio.de/job/2861034?language=de&utm_source=xing.com"
-      ],
       "final_link": true,
-      "final_link_note": "xing/applyUrl",
       "verified": true,
       "verify_status": "ok-spa",
       "address_city": "70372 Stuttgart",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "Fahrzeugfunktionsverantwortung Gesamtfahrzeug (m/w/d)",
-        "datum": "2026-10-05",
-        "gleiche_stelle": true
-      },
-      "jd_quelle": "seite",
-      "jd_len": 2169,
-      "fit": 64,
+      "jd_quelle": "api:personio",
+      "jd_len": 1246,
+      "fit": 59,
       "fit_reasons": [
         "🎯 Rolle: Entwicklung/Konstruktion (+16)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Karosserie/Interieur, Konstruktion/CAD, Gesamtfahrzeug/Package, Maschinenbau (+35)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Konstruktion/CAD, Gesamtfahrzeug/Package, Maschinenbau, Lieferantensteuerung (+30)",
         "📍 München/Umland (+15)",
         "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
       ],
@@ -2160,7 +2695,7 @@
       "salary": "",
       "homeoffice": false,
       "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
+      "is_new": false,
       "score": 34,
       "score_reasons": [
         "🎯 projektmanager (+16)",
@@ -2195,41 +2730,6 @@
       "fit_basis": "volltext"
     },
     {
-      "source": "linkedin",
-      "url": "https://de.linkedin.com/jobs/view/projektleiter-f%C3%BCr-data-ai-governance-m-w-d-at-allianz-4492490734",
-      "title": "Projektleiter für Data & AI Governance (m/w/d)",
-      "company": "Projektleiter für Data & AI Governance (m/w/d)",
-      "location": "Unterföhring",
-      "description": "",
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 34,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 unterföhring (+18)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Unterföhring",
-      "clean_company": "Allianz",
-      "jd_quelle": "seite",
-      "jd_len": 6733,
-      "fit": 19,
-      "fit_reasons": [
-        "🎯 Rolle: Projektleitung (+18)",
-        "🔧 Fachgebiet: KI/Automatisierung (+4)",
-        "⛔ Fremdgebiet: Finanzen/Versicherung (−10)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [
-        "Studium gefordert, nicht geöffnet"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
       "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/12634-BB-647500-7878-3154-S",
       "title": "Business Owner einer Systemplattform für Portfolio und Projektmanagement",
@@ -2239,7 +2739,7 @@
       "salary": "",
       "homeoffice": false,
       "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
+      "is_new": false,
       "score": 33,
       "score_reasons": [
         "🎯 projektmanagement (+14)",
@@ -2271,49 +2771,6 @@
       "fit_ko": [
         "Englisch C1/verhandlungssicher gefordert (Andy B2)"
       ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "neura",
-      "url": "https://jobs.neura-robotics.com/offer/electrician-for-prototyping-human/38f62915-b13c-4dcc-92b2-7eba69bb5e8e",
-      "title": "Electrician for Prototyping (human)",
-      "company": "NEURA Robotics",
-      "location": "Riederich",
-      "description": "",
-      "first_seen": "2026-11-24T14:22:40.098723",
-      "is_new": true,
-      "score": 28,
-      "score_reasons": [
-        "🎯 prototyp (+12)",
-        "🎯 robotics (+16)"
-      ],
-      "category": "auto",
-      "alt_sources": [
-        {
-          "source": "neura",
-          "url": "https://jobs.neura-robotics.com/offer/electrician-for-prototyping-human/d1a8fd10-83a7-434b-a204-86ebffce7faf"
-        }
-      ],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "Riederich",
-      "clean_company": "Neura Robotics",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "Concept Engineer (Growth Team, München)",
-        "datum": "2026-10-01",
-        "gleiche_stelle": false
-      },
-      "jd_quelle": "seite",
-      "jd_len": 1845,
-      "fit": 39,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Steuergeraete/Sensorik, Robotik/Mechatronik, Prototypen, Engineering (EN) (+25)",
-        "📍 Stuttgart-Region, Robotik-Spur Modell B (+10, Mo–Do vor Ort, CLAUDE.md §33)"
-      ],
-      "fit_ko": [],
       "fit_basis": "volltext"
     },
     {
@@ -2390,47 +2847,6 @@
         "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
       ],
       "fit_ko": [],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "stepstone",
-      "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Planer-m-w-q-Elektromobilitaet-Muenchen-Frequentum-GmbH--14759220-inline.html",
-      "title": "Projektmanager / Planer (m/w/q) Elektromobilität",
-      "company": "",
-      "location": "München",
-      "such_ort": "muenchen",
-      "description": "",
-      "first_seen": "2026-11-24T12:29:02.162167",
-      "is_new": false,
-      "score": 51,
-      "score_reasons": [
-        "🎯 projektmanager (+16)",
-        "🎯 elektromobilität (+10)",
-        "📍 muenchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok-suche+cache",
-      "address_street": "München",
-      "address_city": "München",
-      "clean_company": "Frequentum GmbH",
-      "final_link_note": "stepstone-direktbewerbung",
-      "jd_quelle": "seite",
-      "jd_len": 2356,
-      "fit": 30,
-      "fit_reasons": [
-        "🎯 Rolle: Projektmanagement (+18)",
-        "🔧 Fachgebiet: E-Mobilitaet (+8)",
-        "⛔ Fremdgebiet: Energiewirtschaft/Netze, Bau/TGA/Immobilien (−20)",
-        "📍 München/Umland (+15)",
-        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
-      ],
-      "fit_ko": [
-        "Rolle: Bau/TGA",
-        "Defense: nur ab 100.000 € (Regel 28.07.)"
-      ],
       "fit_basis": "volltext"
     },
     {
@@ -2636,7 +3052,6 @@
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
-      "address_city": "27753 Delmenhorst",
       "kennziffer": "13319-902982/1",
       "jd_quelle": "seite",
       "jd_len": 6537,
@@ -2686,43 +3101,6 @@
         "🔧 Fachgebiet: Automotive/Fahrzeug (+6)",
         "⛔ Fremdgebiet: Finanzen/Versicherung (−10)",
         "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "personio:pmx",
-      "url": "https://pmx.jobs.personio.de/job/2871197?language=de",
-      "title": "Entwicklungsingenieur Interieur / Innenraumverkleidung (m/w/d)",
-      "company": "pmX",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-11-24T12:29:02.162167",
-      "is_new": false,
-      "score": 39,
-      "score_reasons": [
-        "🎯 interieur (+14)",
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [
-        {
-          "source": "xing",
-          "url": "https://www.xing.com/jobs/muenchen-entwicklungsingenieur-interieur-innenraumverkleidung-159008279"
-        }
-      ],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "70372 Stuttgart",
-      "jd_quelle": "api:personio",
-      "jd_len": 817,
-      "fit": 82,
-      "fit_reasons": [
-        "🎯 Rolle: Entwicklung/Konstruktion, Inhalt Validierung/Erprobung (+22)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Karosserie/Interieur, Konstruktion/CAD, Serie/Industrialisierung, Gesamtfahrzeug/Package (+35)",
-        "📍 München/Umland (+15)",
-        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
       ],
       "fit_ko": [],
       "fit_basis": "volltext"
@@ -3091,45 +3469,6 @@
     },
     {
       "source": "arbeitnow",
-      "url": "https://www.databricks.com/company/careers/professional-services-operations/senior-manager-ai-forward-deployed-engineering-8948870002?gh_jid=8948870002",
-      "title": "Senior Manager, AI Forward Deployed Engineering",
-      "company": "databricks",
-      "location": "Munich",
-      "description": "&lt;p data-pm-slice=&quot;1 1 []&quot;&gt;&lt;strong&gt;REQ ID: CSQ128R183&lt;/strong&gt;&lt;/p&gt;\n&lt;p data-pm-slice=&quot;1 1 []&quot;&gt;&lt;strong&gt;Location: Munich or Berlin - Germany&lt;/strong&gt;&lt;/p&gt;\n&lt;h4&gt;&lt;strong&gt;Mission&lt;/strong&gt;&lt;/h4&gt;\n&lt;p&gt;The Forward Deployed AI Engineering (AI FDE) team is a highly specialised customer-facing AI team at Databricks. We deliver professional services (PS) engagements to help our customers build and productionize first-of-its-kind AI applications with a focus on GenAI. We work cross-functionally with AI/ML Product, Re",
-      "remote": false,
-      "first_seen": "2026-11-23T21:46:32.656925",
-      "is_new": false,
-      "score": 43,
-      "score_reasons": [
-        "🎯 ai transformation (+18)",
-        "📍 munich (+25)"
-      ],
-      "category": "ki",
-      "alt_sources": [],
-      "portal_url": "https://www.arbeitnow.com/jobs/companies/databricks/senior-manager-ai-forward-deployed-engineering-munich-260426",
-      "link_chain": [
-        "https://www.arbeitnow.com/jobs/companies/databricks/senior-manager-ai-forward-deployed-engineering-munich-260426",
-        "https://www.databricks.com/company/careers/professional-services-operations/senior-manager-ai-forward-deployed-engineering-8948870002?gh_jid=8948870002&ref=arbeitnow.com&utm_source=arbeitnow.com"
-      ],
-      "final_link": true,
-      "final_link_note": "arbeitnow/apply",
-      "verified": true,
-      "verify_status": "ok",
-      "kennziffer": "CSQ128R183",
-      "jd_quelle": "seite",
-      "jd_len": 5116,
-      "fit": 27,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: KI/Automatisierung (+4)",
-        "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
-      ],
-      "fit_ko": [],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "arbeitnow",
       "url": "https://jobs.ashbyhq.com/the-exploration-company/833e0b32-fad8-49a9-8b0c-8d4d4076cbff/application",
       "title": "Lead Project Manager Dual Use In-Orbit Services",
       "company": "The Exploration Company",
@@ -3249,41 +3588,37 @@
     },
     {
       "source": "arbeitnow",
-      "url": "https://jobs.eu.lever.co/mobileye/b4e3c136-e73c-4cd0-9005-bdcf1877d692/apply",
-      "title": "Senior SW Engineer – Embedded Linux SDK & Distribution (M/W/D)",
-      "company": "Mobileye",
-      "location": "Munich, Germany",
-      "description": "<div>\n<p><span data-contrast=\"auto\">Mobileye is looking for a passionate <strong>Systems Software Developer </strong>to join the <strong>Operating System</strong> <strong>Team</strong> in the&nbsp;EyeQ Platform Software Group. While many work on Linux, we work in Linux. Our team is responsible for the&nbsp;core OS DNA of the EyeQ computer vision SoC, defining how the system starts, is composed, and manages its&nbsp;lifecycle in a high-performance automotive environment.<br><br>We are looking for an experienced systems engineer to join our <strong>Core Distribution team</strong>. The center of ",
+      "url": "https://jobs.ashbyhq.com/microagi/698116e7-8ab7-451a-9f61-5321f3d2a761/application",
+      "title": "Office Manager",
+      "company": "Microagi",
+      "location": "Munich",
+      "description": "<p style=\"min-height:1.5em\"><strong>Accelerating embodied AGI.</strong></p><p style=\"min-height:1.5em\">The next ten years of AI will not be won in software. They will be won in the physical world: in factories, hospitals, kitchens, fields, and homes. The companies that own that data will own the century.</p><p style=\"min-height:1.5em\">microagi is building it. We are a data research and deployment lab. <strong>Atlas</strong> captures the manual work inside Europe’s industrial champions, trains foundation models on it, and deploys the right robot onto the floor, with no teleoperation and no inte",
       "remote": false,
       "first_seen": "2026-11-23T21:46:32.656925",
       "is_new": false,
-      "score": 37,
+      "score": 25,
       "score_reasons": [
-        "🚗 automotive (+12)",
         "📍 munich (+25)"
       ],
       "category": "auto",
       "alt_sources": [],
-      "portal_url": "https://www.arbeitnow.com/jobs/companies/mobileye/senior-sw-engineer-embedded-linux-sdk-distribution-munich-germany-238193",
+      "portal_url": "https://www.arbeitnow.com/jobs/companies/microagi/office-manager-munich-416699",
       "link_chain": [
-        "https://www.arbeitnow.com/jobs/companies/mobileye/senior-sw-engineer-embedded-linux-sdk-distribution-munich-germany-238193",
-        "https://jobs.eu.lever.co/mobileye/b4e3c136-e73c-4cd0-9005-bdcf1877d692/apply?utm_source=arbeitnow.com"
+        "https://www.arbeitnow.com/jobs/companies/microagi/office-manager-munich-416699",
+        "https://jobs.ashbyhq.com/microagi/698116e7-8ab7-451a-9f61-5321f3d2a761/application?utm_source=arbeitnow.com&ref=arbeitnow.com"
       ],
       "final_link": true,
       "final_link_note": "arbeitnow/apply",
       "verified": true,
       "verify_status": "ok-spa",
-      "bewerbung": {
-        "status": "mappe",
-        "stelle": "",
-        "datum": ""
-      },
+      "address_city": "Munich",
+      "clean_company": "microagi",
       "jd_quelle": "seite",
-      "jd_len": 2498,
-      "fit": 21,
+      "jd_len": 2568,
+      "fit": 30,
       "fit_reasons": [
         "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: KI/Automatisierung (+2)",
+        "🔧 Fachgebiet: Robotik/Mechatronik, Lieferantensteuerung, KI/Automatisierung (+11)",
         "📍 München/Umland (+15)"
       ],
       "fit_ko": [],
@@ -3329,44 +3664,6 @@
         "Studium gefordert, nicht geöffnet",
         "Englisch C1/verhandlungssicher gefordert (Andy B2)"
       ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "arbeitnow",
-      "url": "https://jobs.ashbyhq.com/microagi/698116e7-8ab7-451a-9f61-5321f3d2a761/application",
-      "title": "Office Manager",
-      "company": "Microagi",
-      "location": "Munich",
-      "description": "<p style=\"min-height:1.5em\"><strong>Accelerating embodied AGI.</strong></p><p style=\"min-height:1.5em\">The next ten years of AI will not be won in software. They will be won in the physical world: in factories, hospitals, kitchens, fields, and homes. The companies that own that data will own the century.</p><p style=\"min-height:1.5em\">microagi is building it. We are a data research and deployment lab. <strong>Atlas</strong> captures the manual work inside Europe’s industrial champions, trains foundation models on it, and deploys the right robot onto the floor, with no teleoperation and no inte",
-      "remote": false,
-      "first_seen": "2026-11-23T21:46:32.656925",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "portal_url": "https://www.arbeitnow.com/jobs/companies/microagi/office-manager-munich-416699",
-      "link_chain": [
-        "https://www.arbeitnow.com/jobs/companies/microagi/office-manager-munich-416699",
-        "https://jobs.ashbyhq.com/microagi/698116e7-8ab7-451a-9f61-5321f3d2a761/application?utm_source=arbeitnow.com&ref=arbeitnow.com"
-      ],
-      "final_link": true,
-      "final_link_note": "arbeitnow/apply",
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Munich",
-      "clean_company": "microagi",
-      "jd_quelle": "seite",
-      "jd_len": 2568,
-      "fit": 30,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Robotik/Mechatronik, Lieferantensteuerung, KI/Automatisierung (+11)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [],
       "fit_basis": "volltext"
     },
     {
@@ -3742,6 +4039,106 @@
     },
     {
       "source": "workday:Carl Zeiss Meditec",
+      "url": "https://zeissgroup.wd3.myworkdayjobs.com/External/job/Mnchen/Program-Manager---Business---Ecosystems-Lifesciences--f-m-x-_JR_1050494-1",
+      "workday_site": "External",
+      "title": "Program Manager - Business & Ecosystems Lifesciences (f/m/x)",
+      "company": "Carl Zeiss Meditec",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-11-23T19:42:50.851003",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 münchen (+25)"
+      ],
+      "category": "pharma",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "jd_quelle": "api:workday",
+      "jd_len": 2866,
+      "fit": 25,
+      "fit_reasons": [
+        "🎯 Rolle: Programmsteuerung (+16)",
+        "🔧 Fachgebiet: KI/Automatisierung (+2)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [
+        "Studium gefordert, nicht geöffnet"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "greenhouse:raisin",
+      "url": "https://job-boards.eu.greenhouse.io/raisin/jobs/4966592101",
+      "title": "(Senior) Internal Audit Manager (f/m/d)",
+      "company": "Raisin",
+      "location": "Berlin, Berlin, Germany; Frankfurt a. M.; Hamburg; Munich",
+      "description": "",
+      "first_seen": "2026-11-23T19:42:50.851003",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 munich (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "65000 Which",
+      "jd_quelle": "api:greenhouse",
+      "jd_len": 4802,
+      "fit": 23,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003633260-S",
+      "title": "Auditor EMAS (w/m/d)",
+      "company": "TÜV SÜD AG",
+      "location": "München",
+      "description": "",
+      "salary": "",
+      "homeoffice": true,
+      "first_seen": "2026-11-23T19:42:50.851003",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Westendstr. 199",
+      "address_city": "80686 München",
+      "kennziffer": "10001-1003633260-S",
+      "clean_company": "TÜV SÜD AG",
+      "jd_quelle": "api:arbeitsagentur",
+      "jd_len": 4484,
+      "fit": 14,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: Lieferantensteuerung (+3)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [
+        "Studium gefordert, nicht geöffnet"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "workday:Carl Zeiss Meditec",
       "url": "https://zeissgroup.wd3.myworkdayjobs.com/External/job/Mnchen/ZDP-Business-Information-Security-Officer--m-w-x-_JR_1054133-2",
       "workday_site": "External",
       "title": "ZDP Business Information Security Officer (m/w/x)",
@@ -3802,106 +4199,6 @@
       "fit_ko": [
         "Studium gefordert, nicht geöffnet"
       ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003633260-S",
-      "title": "Auditor EMAS (w/m/d)",
-      "company": "TÜV SÜD AG",
-      "location": "München",
-      "description": "",
-      "salary": "",
-      "homeoffice": true,
-      "first_seen": "2026-11-23T19:42:50.851003",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_street": "Westendstr. 199",
-      "address_city": "80686 München",
-      "kennziffer": "10001-1003633260-S",
-      "clean_company": "TÜV SÜD AG",
-      "jd_quelle": "api:arbeitsagentur",
-      "jd_len": 4484,
-      "fit": 14,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Lieferantensteuerung (+3)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [
-        "Studium gefordert, nicht geöffnet"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "workday:Carl Zeiss Meditec",
-      "url": "https://zeissgroup.wd3.myworkdayjobs.com/External/job/Mnchen/Program-Manager---Business---Ecosystems-Lifesciences--f-m-x-_JR_1050494-1",
-      "workday_site": "External",
-      "title": "Program Manager - Business & Ecosystems Lifesciences (f/m/x)",
-      "company": "Carl Zeiss Meditec",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-11-23T19:42:50.851003",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "pharma",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok-spa",
-      "jd_quelle": "api:workday",
-      "jd_len": 2866,
-      "fit": 25,
-      "fit_reasons": [
-        "🎯 Rolle: Programmsteuerung (+16)",
-        "🔧 Fachgebiet: KI/Automatisierung (+2)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [
-        "Studium gefordert, nicht geöffnet"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "greenhouse:raisin",
-      "url": "https://job-boards.eu.greenhouse.io/raisin/jobs/4966592101",
-      "title": "(Senior) Internal Audit Manager (f/m/d)",
-      "company": "Raisin",
-      "location": "Berlin, Berlin, Germany; Frankfurt a. M.; Hamburg; Munich",
-      "description": "",
-      "first_seen": "2026-11-23T19:42:50.851003",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "65000 Which",
-      "jd_quelle": "api:greenhouse",
-      "jd_len": 4802,
-      "fit": 23,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
-        "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
-      ],
-      "fit_ko": [],
       "fit_basis": "volltext"
     },
     {
@@ -4141,38 +4438,6 @@
         "Rolle: Leitungsrolle (disziplinarisch pruefen)",
         "Englisch C1/verhandlungssicher gefordert (Andy B2)"
       ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "ashby:orbem",
-      "url": "https://jobs.ashbyhq.com/orbem/4d8b273c-27f1-44d5-9072-0c003b7f2103",
-      "title": "Staff Technical Program Manager (f/m/d)",
-      "company": "Orbem",
-      "location": "Munich",
-      "description": "",
-      "first_seen": "2026-11-23T16:54:45.953646",
-      "is_new": false,
-      "score": 43,
-      "score_reasons": [
-        "🎯 technical program manager (+18)",
-        "📍 munich (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Munich",
-      "clean_company": "Orbem",
-      "jd_quelle": "api:ashby",
-      "jd_len": 6584,
-      "fit": 59,
-      "fit_reasons": [
-        "🎯 Rolle: Technisches PM (+30)",
-        "🔧 Fachgebiet: Steuergeraete/Sensorik, Hardware, Engineering (EN), KI/Automatisierung (+14)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [],
       "fit_basis": "volltext"
     },
     {
@@ -4992,46 +5257,6 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003930672-S",
-      "title": "(Senior) Projektingenieur zukünftige Flugkörpertechnologien (m/w/d)",
-      "company": "IABG Industrieanlagen Betriebs-GmbH",
-      "location": "Ottobrunn",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-11-22T14:25:59.530904",
-      "is_new": false,
-      "score": 26,
-      "score_reasons": [
-        "🎯 projektingenieur (+10)",
-        "📍 ottobrunn (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_street": "Einsteinstr. 20",
-      "address_city": "85521 Ottobrunn",
-      "kennziffer": "10001-1003930672-S",
-      "clean_company": "IABG Industrieanlagen Betriebs-GmbH",
-      "jd_quelle": "api:arbeitsagentur",
-      "jd_len": 3275,
-      "fit": 48,
-      "fit_reasons": [
-        "🎯 Rolle: Projektingenieur (+26)",
-        "🔧 Fachgebiet: Steuergeraete/Sensorik, Maschinenbau (+9)",
-        "ℹ️ Defense-Bezug im Text, prüfen (nur ab 100.000 €)",
-        "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
-      ],
-      "fit_ko": [
-        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003925561-S",
       "title": "(Senior) Projektingenieur System Safety (m/w/d)",
       "company": "IABG Industrieanlagen Betriebs-GmbH",
@@ -5067,6 +5292,46 @@
       ],
       "fit_ko": [
         "Defense: nur ab 100.000 € (Regel 28.07.)"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003930672-S",
+      "title": "(Senior) Projektingenieur zukünftige Flugkörpertechnologien (m/w/d)",
+      "company": "IABG Industrieanlagen Betriebs-GmbH",
+      "location": "Ottobrunn",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-11-22T14:25:59.530904",
+      "is_new": false,
+      "score": 26,
+      "score_reasons": [
+        "🎯 projektingenieur (+10)",
+        "📍 ottobrunn (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Einsteinstr. 20",
+      "address_city": "85521 Ottobrunn",
+      "kennziffer": "10001-1003930672-S",
+      "clean_company": "IABG Industrieanlagen Betriebs-GmbH",
+      "jd_quelle": "api:arbeitsagentur",
+      "jd_len": 3275,
+      "fit": 48,
+      "fit_reasons": [
+        "🎯 Rolle: Projektingenieur (+26)",
+        "🔧 Fachgebiet: Steuergeraete/Sensorik, Maschinenbau (+9)",
+        "ℹ️ Defense-Bezug im Text, prüfen (nur ab 100.000 €)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+      ],
+      "fit_ko": [
+        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
       ],
       "fit_basis": "volltext"
     },
@@ -5618,48 +5883,6 @@
     },
     {
       "source": "sf:Knorr-Bremse",
-      "url": "https://careers.knorr-bremse.com/job/München-PMO-One-Team-Growth-(mfd)-80809/1453652133/",
-      "title": "PMO One Team Growth (mfd)",
-      "company": "Knorr-Bremse",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-11-20T17:30:27.669674",
-      "is_new": false,
-      "score": 45,
-      "score_reasons": [
-        "🎯 pmo (+12)",
-        "📍 münchen (+25)",
-        "🏢 Wunschfirma Knorr-Bremse (+8)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_street": "Koch-Platz 4",
-      "address_city": "10115 Berlin",
-      "bewerbung": {
-        "status": "offen",
-        "stelle": "Global Product Owner Trailer Business (ID 11176)",
-        "datum": "2026-10-06",
-        "gleiche_stelle": false
-      },
-      "jd_quelle": "seite",
-      "jd_len": 10746,
-      "fit": 35,
-      "fit_reasons": [
-        "🎯 Rolle: PMO/Process Excellence (+22)",
-        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
-        "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
-      ],
-      "fit_ko": [
-        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "sf:Knorr-Bremse",
       "url": "https://careers.knorr-bremse.com/job/München-PMO-One-Team-Growth-(mwd)-80809/1453652233/",
       "title": "PMO One Team Growth (mwd)",
       "company": "Knorr-Bremse",
@@ -5688,6 +5911,48 @@
       },
       "jd_quelle": "seite",
       "jd_len": 12281,
+      "fit": 35,
+      "fit_reasons": [
+        "🎯 Rolle: PMO/Process Excellence (+22)",
+        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+      ],
+      "fit_ko": [
+        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "sf:Knorr-Bremse",
+      "url": "https://careers.knorr-bremse.com/job/München-PMO-One-Team-Growth-(mfd)-80809/1453652133/",
+      "title": "PMO One Team Growth (mfd)",
+      "company": "Knorr-Bremse",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-11-20T17:30:27.669674",
+      "is_new": false,
+      "score": 45,
+      "score_reasons": [
+        "🎯 pmo (+12)",
+        "📍 münchen (+25)",
+        "🏢 Wunschfirma Knorr-Bremse (+8)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Koch-Platz 4",
+      "address_city": "10115 Berlin",
+      "bewerbung": {
+        "status": "offen",
+        "stelle": "Global Product Owner Trailer Business (ID 11176)",
+        "datum": "2026-10-06",
+        "gleiche_stelle": false
+      },
+      "jd_quelle": "seite",
+      "jd_len": 10746,
       "fit": 35,
       "fit_reasons": [
         "🎯 Rolle: PMO/Process Excellence (+22)",
@@ -5789,8 +6054,8 @@
     },
     {
       "source": "sf:Bertrandt",
-      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-Projektmanager-Engineering-(mwd)-80313/1457393233/",
-      "title": "Projektmanager Engineering (mwd)",
+      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-Project-Manager-Product-Cost-Optimization-(wmd)-80939/1458408833/",
+      "title": "Project Manager Product Cost Optimization (wmd)",
       "company": "Bertrandt",
       "location": "München",
       "description": "",
@@ -5798,7 +6063,7 @@
       "is_new": false,
       "score": 32,
       "score_reasons": [
-        "🎯 projektmanager (+16)",
+        "🎯 project manager (+16)",
         "📍 münchen (+25)",
         "⚠️ Eng-Dienstleister Bertrandt (×0.8, −9)"
       ],
@@ -5814,12 +6079,14 @@
         "gleiche_stelle": false
       },
       "jd_quelle": "seite",
-      "jd_len": 8513,
-      "fit": 68,
+      "jd_len": 7442,
+      "fit": 80,
       "fit_reasons": [
-        "🎯 Rolle: Projektmanagement (+18)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Robotik/Mechatronik, Konstruktion/CAD, Serie/Industrialisierung, Aenderungs-/Freigabemanagement (+35)",
-        "📍 München/Umland (+15)"
+        "🎯 Rolle: Projektmanagement, Inhalt Produktentwicklung (+24)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Robotik/Mechatronik, Maschinenbau, E-Mobilitaet, Entwicklungsprozesse (+27)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)",
+        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
       ],
       "fit_ko": [],
       "fit_basis": "volltext"
@@ -5865,8 +6132,8 @@
     },
     {
       "source": "sf:Bertrandt",
-      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-Project-Manager-Product-Cost-Optimization-(wmd)-80939/1458408833/",
-      "title": "Project Manager Product Cost Optimization (wmd)",
+      "url": "https://bertrandt.jobs.hr.cloud.sap/job/München-Projektmanager-Engineering-(mwd)-80313/1457393233/",
+      "title": "Projektmanager Engineering (mwd)",
       "company": "Bertrandt",
       "location": "München",
       "description": "",
@@ -5874,7 +6141,7 @@
       "is_new": false,
       "score": 32,
       "score_reasons": [
-        "🎯 project manager (+16)",
+        "🎯 projektmanager (+16)",
         "📍 münchen (+25)",
         "⚠️ Eng-Dienstleister Bertrandt (×0.8, −9)"
       ],
@@ -5890,14 +6157,12 @@
         "gleiche_stelle": false
       },
       "jd_quelle": "seite",
-      "jd_len": 7442,
-      "fit": 80,
+      "jd_len": 8513,
+      "fit": 68,
       "fit_reasons": [
-        "🎯 Rolle: Projektmanagement, Inhalt Produktentwicklung (+24)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Robotik/Mechatronik, Maschinenbau, E-Mobilitaet, Entwicklungsprozesse (+27)",
-        "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)",
-        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
+        "🎯 Rolle: Projektmanagement (+18)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Robotik/Mechatronik, Konstruktion/CAD, Serie/Industrialisierung, Aenderungs-/Freigabemanagement (+35)",
+        "📍 München/Umland (+15)"
       ],
       "fit_ko": [],
       "fit_basis": "volltext"
@@ -6131,36 +6396,41 @@
       "fit_basis": "volltext"
     },
     {
-      "source": "sf:Giesecke+Devrient",
-      "url": "https://careers.gi-de.com/GieseckeDevrientCT/job/München-Commercial-Project-Manager-Complex-Solutions-(mfd)/1457237233/",
-      "title": "Commercial Project Manager Complex Solutions (mfd)",
-      "company": "Giesecke+Devrient",
+      "source": "sf:MAN Truck & Bus",
+      "url": "https://jobs.man.eu/job/München-Entwicklungsingenieur-Hardware-für-Bordnetzkomponenten-(wmd)-80995/1448904333/",
+      "title": "Entwicklungsingenieur Hardware für Bordnetzkomponenten (wmd)",
+      "company": "MAN Truck & Bus",
       "location": "München",
       "description": "",
       "first_seen": "2026-11-20T15:05:43.519159",
       "is_new": false,
       "score": 41,
       "score_reasons": [
-        "🎯 project manager (+16)",
+        "🎯 bordnetz (+16)",
         "📍 münchen (+25)"
       ],
-      "category": "pm",
+      "category": "auto",
       "alt_sources": [],
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
-      "address_street": "Prinzregentenstraße 161",
-      "address_city": "81677 München",
+      "bewerbung": {
+        "status": "absage",
+        "stelle": "Validierungsingenieur Gesamtfahrzeug - Sonderfahrzeuge",
+        "datum": "2026-09-25",
+        "gleiche_stelle": false
+      },
       "jd_quelle": "seite",
-      "jd_len": 9175,
-      "fit": 38,
+      "jd_len": 6494,
+      "fit": 68,
       "fit_reasons": [
-        "🎯 Rolle: Projektmanagement (+18)",
-        "🔧 Fachgebiet: MedTech-Geraete, KI/Automatisierung (+7)",
+        "🎯 Rolle: Entwicklung/Konstruktion, Inhalt Validierung/Erprobung (+22)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, E/E-Architektur, Robotik/Mechatronik, Anforderungen, Hardware (+35)",
         "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
       ],
       "fit_ko": [
+        "Studium gefordert, nicht geöffnet",
         "Englisch C1/verhandlungssicher gefordert (Andy B2)"
       ],
       "fit_basis": "volltext"
@@ -6199,41 +6469,36 @@
       "fit_basis": "volltext"
     },
     {
-      "source": "sf:MAN Truck & Bus",
-      "url": "https://jobs.man.eu/job/München-Entwicklungsingenieur-Hardware-für-Bordnetzkomponenten-(wmd)-80995/1448904333/",
-      "title": "Entwicklungsingenieur Hardware für Bordnetzkomponenten (wmd)",
-      "company": "MAN Truck & Bus",
+      "source": "sf:Giesecke+Devrient",
+      "url": "https://careers.gi-de.com/GieseckeDevrientCT/job/München-Commercial-Project-Manager-Complex-Solutions-(mfd)/1457237233/",
+      "title": "Commercial Project Manager Complex Solutions (mfd)",
+      "company": "Giesecke+Devrient",
       "location": "München",
       "description": "",
       "first_seen": "2026-11-20T15:05:43.519159",
       "is_new": false,
       "score": 41,
       "score_reasons": [
-        "🎯 bordnetz (+16)",
+        "🎯 project manager (+16)",
         "📍 münchen (+25)"
       ],
-      "category": "auto",
+      "category": "pm",
       "alt_sources": [],
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "Validierungsingenieur Gesamtfahrzeug - Sonderfahrzeuge",
-        "datum": "2026-09-25",
-        "gleiche_stelle": false
-      },
+      "address_street": "Prinzregentenstraße 161",
+      "address_city": "81677 München",
       "jd_quelle": "seite",
-      "jd_len": 6494,
-      "fit": 68,
+      "jd_len": 9175,
+      "fit": 38,
       "fit_reasons": [
-        "🎯 Rolle: Entwicklung/Konstruktion, Inhalt Validierung/Erprobung (+22)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, E/E-Architektur, Robotik/Mechatronik, Anforderungen, Hardware (+35)",
+        "🎯 Rolle: Projektmanagement (+18)",
+        "🔧 Fachgebiet: MedTech-Geraete, KI/Automatisierung (+7)",
         "📍 München/Umland (+15)",
-        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
       ],
       "fit_ko": [
-        "Studium gefordert, nicht geöffnet",
         "Englisch C1/verhandlungssicher gefordert (Andy B2)"
       ],
       "fit_basis": "volltext"
@@ -7690,49 +7955,6 @@
     },
     {
       "source": "xing",
-      "url": "https://www.aegmbh.de/jobs/ingenieur-fuer-fahrzeugtechnik-im-motorsport-technical-support-engineer-motorsport-m-w-d",
-      "title": "Ingenieur für Fahrzeugtechnik im Motorsport / Technical Support Engineer Motorsport (m/w/d)",
-      "company": "advanced engineering GmbH",
-      "location": "München",
-      "description": "Persönlich ♦ Partnerschaftlich ♦ Professionell ...so kümmern wir uns um IHREN nächsten Karriereschritt! Ihre Aufgaben: Sie erstellen Kundenhandbücher, Reparaturanleitungen und Teaminformationen für sämtliche Kundensportfahrzeuge Sie bereiten eigenverantwortlich Informationen aus Entwicklungseinsätzen und Fahrzeugaufbauten auf und bewerten deren Relevanz Sie nehmen an allen relevanten Fahrzeugentwicklungsterminen, Tests und Fahrzeugaufbauten teil Sie bewerten Kundenrückmeldungen hinsichtlich ihrer Relevanz für Produktverbesserungsmaßnahmen und Teaminformationen Sie erarbeiten in Zusammenarbeit ",
-      "remote": false,
-      "first_seen": "2026-11-19T12:10:13.793704",
-      "is_new": false,
-      "score": 35,
-      "score_reasons": [
-        "🚗 fahrzeug (+10)",
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "portal_url": "https://www.xing.com/jobs/muenchen-ingenieur-fahrzeugtechnik-motorsport-technical-support-engineer-motorsport-159273051",
-      "link_chain": [
-        "https://www.xing.com/jobs/muenchen-ingenieur-fahrzeugtechnik-motorsport-technical-support-engineer-motorsport-159273051",
-        "https://www.aegmbh.de/jobs/ingenieur-fuer-fahrzeugtechnik-im-motorsport-technical-support-engineer-motorsport-m-w-d?utm_source=xing.com"
-      ],
-      "final_link": true,
-      "final_link_note": "xing/applyUrl",
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "München",
-      "kennziffer": "AE-BMW-197289",
-      "clean_company": "advanced engineering GmbH",
-      "jd_quelle": "seite",
-      "jd_len": 2155,
-      "fit": 46,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Robotik/Mechatronik, Gesamtfahrzeug/Package (+23)",
-        "📍 München/Umland (+15)",
-        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
-      ],
-      "fit_ko": [
-        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "xing",
       "url": "https://www.aplitrak.com/?adid=Q2xhdWRpYS5QZXJsLjk3NjAyLjc4NzhAYWtrb2Rpcy5hcGxpdHJhay5jb20",
       "title": "Entwicklungsingenieur (m/w/d) Fahrzeugintegration",
       "company": "Akkodis Germany Tech Experts GmbH",
@@ -8357,53 +8579,6 @@
     },
     {
       "source": "xing",
-      "url": "https://www.xing.com/jobs/muenchen-projektleiter-elektrotechnik-elt-muenchen-159248988",
-      "title": "Projektleiter Elektrotechnik / ELT (m/w/d) | München",
-      "company": "ADVERGY GmbH",
-      "location": "München",
-      "description": "null Über uns Gemeinsam mit unserem Kunden suchen wir aktuell einen Projektleiter Elektrotechnik / ELT (m/w/d) für ein etabliertes Planungsbüro im Großraum München. Das Unternehmen erbringt Planungs- und Beratungsleistungen im Bereich Energie- und Gebäudetechnik und begleitet anspruchsvolle Bauvorhaben für öffentliche Auftraggeber, Industrie und Mittelstand. Als Ingenieurbüro für komplexe technische Anlagen steht das Unternehmen für TGA-Konzepte, die Energieeffizienz, Betriebssicherheit, Nutzeranforderungen und langfristige Gebäudefunktion miteinander verbinden. Die elektrotechnischen Projekte",
-      "remote": false,
-      "first_seen": "2026-11-18T10:19:57.891378",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [
-        {
-          "source": "xing",
-          "url": "https://www.xing.com/jobs/muenchen-projektleiter-elektrotechnik-elt-muenchen-158954676"
-        }
-      ],
-      "portal_url": "https://www.xing.com/jobs/muenchen-projektleiter-elektrotechnik-elt-muenchen-159248988",
-      "link_chain": [
-        "https://www.xing.com/jobs/muenchen-projektleiter-elektrotechnik-elt-muenchen-159248988"
-      ],
-      "final_link": true,
-      "final_link_note": "xing-direktbewerbung",
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "München",
-      "kennziffer": "OPP-26-06-06213",
-      "clean_company": "ADVERGY GmbH",
-      "jd_quelle": "seite",
-      "jd_len": 2066,
-      "fit": 13,
-      "fit_reasons": [
-        "🎯 Rolle: Projektleitung (+18)",
-        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
-        "⛔ Fremdgebiet: Verwaltung/Behoerden, Bau/TGA/Immobilien (−20)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [
-        "Rolle: Bau/TGA"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "xing",
       "url": "https://www.xing.com/jobs/muenchen-projektleiter-elt-muenchen-159249077",
       "title": "Projektleiter ELT (m/w/d) | München",
       "company": "ADVERGY GmbH",
@@ -8451,6 +8626,53 @@
     },
     {
       "source": "xing",
+      "url": "https://www.xing.com/jobs/muenchen-projektleiter-elektrotechnik-elt-muenchen-159248988",
+      "title": "Projektleiter Elektrotechnik / ELT (m/w/d) | München",
+      "company": "ADVERGY GmbH",
+      "location": "München",
+      "description": "null Über uns Gemeinsam mit unserem Kunden suchen wir aktuell einen Projektleiter Elektrotechnik / ELT (m/w/d) für ein etabliertes Planungsbüro im Großraum München. Das Unternehmen erbringt Planungs- und Beratungsleistungen im Bereich Energie- und Gebäudetechnik und begleitet anspruchsvolle Bauvorhaben für öffentliche Auftraggeber, Industrie und Mittelstand. Als Ingenieurbüro für komplexe technische Anlagen steht das Unternehmen für TGA-Konzepte, die Energieeffizienz, Betriebssicherheit, Nutzeranforderungen und langfristige Gebäudefunktion miteinander verbinden. Die elektrotechnischen Projekte",
+      "remote": false,
+      "first_seen": "2026-11-18T10:19:57.891378",
+      "is_new": false,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [
+        {
+          "source": "xing",
+          "url": "https://www.xing.com/jobs/muenchen-projektleiter-elektrotechnik-elt-muenchen-158954676"
+        }
+      ],
+      "portal_url": "https://www.xing.com/jobs/muenchen-projektleiter-elektrotechnik-elt-muenchen-159248988",
+      "link_chain": [
+        "https://www.xing.com/jobs/muenchen-projektleiter-elektrotechnik-elt-muenchen-159248988"
+      ],
+      "final_link": true,
+      "final_link_note": "xing-direktbewerbung",
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "München",
+      "kennziffer": "OPP-26-06-06213",
+      "clean_company": "ADVERGY GmbH",
+      "jd_quelle": "seite",
+      "jd_len": 2066,
+      "fit": 13,
+      "fit_reasons": [
+        "🎯 Rolle: Projektleitung (+18)",
+        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
+        "⛔ Fremdgebiet: Verwaltung/Behoerden, Bau/TGA/Immobilien (−20)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [
+        "Rolle: Bau/TGA"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "xing",
       "url": "https://www.xing.com/jobs/muenchen-entwicklungsingenieur-bremssysteme-funktionen-brake-air-159249259",
       "title": "Entwicklungsingenieur Bremssysteme und Funktionen Brake&Air (w/m/x)",
       "company": "K-tronik GmbH",
@@ -8491,8 +8713,8 @@
     },
     {
       "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Elektroniker-für-Automatisierungstechnik-(wmx)-Werk-25-Plätze-BY-80809/1419798933/",
-      "title": "Azubi zum Elektroniker für Automatisierungstechnik (wmx) Werk 25 Plätze BY",
+      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Werkzeugmechaniker-(wmx)-Werk-4-Plätze-BY-80809/1420646933/",
+      "title": "Azubi zum Werkzeugmechaniker (wmx) Werk 4 Plätze BY",
       "company": "BMW Group",
       "location": "München",
       "description": "",
@@ -8509,45 +8731,13 @@
       "verify_status": "ok",
       "address_city": "80809 Deutschland",
       "jd_quelle": "seite",
-      "jd_len": 3727,
+      "jd_len": 3575,
       "fit": 30,
       "fit_reasons": [
         "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Steuergeraete/Sensorik, Robotik/Mechatronik, KI/Automatisierung (+21)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Konstruktion/CAD, Serie/Industrialisierung, Maschinenbau, Präzisions-/Messtechnik (+29)",
         "📍 München/Umland (+15)",
         "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
-      ],
-      "fit_ko": [
-        "Rolle: Einstiegsrolle"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Kaufmann-für-Digitalisierungsmanagement-(wmx)-Werk-BY-80809/1405375833/",
-      "title": "Azubi zum Kaufmann für Digitalisierungsmanagement (wmx) Werk BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-11-18T08:13:35.767431",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland",
-      "jd_quelle": "seite",
-      "jd_len": 3644,
-      "fit": 30,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, MedTech-Geraete (+11)",
-        "📍 München/Umland (+15)"
       ],
       "fit_ko": [
         "Rolle: Einstiegsrolle"
@@ -8588,8 +8778,8 @@
     },
     {
       "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Werkzeugmechaniker-(wmx)-Werk-4-Plätze-BY-80809/1420646933/",
-      "title": "Azubi zum Werkzeugmechaniker (wmx) Werk 4 Plätze BY",
+      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Kaufmann-für-Digitalisierungsmanagement-(wmx)-Werk-BY-80809/1405375833/",
+      "title": "Azubi zum Kaufmann für Digitalisierungsmanagement (wmx) Werk BY",
       "company": "BMW Group",
       "location": "München",
       "description": "",
@@ -8606,11 +8796,43 @@
       "verify_status": "ok",
       "address_city": "80809 Deutschland",
       "jd_quelle": "seite",
-      "jd_len": 3575,
+      "jd_len": 3644,
       "fit": 30,
       "fit_reasons": [
         "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Konstruktion/CAD, Serie/Industrialisierung, Maschinenbau, Präzisions-/Messtechnik (+29)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, MedTech-Geraete (+11)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [
+        "Rolle: Einstiegsrolle"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "sf:BMW Group",
+      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Elektroniker-für-Automatisierungstechnik-(wmx)-Werk-25-Plätze-BY-80809/1419798933/",
+      "title": "Azubi zum Elektroniker für Automatisierungstechnik (wmx) Werk 25 Plätze BY",
+      "company": "BMW Group",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-11-18T08:13:35.767431",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80809 Deutschland",
+      "jd_quelle": "seite",
+      "jd_len": 3727,
+      "fit": 30,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Steuergeraete/Sensorik, Robotik/Mechatronik, KI/Automatisierung (+21)",
         "📍 München/Umland (+15)",
         "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
       ],
@@ -8657,6 +8879,39 @@
       ],
       "fit_ko": [],
       "fit_basis": "beschreibung"
+    },
+    {
+      "source": "sf:BMW Group",
+      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Fertigungsmechaniker-(wmx)-Werk-26-Plätze-BY-80809/1420644433/",
+      "title": "Azubi zum Fertigungsmechaniker (wmx) Werk 26 Plätze BY",
+      "company": "BMW Group",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-11-17T23:44:01.107081",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80809 Deutschland",
+      "jd_quelle": "seite",
+      "jd_len": 3246,
+      "fit": 30,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Gesamtfahrzeug/Package, Maschinenbau, Präzisions-/Messtechnik (+23)",
+        "📍 München/Umland (+15)",
+        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
+      ],
+      "fit_ko": [
+        "Rolle: Einstiegsrolle"
+      ],
+      "fit_basis": "volltext"
     },
     {
       "source": "xing",
@@ -8730,39 +8985,6 @@
       ],
       "fit_ko": [
         "Englisch C1/verhandlungssicher gefordert (Andy B2)"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Fertigungsmechaniker-(wmx)-Werk-26-Plätze-BY-80809/1420644433/",
-      "title": "Azubi zum Fertigungsmechaniker (wmx) Werk 26 Plätze BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-11-17T23:44:01.107081",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland",
-      "jd_quelle": "seite",
-      "jd_len": 3246,
-      "fit": 30,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Gesamtfahrzeug/Package, Maschinenbau, Präzisions-/Messtechnik (+23)",
-        "📍 München/Umland (+15)",
-        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
-      ],
-      "fit_ko": [
-        "Rolle: Einstiegsrolle"
       ],
       "fit_basis": "volltext"
     },
@@ -9068,39 +9290,6 @@
       "fit_basis": "volltext"
     },
     {
-      "source": "sf:BMW Group",
-      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Fachinformatiker-für-Daten-und-Prozessanalyse-(wmx)-Werk-BY-80809/1405374433/",
-      "title": "Azubi zum Fachinformatiker für Daten und Prozessanalyse (wmx) Werk BY",
-      "company": "BMW Group",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-11-17T20:36:02.889320",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80809 Deutschland",
-      "jd_quelle": "seite",
-      "jd_len": 3651,
-      "fit": 15,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug (+6)",
-        "⛔ Fremdgebiet: IT-Infrastruktur (−10)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [
-        "Rolle: Einstiegsrolle"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
       "source": "xing",
       "url": "https://www.xing.com/jobs/muenchen-lead-homologation-engineer-eu-typgenehmigung-159092457",
       "title": "Lead Homologation Engineer (m/w/d) – EU-Typgenehmigung",
@@ -9169,6 +9358,39 @@
       "fit_ko": [
         "Rolle: Einstiegsrolle",
         "Defense: nur ab 100.000 € (Regel 28.07.)"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "sf:BMW Group",
+      "url": "https://jobs.bmwgroup.com/job/München-Azubi-zum-Fachinformatiker-für-Daten-und-Prozessanalyse-(wmx)-Werk-BY-80809/1405374433/",
+      "title": "Azubi zum Fachinformatiker für Daten und Prozessanalyse (wmx) Werk BY",
+      "company": "BMW Group",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-11-17T20:36:02.889320",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80809 Deutschland",
+      "jd_quelle": "seite",
+      "jd_len": 3651,
+      "fit": 15,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug (+6)",
+        "⛔ Fremdgebiet: IT-Infrastruktur (−10)",
+        "📍 München/Umland (+15)"
+      ],
+      "fit_ko": [
+        "Rolle: Einstiegsrolle"
       ],
       "fit_basis": "volltext"
     },
@@ -9461,48 +9683,6 @@
     },
     {
       "source": "jobware",
-      "url": "https://www.jobware.de/job/projektleiter-entwaesserung-erschliessung-m-w-d-064982884",
-      "title": "Projektleiter Entwässerung / Erschließung (m/w/d)",
-      "company": "Obermeyer GmbH & Co. KG",
-      "location": "München",
-      "description": "",
-      "remote": false,
-      "first_seen": "2026-11-17T14:06:30.464575",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [
-        {
-          "source": "stepstone",
-          "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Entwaesserung-Erschliessung-m-w-d-Muenchen-Obermeyer-GmbH-Co-KG--14720106-inline.html"
-        }
-      ],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_street": "Hansastraße 40",
-      "address_city": "80686 München",
-      "clean_company": "Obermeyer GmbH & Co. KG",
-      "jd_quelle": "seite",
-      "jd_len": 3844,
-      "fit": 15,
-      "fit_reasons": [
-        "🎯 Rolle: Projektleitung (+18)",
-        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
-        "⛔ Fremdgebiet: Verwaltung/Behoerden (−10)",
-        "📍 München/Umland (+15)"
-      ],
-      "fit_ko": [
-        "Studium gefordert, nicht geöffnet"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "jobware",
       "url": "https://www.jobware.de/job/projektleiter-hydraulische-modelle-m-w-d-065106221",
       "title": "Projektleiter Hydraulische Modelle (m|w|d)",
       "company": "Björnsen Beratende Ingenieure GmbH",
@@ -9533,6 +9713,43 @@
       ],
       "fit_ko": [
         "Studium gefordert, nicht geöffnet"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "jobware",
+      "url": "https://www.jobware.de/job/projektleiter-fachbereich-hls-ingenieur-techniker-w-m-d-zur-festanstellung-gesucht-065103518",
+      "title": "Projektleiter Fachbereich HLS (Ingenieur/Techniker w|m|d) zur Festanstellung gesucht",
+      "company": "Ingenieurbüro Kinast GmbH",
+      "location": "München (DE)",
+      "description": "",
+      "remote": false,
+      "first_seen": "2026-11-17T14:06:30.464575",
+      "is_new": false,
+      "score": 41,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "kennziffer": "10001-1002139880-S",
+      "jd_quelle": "seite",
+      "jd_len": 6265,
+      "fit": 30,
+      "fit_reasons": [
+        "🎯 Rolle: Projektleitung, Inhalt Technisches PM (+24)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Konstruktion/CAD, Maschinenbau, KI/Automatisierung (+18)",
+        "⛔ Fremdgebiet: Bau/TGA/Immobilien (−10)",
+        "📍 München/Umland (+15)",
+        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)",
+        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
+      ],
+      "fit_ko": [
+        "Rolle: Bau/TGA"
       ],
       "fit_basis": "volltext"
     },
@@ -9574,10 +9791,10 @@
     },
     {
       "source": "jobware",
-      "url": "https://www.jobware.de/job/projektleiter-fachbereich-hls-ingenieur-techniker-w-m-d-zur-festanstellung-gesucht-065103518",
-      "title": "Projektleiter Fachbereich HLS (Ingenieur/Techniker w|m|d) zur Festanstellung gesucht",
-      "company": "Ingenieurbüro Kinast GmbH",
-      "location": "München (DE)",
+      "url": "https://www.jobware.de/job/projektleiter-entwaesserung-erschliessung-m-w-d-064982884",
+      "title": "Projektleiter Entwässerung / Erschließung (m/w/d)",
+      "company": "Obermeyer GmbH & Co. KG",
+      "location": "München",
       "description": "",
       "remote": false,
       "first_seen": "2026-11-17T14:06:30.464575",
@@ -9588,60 +9805,34 @@
         "📍 münchen (+25)"
       ],
       "category": "pm",
-      "alt_sources": [],
+      "alt_sources": [
+        {
+          "source": "adzuna",
+          "url": "https://www.adzuna.de/land/ad/5955143041?se=lKl8oxvo8RG2XtuTnnTjdg&title=Projektleiter_Entw%C3%A4sserung_%2F_Erschlie%C3%9Fung_%28m%2Fw%2Fd%29&v=E025BCDA08D44442E9AB759CB04FB1480725228B"
+        },
+        {
+          "source": "stepstone",
+          "url": "https://www.stepstone.de/stellenangebote--Projektleiter-Entwaesserung-Erschliessung-m-w-d-Muenchen-Obermeyer-GmbH-Co-KG--14720106-inline.html"
+        }
+      ],
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
-      "kennziffer": "10001-1002139880-S",
+      "address_street": "Hansastraße 40",
+      "address_city": "80686 München",
+      "clean_company": "Obermeyer GmbH & Co. KG",
       "jd_quelle": "seite",
-      "jd_len": 6266,
-      "fit": 30,
+      "jd_len": 3844,
+      "fit": 15,
       "fit_reasons": [
-        "🎯 Rolle: Projektleitung, Inhalt Technisches PM (+24)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Konstruktion/CAD, Maschinenbau, KI/Automatisierung (+18)",
-        "⛔ Fremdgebiet: Bau/TGA/Immobilien (−10)",
-        "📍 München/Umland (+15)",
-        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)",
-        "✅ Kernrolle + Fachgebiet passen zusammen (+10)"
+        "🎯 Rolle: Projektleitung (+18)",
+        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
+        "⛔ Fremdgebiet: Verwaltung/Behoerden (−10)",
+        "📍 München/Umland (+15)"
       ],
       "fit_ko": [
-        "Rolle: Bau/TGA"
+        "Studium gefordert, nicht geöffnet"
       ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "jobware",
-      "url": "https://www.jobware.de/job/prince-2-project-management-foundation-version-7-064911319",
-      "title": "PRINCE2 Project Management Foundation (Version 7)",
-      "company": "alfatraining Bildungszentrum GmbH",
-      "location": "Stuttgart (DE), Karlsruhe, Baden (DE), Hannover (DE), Nürnberg, Mittelfranken (DE), Frankfurt am Main (DE), München (DE), Bochum (DE), Berlin (DE), Hamburg (DE), Düsseldorf (DE)",
-      "description": "",
-      "remote": false,
-      "first_seen": "2026-11-17T14:06:30.464575",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 project management (+16)",
-        "📍 münchen (+25)"
-      ],
-      "category": "other",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "76133 Karlsruhe",
-      "kennziffer": "10000-1191236305-S",
-      "jd_quelle": "seite",
-      "jd_len": 9213,
-      "fit": 35,
-      "fit_reasons": [
-        "🎯 Rolle: Projektmanagement (+18)",
-        "🔧 Fachgebiet: KI/Automatisierung (+2)",
-        "⛔ Fremdgebiet: ERP/SAP/CRM (−10)",
-        "📍 München/Umland (+15)",
-        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
-      ],
-      "fit_ko": [],
       "fit_basis": "volltext"
     },
     {
@@ -9699,15 +9890,50 @@
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
-      "address_city": "27753 Delmenhorst",
+      "address_city": "38448 Wolfsburg",
       "kennziffer": "10001-1000898180-S",
       "jd_quelle": "seite",
-      "jd_len": 9036,
+      "jd_len": 9050,
       "fit": 37,
       "fit_reasons": [
         "🎯 Rolle: Projektmanagement (+18)",
         "🔧 Fachgebiet: KI/Automatisierung (+4)",
         "⛔ Fremdgebiet: Marketing/Handel (−10)",
+        "📍 München/Umland (+15)",
+        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "jobware",
+      "url": "https://www.jobware.de/job/prince-2-project-management-foundation-version-7-064911319",
+      "title": "PRINCE2 Project Management Foundation (Version 7)",
+      "company": "alfatraining Bildungszentrum GmbH",
+      "location": "Stuttgart (DE), Karlsruhe, Baden (DE), Hannover (DE), Nürnberg, Mittelfranken (DE), Frankfurt am Main (DE), München (DE), Bochum (DE), Berlin (DE), Hamburg (DE), Düsseldorf (DE)",
+      "description": "",
+      "remote": false,
+      "first_seen": "2026-11-17T14:06:30.464575",
+      "is_new": false,
+      "score": 41,
+      "score_reasons": [
+        "🎯 project management (+16)",
+        "📍 münchen (+25)"
+      ],
+      "category": "other",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "76133 Karlsruhe",
+      "kennziffer": "10000-1191236305-S",
+      "jd_quelle": "seite",
+      "jd_len": 9213,
+      "fit": 35,
+      "fit_reasons": [
+        "🎯 Rolle: Projektmanagement (+18)",
+        "🔧 Fachgebiet: KI/Automatisierung (+2)",
+        "⛔ Fremdgebiet: ERP/SAP/CRM (−10)",
         "📍 München/Umland (+15)",
         "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
       ],
@@ -9733,7 +9959,7 @@
       "alt_sources": [],
       "final_link": true,
       "verified": true,
-      "verify_status": "ok-spa",
+      "verify_status": "ok-suche+cache",
       "address_street": "81369 München",
       "address_city": "81369 München",
       "clean_company": "Proxima Fusion GmbH",
@@ -10618,46 +10844,6 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/11112-10632-1803940-0-S",
-      "title": "PMO for UAS projects within Future Air Power (m/w/d) // AIRBUS ",
-      "company": "KMS Zeitarbeit GmbH",
-      "location": "Taufkirchen, Kreis München",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-11-12T18:07:56.584202",
-      "is_new": false,
-      "score": 37,
-      "score_reasons": [
-        "🎯 pmo (+12)",
-        "📍 münchen (+25)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "82024 Taufkirchen",
-      "kennziffer": "11112-10632-1803940-0-S",
-      "clean_company": "KMS Zeitarbeit GmbH",
-      "jd_quelle": "api:arbeitsagentur",
-      "arbeitgeber_link": "https://deutschland-stellenmarkt.de/job_show.php?id=bfa$bfa_11112-10632-1803940-0-S",
-      "jd_len": 3577,
-      "fit": 45,
-      "fit_reasons": [
-        "🎯 Rolle: PMO/Process Excellence (+22)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Maschinenbau (+10)",
-        "ℹ️ Defense-Bezug im Text, prüfen (nur ab 100.000 €)",
-        "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
-      ],
-      "fit_ko": [
-        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/11119-4996517403-S",
       "title": "PMO Manager (m/w/d)",
       "company": "Randstad Professional",
@@ -10693,6 +10879,46 @@
       "fit_reasons": [
         "🎯 Rolle: PMO/Process Excellence (+22)",
         "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
+        "ℹ️ Defense-Bezug im Text, prüfen (nur ab 100.000 €)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+      ],
+      "fit_ko": [
+        "Englisch C1/verhandlungssicher gefordert (Andy B2)"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/11112-10632-1803940-0-S",
+      "title": "PMO for UAS projects within Future Air Power (m/w/d) // AIRBUS ",
+      "company": "KMS Zeitarbeit GmbH",
+      "location": "Taufkirchen, Kreis München",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-11-12T18:07:56.584202",
+      "is_new": false,
+      "score": 37,
+      "score_reasons": [
+        "🎯 pmo (+12)",
+        "📍 münchen (+25)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "82024 Taufkirchen",
+      "kennziffer": "11112-10632-1803940-0-S",
+      "clean_company": "KMS Zeitarbeit GmbH",
+      "jd_quelle": "api:arbeitsagentur",
+      "arbeitgeber_link": "https://deutschland-stellenmarkt.de/job_show.php?id=bfa$bfa_11112-10632-1803940-0-S",
+      "jd_len": 3577,
+      "fit": 45,
+      "fit_reasons": [
+        "🎯 Rolle: PMO/Process Excellence (+22)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Maschinenbau (+10)",
         "ℹ️ Defense-Bezug im Text, prüfen (nur ab 100.000 €)",
         "📍 München/Umland (+15)",
         "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
@@ -11374,10 +11600,9 @@
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
-      "address_city": "27753 Delmenhorst",
       "kennziffer": "10001-1003905604-S",
       "jd_quelle": "seite",
-      "jd_len": 7634,
+      "jd_len": 7635,
       "fit": 34,
       "fit_reasons": [
         "🎯 Rolle: Projektmanagement (+18)",
@@ -11936,37 +12161,6 @@
     },
     {
       "source": "workable:animore",
-      "url": "https://apply.workable.com/j/C2FDEE495B",
-      "title": "Robotics Systems Technician (F/M/D)",
-      "company": "Animore",
-      "location": "Munich, Bavaria, Germany",
-      "remote": false,
-      "description": "",
-      "first_seen": "2026-11-06T20:22:17.819834",
-      "is_new": false,
-      "score": 41,
-      "score_reasons": [
-        "🎯 robotics (+16)",
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok-spa",
-      "jd_len": 45,
-      "fit": 31,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Robotik/Mechatronik (+12)",
-        "📍 München/Umland (+15)",
-        "ℹ️ Nur Titel lesbar, Volltext fehlt (max. 55)"
-      ],
-      "fit_ko": [],
-      "fit_basis": "titel"
-    },
-    {
-      "source": "workable:animore",
       "url": "https://apply.workable.com/j/0350AB5AFE",
       "title": "(Senior) Robotics Engineer (F/M/D)",
       "company": "Animore",
@@ -11997,36 +12191,35 @@
       "fit_basis": "titel"
     },
     {
-      "source": "personio:pmx",
-      "url": "https://pmx.jobs.personio.de/job/2864821?language=de",
-      "title": "GUI / HMI Designer Automotive (m/w/d)",
-      "company": "pmX",
-      "location": "München",
+      "source": "workable:animore",
+      "url": "https://apply.workable.com/j/C2FDEE495B",
+      "title": "Robotics Systems Technician (F/M/D)",
+      "company": "Animore",
+      "location": "Munich, Bavaria, Germany",
+      "remote": false,
       "description": "",
       "first_seen": "2026-11-06T20:22:17.819834",
       "is_new": false,
-      "score": 37,
+      "score": 41,
       "score_reasons": [
-        "🚗 automotive (+12)",
-        "📍 münchen (+25)"
+        "🎯 robotics (+16)",
+        "📍 munich (+25)"
       ],
       "category": "auto",
       "alt_sources": [],
       "final_link": true,
       "verified": true,
       "verify_status": "ok-spa",
-      "address_city": "70372 Stuttgart",
-      "jd_quelle": "api:personio",
-      "jd_len": 1020,
-      "fit": 41,
+      "jd_len": 45,
+      "fit": 31,
       "fit_reasons": [
         "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, E/E-Architektur (+18)",
+        "🔧 Fachgebiet: Robotik/Mechatronik (+12)",
         "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+        "ℹ️ Nur Titel lesbar, Volltext fehlt (max. 55)"
       ],
       "fit_ko": [],
-      "fit_basis": "volltext"
+      "fit_basis": "titel"
     },
     {
       "source": "ashby:proxima-fusion",
@@ -12101,6 +12294,38 @@
       "fit_ko": [
         "Englisch C1/verhandlungssicher gefordert (Andy B2)"
       ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "personio:pmx",
+      "url": "https://pmx.jobs.personio.de/job/2864821?language=de",
+      "title": "GUI / HMI Designer Automotive (m/w/d)",
+      "company": "pmX",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-11-06T20:22:17.819834",
+      "is_new": false,
+      "score": 37,
+      "score_reasons": [
+        "🚗 automotive (+12)",
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "70372 Stuttgart",
+      "jd_quelle": "api:personio",
+      "jd_len": 1020,
+      "fit": 41,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, E/E-Architektur (+18)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+      ],
+      "fit_ko": [],
       "fit_basis": "volltext"
     },
     {
@@ -13154,39 +13379,6 @@
     },
     {
       "source": "jobware",
-      "url": "https://www.jobware.de/job/kuenstliche-intelligenz-manager-in-fuer-angewandte-ki-transformation-064924392",
-      "title": "Künstliche Intelligenz: Manager:in für angewandte KI-Transformation",
-      "company": "alfatraining Bildungszentrum GmbH",
-      "location": "Frankfurt am Main (DE), Berlin (DE), Hannover (DE), Stuttgart (DE), Hamburg (DE), Bochum (DE), Düsseldorf (DE), München (DE), Nürnberg, Mittelfranken (DE), Karlsruhe, Baden (DE)",
-      "description": "",
-      "remote": false,
-      "first_seen": "2026-11-03T12:28:16.567212",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "ki",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "76133 Karlsruhe",
-      "kennziffer": "10001-1001912174-S",
-      "jd_quelle": "seite",
-      "jd_len": 9315,
-      "fit": 33,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: KI/Automatisierung (+4)",
-        "📍 München/Umland (+15)",
-        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
-      ],
-      "fit_ko": [],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "jobware",
       "url": "https://www.jobware.de/job/kuenstliche-intelligenz-ki-im-qualitaetsmanagement-064923869",
       "title": "Künstliche Intelligenz (KI) im Qualitätsmanagement",
       "company": "alfatraining Bildungszentrum GmbH",
@@ -13208,6 +13400,39 @@
       "kennziffer": "10001-1001729946-S",
       "jd_quelle": "seite",
       "jd_len": 8945,
+      "fit": 33,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: KI/Automatisierung (+4)",
+        "📍 München/Umland (+15)",
+        "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "jobware",
+      "url": "https://www.jobware.de/job/kuenstliche-intelligenz-manager-in-fuer-angewandte-ki-transformation-064924392",
+      "title": "Künstliche Intelligenz: Manager:in für angewandte KI-Transformation",
+      "company": "alfatraining Bildungszentrum GmbH",
+      "location": "Frankfurt am Main (DE), Berlin (DE), Hannover (DE), Stuttgart (DE), Hamburg (DE), Bochum (DE), Düsseldorf (DE), München (DE), Nürnberg, Mittelfranken (DE), Karlsruhe, Baden (DE)",
+      "description": "",
+      "remote": false,
+      "first_seen": "2026-11-03T12:28:16.567212",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 münchen (+25)"
+      ],
+      "category": "ki",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "38448 Wolfsburg",
+      "kennziffer": "10001-1001912174-S",
+      "jd_quelle": "seite",
+      "jd_len": 9315,
       "fit": 33,
       "fit_reasons": [
         "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
@@ -13388,7 +13613,7 @@
       "alt_sources": [
         {
           "source": "adzuna",
-          "url": "https://www.adzuna.de/land/ad/5809273813?se=qErTEgro8RGEFu1OG9UXpQ&title=Projektmanager%2Ain_Bau-_und_Geb%C3%A4udemanagement_%28m%2Fw%2Fd%29&v=8AE30CA78B711DE90197D1553089B51AEBD6F98E"
+          "url": "https://www.adzuna.de/land/ad/5809273813?se=1PXxoRvo8RGNOu96RzRFFQ&title=Projektmanager%2Ain_Bau-_und_Geb%C3%A4udemanagement_%28m%2Fw%2Fd%29&v=8AE30CA78B711DE90197D1553089B51AEBD6F98E"
         }
       ],
       "final_link": true,
@@ -13545,7 +13770,6 @@
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
-      "address_city": "27753 Delmenhorst",
       "kennziffer": "10001-1003939345-S",
       "jd_quelle": "seite",
       "jd_len": 7104,
@@ -14030,6 +14254,7 @@
       "final_link": true,
       "verified": true,
       "verify_status": "ok",
+      "address_city": "38448 Wolfsburg",
       "kennziffer": "15587-k50507.1895-S",
       "jd_quelle": "seite",
       "jd_len": 8062,
@@ -14470,45 +14695,6 @@
     },
     {
       "source": "bundesagentur",
-      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003881248-S",
-      "title": "Projektleiter Elektronische Kampfführung (EloKa) (m/w/d)",
-      "company": "IABG Industrieanlagen Betriebs-GmbH",
-      "location": "Ottobrunn",
-      "description": "",
-      "salary": "",
-      "homeoffice": false,
-      "first_seen": "2026-10-23T12:44:39.848994",
-      "is_new": false,
-      "score": 32,
-      "score_reasons": [
-        "🎯 projektleiter (+16)",
-        "📍 ottobrunn (+16)"
-      ],
-      "category": "pm",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_street": "Einsteinstr. 20",
-      "address_city": "85521 Ottobrunn",
-      "kennziffer": "10001-1003881248-S",
-      "clean_company": "IABG Industrieanlagen Betriebs-GmbH",
-      "jd_quelle": "api:arbeitsagentur",
-      "jd_len": 3088,
-      "fit": 30,
-      "fit_reasons": [
-        "🎯 Rolle: Projektleitung (+18)",
-        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
-        "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
-      ],
-      "fit_ko": [
-        "Defense: nur ab 100.000 € (Regel 28.07.)"
-      ],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "bundesagentur",
       "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003825285-S",
       "title": "(Senior) Projektleiter Future Combat Air Programmes (m/w/d)",
       "company": "IABG Industrieanlagen Betriebs-GmbH",
@@ -14544,6 +14730,45 @@
       "fit_ko": [
         "Defense: nur ab 100.000 € (Regel 28.07.)",
         "Englisch C1/verhandlungssicher gefordert (Andy B2)"
+      ],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "bundesagentur",
+      "url": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003881248-S",
+      "title": "Projektleiter Elektronische Kampfführung (EloKa) (m/w/d)",
+      "company": "IABG Industrieanlagen Betriebs-GmbH",
+      "location": "Ottobrunn",
+      "description": "",
+      "salary": "",
+      "homeoffice": false,
+      "first_seen": "2026-10-23T12:44:39.848994",
+      "is_new": false,
+      "score": 32,
+      "score_reasons": [
+        "🎯 projektleiter (+16)",
+        "📍 ottobrunn (+16)"
+      ],
+      "category": "pm",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_street": "Einsteinstr. 20",
+      "address_city": "85521 Ottobrunn",
+      "kennziffer": "10001-1003881248-S",
+      "clean_company": "IABG Industrieanlagen Betriebs-GmbH",
+      "jd_quelle": "api:arbeitsagentur",
+      "jd_len": 3088,
+      "fit": 30,
+      "fit_reasons": [
+        "🎯 Rolle: Projektleitung (+18)",
+        "🔧 Fachgebiet: keine Automotive-/Hardware-/Robotik-Signale (+0)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+      ],
+      "fit_ko": [
+        "Defense: nur ab 100.000 € (Regel 28.07.)"
       ],
       "fit_basis": "volltext"
     },
@@ -14917,11 +15142,8 @@
       "final_link_note": "xing/applyUrl",
       "verified": true,
       "verify_status": "ok",
-      "address_street": "-",
-      "address_city": "München",
-      "clean_company": "SERVICEPLAN Gruppe",
       "jd_quelle": "seite",
-      "jd_len": 3390,
+      "jd_len": 4059,
       "fit": 29,
       "fit_reasons": [
         "🎯 Rolle: Projektmanagement (+18)",
@@ -15313,44 +15535,6 @@
     },
     {
       "source": "ashby:robco",
-      "url": "https://jobs.ashbyhq.com/robco/9cbaf2d0-c71e-4581-9fc0-f51db130fdca",
-      "title": "Accountant (m/f/d)",
-      "company": "RobCo",
-      "location": "Munich",
-      "description": "",
-      "first_seen": "2026-09-26T11:12:03.613418",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 munich (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok-spa",
-      "address_city": "Munich",
-      "clean_company": "RobCo",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "Senior Mechanical Engineer - Robotics",
-        "datum": "2026-09-14",
-        "gleiche_stelle": false
-      },
-      "jd_quelle": "api:ashby",
-      "jd_len": 5166,
-      "fit": 38,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Robotik/Mechatronik, Hardware, Präzisions-/Messtechnik, KI/Automatisierung (+15)",
-        "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
-      ],
-      "fit_ko": [],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "ashby:robco",
       "url": "https://jobs.ashbyhq.com/robco/938f5b25-dc2d-469d-af17-9a38ccdcca08",
       "title": "Senior Solution Development Engineer (m/f/d)",
       "company": "RobCo",
@@ -15428,6 +15612,44 @@
       "fit_basis": "volltext"
     },
     {
+      "source": "ashby:robco",
+      "url": "https://jobs.ashbyhq.com/robco/9cbaf2d0-c71e-4581-9fc0-f51db130fdca",
+      "title": "Accountant (m/f/d)",
+      "company": "RobCo",
+      "location": "Munich",
+      "description": "",
+      "first_seen": "2026-09-26T11:12:03.613418",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 munich (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok-spa",
+      "address_city": "Munich",
+      "clean_company": "RobCo",
+      "bewerbung": {
+        "status": "absage",
+        "stelle": "Senior Mechanical Engineer - Robotics",
+        "datum": "2026-09-14",
+        "gleiche_stelle": false
+      },
+      "jd_quelle": "api:ashby",
+      "jd_len": 5166,
+      "fit": 38,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: Robotik/Mechatronik, Hardware, Präzisions-/Messtechnik, KI/Automatisierung (+15)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
       "source": "personio:magazino",
       "url": "https://magazino.jobs.personio.de/job/2606762?language=de",
       "title": "Robot Deployment Engineer (w/m/x)",
@@ -15502,43 +15724,6 @@
     },
     {
       "source": "silver-atena",
-      "url": "https://karriere.silver-atena.de/stellenangebote/berufseinsteiger/elektroniker-hardwareentwicklung-b62ddd8e-ae16-4d69-8438-7d8ac5357363",
-      "title": "Elektroniker Hardwareentwicklung (m/w/d)",
-      "company": "Silver Atena",
-      "location": "München",
-      "description": "",
-      "first_seen": "2026-09-23T11:52:58.280886",
-      "is_new": false,
-      "score": 25,
-      "score_reasons": [
-        "📍 münchen (+25)"
-      ],
-      "category": "auto",
-      "alt_sources": [],
-      "final_link": true,
-      "verified": true,
-      "verify_status": "ok",
-      "address_city": "80995 München",
-      "bewerbung": {
-        "status": "absage",
-        "stelle": "Technischer Projektleiter Elektronikentwicklung e-Mobility",
-        "datum": "2026-07",
-        "gleiche_stelle": false
-      },
-      "jd_quelle": "seite",
-      "jd_len": 3162,
-      "fit": 51,
-      "fit_reasons": [
-        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
-        "🔧 Fachgebiet: Automotive/Fahrzeug, Steuergeraete/Sensorik, Serie/Industrialisierung, Hardware, Präzisions-/Messtechnik (+28)",
-        "📍 München/Umland (+15)",
-        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
-      ],
-      "fit_ko": [],
-      "fit_basis": "volltext"
-    },
-    {
-      "source": "silver-atena",
       "url": "https://karriere.silver-atena.de/stellenangebote/berufserfahrene/techniker-elektrotechnik-umweltqualifikation-1aa4f3a5-152a-47bf-8416-f43ec15a0355",
       "title": "Techniker Elektrotechnik - Umweltqualifikation (m/w/d)",
       "company": "Silver Atena",
@@ -15570,6 +15755,43 @@
         "🔧 Fachgebiet: Automotive/Fahrzeug, Steuergeraete/Sensorik, Robotik/Mechatronik, Serie/Industrialisierung, E-Mobilitaet (+30)",
         "📍 München/Umland (+15)",
         "🚪 Techniker/Ausbildung ausdrücklich zugelassen (+10)"
+      ],
+      "fit_ko": [],
+      "fit_basis": "volltext"
+    },
+    {
+      "source": "silver-atena",
+      "url": "https://karriere.silver-atena.de/stellenangebote/berufseinsteiger/elektroniker-hardwareentwicklung-b62ddd8e-ae16-4d69-8438-7d8ac5357363",
+      "title": "Elektroniker Hardwareentwicklung (m/w/d)",
+      "company": "Silver Atena",
+      "location": "München",
+      "description": "",
+      "first_seen": "2026-09-23T11:52:58.280886",
+      "is_new": false,
+      "score": 25,
+      "score_reasons": [
+        "📍 münchen (+25)"
+      ],
+      "category": "auto",
+      "alt_sources": [],
+      "final_link": true,
+      "verified": true,
+      "verify_status": "ok",
+      "address_city": "80995 München",
+      "bewerbung": {
+        "status": "absage",
+        "stelle": "Technischer Projektleiter Elektronikentwicklung e-Mobility",
+        "datum": "2026-07",
+        "gleiche_stelle": false
+      },
+      "jd_quelle": "seite",
+      "jd_len": 3162,
+      "fit": 51,
+      "fit_reasons": [
+        "🎯 Rolle: kein PM-/Entwicklungskern im Titel (+4)",
+        "🔧 Fachgebiet: Automotive/Fahrzeug, Steuergeraete/Sensorik, Serie/Industrialisierung, Hardware, Präzisions-/Messtechnik (+28)",
+        "📍 München/Umland (+15)",
+        "🚪 Studium „oder vergleichbar“, Techniker nicht genannt: vor der Bewerbung nachfragen (+4)"
       ],
       "fit_ko": [],
       "fit_basis": "volltext"
